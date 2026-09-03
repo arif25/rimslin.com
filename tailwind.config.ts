@@ -46,6 +46,11 @@ const config: Config = {
           900: "#78350f",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        arabic: ["var(--font-arabic)", "'Noto Sans Arabic'", "Amiri", "Tahoma", "sans-serif"],
+        bengali: ["var(--font-bengali)", "'Noto Sans Bengali'", "sans-serif"],
+      },
       backgroundImage: {
         "hero-emerald-glow":
           "radial-gradient(700px circle at 50% 0%, rgba(16, 185, 129, 0.18), transparent 70%)",

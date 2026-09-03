@@ -153,7 +153,7 @@ export default function AudioPhraseDemo() {
             return (
               <div
                 key={phrase.id}
-                className={`relative flex flex-col justify-between rounded-2xl border p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${
+                className={`relative flex flex-col justify-between rounded-2xl border w-full overflow-hidden p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full ${
                   isPlaying
                     ? "border-emerald-500 bg-emerald-50/50 shadow-xl shadow-emerald-500/10 ring-1 ring-emerald-500/50 dark:border-gulf-400 dark:bg-gulf-950/40 dark:shadow-gulf-500/20 dark:ring-gulf-400/50 scale-[1.01]"
                     : "border-slate-200/90 bg-white/95 shadow-sm hover:border-emerald-500/40 hover:shadow-md dark:border-white/[0.08] dark:bg-surface-100/70 dark:hover:border-gulf-500/40 dark:hover:bg-surface-200/80"
@@ -182,35 +182,54 @@ export default function AudioPhraseDemo() {
                     </div>
                   </div>
 
+                  {/* Gulf Arabic Sentence Showcase Box - Full Width, Large & Prominent */}
+                  <div className="my-3 rounded-2xl bg-emerald-50/70 dark:bg-[#0b1b12] p-4 sm:p-5 border border-emerald-200/70 dark:border-gulf-500/25 w-full overflow-hidden text-start shadow-inner">
+                    <div className="flex items-center justify-between border-b border-emerald-200/40 dark:border-white/[0.06] pb-2">
+                      <span className="text-[11px] font-bold text-emerald-700 dark:text-gulf-400 uppercase tracking-wider">
+                        {t.audioDemo.arabicPronunciationLabel}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
+                        Khaleeji Arabic
+                      </span>
+                    </div>
+
+                    {/* Arabic Sentence Sizing & Layout */}
+                    <div
+                      dir="rtl"
+                      className="w-full block my-3 py-2 text-right rtl:text-right ltr:text-left sm:text-center text-2xl sm:text-3xl lg:text-4xl font-bold font-arabic leading-relaxed tracking-wide text-slate-900 dark:text-white break-words"
+                    >
+                      {phrase.arabicScript}
+                    </div>
+
+                    {/* Phonetic Pronunciation Underneath */}
+                    <div className="mt-1 text-center sm:text-center text-base sm:text-lg font-bold text-amber-700 dark:text-gold-300 leading-snug">
+                      &quot;{phrase.phoneticScript}&quot;
+                    </div>
+                    {language !== "en" && language !== "ar" && (
+                      <div className="text-center text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 mt-1">
+                        Phonetic: {phrase.phoneticLatin}
+                      </div>
+                    )}
+                  </div>
+
                   {/* Adaptive Meaning in Active Language */}
-                  <div className="mb-4 text-start">
-                    <div className="text-[11px] font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">
+                  <div className="mt-4 mb-3 text-start">
+                    <div className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       {t.audioDemo.meaningLabel}
                     </div>
-                    <div className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
+                    <div className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 mt-0.5">
                       {phrase.meaning}
                     </div>
                   </div>
 
-                  {/* Gulf Arabic in Adapted Phonetic Script & Arabic Original */}
-                  <div className="mb-4 rounded-xl bg-emerald-50/70 dark:bg-[#0b1b12] p-3.5 border border-emerald-200/60 dark:border-gulf-500/20 text-start">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold text-emerald-700 dark:text-gulf-400 uppercase tracking-wider">
-                        {t.audioDemo.arabicPronunciationLabel}
-                      </span>
-                      <span className="text-xs font-arabic text-slate-700 dark:text-slate-300" dir="rtl">
-                        {phrase.arabicScript}
-                      </span>
+                  {/* Workplace English */}
+                  <div className="mb-5 text-start">
+                    <div className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                      {t.audioDemo.workplaceEnglishLabel}
                     </div>
-                    {/* Phonetic in Bengali / Devanagari / Latin / Arabic */}
-                    <div className="text-sm font-extrabold text-amber-700 dark:text-gold-300 mt-1">
-                      &quot;{phrase.phoneticScript}&quot;
+                    <div className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-medium italic mt-0.5" dir="ltr">
+                      &ldquo;{phrase.englishWorkplace}&rdquo;
                     </div>
-                    {language !== "en" && language !== "ar" && (
-                      <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-0.5">
-                        Phonetic: {phrase.phoneticLatin}
-                      </div>
-                    )}
                   </div>
 
                   {/* Khaleeji Dialect Nuance Highlight Box for Arabic UI */}
@@ -223,16 +242,6 @@ export default function AudioPhraseDemo() {
                       <p className="text-[11px] text-slate-700 dark:text-slate-200">{phrase.dialectTip}</p>
                     </div>
                   )}
-
-                  {/* Workplace English */}
-                  <div className="mb-6 text-start">
-                    <div className="text-[11px] font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wider">
-                      {t.audioDemo.workplaceEnglishLabel}
-                    </div>
-                    <div className="text-xs font-medium text-slate-700 dark:text-slate-200 italic mt-0.5" dir="ltr">
-                      &ldquo;{phrase.englishWorkplace}&rdquo;
-                    </div>
-                  </div>
                 </div>
 
                 {/* Card Bottom: Play Audio & Copy */}
