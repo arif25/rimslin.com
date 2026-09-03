@@ -20,6 +20,22 @@ export default function AudioPhraseDemo() {
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [speechRate, setSpeechRate] = useState<number>(0.85);
+  const [globalTashkeel, setGlobalTashkeel] = useState<boolean>(true);
+  const [cardOverrides, setCardOverrides] = useState<Record<string, boolean>>({});
+
+  const isTashkeelFor = (id: string) => {
+    if (cardOverrides[id] !== undefined) {
+      return cardOverrides[id];
+    }
+    return globalTashkeel;
+  };
+
+  const toggleCardTashkeel = (id: string) => {
+    setCardOverrides((prev) => ({
+      ...prev,
+      [id]: !(prev[id] !== undefined ? prev[id] : globalTashkeel),
+    }));
+  };
 
   const phrases = t.audioDemo.phrases;
 
@@ -65,7 +81,11 @@ export default function AudioPhraseDemo() {
   };
 
   const handleCopy = (phrase: AudioPhraseItem) => {
-    const text = `${phrase.meaning}\n${t.audioDemo.arabicPronunciationLabel}: ${phrase.phoneticScript}\nEnglish: ${phrase.englishWorkplace}`;
+    const isTashkeelActive = isTashkeelFor(phrase.id);
+    const activeArabic = isTashkeelActive
+      ? phrase.arabicTashkeel || phrase.arabicScript
+      : phrase.arabicScript;
+    const text = `${phrase.meaning}\nআরবি: ${activeArabic}\n${t.audioDemo.arabicPronunciationLabel}: ${phrase.phoneticScript}\nEnglish: ${phrase.englishWorkplace}`;
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(text);
       setCopiedId(phrase.id);
@@ -98,9 +118,9 @@ export default function AudioPhraseDemo() {
           </p>
         </div>
 
-        {/* Category Filter Tabs & Speed Toggle */}
-        <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 max-w-full">
+        {/* Category Filter Tabs, Tashkeel Toggle & Speed Controls */}
+        <div className="mt-10 flex flex-col lg:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 max-w-full">
             {t.audioDemo.categories.map((cat) => (
               <button
                 key={cat.id}
@@ -116,31 +136,69 @@ export default function AudioPhraseDemo() {
             ))}
           </div>
 
-          {/* Speed Toggle */}
-          <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white/80 dark:border-white/10 dark:bg-surface-100/60 px-3 py-1 text-xs text-slate-700 dark:text-slate-300 shrink-0 shadow-sm">
-            <span className="text-[11px] text-slate-500 dark:text-slate-400">{t.audioDemo.speedLabel}</span>
-            <button
-              type="button"
-              onClick={() => setSpeechRate(0.7)}
-              className={`rounded px-2 py-0.5 font-bold transition-colors ${
-                speechRate <= 0.75
-                  ? "bg-amber-500/20 text-amber-700 dark:bg-gold-500/20 dark:text-gold-300 border border-amber-500/30 dark:border-gold-500/30"
-                  : "hover:text-slate-900 dark:hover:text-white text-slate-500 dark:text-slate-400"
-              }`}
-            >
-              {t.audioDemo.speedSlow}
-            </button>
-            <button
-              type="button"
-              onClick={() => setSpeechRate(0.95)}
-              className={`rounded px-2 py-0.5 font-bold transition-colors ${
-                speechRate > 0.75
-                  ? "bg-emerald-500/20 text-emerald-700 dark:bg-gulf-500/20 dark:text-gulf-300 border border-emerald-500/30 dark:border-gulf-500/30"
-                  : "hover:text-slate-900 dark:hover:text-white text-slate-500 dark:text-slate-400"
-              }`}
-            >
-              {t.audioDemo.speedNormal}
-            </button>
+          {/* Controls Cluster: Dual Format (Tashkeel) Toggle & Audio Speed */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0">
+            {/* Tashkeel Global Segmented Pill */}
+            <div className="flex items-center gap-1 rounded-xl border border-slate-200/90 bg-white/80 dark:border-white/10 dark:bg-surface-100/60 p-1 text-xs text-slate-700 dark:text-slate-300 shadow-sm">
+              <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 px-1.5">
+                {isRTL ? "الحركات:" : "হরকত:"}
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setGlobalTashkeel(true);
+                  setCardOverrides({});
+                }}
+                className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-all ${
+                  globalTashkeel
+                    ? "bg-emerald-600 text-white shadow-xs dark:bg-gulf-500 dark:text-slate-950 font-bold"
+                    : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                }`}
+              >
+                {t.audioDemo.tashkeelWithLabel || "যের-যবর সহ"}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setGlobalTashkeel(false);
+                  setCardOverrides({});
+                }}
+                className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-all ${
+                  !globalTashkeel
+                    ? "bg-emerald-600 text-white shadow-xs dark:bg-gulf-500 dark:text-slate-950 font-bold"
+                    : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                }`}
+              >
+                {t.audioDemo.tashkeelWithoutLabel || "সাদামাটা"}
+              </button>
+            </div>
+
+            {/* Speed Toggle */}
+            <div className="flex items-center gap-1.5 rounded-xl border border-slate-200/90 bg-white/80 dark:border-white/10 dark:bg-surface-100/60 px-3 py-1 text-xs text-slate-700 dark:text-slate-300 shadow-sm">
+              <span className="text-[11px] text-slate-500 dark:text-slate-400">{t.audioDemo.speedLabel}</span>
+              <button
+                type="button"
+                onClick={() => setSpeechRate(0.7)}
+                className={`rounded px-2 py-0.5 font-bold transition-colors ${
+                  speechRate <= 0.75
+                    ? "bg-amber-500/20 text-amber-700 dark:bg-gold-500/20 dark:text-gold-300 border border-amber-500/30 dark:border-gold-500/30"
+                    : "hover:text-slate-900 dark:hover:text-white text-slate-500 dark:text-slate-400"
+                }`}
+              >
+                {t.audioDemo.speedSlow}
+              </button>
+              <button
+                type="button"
+                onClick={() => setSpeechRate(0.95)}
+                className={`rounded px-2 py-0.5 font-bold transition-colors ${
+                  speechRate > 0.75
+                    ? "bg-emerald-500/20 text-emerald-700 dark:bg-gulf-500/20 dark:text-gulf-300 border border-emerald-500/30 dark:border-gulf-500/30"
+                    : "hover:text-slate-900 dark:hover:text-white text-slate-500 dark:text-slate-400"
+                }`}
+              >
+                {t.audioDemo.speedNormal}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -149,6 +207,13 @@ export default function AudioPhraseDemo() {
           {filteredPhrases.map((phrase) => {
             const isPlaying = playingId === phrase.id;
             const isCopied = copiedId === phrase.id;
+            const isTashkeelActive = isTashkeelFor(phrase.id);
+            const primaryArabic = isTashkeelActive
+              ? (phrase.arabicTashkeel || phrase.arabicScript)
+              : phrase.arabicScript;
+            const secondaryArabic = isTashkeelActive
+              ? phrase.arabicScript
+              : (phrase.arabicTashkeel || phrase.arabicScript);
 
             return (
               <div
@@ -182,27 +247,49 @@ export default function AudioPhraseDemo() {
                     </div>
                   </div>
 
-                  {/* Gulf Arabic Sentence Showcase Box - Full Width, Large & Prominent */}
+                  {/* Gulf Arabic Sentence Showcase Box with Dual Format Toggle */}
                   <div className="my-3 rounded-2xl bg-emerald-50/70 dark:bg-[#0b1b12] p-4 sm:p-5 border border-emerald-200/70 dark:border-gulf-500/25 w-full overflow-hidden text-start shadow-inner">
-                    <div className="flex items-center justify-between border-b border-emerald-200/40 dark:border-white/[0.06] pb-2">
+                    <div className="flex items-center justify-between border-b border-emerald-200/40 dark:border-white/[0.06] pb-2 gap-2">
                       <span className="text-[11px] font-bold text-emerald-700 dark:text-gulf-400 uppercase tracking-wider">
                         {t.audioDemo.arabicPronunciationLabel}
                       </span>
-                      <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
-                        Khaleeji Arabic
+                      
+                      {/* Interactive Dual Format Toggle Pill */}
+                      <button
+                        type="button"
+                        onClick={() => toggleCardTashkeel(phrase.id)}
+                        className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold border transition-all cursor-pointer bg-white/90 dark:bg-black/40 border-emerald-300/80 dark:border-gulf-500/30 text-emerald-800 dark:text-gulf-300 hover:bg-emerald-100/70 dark:hover:bg-gulf-500/20 shadow-xs"
+                        title="হরকত সহ এবং সাধারণ লেখার মধ্যে টগল করুন"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>{isTashkeelActive ? "যের-যবর সহ" : "সাধারণ"}</span>
+                        <span className="text-[9px] text-slate-400">⇄ টগল</span>
+                      </button>
+                    </div>
+
+                    {/* Arabic Sentence Sizing - Scaled down 20% to prevent awkward mobile wrapping */}
+                    <div
+                      dir="rtl"
+                      className="w-full block my-2.5 py-1 text-right rtl:text-right ltr:text-left sm:text-center text-xl sm:text-2xl lg:text-3xl font-semibold font-arabic leading-relaxed text-slate-900 dark:text-white break-words transition-all duration-200"
+                    >
+                      {primaryArabic}
+                    </div>
+
+                    {/* Dual Format Counterpart Subtitle */}
+                    <div className="flex flex-wrap items-center justify-center gap-1.5 mt-1 mb-2">
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        {isTashkeelActive ? "দৈনন্দিন সাধারণ লেখা:" : "উচ্চারণের জন্য হরকত সহ:"}
+                      </span>
+                      <span
+                        dir="rtl"
+                        className="text-xs sm:text-sm font-arabic font-medium text-slate-700 dark:text-slate-200 px-2 py-0.5 rounded-md bg-white/75 dark:bg-black/25 border border-slate-200/80 dark:border-white/10"
+                      >
+                        {secondaryArabic}
                       </span>
                     </div>
 
-                    {/* Arabic Sentence Sizing & Layout */}
-                    <div
-                      dir="rtl"
-                      className="w-full block my-3 py-2 text-right rtl:text-right ltr:text-left sm:text-center text-2xl sm:text-3xl lg:text-4xl font-bold font-arabic leading-relaxed tracking-wide text-slate-900 dark:text-white break-words"
-                    >
-                      {phrase.arabicScript}
-                    </div>
-
-                    {/* Phonetic Pronunciation Underneath */}
-                    <div className="mt-1 text-center sm:text-center text-base sm:text-lg font-bold text-amber-700 dark:text-gold-300 leading-snug">
+                    {/* Phonetic Pronunciation in Refined Khaleeji Bengali */}
+                    <div className="mt-2 text-center sm:text-center text-base sm:text-lg font-bold text-amber-700 dark:text-gold-300 leading-snug">
                       &quot;{phrase.phoneticScript}&quot;
                     </div>
                     {language !== "en" && language !== "ar" && (
