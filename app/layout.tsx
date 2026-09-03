@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Inter, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Sans_Arabic } from "next/font/google";
+import { Inter, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Sans_Arabic, Amiri } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/language-context";
 
@@ -29,6 +29,13 @@ const notoSansArabic = Noto_Sans_Arabic({
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-arabic",
+});
+
+const amiri = Amiri({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-amiri",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -114,7 +121,7 @@ export default function RootLayout({
     <html
       lang="bn"
       suppressHydrationWarning
-      className={`overflow-x-hidden max-w-full w-full ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable}`}
+      className={`overflow-x-hidden max-w-full w-full ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable} ${amiri.variable}`}
     >
       <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-background dark:text-slate-100 antialiased selection:bg-gulf-500 selection:text-white overflow-x-hidden max-w-full w-full relative transition-colors duration-200">
         <ThemeProvider

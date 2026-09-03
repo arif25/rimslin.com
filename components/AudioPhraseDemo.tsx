@@ -267,10 +267,10 @@ export default function AudioPhraseDemo() {
                       </button>
                     </div>
 
-                    {/* Arabic Sentence Sizing - Scaled down 20% to prevent awkward mobile wrapping */}
+                    {/* Arabic Sentence Sizing - Amiri Font */}
                     <div
                       dir="rtl"
-                      className="w-full block my-2.5 py-1 text-right rtl:text-right ltr:text-left sm:text-center text-xl sm:text-2xl lg:text-3xl font-semibold font-arabic leading-relaxed text-slate-900 dark:text-white break-words transition-all duration-200"
+                      className="w-full block my-2.5 py-1 text-right rtl:text-right ltr:text-left sm:text-center font-arabic text-2xl sm:text-3xl font-bold leading-relaxed tracking-normal text-slate-900 dark:text-white break-words transition-all duration-200"
                     >
                       {primaryArabic}
                     </div>
@@ -282,7 +282,7 @@ export default function AudioPhraseDemo() {
                       </span>
                       <span
                         dir="rtl"
-                        className="text-xs sm:text-sm font-arabic font-medium text-slate-700 dark:text-slate-200 px-2 py-0.5 rounded-md bg-white/75 dark:bg-black/25 border border-slate-200/80 dark:border-white/10"
+                        className="font-arabic text-base sm:text-lg font-normal text-slate-700 dark:text-slate-200 px-2.5 py-0.5 rounded-md bg-white/75 dark:bg-black/25 border border-slate-200/80 dark:border-white/10 inline-block"
                       >
                         {secondaryArabic}
                       </span>

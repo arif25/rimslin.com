@@ -48,7 +48,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        arabic: ["var(--font-arabic)", "'Noto Sans Arabic'", "Amiri", "Tahoma", "sans-serif"],
+        arabic: ["var(--font-amiri)", "serif"],
         bengali: ["var(--font-bengali)", "'Noto Sans Bengali'", "sans-serif"],
       },
       backgroundImage: {
