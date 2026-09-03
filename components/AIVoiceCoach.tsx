@@ -84,7 +84,8 @@ export default function AIVoiceCoach() {
   };
 
   return (
-    <section id="ai-voice" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
+    <section id="ai-coach" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
+      <span id="ai-voice" className="sr-only" aria-hidden="true" />
       {/* Background glow */}
       <div
         className="pointer-events-none absolute top-1/2 right-0 -z-10 h-[450px] w-full max-w-[450px] rounded-full bg-hero-emerald-glow blur-[130px]"

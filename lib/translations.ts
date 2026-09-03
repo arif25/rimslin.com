@@ -82,6 +82,8 @@ export interface TranslationSchema {
     brandSubtitle: string;
     audioDemo: string;
     jobTracks: string;
+    countryDialects: string;
+    dailyDialogues: string;
     curriculum: string;
     aiVoice: string;
     reviews: string;
@@ -90,6 +92,17 @@ export interface TranslationSchema {
     whatsappMessage: string;
     startCourse: string;
     syllabusMobile: string;
+    freePractice: string;
+    more: string;
+    moreItems: {
+      testimonials: string;
+      emergencyPhrases: string;
+      workerRights: string;
+      airportGuide: string;
+      audioDownloads: string;
+      faq: string;
+      contact: string;
+    };
   };
   hero: {
     badge: string;
@@ -244,15 +257,28 @@ export const translations: Record<Language, TranslationSchema> = {
       brandTag: "গালফ হাব",
       brandSubtitle: "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম",
       audioDemo: "অডিও ফ্রেজ ডেমো",
-      jobTracks: "কাজের ট্র্যাক",
-      curriculum: "কোর্স প্ল্যান",
+      jobTracks: "ট্রেড ও জব ট্র্যাক",
+      countryDialects: "দেশভিত্তিক আঞ্চলিক ভাষা",
+      dailyDialogues: "দৈনন্দিন কথোপকথন",
+      curriculum: "কোর্স প্ল্যান ও ফি",
       aiVoice: "এআই ভয়েস কোচ",
-      reviews: "প্রবাসীদের রিভিউ",
-      faq: "FAQ",
+      reviews: "সফল প্রবাসীদের গল্প",
+      faq: "সাধারণ জিজ্ঞাসা ও হেল্প",
       whatsappHelp: "WhatsApp হেল্প",
       whatsappMessage: "আমি রিমসলিন গালফ ভাষা কোর্স সম্পর্কে জানতে চাই",
       startCourse: "কোর্স শুরু করুন",
       syllabusMobile: "কোর্স সিলেবাস দেখুন",
+      freePractice: "ফ্রি প্র্যাকটিস",
+      more: "আরও",
+      moreItems: {
+        testimonials: "শিক্ষার্থীদের রিভিউ ও সাফল্য",
+        emergencyPhrases: "জরুরি ও মেডিকেল আরবি বাক্য",
+        workerRights: "শ্রম অধিকার ও হেল্পলাইন",
+        airportGuide: "ভিসা ও বিমানবন্দর নির্দেশিকা",
+        audioDownloads: "ফ্রি অডিও প্যাক ডাউনলোড",
+        faq: "সাধারণ প্রশ্নোত্তর (FAQ)",
+        contact: "যোগাযোগ ও হেল্পডেস্ক",
+      },
     },
     hero: {
       badge: "প্রবাসী ভাইদের জন্য বিশেষায়িত গালফ ভাষা কোর্স",
@@ -921,15 +947,28 @@ export const translations: Record<Language, TranslationSchema> = {
       brandTag: "गल्फ हब",
       brandSubtitle: "प्रवासी भाषा शिक्षण मंच",
       audioDemo: "ऑडियो फ्रेज डेमो",
-      jobTracks: "जॉब ट्रैक्स",
-      curriculum: "कोर्स प्लान",
-      aiVoice: "एआई वॉयस कोच",
-      reviews: "प्रवासियों की समीक्षाएं",
-      faq: "एफएक्यू (FAQ)",
+      jobTracks: "ट्रेड व जॉब ट्रैक्स",
+      countryDialects: "देशवार क्षेत्रीय बोलियाँ",
+      dailyDialogues: "दैनिक कार्यस्थल संवाद",
+      curriculum: "कोर्स प्लान व फीस",
+      aiVoice: "एआई वॉइस कोच",
+      reviews: "सफलता की कहानियाँ",
+      faq: "एफएक्यू व हेल्पडेस्क",
       whatsappHelp: "व्हाट्सएप सहायता",
       whatsappMessage: "मैं रिमसलीन गल्फ भाषा कोर्स के बारे में जानकारी चाहता हूँ",
       startCourse: "कोर्स शुरू करें",
       syllabusMobile: "कोर्स सिलेबस देखें",
+      freePractice: "मुफ्त अभ्यास",
+      more: "अधिक",
+      moreItems: {
+        testimonials: "समीक्षाएं व सफलता की कहानियां",
+        emergencyPhrases: "आपातकालीन व चिकित्सा अरबी वाक्य",
+        workerRights: "श्रम अधिकार व सहायता हेल्पलाइन",
+        airportGuide: "वीजा व हवाई अड्डा चेकलिस्ट",
+        audioDownloads: "निःशुल्क ऑडियो पैक डाउनलोड",
+        faq: "अक्सर पूछे जाने वाले सवाल (FAQ)",
+        contact: "संपर्क व सहायता केंद्र",
+      },
     },
     hero: {
       badge: "प्रवासी भाइयों के लिए विशेष गल्फ भाषा कोर्स",
@@ -1598,15 +1637,28 @@ export const translations: Record<Language, TranslationSchema> = {
       brandTag: "Gulf Hub",
       brandSubtitle: "Expat Language & Career Platform",
       audioDemo: "Audio Phrase Demo",
-      jobTracks: "Job Tracks",
-      curriculum: "Course Plans",
+      jobTracks: "Trade / Job Tracks",
+      countryDialects: "Country Dialects",
+      dailyDialogues: "Daily Conversations",
+      curriculum: "Course Plans & Fees",
       aiVoice: "AI Voice Coach",
-      reviews: "Expat Reviews",
-      faq: "FAQ",
+      reviews: "Student Success Stories",
+      faq: "FAQ & Helpdesk",
       whatsappHelp: "WhatsApp Help",
       whatsappMessage: "I want to inquire about the Rimslin Gulf Language Course",
       startCourse: "Start Course",
       syllabusMobile: "View Course Syllabus",
+      freePractice: "Free Practice",
+      more: "More",
+      moreItems: {
+        testimonials: "Student Reviews & Testimonials",
+        emergencyPhrases: "Emergency & Medical Arabic",
+        workerRights: "Gulf Labor Rights & Helpline",
+        airportGuide: "Visa & Airport Checklist",
+        audioDownloads: "Free Audio Download Pack",
+        faq: "Frequently Asked Questions",
+        contact: "Contact & Support",
+      },
     },
     hero: {
       badge: "Specialized Gulf Language Course for Expatriate Workers",
@@ -2275,15 +2327,28 @@ export const translations: Record<Language, TranslationSchema> = {
       brandTag: "بوابة الخليج",
       brandSubtitle: "منصة تعليم لغات العمل للمغتربين",
       audioDemo: "نماذج الجمل الصوتية",
-      jobTracks: "المسارات المهنية",
-      curriculum: "خطط الدورات",
+      jobTracks: "المسارات المهنية والحرفية",
+      countryDialects: "لهجات دول الخليج",
+      dailyDialogues: "المحادثات اليومية في العمل",
+      curriculum: "خطط الدورات والرسوم",
       aiVoice: "مدرب الذكاء الاصطناعي",
-      reviews: "تجارب المغتربين",
-      faq: "الأسئلة الشائعة",
+      reviews: "قصص نجاح الطلاب",
+      faq: "الأسئلة الشائعة والدعم",
       whatsappHelp: "مساعدة واتساب",
       whatsappMessage: "أود الاستفسار عن دورات ريملسن للغة الخليجية وبيئة العمل",
       startCourse: "ابدأ الدورة الآن",
       syllabusMobile: "عرض منهج الدورة",
+      freePractice: "تدريب مجاني",
+      more: "المزيد",
+      moreItems: {
+        testimonials: "آراء وتجارب نجاح الطلاب",
+        emergencyPhrases: "عبارات الطوارئ والمصطلحات الطبية",
+        workerRights: "حقوق العمال وخطوط المساعدة",
+        airportGuide: "دليل التأشيرة وإجراءات المطار",
+        audioDownloads: "تحميل الحزمة الصوتية المجانية",
+        faq: "الأسئلة الشائعة (FAQ)",
+        contact: "التواصل والدعم الفني",
+      },
     },
     hero: {
       badge: "الدورة المتخصصة في لغات العمل للمغتربين لدول الخليج",

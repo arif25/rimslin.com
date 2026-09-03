@@ -31,7 +31,8 @@ export default function Curriculum() {
   ];
 
   return (
-    <section id="curriculum" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#050e08] border-t border-gulf-500/20">
+    <section id="course-plans" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#050e08] border-t border-gulf-500/20">
+      <span id="curriculum" className="sr-only" aria-hidden="true" />
       {/* Background Ambience */}
       <div
         className="pointer-events-none absolute top-1/3 left-1/2 -z-10 h-[500px] w-full max-w-[700px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[140px]"

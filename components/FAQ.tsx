@@ -10,7 +10,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
+    <section id="faq" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
       <div className="mx-auto max-w-5xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto w-full min-w-0">

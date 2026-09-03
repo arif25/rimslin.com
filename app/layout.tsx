@@ -1,7 +1,7 @@
+import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Sans_Arabic } from "next/font/google";
 import { LanguageProvider } from "@/lib/language-context";
-import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],

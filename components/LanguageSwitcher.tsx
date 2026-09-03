@@ -99,7 +99,7 @@ export default function LanguageSwitcher({
   }
 
   return (
-    <div className={`relative inline-block text-start max-w-full ${className}`} ref={dropdownRef}>
+    <div className={`relative inline-block text-start max-w-full z-50 ${className}`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -120,8 +120,10 @@ export default function LanguageSwitcher({
       {/* Dropdown Menu - adapts side based on RTL */}
       {isOpen && (
         <div
-          className={`absolute mt-2 w-52 max-w-[90vw] rounded-2xl border border-gulf-500/30 bg-[#08150d]/95 p-1.5 shadow-2xl shadow-black/80 backdrop-blur-2xl z-50 animate-fade-in ring-1 ring-white/10 ${
-            isRTL ? "left-0 origin-top-left" : "right-0 origin-top-right"
+          className={`absolute z-50 mt-2 w-52 max-w-[90vw] rounded-2xl border border-gulf-500/30 bg-[#08150d]/95 p-1.5 shadow-2xl shadow-black/80 backdrop-blur-2xl animate-fade-in ring-1 ring-white/10 ${
+            isRTL
+              ? "left-0 ltr:right-0 rtl:left-0 origin-top-left"
+              : "right-0 ltr:right-0 rtl:left-0 origin-top-right"
           }`}
         >
           <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-white/[0.06] mb-1 flex items-center justify-between">

@@ -17,7 +17,7 @@ export default function Home() {
       <Navbar />
 
       {/* Main Content Sections */}
-      <main className="flex-1 w-full max-w-full overflow-x-hidden relative">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden relative z-0">
         <Hero />
         <Stats />
         <AudioPhraseDemo />

@@ -12,7 +12,8 @@ export default function Testimonials() {
   const { t } = useLanguage();
 
   return (
-    <section id="reviews" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#050c07] border-t border-gulf-500/20">
+    <section id="testimonials" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#050c07] border-t border-gulf-500/20">
+      <span id="reviews" className="sr-only" aria-hidden="true" />
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center w-full min-w-0">

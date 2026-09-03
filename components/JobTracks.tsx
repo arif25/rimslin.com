@@ -43,7 +43,9 @@ export default function JobTracks() {
   ];
 
   return (
-    <section id="job-tracks" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32">
+    <section id="job-tracks" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32">
+      <span id="airport-guide" className="sr-only" aria-hidden="true" />
+      <span id="worker-rights" className="sr-only" aria-hidden="true" />
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center w-full min-w-0">
@@ -138,7 +140,7 @@ export default function JobTracks() {
                     {t.jobTracks.bottomTag}
                   </span>
                   <Link
-                    href="#curriculum"
+                    href="#course-plans"
                     className="inline-flex items-center gap-1.5 rounded-xl bg-gulf-500/10 px-4 py-2 text-xs font-bold text-gulf-300 border border-gulf-500/30 transition-all group-hover:bg-gulf-500 group-hover:text-slate-950"
                   >
                     <span>{t.jobTracks.viewModule}</span>

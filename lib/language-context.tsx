@@ -61,6 +61,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         document.documentElement.lang = savedLang;
         document.documentElement.dir = savedLang === "ar" ? "rtl" : "ltr";
       } else {
+        setLanguageState("bn");
+        localStorage.setItem(STORAGE_KEY, "bn");
         document.documentElement.lang = "bn";
         document.documentElement.dir = "ltr";
       }
