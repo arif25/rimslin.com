@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Sans_Arabic } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/language-context";
 
 const inter = Inter({
@@ -110,9 +111,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="bn" className={`dark overflow-x-hidden max-w-full w-full ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable}`}>
-      <body className="min-h-screen bg-background text-slate-100 antialiased selection:bg-gulf-500 selection:text-white overflow-x-hidden max-w-full w-full relative">
-        <LanguageProvider>{children}</LanguageProvider>
+    <html
+      lang="bn"
+      suppressHydrationWarning
+      className={`overflow-x-hidden max-w-full w-full ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable}`}
+    >
+      <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-background dark:text-slate-100 antialiased selection:bg-gulf-500 selection:text-white overflow-x-hidden max-w-full w-full relative transition-colors duration-200">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

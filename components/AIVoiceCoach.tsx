@@ -84,7 +84,7 @@ export default function AIVoiceCoach() {
   };
 
   return (
-    <section id="ai-coach" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
+    <section id="ai-coach" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-slate-50 border-t border-slate-200/80 dark:bg-[#060e09] dark:border-gulf-500/20 transition-colors duration-200">
       <span id="ai-voice" className="sr-only" aria-hidden="true" />
       {/* Background glow */}
       <div
@@ -95,19 +95,19 @@ export default function AIVoiceCoach() {
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center w-full min-w-0">
-          <div className="inline-flex items-center gap-2 rounded-full border border-gulf-400/30 bg-gulf-950/60 px-4 py-1.5 text-xs font-semibold text-gulf-300 backdrop-blur-md mb-4 shadow-lg shadow-gulf-950/40">
-            <Sparkles className="h-3.5 w-3.5 text-gold-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 px-4 py-1.5 text-xs font-semibold text-emerald-800 dark:border-gulf-400/30 dark:bg-gulf-950/60 dark:text-gulf-300 backdrop-blur-md mb-4 shadow-sm">
+            <Sparkles className="h-3.5 w-3.5 text-amber-500 dark:text-gold-400 animate-pulse" />
             <span>{t.aiVoice.badge}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             {t.aiVoice.titlePart1}
-            <span className="bg-gradient-to-r from-gulf-400 via-emerald-300 to-gold-400 bg-clip-text text-transparent">
-              {t.aiVoice.titleHighlight}
+            <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 dark:from-gulf-400 dark:via-emerald-300 dark:to-gold-400 bg-clip-text text-transparent">
+              {" "}{t.aiVoice.titleHighlight}{" "}
             </span>
             {t.aiVoice.titlePart2}
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-slate-300">
+          <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300">
             {t.aiVoice.description}
           </p>
         </div>
@@ -125,12 +125,12 @@ export default function AIVoiceCoach() {
               }}
               className={`flex items-center gap-2 rounded-2xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all ${
                 activeScenarioId === scen.id
-                  ? "bg-gradient-to-r from-gulf-500 to-emerald-600 text-slate-950 font-bold shadow-lg shadow-gulf-500/20"
-                  : "border border-white/10 bg-surface-100/70 text-slate-300 hover:bg-surface-200 hover:text-white"
+                  ? "bg-emerald-600 text-white font-bold shadow-lg shadow-emerald-600/20 dark:bg-gradient-to-r dark:from-gulf-500 dark:to-emerald-600 dark:text-slate-950"
+                  : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:border-white/10 dark:bg-surface-100/70 dark:text-slate-300 dark:hover:bg-surface-200 dark:hover:text-white shadow-sm"
               }`}
             >
               <span>{scen.title}</span>
-              <span className="rounded-md bg-black/20 px-1.5 py-0.5 text-[10px] font-bold">
+              <span className="rounded-md bg-black/10 dark:bg-black/20 px-1.5 py-0.5 text-[10px] font-bold">
                 {scen.badge}
               </span>
             </button>
@@ -138,19 +138,19 @@ export default function AIVoiceCoach() {
         </div>
 
         {/* Main AI Simulator Interactive Card */}
-        <div className="mt-10 max-w-4xl mx-auto w-full rounded-3xl border border-gulf-500/30 bg-[#0a1610]/90 p-5 sm:p-10 backdrop-blur-2xl shadow-2xl shadow-gulf-950/60 min-w-0 max-w-full overflow-hidden">
+        <div className="mt-10 max-w-4xl mx-auto w-full rounded-3xl border border-slate-200/90 bg-white/95 shadow-xl dark:border-gulf-500/30 dark:bg-[#0a1610]/90 p-5 sm:p-10 backdrop-blur-2xl dark:shadow-2xl dark:shadow-gulf-950/60 min-w-0 max-w-full overflow-hidden">
           {/* Top Status Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.08] pb-5 mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-white/[0.08] pb-5 mb-8">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gulf-500/20 text-gulf-400 border border-gulf-500/30">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-gulf-500/20 dark:text-gulf-400 dark:border-gulf-500/30">
                 <Bot className="h-5 w-5" />
               </div>
               <div>
-                <div className="text-xs font-bold text-white flex items-center gap-2">
+                <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <span>{t.aiVoice.simTitle}</span>
-                  <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+                  <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
                 </div>
-                <div className="text-[11px] text-slate-400">
+                <div className="text-[11px] text-slate-500 dark:text-slate-400">
                   {activeScenario.subtitle}
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function AIVoiceCoach() {
                   setAccuracyScore(null);
                   setIsRecording(false);
                 }}
-                className="inline-flex items-center gap-1 rounded-xl border border-white/10 bg-surface-100 px-3 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-surface-200"
+                className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-200 dark:border-white/10 dark:bg-surface-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-surface-200 transition-colors shadow-sm"
               >
                 <RotateCcw className="h-3 w-3" />
                 <span>{t.aiVoice.reset}</span>
@@ -176,15 +176,15 @@ export default function AIVoiceCoach() {
           <div className="space-y-6">
             {/* Step 1: Arbab Line */}
             {activeScenario.dialogue[0] && (
-              <div className="rounded-2xl border border-gold-500/40 bg-[#141b12] p-5 shadow-lg shadow-gold-500/5">
+              <div className="rounded-2xl border border-amber-300/60 bg-amber-50/60 dark:border-gold-500/40 dark:bg-[#141b12] p-5 shadow-md dark:shadow-gold-500/5">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{activeScenario.dialogue[0].avatarIcon}</span>
                     <div>
-                      <div className="text-xs font-bold text-gold-400">
+                      <div className="text-xs font-bold text-amber-800 dark:text-gold-400">
                         {activeScenario.dialogue[0].speakerName}
                       </div>
-                      <div className="text-[10px] text-slate-400 font-mono">
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                         {activeScenario.dialogue[0].speakerRole}
                       </div>
                     </div>
@@ -200,8 +200,8 @@ export default function AIVoiceCoach() {
                     }
                     className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
                       playingSpeaker === "arbab"
-                        ? "bg-gold-400 text-slate-950 animate-pulse"
-                        : "border border-gold-500/30 bg-gold-950/50 text-gold-300 hover:bg-gold-900/60"
+                        ? "bg-amber-500 text-white animate-pulse"
+                        : "border border-amber-400/40 bg-amber-100 text-amber-900 hover:bg-amber-200 dark:border-gold-500/30 dark:bg-gold-950/50 dark:text-gold-300 dark:hover:bg-gold-900/60"
                     }`}
                   >
                     <Volume2 className="h-3.5 w-3.5" />
@@ -212,14 +212,14 @@ export default function AIVoiceCoach() {
                 </div>
 
                 {/* Arabic Script & Phonetic & Meaning */}
-                <div className="mt-4 pt-3 border-t border-white/[0.06]">
-                  <div className="text-right text-lg font-arabic font-bold text-white leading-relaxed" dir="rtl">
+                <div className="mt-4 pt-3 border-t border-amber-200/60 dark:border-white/[0.06]">
+                  <div className="text-right text-lg font-arabic font-bold text-slate-900 dark:text-white leading-relaxed" dir="rtl">
                     {activeScenario.dialogue[0].arabicScript}
                   </div>
-                  <div className="mt-2 text-sm font-bold text-gold-300">
+                  <div className="mt-2 text-sm font-bold text-amber-800 dark:text-gold-300">
                     {t.aiVoice.pronunciationLabel}: &ldquo;{activeScenario.dialogue[0].phoneticScript}&rdquo;
                   </div>
-                  <div className="mt-1 text-xs text-slate-300 font-medium">
+                  <div className="mt-1 text-xs text-slate-600 dark:text-slate-300 font-medium">
                     {t.aiVoice.meaningLabel}: {activeScenario.dialogue[0].meaning}
                   </div>
                 </div>
@@ -228,15 +228,15 @@ export default function AIVoiceCoach() {
 
             {/* Step 2: Worker Response Section */}
             {activeScenario.dialogue[1] && (
-              <div className="rounded-2xl border border-gulf-500/40 bg-[#091a10] p-5 sm:p-6 shadow-xl shadow-gulf-950/50">
+              <div className="rounded-2xl border border-emerald-300/60 bg-emerald-50/60 dark:border-gulf-500/40 dark:bg-[#091a10] p-5 sm:p-6 shadow-md dark:shadow-xl dark:shadow-gulf-950/50">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{activeScenario.dialogue[1].avatarIcon}</span>
                     <div>
-                      <div className="text-xs font-bold text-gulf-300">
+                      <div className="text-xs font-bold text-emerald-800 dark:text-gulf-300">
                         {activeScenario.dialogue[1].speakerName}
                       </div>
-                      <div className="text-[10px] text-slate-400 font-mono">
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                         {activeScenario.dialogue[1].speakerRole}
                       </div>
                     </div>
@@ -252,8 +252,8 @@ export default function AIVoiceCoach() {
                     }
                     className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
                       playingSpeaker === "worker"
-                        ? "bg-gulf-400 text-slate-950 animate-pulse"
-                        : "border border-gulf-500/30 bg-gulf-950/50 text-gulf-300 hover:bg-gulf-900/60"
+                        ? "bg-emerald-600 text-white animate-pulse"
+                        : "border border-emerald-400/40 bg-emerald-100 text-emerald-900 hover:bg-emerald-200 dark:border-gulf-500/30 dark:bg-gulf-950/50 dark:text-gulf-300 dark:hover:bg-gulf-900/60"
                     }`}
                   >
                     <Volume2 className="h-3.5 w-3.5" />
@@ -264,23 +264,23 @@ export default function AIVoiceCoach() {
                 </div>
 
                 {/* Target Response Script */}
-                <div className="mt-4 pt-3 border-t border-white/[0.06]">
-                  <div className="text-xs font-semibold text-gulf-400 uppercase tracking-wider mb-1">
+                <div className="mt-4 pt-3 border-t border-emerald-200/60 dark:border-white/[0.06]">
+                  <div className="text-xs font-semibold text-emerald-700 dark:text-gulf-400 uppercase tracking-wider mb-1">
                     {t.aiVoice.targetScriptLabel}
                   </div>
-                  <div className="text-right text-lg font-arabic font-bold text-white leading-relaxed" dir="rtl">
+                  <div className="text-right text-lg font-arabic font-bold text-slate-900 dark:text-white leading-relaxed" dir="rtl">
                     {activeScenario.dialogue[1].arabicScript}
                   </div>
-                  <div className="mt-2 text-sm font-extrabold text-emerald-300">
+                  <div className="mt-2 text-sm font-extrabold text-emerald-700 dark:text-emerald-300">
                     &ldquo;{activeScenario.dialogue[1].phoneticScript}&rdquo;
                   </div>
-                  <div className="mt-1 text-xs text-slate-300">
+                  <div className="mt-1 text-xs text-slate-600 dark:text-slate-300">
                     {t.aiVoice.meaningLabel}: {activeScenario.dialogue[1].meaning}
                   </div>
                 </div>
 
                 {/* Interactive Microphone Box */}
-                <div className="mt-6 flex flex-col items-center justify-center rounded-2xl bg-[#06110a] p-6 border border-gulf-500/20 text-center">
+                <div className="mt-6 flex flex-col items-center justify-center rounded-2xl bg-white dark:bg-[#06110a] p-6 border border-slate-200 dark:border-gulf-500/20 text-center shadow-inner">
                   {/* Glowing Mic Button */}
                   <div className="relative mb-3">
                     {isRecording && (
@@ -356,11 +356,11 @@ export default function AIVoiceCoach() {
           </div>
 
           {/* Waitlist Callout */}
-          <div className="mt-10 rounded-2xl border border-white/[0.08] bg-[#07130b] p-6 text-center">
-            <h4 className="text-base font-bold text-white">
+          <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50/90 dark:border-white/[0.08] dark:bg-[#07130b] p-6 text-center">
+            <h4 className="text-base font-bold text-slate-900 dark:text-white">
               {t.aiVoice.waitlistTitle}
             </h4>
-            <p className="text-xs text-slate-300 mt-1 max-w-lg mx-auto">
+            <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 max-w-lg mx-auto">
               {t.aiVoice.waitlistDesc}
             </p>
 
@@ -374,12 +374,11 @@ export default function AIVoiceCoach() {
                 onChange={(e) => setWaitlistEmail(e.target.value)}
                 placeholder={t.aiVoice.waitlistPlaceholder}
                 required
-                className="w-full rounded-xl border border-white/15 bg-surface-100 px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:border-gulf-400 focus:outline-none"
-              >
-              </input>
+                className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 dark:border-white/15 dark:bg-surface-100 dark:text-white dark:placeholder-slate-500 dark:focus:border-gulf-400 px-4 py-2.5 text-xs focus:outline-none"
+              />
               <button
                 type="submit"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-gulf-500 to-gold-500 px-5 py-2.5 text-xs font-bold text-slate-950 shadow-md hover:opacity-90 shrink-0"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-amber-500 text-white dark:from-gulf-500 dark:to-gold-500 dark:text-slate-950 px-5 py-2.5 text-xs font-bold shadow-md hover:opacity-90 shrink-0"
               >
                 <span>{t.aiVoice.waitlistButton}</span>
                 <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180" />
@@ -387,7 +386,7 @@ export default function AIVoiceCoach() {
             </form>
 
             {waitlistSuccess && (
-              <div className="mt-3 text-xs font-bold text-emerald-400">
+              <div className="mt-3 text-xs font-bold text-emerald-600 dark:text-emerald-400">
                 {t.aiVoice.waitlistSuccess}
               </div>
             )}
