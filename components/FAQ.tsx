@@ -3,47 +3,11 @@
 import { useState } from "react";
 import { ChevronDown, HelpCircle, MessageSquare } from "lucide-react";
 import Link from "next/link";
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+import { useLanguage } from "@/lib/language-context";
 
 export default function FAQ() {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const faqs: FAQItem[] = [
-    {
-      question: "আমি পড়াশোনা বেশি জানি না, শুধু বাংলা পড়তে পারি। আমি কি সহজে শিখতে পারব?",
-      answer:
-        "হ্যাঁ, ১০০% পারবেন! রিমসলিন বিশেষভাবে প্রবাসী ভাইদের সুবিধার কথা মাথায় রেখে ডিজাইন করা। এখানে কোনো কঠিন ব্যাকরণ বা জটিল আরবি হরফ পড়তে হয় না—প্রতিটি আরবি ও ইংরেজি বাক্য সহজ বাংলা হরফে উচ্চারণ সহ লেখা এবং সাথে প্রতিটি বাক্যের স্পষ্ট অডিও রয়েছে। শুনে শুনে সহজেই কথা বলতে পারবেন।",
-    },
-    {
-      question: "আমি কি যেকোনো স্মার্টফোন বা মোবাইল দিয়ে শিখতে পারব?",
-      answer:
-        "হ্যাঁ, আপনার হাতে থাকা যেকোনো সাধারণ অ্যান্ড্রয়েড ফোন বা আইফোনের ব্রাউজার দিয়েই সম্পূর্ণ কোর্সটি স্মুথলি ব্যবহার করতে পারবেন। কোনো ভারী অ্যাপ নামানোর বাধ্যবাধকতা নেই।",
-    },
-    {
-      question: "কোর্স ফি কীভাবে পরিশোধ করব? বিকাশ বা নগদ কি সাপোর্ট করে?",
-      answer:
-        "হ্যাঁ! বাংলাদেশের বিকাশ (bKash), নগদ (Nagad), রকেট এবং যেকোনো ভিসা/মাস্টারকার্ড ডেবিট বা ক্রেডিট কার্ডের মাধ্যমে ঘরে বসেই নিরাপদ পেমেন্ট করতে পারবেন। পেমেন্ট করার সাথে সাথেই আপনার অ্যাকাউন্ট ও লেসন এক্সেস চালু হয়ে যাবে।",
-    },
-    {
-      question: "অডিও কি ইন্টারনেট ছাড়া অফলাইনে ডাউনলোড করে শোনা যাবে?",
-      answer:
-        "হ্যাঁ, আমাদের প্রতিটি কোর্সের গুরুত্বপূর্ণ ফ্রেজ ও কথোপকথনের অডিও ফাইল আপনি সরাসরি মোবাইলে ডাউনলোড করে রাখতে পারবেন। ফলে বিমানে, কর্মস্থলে বা ইন্টারনেট কানেকশন না থাকলেও যেকোনো সময় অডিও শুনে রিভিশন দিতে পারবেন।",
-    },
-    {
-      question: "সৌদি আরব, দুবাই ও কাতারের আরবির মধ্যে কি কোনো পার্থক্য আছে?",
-      answer:
-        "পুরো মধ্যপ্রাচ্য বা গালফ দেশগুলোতে (সৌদি আরব, সংযুক্ত আরব আমিরাত, কাতার, কুয়েত, ওমান, বাহরাইন) দৈনন্দিন কাজের জন্য ব্যবহৃত আঞ্চলিক আরবি (গালফ আম্মিয়া/খালিজি আরবি) প্রায় ৯০% একই। আমাদের কোর্সে মূল গালফ ডায়ালগের পাশাপাশি নির্দিষ্ট দেশের কিছু বিশেষ শব্দের পার্থক্যও স্পষ্ট করে বুঝিয়ে দেওয়া হয়েছে।",
-    },
-    {
-      question: "কোর্স চলাকালীন কোনো সমস্যায় পড়লে কীভাবে সাহায্য পাব?",
-      answer:
-        "আমাদের রয়েছে ডেডিকেটেড হোয়াটসঅ্যাপ লার্নার সাপোর্ট। কোর্সের যেকোনো পড়া বা অডিও বুঝতে অসুবিধা হলে আমাদের হটলাইনে মেসেজ বা ভয়েস পাঠালে অভিজ্ঞ ভাষা ইনস্ট্রাক্টররা সরাসরি সমাধান দিয়ে থাকেন।",
-    },
-  ];
 
   return (
     <section id="faq" className="relative py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
@@ -52,21 +16,21 @@ export default function FAQ() {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 rounded-full border border-gulf-500/30 bg-gulf-950/60 px-3.5 py-1 text-xs font-semibold text-gulf-300 backdrop-blur-md mb-4">
             <HelpCircle className="h-3.5 w-3.5 text-gold-400" />
-            <span>সচরাচর জিজ্ঞাসিত প্রশ্নাবলী (Frequently Asked Questions)</span>
+            <span>{t.faq.badge}</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            প্রবাসী ভাইদের{" "}
-            <span className="gradient-gulf-text">সাধারণ প্রশ্নের উত্তর</span>
+            {t.faq.titlePart1}
+            <span className="gradient-gulf-text">{t.faq.titleHighlight}</span>
           </h2>
           <p className="mt-4 text-sm sm:text-base text-slate-300">
-            কোর্স সংক্রান্ত আপনার মনের যেকোনো প্রশ্নের পরিষ্কার ও স্বচ্ছ সমাধান।
+            {t.faq.description}
           </p>
         </div>
 
         {/* Accordion */}
         <div className="mt-14 space-y-4">
-          {faqs.map((faq, idx) => {
+          {t.faq.items.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
@@ -110,17 +74,17 @@ export default function FAQ() {
         {/* Additional Help Callout */}
         <div className="mt-12 text-center rounded-2xl border border-white/[0.08] bg-surface-100/40 p-6">
           <p className="text-xs sm:text-sm text-slate-300">
-            অন্য কোনো প্রশ্ন আছে যা এখানে খুঁজে পাননি? সরাসরি আমাদের সাথে কথা বলুন।
+            {t.faq.moreQuestions}
           </p>
           <div className="mt-4 flex justify-center">
             <Link
-              href="https://wa.me/8801700000000?text=আমি%20রিমসলিন%20সম্পর্কে%20কিছু%20জানতে%20চাই"
+              href="https://wa.me/8801700000000?text=I%20have%20questions%20about%20Rimslin"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-emerald-950/70 border border-emerald-500/40 px-5 py-2.5 text-xs font-bold text-emerald-300 hover:bg-emerald-900 transition-colors shadow-lg"
             >
               <MessageSquare className="h-4 w-4 text-emerald-400" />
-              <span>WhatsApp এ সরাসরি মেসেজ করুন</span>
+              <span>{t.faq.whatsappChat}</span>
             </Link>
           </div>
         </div>

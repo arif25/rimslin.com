@@ -8,7 +8,11 @@
     color: #f1f5f9;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     overflow-x: hidden;
-    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Bengali', 'SolaimanLipi', sans-serif;
+    font-family: var(--font-inter), var(--font-bengali), var(--font-devanagari), var(--font-arabic), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Bengali', 'Noto Sans Devanagari', 'Noto Sans Arabic', Tahoma, sans-serif;
+  }
+
+  [dir="rtl"] {
+    text-align: right;
   }
 }
 

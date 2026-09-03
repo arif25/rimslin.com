@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, Sparkles, MessageSquare, Headphones, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Sparkles, MessageSquare, Headphones, CheckCircle2 } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
 
 export default function CTA() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="relative py-24 sm:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -15,31 +20,33 @@ export default function CTA() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/60 px-4 py-1.5 text-xs font-semibold text-gold-300 backdrop-blur-md mb-6">
               <Sparkles className="h-3.5 w-3.5 text-gold-400 animate-pulse" />
-              <span>আজই শুরু করুন আপনার সফল প্রবাসী জীবন</span>
+              <span>{t.cta.badge}</span>
             </div>
 
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white leading-tight">
-              ভাষা জানলে সম্মান ও বেতন—{" "}
+              {t.cta.titlePart1}
               <span className="bg-gradient-to-r from-gulf-400 via-emerald-300 to-gold-400 bg-clip-text text-transparent">
-                দুটোই বাড়বে
+                {t.cta.titleHighlight}
               </span>
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              সৌদি আরব, দুবাই, কাতার, কুয়েত কিংবা ওমান—যেখানেই যান না কেন, কথা বলার আত্মবিশ্বাস নিয়ে কর্মস্থলে প্রবেশ করুন।
+              {t.cta.description}
             </p>
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="https://wa.me/8801700000000?text=আমি%20রিমসলিন%20গালফ%20ভাষা%20কোর্সে%20ভর্তি%20হতে%20চাই"
+                href={`https://wa.me/8801700000000?text=${encodeURIComponent(
+                  t.cta.whatsappDirectMessage
+                )}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-gulf-600 via-emerald-600 to-gold-500 px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-gulf-900/50 transition-all duration-300 hover:shadow-gulf-500/40 hover:scale-[1.02]"
               >
                 <MessageSquare className="h-5 w-5" />
-                <span>WhatsApp এ সরাসরি ভর্তি হোন</span>
-                <ArrowRight className="h-5 w-5" />
+                <span>{t.cta.whatsappDirect}</span>
+                <ArrowRight className="h-5 w-5 rtl:rotate-180" />
               </Link>
 
               <Link
@@ -47,7 +54,7 @@ export default function CTA() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-surface-100/90 px-8 py-3.5 text-base font-semibold text-slate-200 hover:bg-surface-200 hover:text-white transition-colors"
               >
                 <Headphones className="h-5 w-5 text-gold-400" />
-                <span>ফ্রি অডিও ট্রায়াল শুনুন</span>
+                <span>{t.cta.freeTrial}</span>
               </Link>
             </div>
 
@@ -55,15 +62,15 @@ export default function CTA() {
             <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-gulf-400" />
-                <span>বিকাশ ও নগদ পেমেন্ট সুবিধা</span>
+                <span>{t.cta.trust1}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-gulf-400" />
-                <span>আজীবন অডিও এক্সেস</span>
+                <span>{t.cta.trust2}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-gulf-400" />
-                <span>৭ দিনের মানি-ব্যাক নিশ্চয়তা</span>
+                <span>{t.cta.trust3}</span>
               </div>
             </div>
           </div>

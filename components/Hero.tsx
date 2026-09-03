@@ -1,24 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import {
   ArrowRight,
   Headphones,
-  Volume2,
   CheckCircle2,
   Sparkles,
-  ShieldCheck,
   Building2,
-  TrendingUp,
 } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Hero() {
-  const gulfDestinations = [
-    { country: "সৌদি আরব", flag: "🇸🇦", code: "Saudi Arabia" },
-    { country: "সংযুক্ত আরব আমিরাত (দুবাই)", flag: "🇦🇪", code: "UAE / Dubai" },
-    { country: "কাতার", flag: "🇶🇦", code: "Qatar" },
-    { country: "কুয়েত", flag: "🇰🇼", code: "Kuwait" },
-    { country: "ওমান", flag: "🇴🇲", code: "Oman" },
-    { country: "বাহরাইন", flag: "🇧🇭", code: "Bahrain" },
-  ];
+  const { t } = useLanguage();
 
   return (
     <section className="relative overflow-hidden pt-10 pb-20 md:pt-16 md:pb-28">
@@ -37,28 +30,27 @@ export default function Hero() {
           {/* Announcement Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-gulf-500/30 bg-gulf-950/60 px-4 py-1.5 text-xs font-semibold text-gulf-300 backdrop-blur-md shadow-lg shadow-gulf-950/50 mb-6">
             <Sparkles className="h-3.5 w-3.5 text-gold-400 animate-pulse" />
-            <span>প্রবাসী ভাইদের জন্য বিশেষায়িত গালফ ভাষা কোর্স</span>
+            <span>{t.hero.badge}</span>
             <span className="rounded-full bg-gold-500/20 px-2 py-0.5 text-[10px] font-bold text-gold-300 border border-gold-500/30">
-              ২০২৬ সংস্করণ
+              {t.hero.yearBadge}
             </span>
           </div>
 
-          {/* Dual-Language Main Headline */}
+          {/* Main Headline */}
           <h1 className="max-w-4xl text-3xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
-            মধ্যপ্রাচ্যে ভালো বেতনের চাকরির জন্য{" "}
+            {t.hero.headlinePart1}
             <span className="bg-gradient-to-r from-gulf-400 via-emerald-300 to-gold-400 bg-clip-text text-transparent">
-              গালফ আরবি ও স্পোকেন ইংলিশ
+              {t.hero.headlineHighlight}
             </span>
           </h1>
 
           <div className="mt-3 text-sm sm:text-base font-semibold text-gulf-400 tracking-wide uppercase">
-            Gulf Spoken Arabic (Khaleeji), Workplace English &amp; Hindi for Gulf Jobs
+            {t.hero.subHeadline}
           </div>
 
           {/* Tagline focused on survival talk over grammar */}
           <p className="mt-6 max-w-2xl text-base text-slate-300 sm:text-xl font-normal leading-relaxed">
-            দুবাই, সৌদি আরব ও কাতার যাওয়ার আগে সহজে শিখুন বাস্তব কাজের ভাষা। কোনো কঠিন ব্যাকরণ নয়—সরাসরি
-            সাইট, দোকান, কাস্টমার ও মালিকের সাথে কথা বলার সহজ ফর্মুলা।
+            {t.hero.description}
           </p>
 
           {/* Primary Action Buttons */}
@@ -67,8 +59,8 @@ export default function Hero() {
               href="#curriculum"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-gulf-600 via-emerald-600 to-gold-500 px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-gulf-900/40 transition-all duration-300 hover:shadow-gulf-500/30 hover:scale-[1.02]"
             >
-              <span>কোর্স দেখুন</span>
-              <ArrowRight className="h-5 w-5" />
+              <span>{t.hero.viewCourse}</span>
+              <ArrowRight className="h-5 w-5 rtl:rotate-180" />
             </Link>
 
             <Link
@@ -76,7 +68,7 @@ export default function Hero() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl border border-gulf-500/30 bg-surface-100/80 px-8 py-3.5 text-base font-semibold text-gulf-200 backdrop-blur-md transition-all duration-200 hover:bg-surface-200 hover:text-white hover:border-gulf-400"
             >
               <Headphones className="h-5 w-5 text-gold-400" />
-              <span>ফ্রি অডিও শুনুন</span>
+              <span>{t.hero.freeAudio}</span>
             </Link>
           </div>
 
@@ -84,15 +76,15 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-300 font-medium">
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-gulf-400" />
-              <span>বাংলা উচ্চারণে আরবি লেখা</span>
+              <span>{t.hero.prop1}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-gulf-400" />
-              <span>প্রতিটি বাক্যের স্পষ্ট অডিও সাউন্ড</span>
+              <span>{t.hero.prop2}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-gulf-400" />
-              <span>মালিক ও সাইট সুপারভাইজার ডায়ালগ</span>
+              <span>{t.hero.prop3}</span>
             </div>
           </div>
 
@@ -100,10 +92,10 @@ export default function Hero() {
           <div className="mt-14 w-full max-w-5xl rounded-2xl border border-white/[0.08] bg-surface-100/50 p-6 backdrop-blur-xl">
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-4 flex items-center justify-center gap-2">
               <Building2 className="h-4 w-4 text-gold-400" />
-              <span>যেসব দেশের জন্য বিশেষভাবে তৈরি</span>
+              <span>{t.hero.destinationsTitle}</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              {gulfDestinations.map((dest, idx) => (
+              {t.hero.destinations.map((dest, idx) => (
                 <div
                   key={idx}
                   className="flex flex-col items-center justify-center rounded-xl border border-white/[0.05] bg-surface-200/50 py-3 px-2 text-center transition-all hover:border-gulf-500/40 hover:bg-surface-200"

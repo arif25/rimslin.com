@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Noto_Sans_Bengali } from "next/font/google";
+import { Inter, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Sans_Arabic } from "next/font/google";
+import { LanguageProvider } from "@/lib/language-context";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,6 +14,20 @@ const notoSansBengali = Noto_Sans_Bengali({
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-bengali",
+});
+
+const notoSansDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-devanagari",
+});
+
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-arabic",
 });
 
 export const metadata: Metadata = {
@@ -95,9 +110,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="bn" className={`dark ${inter.variable} ${notoSansBengali.variable}`}>
+    <html lang="bn" className={`dark ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable}`}>
       <body className="min-h-screen bg-background text-slate-100 antialiased selection:bg-gulf-500 selection:text-white">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

@@ -1,43 +1,19 @@
+"use client";
+
 import { Users, Globe2, Headphones, Award } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Stats() {
-  const stats = [
-    {
-      icon: Users,
-      value: "২৫,০০০+",
-      englishValue: "25,000+ Learners",
-      label: "প্রবাসী শিক্ষার্থী",
-      description: "বাংলাদেশ থেকে মধ্যপ্রাচ্যগামী ভাইয়েরা যুক্ত",
-    },
-    {
-      icon: Globe2,
-      value: "৬টি",
-      englishValue: "6 Gulf Nations",
-      label: "গালফ দেশ কভারেজ",
-      description: "সৌদি, দুবাই, কাতার, কুয়েত, ওমান ও বাহরাইন",
-    },
-    {
-      icon: Headphones,
-      value: "১,২০০+",
-      englishValue: "1,200+ Audio Clips",
-      label: "কাজের অডিও ফ্রেজ",
-      description: "সাইট, বাজার ও বসের সাথে কাজের খাঁটি ডায়ালগ",
-    },
-    {
-      icon: Award,
-      value: "৯৮.৪%",
-      englishValue: "98.4% Success Rate",
-      label: "সফলতা ও আত্মবিশ্বাস",
-      description: "কাজে যোগদান ও সহজে বেতন বৃদ্ধির অভিজ্ঞতা",
-    },
-  ];
+  const { t } = useLanguage();
+
+  const statIcons = [Users, Globe2, Headphones, Award];
 
   return (
     <section id="stats" className="relative py-14 border-y border-gulf-500/20 bg-[#07120b]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, idx) => {
-            const Icon = stat.icon;
+          {t.stats.items.map((stat, idx) => {
+            const Icon = statIcons[idx % statIcons.length];
             return (
               <div
                 key={idx}

@@ -5,191 +5,30 @@ import {
   Volume2,
   Play,
   Square,
-  Sparkles,
   Check,
   Copy,
   Tag,
   Flame,
-  Globe2,
+  Sparkles,
 } from "lucide-react";
-
-interface Phrase {
-  id: string;
-  category: string;
-  categoryName: string;
-  bengaliMeaning: string;
-  arabicBengali: string;
-  arabicPhonetic: string;
-  arabicScript: string;
-  englishWorkplace: string;
-  tradeTag: string;
-  popular?: boolean;
-}
+import { useLanguage } from "@/lib/language-context";
+import { AudioPhraseItem } from "@/lib/translations";
 
 export default function AudioPhraseDemo() {
+  const { t, language, isRTL } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("all");
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
-
-  const categories = [
-    { id: "all", label: "সব ফ্রেজ (All)" },
-    { id: "daily", label: "বাজার ও কেনাকাটা" },
-    { id: "salary", label: "বেতন ও কাজ" },
-    { id: "construction", label: "সাইট ও টেকনিক্যাল" },
-    { id: "driver", label: "ড্রাইভিং ও লোকেশন" },
-    { id: "emergency", label: "জরুরি ও সিকিউরিটি" },
-  ];
-
-  const phrases: Phrase[] = [
-    {
-      id: "p1",
-      category: "daily",
-      categoryName: "বাজার ও কেনাকাটা",
-      bengaliMeaning: "এটার দাম কত? একটু কম রাখা যায় না?",
-      arabicBengali: "কাম হাদা? মা ফি কাচ্ছির খালাস?",
-      arabicPhonetic: "Kam Hadha? Ma Fee Kasseer?",
-      arabicScript: "كم هذا؟ ما فيه خصم؟",
-      englishWorkplace: "How much is this? Any discount?",
-      tradeTag: "Shop / Daily Life",
-      popular: true,
-    },
-    {
-      id: "p2",
-      category: "salary",
-      categoryName: "বেতন ও কাজ",
-      bengaliMeaning: "মুদির, আমার এই মাসের বেতন কবে দিবেন?",
-      arabicBengali: "মুদির, মিতা জিব রাতিব হাগ্গা হাদা শাহর?",
-      arabicPhonetic: "Mudeer, mita jeeb ratib hagga hadha shahr?",
-      arabicScript: "مدير، متى يجيب الراتب حق هذا الشهر؟",
-      englishWorkplace: "Boss, when will I get my salary this month?",
-      tradeTag: "Salary & HR",
-      popular: true,
-    },
-    {
-      id: "p3",
-      category: "construction",
-      categoryName: "সাইট ও টেকনিক্যাল",
-      bengaliMeaning: "ড্রিল মেশিন আর তারের রোলটা নিয়ে আসো।",
-      arabicBengali: "জিব হিলতি ওয়া সিল্ক বাররাহ সুরআ।",
-      arabicPhonetic: "Jeeb Hilti wa Silk barra sur'ah.",
-      arabicScript: "جيب هلتي وسلك برا بسرعة",
-      englishWorkplace: "Bring the drill machine and wire roll quickly.",
-      tradeTag: "Construction Site",
-      popular: true,
-    },
-    {
-      id: "p4",
-      category: "driver",
-      categoryName: "ড্রাইভিং ও লোকেশন",
-      bengaliMeaning: "সোজা যান, তারপর ডানদিকের ট্রাফিক সিগনালে থামুন।",
-      arabicBengali: "রো সিদা, বা'দাইন ওগ্গাফ ইশারা ইয়ামিন।",
-      arabicPhonetic: "Ro seeda, ba'dain oggaf ishara yameen.",
-      arabicScript: "روح سيده، بعدين وقف إشارة يمين",
-      englishWorkplace: "Go straight, then stop at the right traffic light.",
-      tradeTag: "Driver / Delivery",
-      popular: true,
-    },
-    {
-      id: "p5",
-      category: "daily",
-      categoryName: "বাজার ও কেনাকাটা",
-      bengaliMeaning: "কেমন আছেন? কাজ কেমন চলছে?",
-      arabicBengali: "কেফ হাল? কেফ আশ-শোগল তামাম?",
-      arabicPhonetic: "Kayf hal? Kayf ash-shughul tamam?",
-      arabicScript: "كيف الحال؟ كيف الشغل تمام؟",
-      englishWorkplace: "How are you? Is your work going well?",
-      tradeTag: "Daily Greeting",
-    },
-    {
-      id: "p6",
-      category: "salary",
-      categoryName: "বেতন ও কাজ",
-      bengaliMeaning: "আমি এই কাজটা খুব ভালো জানি, কোনো সমস্যা হবে না।",
-      arabicBengali: "আনা মা'লুম হাদা শোগল মিয়া মিয়া, মা ফি মুশকিলা।",
-      arabicPhonetic: "Ana ma'loom hadha shughul miya miya, mafi mushkila.",
-      arabicScript: "أنا معلوم هذا الشغل مية مية، ما فيه مشكلة",
-      englishWorkplace: "I know this work 100%, no issue at all.",
-      tradeTag: "Job Interview",
-      popular: true,
-    },
-    {
-      id: "p7",
-      category: "emergency",
-      categoryName: "জরুরি ও সিকিউরিটি",
-      bengaliMeaning: "আমার খুব শরীর খারাপ, আমাকে হাসপাতালে নিয়ে চলুন।",
-      arabicBengali: "আনা মারিদ মাররাহ, ওয়াদিনী মুসতাশফা সুরআ।",
-      arabicPhonetic: "Ana mareed marrah, waddeeni mustashfa sur'ah.",
-      arabicScript: "أنا مريض مرة، وديني مستشفى بسرعة",
-      englishWorkplace: "I am feeling very sick, please take me to the clinic.",
-      tradeTag: "Hospital / Safety",
-    },
-    {
-      id: "p8",
-      category: "construction",
-      categoryName: "সাইট ও টেকনিক্যাল",
-      bengaliMeaning: "কাজ শেষ হয়ে গেছে, এখন চেক করে দেখুন।",
-      arabicBengali: "খালাস শোগল, আলহীন শ্যূফ কুল্লু তারকিব তামাম।",
-      arabicPhonetic: "Khalas shughul, alheen shoof kullu tarkib tamam.",
-      arabicScript: "خلاص الشغل، الحين شوف كله تركيب تمام",
-      englishWorkplace: "Work is completed, please inspect the fittings now.",
-      tradeTag: "Supervisor Inspection",
-    },
-    {
-      id: "p9",
-      category: "driver",
-      categoryName: "ড্রাইভিং ও লোকেশন",
-      bengaliMeaning: "আমি আপনার লোকেশনে ৫ মিনিটের মধ্যে আসছি।",
-      arabicBengali: "আনা ওয়াসেল ফি মাওকি' হাক খামসা দাগায়িগ।",
-      arabicPhonetic: "Ana wasel fee mawqi' hak khamsa dagayig.",
-      arabicScript: "أنا واصل في موقعك خمس دقائق",
-      englishWorkplace: "I will arrive at your location in 5 minutes.",
-      tradeTag: "Delivery Rider",
-    },
-    {
-      id: "p10",
-      category: "daily",
-      categoryName: "হোটেল ও রেস্টুরেন্ট",
-      bengaliMeaning: "আপনাদের চা ও কফি রেডি, গরম গরম পরিবেশন করছি।",
-      arabicBengali: "শায় ওয়া গাহওয়া জাহেয, আলহীন জিব হার মাররাহ।",
-      arabicPhonetic: "Shay wa gahwah jahez, alheen jeeb haar marrah.",
-      arabicScript: "شاي وقهوة جاهز، الحين أجيب حار",
-      englishWorkplace: "Tea and coffee are ready, serving hot right now.",
-      tradeTag: "Restaurant / Waiter",
-      popular: true,
-    },
-    {
-      id: "p11",
-      category: "salary",
-      categoryName: "বেতন ও কাজ",
-      bengaliMeaning: "মুদির, আমি গত ২ বছর ধরে সততার সাথে কাজ করছি, বেতন একটু বাড়ান।",
-      arabicBengali: "মুদির, আনা শোগল সানা-তাইন আমীন, লাযিম যিয়াদাহ রাতিব শুয়াইয়া।",
-      arabicPhonetic: "Mudeer, ana shughul sana-tayn ameen, lazim ziyadah ratib shuwayya.",
-      arabicScript: "مدير، أنا شغل سنتين أمين، لازم زيادة راتب شوية",
-      englishWorkplace: "Boss, I worked 2 years honestly, please increase my salary.",
-      tradeTag: "Salary Appraisal",
-      popular: true,
-    },
-    {
-      id: "p12",
-      category: "construction",
-      categoryName: "সাইট ও টেকনিক্যাল",
-      bengaliMeaning: "সেফটি হেলমেট ও জুতো ছাড়া সাইটে যাওয়া নিষেধ।",
-      arabicBengali: "মামনু' দখুল সাইট বিদুন খুদাহ ওয়া জাযমাহ সেফটি।",
-      arabicPhonetic: "Mamnoo' dukhool site bidoon khoodah wa jazmah safety.",
-      arabicScript: "ممنوع دخول الموقع بدون خوذة وجزمة سيفتي",
-      englishWorkplace: "Entry to site forbidden without helmet and safety shoes.",
-      tradeTag: "HSE / Site Safety",
-    },
-  ];
-
   const [speechRate, setSpeechRate] = useState<number>(0.85);
+
+  const phrases = t.audioDemo.phrases;
 
   const filteredPhrases =
     activeCategory === "all"
       ? phrases
       : phrases.filter((p) => p.category === activeCategory);
 
-  const handlePlayAudio = (phrase: Phrase) => {
+  const handlePlayAudio = (phrase: AudioPhraseItem) => {
     if (playingId === phrase.id) {
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
@@ -225,8 +64,8 @@ export default function AudioPhraseDemo() {
     }
   };
 
-  const handleCopy = (phrase: Phrase) => {
-    const text = `${phrase.bengaliMeaning}\nগালফ আরবি: ${phrase.arabicBengali}\nEnglish: ${phrase.englishWorkplace}`;
+  const handleCopy = (phrase: AudioPhraseItem) => {
+    const text = `${phrase.meaning}\n${t.audioDemo.arabicPronunciationLabel}: ${phrase.phoneticScript}\nEnglish: ${phrase.englishWorkplace}`;
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(text);
       setCopiedId(phrase.id);
@@ -241,23 +80,22 @@ export default function AudioPhraseDemo() {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/40 px-3.5 py-1 text-xs font-semibold text-gold-300 backdrop-blur-md mb-4">
             <Volume2 className="h-3.5 w-3.5 text-gold-400" />
-            <span>ইন্টারেক্টিভ অডিও ফ্রেজ ডেমো (Playable Audio Demo)</span>
+            <span>{t.audioDemo.badge}</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            প্রবাসীদের দৈনন্দিন কাজের{" "}
-            <span className="gradient-gulf-text">প্রয়োজনীয় আরবি ও ইংরেজি বাক্য</span>
+            {t.audioDemo.titlePart1}
+            <span className="gradient-gulf-text">{t.audioDemo.titleHighlight}</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-300">
-            নিচের যেকোনো কার্ডে <span className="text-gulf-400 font-bold">Play Audio</span> বাটনে ক্লিক করে সঠিক
-            উচ্চারণ শুনুন এবং সহজেই রপ্ত করুন।
+            {t.audioDemo.description}
           </p>
         </div>
 
         {/* Category Filter Tabs & Speed Toggle */}
         <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            {categories.map((cat) => (
+            {t.audioDemo.categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
@@ -274,7 +112,7 @@ export default function AudioPhraseDemo() {
 
           {/* Speed Toggle */}
           <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-surface-100/60 px-3 py-1 text-xs text-slate-300">
-            <span className="text-[11px] text-slate-400">উচ্চারণ গতি:</span>
+            <span className="text-[11px] text-slate-400">{t.audioDemo.speedLabel}</span>
             <button
               type="button"
               onClick={() => setSpeechRate(0.7)}
@@ -284,7 +122,7 @@ export default function AudioPhraseDemo() {
                   : "hover:text-white text-slate-400"
               }`}
             >
-              ধীরে (0.7x)
+              {t.audioDemo.speedSlow}
             </button>
             <button
               type="button"
@@ -295,7 +133,7 @@ export default function AudioPhraseDemo() {
                   : "hover:text-white text-slate-400"
               }`}
             >
-              স্বাভাবিক (1.0x)
+              {t.audioDemo.speedNormal}
             </button>
           </div>
         </div>
@@ -323,48 +161,69 @@ export default function AudioPhraseDemo() {
                       {phrase.tradeTag}
                     </span>
 
-                    {phrase.popular && (
-                      <span className="inline-flex items-center gap-1 rounded-md bg-gold-500/15 px-2 py-0.5 text-[10px] font-bold text-gold-300 border border-gold-500/30">
-                        <Flame className="h-3 w-3 text-gold-400" />
-                        বেশি ব্যবহৃত
-                      </span>
-                    )}
+                    <div className="flex items-center gap-1.5">
+                      {isRTL && (
+                        <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-300 border border-emerald-500/30">
+                          لهجة خليجية بيئة العمل
+                        </span>
+                      )}
+                      {phrase.popular && (
+                        <span className="inline-flex items-center gap-1 rounded-md bg-gold-500/15 px-2 py-0.5 text-[10px] font-bold text-gold-300 border border-gold-500/30">
+                          <Flame className="h-3 w-3 text-gold-400" />
+                          {t.audioDemo.popularBadge}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Bengali Meaning */}
-                  <div className="mb-4">
+                  {/* Adaptive Meaning in Active Language */}
+                  <div className="mb-4 text-start">
                     <div className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
-                      বাংলা অর্থ (Meaning)
+                      {t.audioDemo.meaningLabel}
                     </div>
                     <div className="text-base font-bold text-white mt-0.5">
-                      {phrase.bengaliMeaning}
+                      {phrase.meaning}
                     </div>
                   </div>
 
-                  {/* Gulf Arabic in Bengali Script & Phonetic */}
-                  <div className="mb-4 rounded-xl bg-[#0b1b12] p-3 border border-gulf-500/20">
+                  {/* Gulf Arabic in Adapted Phonetic Script & Arabic Original */}
+                  <div className="mb-4 rounded-xl bg-[#0b1b12] p-3.5 border border-gulf-500/20 text-start">
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] font-bold text-gulf-400 uppercase tracking-wider">
-                        গালফ আরবি উচ্চারণ
+                        {t.audioDemo.arabicPronunciationLabel}
                       </span>
                       <span className="text-xs font-arabic text-slate-300" dir="rtl">
                         {phrase.arabicScript}
                       </span>
                     </div>
+                    {/* Phonetic in Bengali / Devanagari / Latin / Arabic */}
                     <div className="text-sm font-extrabold text-gold-300 mt-1">
-                      &quot;{phrase.arabicBengali}&quot;
+                      &quot;{phrase.phoneticScript}&quot;
                     </div>
-                    <div className="text-[11px] font-mono text-slate-300 mt-0.5">
-                      Phonetic: {phrase.arabicPhonetic}
-                    </div>
+                    {language !== "en" && language !== "ar" && (
+                      <div className="text-[11px] font-mono text-slate-400 mt-0.5">
+                        Phonetic: {phrase.phoneticLatin}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Workplace English */}
-                  <div className="mb-6">
-                    <div className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
-                      কাজের ইংরেজি (Workplace English)
+                  {/* Khaleeji Dialect Nuance Highlight Box for Arabic UI */}
+                  {isRTL && phrase.dialectTip && (
+                    <div className="mb-4 rounded-xl bg-gold-950/40 p-3 border border-gold-500/20 text-start text-xs text-gold-300/95 leading-relaxed">
+                      <div className="flex items-center gap-1.5 font-bold text-gold-400 mb-1">
+                        <Sparkles className="h-3.5 w-3.5" />
+                        <span>فائدة واستخدام في اللهجة الخليجية:</span>
+                      </div>
+                      <p className="text-[11px] text-slate-200">{phrase.dialectTip}</p>
                     </div>
-                    <div className="text-xs font-medium text-slate-200 italic mt-0.5">
+                  )}
+
+                  {/* Workplace English */}
+                  <div className="mb-6 text-start">
+                    <div className="text-[11px] font-semibold text-slate-300 uppercase tracking-wider">
+                      {t.audioDemo.workplaceEnglishLabel}
+                    </div>
+                    <div className="text-xs font-medium text-slate-200 italic mt-0.5" dir="ltr">
                       &ldquo;{phrase.englishWorkplace}&rdquo;
                     </div>
                   </div>
@@ -384,12 +243,12 @@ export default function AudioPhraseDemo() {
                     {isPlaying ? (
                       <>
                         <Square className="h-3.5 w-3.5 fill-current" />
-                        <span>থামুন (Playing...)</span>
+                        <span>{t.audioDemo.stopAudio}</span>
                       </>
                     ) : (
                       <>
-                        <Play className="h-3.5 w-3.5 fill-current" />
-                        <span>Play Audio (আরবি শুনুন)</span>
+                        <Play className={`h-3.5 w-3.5 fill-current ${isRTL ? "rotate-180" : ""}`} />
+                        <span>{t.audioDemo.playAudio}</span>
                       </>
                     )}
                   </button>
@@ -408,7 +267,7 @@ export default function AudioPhraseDemo() {
                       type="button"
                       onClick={() => handleCopy(phrase)}
                       className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-surface-200 p-2.5 text-slate-300 transition-colors hover:text-white hover:bg-surface-300"
-                      title="বাক্যটি কপি করুন"
+                      title={t.audioDemo.copyTooltip}
                       aria-label="Copy phrase"
                     >
                       {isCopied ? (
@@ -427,7 +286,7 @@ export default function AudioPhraseDemo() {
         {/* Bottom Banner */}
         <div className="mt-12 text-center">
           <p className="text-xs sm:text-sm text-slate-300">
-            💡 পুরো কোর্সে এমন <strong className="text-gold-300">১,০০০+ বাস্তব জীবনের কাজের অডিও ফ্রেজ</strong> রয়েছে যা আপনি অফলাইনেও শুনতে পারবেন।
+            {t.audioDemo.bottomNote}
           </p>
         </div>
       </div>
