@@ -10,10 +10,10 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
+      <div className="mx-auto max-w-5xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto w-full min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-gulf-500/30 bg-gulf-950/60 px-3.5 py-1 text-xs font-semibold text-gulf-300 backdrop-blur-md mb-4">
             <HelpCircle className="h-3.5 w-3.5 text-gold-400" />
             <span>{t.faq.badge}</span>
@@ -29,13 +29,13 @@ export default function FAQ() {
         </div>
 
         {/* Accordion */}
-        <div className="mt-14 space-y-4">
+        <div className="mt-14 space-y-4 w-full max-w-full min-w-0">
           {t.faq.items.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border transition-all duration-300 ${
+                className={`rounded-2xl border transition-all duration-300 w-full max-w-full min-w-0 overflow-hidden ${
                   isOpen
                     ? "border-gulf-500/40 bg-surface-100/90 shadow-xl shadow-gulf-950/40"
                     : "border-white/[0.08] bg-surface-100/50 hover:border-white/20 hover:bg-surface-100/70"

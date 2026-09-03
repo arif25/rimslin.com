@@ -31,16 +31,16 @@ export default function Curriculum() {
   ];
 
   return (
-    <section id="curriculum" className="relative py-24 sm:py-32 bg-[#050e08] border-t border-gulf-500/20">
+    <section id="curriculum" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#050e08] border-t border-gulf-500/20">
       {/* Background Ambience */}
       <div
-        className="pointer-events-none absolute top-1/3 left-1/2 -z-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[140px]"
+        className="pointer-events-none absolute top-1/3 left-1/2 -z-10 h-[500px] w-full max-w-[700px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[140px]"
         aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center w-full min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/50 px-3.5 py-1 text-xs font-semibold text-gold-300 backdrop-blur-md mb-4">
             <BookOpen className="h-3.5 w-3.5 text-gold-400" />
             <span>{t.curriculum.badge}</span>
@@ -56,13 +56,13 @@ export default function Curriculum() {
         </div>
 
         {/* Course Cards Grid */}
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3 items-stretch">
+        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3 items-stretch w-full max-w-full min-w-0">
           {t.curriculum.plans.map((plan, idx) => {
             const style = planStyles[idx % planStyles.length];
             return (
               <div
                 key={plan.id}
-                className={`relative flex flex-col justify-between rounded-3xl border bg-gradient-to-b ${style.gradient} p-7 sm:p-8 backdrop-blur-xl transition-all duration-300 ${style.accentBorder} ${
+                className={`relative flex flex-col justify-between rounded-3xl border bg-gradient-to-b ${style.gradient} p-6 sm:p-8 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${style.accentBorder} ${
                   plan.popular ? "scale-[1.02] ring-2 ring-gulf-400/40" : "hover:-translate-y-1"
                 }`}
               >
@@ -165,7 +165,7 @@ export default function Curriculum() {
         </div>
 
         {/* Curriculum Guarantee Note */}
-        <div className="mt-12 rounded-2xl border border-gulf-500/20 bg-surface-100/60 p-6 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 rounded-2xl border border-gulf-500/20 bg-surface-100/60 p-5 sm:p-6 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0 overflow-hidden">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold-500/10 text-gold-400 border border-gold-500/20 shrink-0">
               <Award className="h-6 w-6" />

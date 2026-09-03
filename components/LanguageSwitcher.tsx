@@ -63,7 +63,7 @@ export default function LanguageSwitcher({
   // If inside mobile drawer, provide an intuitive 4-pill segmented grid
   if (isMobile) {
     return (
-      <div className={`w-full rounded-2xl border border-gulf-500/30 bg-[#07140c] p-3 ${className}`}>
+      <div className={`w-full max-w-full rounded-2xl border border-gulf-500/30 bg-[#07140c] p-3 min-w-0 ${className}`}>
         <div className="flex items-center gap-2 mb-2.5 text-xs font-bold text-gulf-300">
           <Globe className="h-4 w-4 text-gold-400" />
           <span>
@@ -74,7 +74,7 @@ export default function LanguageSwitcher({
               : "ভাষা নির্বাচন করুন / Choose Language"}
           </span>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full max-w-full min-w-0">
           {languages.map((lang) => {
             const isActive = language === lang.code;
             return (
@@ -99,19 +99,19 @@ export default function LanguageSwitcher({
   }
 
   return (
-    <div className={`relative inline-block text-start ${className}`} ref={dropdownRef}>
+    <div className={`relative inline-block text-start max-w-full ${className}`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="group inline-flex items-center gap-2 rounded-xl border border-gulf-500/30 bg-surface-100/90 px-3 py-1.5 text-xs font-semibold text-slate-200 shadow-sm backdrop-blur-md transition-all hover:border-gulf-400 hover:bg-surface-200/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-gulf-500/40"
+        className="group inline-flex items-center gap-2 rounded-xl border border-gulf-500/30 bg-surface-100/90 px-3 py-1.5 text-xs font-semibold text-slate-200 shadow-sm backdrop-blur-md transition-all hover:border-gulf-400 hover:bg-surface-200/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-gulf-500/40 max-w-full"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Select Language"
       >
-        <Globe className="h-4 w-4 text-gulf-400 transition-transform duration-300 group-hover:rotate-45" />
-        <span className="font-bold text-white tracking-wide">{currentLang.label}</span>
+        <Globe className="h-4 w-4 text-gulf-400 transition-transform duration-300 group-hover:rotate-45 shrink-0" />
+        <span className="font-bold text-white tracking-wide truncate">{currentLang.label}</span>
         <ChevronDown
-          className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 ${
+          className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 ${
             isOpen ? "rotate-180 text-gulf-400" : ""
           }`}
         />
@@ -120,7 +120,7 @@ export default function LanguageSwitcher({
       {/* Dropdown Menu - adapts side based on RTL */}
       {isOpen && (
         <div
-          className={`absolute mt-2 w-52 rounded-2xl border border-gulf-500/30 bg-[#08150d]/95 p-1.5 shadow-2xl shadow-black/80 backdrop-blur-2xl z-50 animate-fade-in ring-1 ring-white/10 ${
+          className={`absolute mt-2 w-52 max-w-[90vw] rounded-2xl border border-gulf-500/30 bg-[#08150d]/95 p-1.5 shadow-2xl shadow-black/80 backdrop-blur-2xl z-50 animate-fade-in ring-1 ring-white/10 ${
             isRTL ? "left-0 origin-top-left" : "right-0 origin-top-right"
           }`}
         >

@@ -24,8 +24,8 @@ export default function Navbar() {
   )}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gulf-500/20 bg-[#060b08]/85 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full max-w-full overflow-x-hidden border-b border-gulf-500/20 bg-[#060b08]/85 backdrop-blur-xl">
+      <div className="mx-auto flex h-20 max-w-7xl w-full items-center justify-between px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Brand Logo */}
         <Link
           href="/"
@@ -110,8 +110,8 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden border-b border-gulf-500/20 bg-[#09130d]/95 backdrop-blur-2xl px-6 py-6 transition-all">
-          <div className="flex flex-col space-y-3">
+        <div className="xl:hidden w-full max-w-full overflow-hidden border-b border-gulf-500/20 bg-[#09130d]/95 backdrop-blur-2xl px-4 sm:px-6 py-6 transition-all">
+          <div className="flex flex-col space-y-3 w-full max-w-full min-w-0">
             {/* Language Switcher in Mobile Drawer */}
             <LanguageSwitcher isMobile={true} className="mb-2" />
 

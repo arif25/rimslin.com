@@ -9,15 +9,15 @@ export default function Stats() {
   const statIcons = [Users, Globe2, Headphones, Award];
 
   return (
-    <section id="stats" className="relative py-14 border-y border-gulf-500/20 bg-[#07120b]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <section id="stats" className="relative overflow-hidden w-full max-w-full py-14 border-y border-gulf-500/20 bg-[#07120b]">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 w-full max-w-full min-w-0">
           {t.stats.items.map((stat, idx) => {
             const Icon = statIcons[idx % statIcons.length];
             return (
               <div
                 key={idx}
-                className="relative rounded-2xl border border-white/[0.08] bg-surface-100/60 p-6 backdrop-blur-md transition-all duration-300 hover:border-gulf-500/40 hover:bg-surface-200/80"
+                className="relative rounded-2xl border border-white/[0.08] bg-surface-100/60 p-6 backdrop-blur-md transition-all duration-300 hover:border-gulf-500/40 hover:bg-surface-200/80 min-w-0 max-w-full"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gulf-500/20 to-gold-500/10 text-gulf-300 border border-gulf-500/30">

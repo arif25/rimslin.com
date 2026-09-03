@@ -103,7 +103,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={contextValue}>
-      <div dir={dir} className={isRTL ? "font-arabic" : undefined}>
+      <div dir={dir} className={`w-full max-w-full overflow-x-hidden relative ${isRTL ? "font-arabic" : ""}`}>
         {children}
       </div>
     </LanguageContext.Provider>

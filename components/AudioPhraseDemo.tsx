@@ -74,10 +74,10 @@ export default function AudioPhraseDemo() {
   };
 
   return (
-    <section id="audio-demo" className="relative py-20 sm:py-28 bg-[#07110c] border-y border-gulf-500/20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="audio-demo" className="relative overflow-hidden w-full max-w-full py-20 sm:py-28 bg-[#07110c] border-y border-gulf-500/20">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto w-full min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/40 px-3.5 py-1 text-xs font-semibold text-gold-300 backdrop-blur-md mb-4">
             <Volume2 className="h-3.5 w-3.5 text-gold-400" />
             <span>{t.audioDemo.badge}</span>
@@ -93,8 +93,8 @@ export default function AudioPhraseDemo() {
         </div>
 
         {/* Category Filter Tabs & Speed Toggle */}
-        <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+        <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 max-w-full">
             {t.audioDemo.categories.map((cat) => (
               <button
                 key={cat.id}
@@ -111,7 +111,7 @@ export default function AudioPhraseDemo() {
           </div>
 
           {/* Speed Toggle */}
-          <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-surface-100/60 px-3 py-1 text-xs text-slate-300">
+          <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-surface-100/60 px-3 py-1 text-xs text-slate-300 shrink-0">
             <span className="text-[11px] text-slate-400">{t.audioDemo.speedLabel}</span>
             <button
               type="button"
@@ -139,7 +139,7 @@ export default function AudioPhraseDemo() {
         </div>
 
         {/* Phrases Grid */}
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 w-full max-w-full min-w-0">
           {filteredPhrases.map((phrase) => {
             const isPlaying = playingId === phrase.id;
             const isCopied = copiedId === phrase.id;
@@ -147,7 +147,7 @@ export default function AudioPhraseDemo() {
             return (
               <div
                 key={phrase.id}
-                className={`relative flex flex-col justify-between rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 ${
+                className={`relative flex flex-col justify-between rounded-2xl border p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${
                   isPlaying
                     ? "border-gulf-400 bg-gulf-950/40 shadow-xl shadow-gulf-500/20 ring-1 ring-gulf-400/50 scale-[1.01]"
                     : "border-white/[0.08] bg-surface-100/70 hover:border-gulf-500/40 hover:bg-surface-200/80"

@@ -43,10 +43,10 @@ export default function JobTracks() {
   ];
 
   return (
-    <section id="job-tracks" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="job-tracks" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center w-full min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-gulf-500/30 bg-gulf-950/60 px-3.5 py-1 text-xs font-semibold text-gulf-300 backdrop-blur-md mb-4">
             <Sparkles className="h-3.5 w-3.5 text-gold-400" />
             <span>{t.jobTracks.badge}</span>
@@ -62,7 +62,7 @@ export default function JobTracks() {
         </div>
 
         {/* Tracks Grid */}
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 w-full max-w-full min-w-0">
           {t.jobTracks.tracks.map((track, idx) => {
             const meta = trackMeta[idx % trackMeta.length];
             const Icon = meta.icon;
@@ -70,7 +70,7 @@ export default function JobTracks() {
             return (
               <div
                 key={track.id}
-                className="group relative flex flex-col justify-between rounded-3xl border border-white/[0.08] bg-surface-100/60 p-6 sm:p-8 backdrop-blur-xl transition-all duration-300 hover:border-gulf-500/40 hover:bg-surface-200/80 hover:shadow-2xl hover:shadow-gulf-500/10"
+                className="group relative flex flex-col justify-between rounded-3xl border border-white/[0.08] bg-surface-100/60 p-5 sm:p-8 backdrop-blur-xl transition-all duration-300 hover:border-gulf-500/40 hover:bg-surface-200/80 hover:shadow-2xl hover:shadow-gulf-500/10 min-w-0 max-w-full overflow-hidden"
               >
                 <div>
                   {/* Top Bar */}
@@ -142,7 +142,7 @@ export default function JobTracks() {
                     className="inline-flex items-center gap-1.5 rounded-xl bg-gulf-500/10 px-4 py-2 text-xs font-bold text-gulf-300 border border-gulf-500/30 transition-all group-hover:bg-gulf-500 group-hover:text-slate-950"
                   >
                     <span>{t.jobTracks.viewModule}</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180" />
                   </Link>
                 </div>
               </div>

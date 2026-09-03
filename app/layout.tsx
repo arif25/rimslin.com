@@ -110,8 +110,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="bn" className={`dark ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable}`}>
-      <body className="min-h-screen bg-background text-slate-100 antialiased selection:bg-gulf-500 selection:text-white">
+    <html lang="bn" className={`dark overflow-x-hidden max-w-full w-full ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable}`}>
+      <body className="min-h-screen bg-background text-slate-100 antialiased selection:bg-gulf-500 selection:text-white overflow-x-hidden max-w-full w-full relative">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

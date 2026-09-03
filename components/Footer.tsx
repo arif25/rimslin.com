@@ -8,9 +8,9 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-gulf-500/20 bg-[#040805] pt-16 pb-12 text-slate-300">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5">
+    <footer className="border-t border-gulf-500/20 bg-[#040805] pt-16 pb-12 text-slate-300 w-full max-w-full overflow-hidden relative">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5 w-full max-w-full min-w-0">
           {/* Brand Col */}
           <div className="lg:col-span-2">
             <Link href="/" className="group flex items-center gap-3">
@@ -109,14 +109,14 @@ export default function Footer() {
         </div>
 
         {/* Worker Rights & Education Disclaimer */}
-        <div className="mt-12 rounded-2xl border border-white/[0.06] bg-[#07110a] p-4 text-[11px] text-slate-400 leading-relaxed">
+        <div className="mt-12 rounded-2xl border border-white/[0.06] bg-[#07110a] p-4 text-[11px] text-slate-400 leading-relaxed w-full max-w-full min-w-0 overflow-hidden">
           <p>
             ℹ️ <strong>{t.footer.disclaimerLabel}</strong> {t.footer.disclaimerText}
           </p>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 text-xs text-slate-400 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 text-xs text-slate-400 sm:flex-row w-full max-w-full min-w-0">
           <p>{t.footer.copyright}</p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-emerald-400">

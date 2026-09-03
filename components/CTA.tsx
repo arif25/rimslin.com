@@ -8,16 +8,16 @@ export default function CTA() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-gulf-500/30 bg-gradient-to-b from-[#0e2116] via-[#09160e] to-[#050b07] px-6 py-16 sm:px-16 sm:py-20 shadow-2xl shadow-gulf-950/60 backdrop-blur-2xl">
+    <section id="contact" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
+        <div className="relative overflow-hidden w-full max-w-full rounded-3xl border border-gulf-500/30 bg-gradient-to-b from-[#0e2116] via-[#09160e] to-[#050b07] px-5 py-12 sm:px-16 sm:py-20 shadow-2xl shadow-gulf-950/60 backdrop-blur-2xl min-w-0">
           {/* Subtle background glow */}
           <div
-            className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-80 w-[650px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[120px]"
+            className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-80 w-full max-w-[650px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[120px]"
             aria-hidden="true"
           />
 
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center w-full min-w-0">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/60 px-4 py-1.5 text-xs font-semibold text-gold-300 backdrop-blur-md mb-6">
               <Sparkles className="h-3.5 w-3.5 text-gold-400 animate-pulse" />
               <span>{t.cta.badge}</span>

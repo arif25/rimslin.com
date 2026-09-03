@@ -84,16 +84,16 @@ export default function AIVoiceCoach() {
   };
 
   return (
-    <section id="ai-voice" className="relative py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
+    <section id="ai-voice" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32 bg-[#060e09] border-t border-gulf-500/20">
       {/* Background glow */}
       <div
-        className="pointer-events-none absolute top-1/2 right-1/4 -z-10 h-[450px] w-[450px] rounded-full bg-hero-emerald-glow blur-[130px]"
+        className="pointer-events-none absolute top-1/2 right-0 -z-10 h-[450px] w-full max-w-[450px] rounded-full bg-hero-emerald-glow blur-[130px]"
         aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center w-full min-w-0">
           <div className="inline-flex items-center gap-2 rounded-full border border-gulf-400/30 bg-gulf-950/60 px-4 py-1.5 text-xs font-semibold text-gulf-300 backdrop-blur-md mb-4 shadow-lg shadow-gulf-950/40">
             <Sparkles className="h-3.5 w-3.5 text-gold-400 animate-pulse" />
             <span>{t.aiVoice.badge}</span>
@@ -137,7 +137,7 @@ export default function AIVoiceCoach() {
         </div>
 
         {/* Main AI Simulator Interactive Card */}
-        <div className="mt-10 max-w-4xl mx-auto rounded-3xl border border-gulf-500/30 bg-[#0a1610]/90 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl shadow-gulf-950/60">
+        <div className="mt-10 max-w-4xl mx-auto w-full rounded-3xl border border-gulf-500/30 bg-[#0a1610]/90 p-5 sm:p-10 backdrop-blur-2xl shadow-2xl shadow-gulf-950/60 min-w-0 max-w-full overflow-hidden">
           {/* Top Status Bar */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.08] pb-5 mb-8">
             <div className="flex items-center gap-3">

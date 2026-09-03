@@ -14,19 +14,19 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden pt-10 pb-20 md:pt-16 md:pb-28">
+    <section className="relative overflow-hidden w-full max-w-full pt-10 pb-20 md:pt-16 md:pb-28">
       {/* Background ambient lighting */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[550px] w-[800px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[120px]"
+        className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[550px] w-full max-w-[800px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[120px]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute top-1/2 right-10 -z-10 h-[400px] w-[400px] rounded-full bg-gold-glow blur-[100px]"
+        className="pointer-events-none absolute top-1/2 right-0 -z-10 h-[400px] w-full max-w-[400px] rounded-full bg-gold-glow blur-[100px]"
         aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
+        <div className="flex flex-col items-center text-center w-full max-w-full min-w-0">
           {/* Announcement Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-gulf-500/30 bg-gulf-950/60 px-4 py-1.5 text-xs font-semibold text-gulf-300 backdrop-blur-md shadow-lg shadow-gulf-950/50 mb-6">
             <Sparkles className="h-3.5 w-3.5 text-gold-400 animate-pulse" />
