@@ -97,9 +97,12 @@ export default function AudioPhraseDemo() {
     <section id="phrase-demo" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-20 sm:py-28 bg-white/70 border-y border-slate-200/80 dark:bg-[#07110c] dark:border-gulf-500/20 transition-colors duration-200">
       <span id="audio-demo" className="sr-only" aria-hidden="true" />
       <span id="country-dialects" className="sr-only" aria-hidden="true" />
+      <span id="dialects" className="sr-only" aria-hidden="true" />
       <span id="daily-dialogues" className="sr-only" aria-hidden="true" />
       <span id="emergency-phrases" className="sr-only" aria-hidden="true" />
+      <span id="emergency" className="sr-only" aria-hidden="true" />
       <span id="audio-downloads" className="sr-only" aria-hidden="true" />
+      <span id="audio-pack" className="sr-only" aria-hidden="true" />
       <span id="free-practice" className="sr-only" aria-hidden="true" />
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}

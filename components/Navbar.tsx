@@ -187,11 +187,11 @@ export default function Navbar() {
   )}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full shadow-sm dark:shadow-black/30 transition-colors duration-200">
+    <header className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900 dark:bg-[#060b08] shadow-sm dark:shadow-black/30 transition-colors duration-200">
       {/* ========================================================================= */}
       {/* TIER 1: TOP UTILITY BAR (Above Logo - Right-Aligned & Slim)              */}
       {/* ========================================================================= */}
-      <div className="w-full border-b border-slate-200/80 bg-slate-100/95 dark:border-white/[0.06] dark:bg-[#030704] text-xs py-0 transition-colors duration-200 relative z-50">
+      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-0 transition-colors duration-200 relative z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-0 flex items-center justify-end gap-4 w-full text-slate-600 dark:text-slate-400">
           {/* 1. Support Email */}
           <a
@@ -236,7 +236,7 @@ export default function Navbar() {
       {/* ========================================================================= */}
       {/* TIER 2: MAIN BRANDING BAR (Center Row with Logo & CTA)                   */}
       {/* ========================================================================= */}
-      <div className="w-full border-b border-slate-200/70 bg-white/95 dark:border-white/[0.06] dark:bg-[#060b08]/98 backdrop-blur-md transition-colors duration-200 relative z-40">
+      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 dark:bg-[#060b08] backdrop-blur-md transition-colors duration-200 relative z-40">
         <div className="mx-auto flex h-16 sm:h-20 max-w-7xl w-full items-center justify-between px-3 sm:px-6 lg:px-8 min-w-0">
           {/* Left Side: Brand Logo */}
           <Link
@@ -244,20 +244,20 @@ export default function Navbar() {
             className="group flex items-center gap-2.5 sm:gap-3 transition-opacity hover:opacity-90 shrink-0"
           >
             <div className="relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-amber-400 p-[1px] shadow-md shadow-emerald-900/20">
-              <div className="flex h-full w-full items-center justify-center rounded-[11px] bg-slate-100 dark:bg-[#07120b]">
+              <div className="flex h-full w-full items-center justify-center rounded-[11px] bg-slate-100 dark:bg-gray-900 dark:bg-[#07120b] transition-colors">
                 <Globe className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-12" />
               </div>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+                <span className="text-xl sm:text-2xl font-black tracking-tight text-gray-900 dark:text-white leading-tight">
                   Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
                 </span>
-                <span className="rounded bg-emerald-500/15 dark:bg-gulf-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-700 dark:text-gulf-400 border border-emerald-500/30 dark:border-gulf-500/30">
+                <span className="rounded-full bg-emerald-500/15 dark:bg-gulf-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-700 dark:text-gulf-400 border border-emerald-500/30 dark:border-gulf-500/30">
                   {t.navbar.brandTag}
                 </span>
               </div>
-              <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-300 font-medium tracking-wide">
+              <span className="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 font-medium tracking-wide mt-0.5">
                 {t.navbar.brandSubtitle}
               </span>
             </div>
@@ -278,7 +278,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsMobileDrawerOpen(!isMobileDrawerOpen)}
-              className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200/90 dark:border-white/10 bg-slate-50 dark:bg-surface-100 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-gulf-400 hover:border-emerald-500 dark:hover:border-gulf-400 focus:outline-none transition-colors shrink-0"
+              className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 dark:bg-surface-100 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-gulf-400 hover:border-emerald-500 dark:hover:border-gulf-400 focus:outline-none transition-colors shrink-0"
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileDrawerOpen}
             >
@@ -295,7 +295,7 @@ export default function Navbar() {
       {/* ========================================================================= */}
       {/* TIER 3: NAVIGATION MENU BAR (Lower Section with Nav Links & More Menu)   */}
       {/* ========================================================================= */}
-      <div className="w-full border-b border-slate-200/80 bg-slate-50/95 dark:border-gulf-500/20 dark:bg-[#07130b] transition-colors duration-200 relative z-30">
+      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-50/95 dark:bg-gray-950 dark:bg-[#07130b] transition-colors duration-200 relative z-30">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
           {/* Horizontal Navigation Links (Smooth scrollable on mobile/tablet) */}
           <nav
@@ -325,7 +325,7 @@ export default function Navbar() {
               className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-all border ${
                 isMoreOpen
                   ? "bg-emerald-600 text-white border-emerald-500 shadow-md shadow-emerald-500/20 dark:bg-gulf-500 dark:text-slate-950 dark:border-gulf-400 dark:shadow-gulf-500/20"
-                  : "bg-white text-slate-700 border-slate-200/90 hover:border-emerald-500/40 hover:bg-slate-100 hover:text-slate-900 dark:bg-surface-100 dark:text-slate-200 dark:border-white/10 dark:hover:border-gulf-500/40 dark:hover:bg-surface-200 dark:hover:text-white"
+                  : "bg-white text-slate-700 border-gray-200 dark:border-gray-800 hover:border-emerald-500/40 hover:bg-slate-100 hover:text-slate-900 dark:bg-gray-800 dark:bg-surface-100 dark:text-slate-200 dark:hover:border-gulf-500/40 dark:hover:bg-gray-700 dark:hover:text-white"
               }`}
               aria-expanded={isMoreOpen}
               aria-haspopup="true"
@@ -343,9 +343,9 @@ export default function Navbar() {
             {/* Floating Popover Menu - Solid background, z-[999], and high elevation */}
             {isMoreOpen && (
               <div
-                className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[270px] max-w-[90vw] rounded-2xl border border-slate-200 bg-white p-2 text-slate-800 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:text-slate-200 dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top"
+                className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[270px] max-w-[90vw] rounded-2xl border border-gray-200 dark:border-gray-800 bg-white p-2 text-slate-800 shadow-2xl ring-1 ring-black/5 dark:bg-gray-900 dark:bg-[#08150d] dark:text-slate-200 dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top"
               >
-                <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-slate-100 dark:border-white/[0.08] mb-1.5 flex items-center justify-between">
+                <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-gray-100 dark:border-gray-800 mb-1.5 flex items-center justify-between">
                   <span>{t.navbar.more}</span>
                   <span className="text-amber-600 dark:text-gold-400 font-mono text-[9px] font-semibold">
                     8 Resources
@@ -362,7 +362,7 @@ export default function Navbar() {
                         onClick={() => setIsMoreOpen(false)}
                         className="group flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
                       >
-                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 border border-slate-200 group-hover:border-emerald-500/30 group-hover:bg-emerald-100/50 dark:bg-white/5 dark:border-white/5 dark:group-hover:border-gulf-500/30 dark:group-hover:bg-gulf-500/20 transition-colors shrink-0">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 border border-gray-200 group-hover:border-emerald-500/30 group-hover:bg-emerald-100/50 dark:bg-gray-800 dark:border-gray-700 dark:group-hover:border-gulf-500/30 dark:group-hover:bg-gulf-500/20 transition-colors shrink-0">
                           <Icon className="h-3.5 w-3.5 text-emerald-600 group-hover:text-amber-500 dark:text-gulf-400 dark:group-hover:text-gold-400 transition-colors" />
                         </div>
                         <span className="truncate">{item.name}</span>
@@ -372,7 +372,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Need help? Email us (Popover Footer) */}
-                <div className="mt-2 pt-2 border-t border-slate-100 dark:border-white/[0.08]">
+                <div className="mt-2 pt-2 border-t border-gray-100 dark:border-gray-800">
                   <div className="rounded-xl border border-emerald-500/20 bg-emerald-50/60 dark:border-gulf-500/20 dark:bg-gulf-950/40 p-2.5">
                     <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 dark:text-gulf-300 mb-1 flex items-center gap-1.5">
                       <Mail className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400" />
@@ -409,23 +409,28 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation Menu"
-            className="fixed inset-y-0 right-0 z-[1001] w-full max-w-sm bg-white dark:bg-[#08150d] text-slate-800 dark:text-slate-100 shadow-2xl border-l border-slate-200 dark:border-gulf-500/30 flex flex-col transition-transform duration-300 ease-out"
+            className="fixed inset-y-0 right-0 z-[1001] w-full max-w-sm bg-white dark:bg-gray-900 dark:bg-[#08150d] text-slate-800 dark:text-slate-100 shadow-2xl border-l border-gray-200 dark:border-gray-800 flex flex-col transition-transform duration-300 ease-out"
           >
             {/* Drawer Header */}
-            <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-white/10">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 dark:bg-[#08150d]">
               <Link
                 href="/"
                 onClick={() => setIsMobileDrawerOpen(false)}
                 className="flex items-center gap-2"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 to-amber-400 p-[1px]">
-                  <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-slate-100 dark:bg-[#07120b]">
+                  <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-slate-100 dark:bg-gray-900 dark:bg-[#07120b] transition-colors">
                     <Globe className="h-4 w-4 text-emerald-600 dark:text-gulf-400" />
                   </div>
                 </div>
-                <span className="text-lg font-black tracking-tight text-slate-900 dark:text-white">
-                  Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
-                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-lg font-black tracking-tight text-gray-900 dark:text-white">
+                    Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
+                  </span>
+                  <span className="rounded-full bg-emerald-500/15 dark:bg-gulf-500/20 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700 dark:text-gulf-400 border border-emerald-500/30 dark:border-gulf-500/30">
+                    {t.navbar.brandTag}
+                  </span>
+                </div>
               </Link>
 
               <button

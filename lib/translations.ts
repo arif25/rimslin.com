@@ -257,7 +257,7 @@ export interface TranslationSchema {
 export const translations: Record<Language, TranslationSchema> = {
   bn: {
     navbar: {
-      brandTag: "গালফ হাব",
+      brandTag: "Language",
       brandSubtitle: "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম",
       audioDemo: "অডিও ফ্রেজ ডেমো",
       jobTracks: "ট্রেড ও জব ট্র্যাক",
@@ -961,7 +961,7 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   hi: {
     navbar: {
-      brandTag: "गल्फ हब",
+      brandTag: "Language",
       brandSubtitle: "प्रवासी भाषा शिक्षण मंच",
       audioDemo: "ऑडियो फ्रेज डेमो",
       jobTracks: "ट्रेड व जॉब ट्रैक्स",
@@ -1651,7 +1651,7 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   en: {
     navbar: {
-      brandTag: "Gulf Hub",
+      brandTag: "Language",
       brandSubtitle: "Expat Language & Career Platform",
       audioDemo: "Audio Phrase Demo",
       jobTracks: "Trade / Job Tracks",
@@ -2341,7 +2341,7 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   ar: {
     navbar: {
-      brandTag: "بوابة الخليج",
+      brandTag: "Language",
       brandSubtitle: "منصة تعليم لغات العمل للمغتربين",
       audioDemo: "نماذج الجمل الصوتية",
       jobTracks: "المسارات المهنية والحرفية",

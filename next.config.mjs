@@ -19,6 +19,25 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/dialects',
+        destination: '/#country-dialects',
+        permanent: false,
+      },
+      {
+        source: '/emergency',
+        destination: '/#emergency-phrases',
+        permanent: false,
+      },
+      {
+        source: '/audio-pack',
+        destination: '/#audio-downloads',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
