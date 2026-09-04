@@ -6,6 +6,7 @@ import Stats from "@/components/Stats";
 import AudioPhraseDemo from "@/components/AudioPhraseDemo";
 import JobTracks from "@/components/JobTracks";
 import Curriculum from "@/components/Curriculum";
+import YouTubeGallery from "@/components/YouTubeGallery";
 import AIVoiceCoach from "@/components/AIVoiceCoach";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
@@ -23,6 +24,7 @@ export default function Home() {
         <Hero />
         <Stats />
         <AudioPhraseDemo />
+        <YouTubeGallery />
         <JobTracks />
         <Curriculum />
         <AIVoiceCoach />

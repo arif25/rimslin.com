@@ -178,3 +178,23 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Modern Sleek Playlist Scrollbar */
+.playlist-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.35) transparent;
+}
+.playlist-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.playlist-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.playlist-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.35);
+  border-radius: 9999px;
+}
+.playlist-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.7);
+}
+

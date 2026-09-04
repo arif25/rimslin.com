@@ -22,6 +22,7 @@ import {
   HelpCircle,
   Headphones,
   PlayCircle,
+  Tv,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -54,6 +55,11 @@ export default function Navbar() {
       name: t.navbar.audioDemo,
       href: "#phrase-demo",
       icon: Volume2,
+    },
+    {
+      name: "ভিডিও ক্লাস",
+      href: "#video-gallery",
+      icon: Tv,
     },
     {
       name: t.navbar.jobTracks,
