@@ -93,7 +93,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 z-50 min-w-[150px] rounded-2xl border border-slate-200 bg-white/95 p-1.5 shadow-2xl backdrop-blur-2xl animate-fade-in ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d]/95 dark:shadow-black/80 dark:ring-white/10 ltr:right-0 rtl:left-0 origin-top">
+        <div className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[150px] rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top">
           <div className="space-y-0.5">
             {themeOptions.map((opt) => {
               const Icon = opt.icon;

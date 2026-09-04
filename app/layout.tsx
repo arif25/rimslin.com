@@ -4,6 +4,7 @@ import { Inter, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Sans_Arabic, Amiri
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/language-context";
 import { Analytics } from "@vercel/analytics/next";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -113,6 +114,23 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "Rimslin",
+  url: "https://rimslin.com",
+  email: "support@rimslin.com",
+  logo: "https://rimslin.com/og-image.png",
+  description:
+    "সৌদি আরব, দুবাই, কাতার, কুয়েত ও ওমান প্রবাসীদের জন্য ব্যবহারিক কথ্য আরবি ও কর্মক্ষেত্রের ইংরেজি ভাষা শিক্ষা প্ল্যাটফর্ম।",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "support@rimslin.com",
+    contactType: "customer support",
+    availableLanguage: ["Bengali", "English", "Hindi", "Arabic"],
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -124,6 +142,12 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`overflow-x-hidden max-w-full w-full ${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable} ${notoSansArabic.variable} ${amiri.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-background dark:text-slate-100 antialiased selection:bg-gulf-500 selection:text-white overflow-x-hidden max-w-full w-full relative transition-colors duration-200">
         <ThemeProvider
           attribute="class"
@@ -133,6 +157,7 @@ export default function RootLayout({
         >
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
+        <ScrollToTop />
         <Analytics />
       </body>
     </html>

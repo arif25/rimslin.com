@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, MessageSquare } from "lucide-react";
+import { Globe, MessageSquare, Mail } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
 export default function Footer() {
@@ -33,7 +33,7 @@ export default function Footer() {
               {t.footer.description}
             </p>
 
-            {/* Direct WhatsApp Helpline Card */}
+            {/* Direct WhatsApp & Email Support Card */}
             <div className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/40 p-4 max-w-sm">
               <div className="flex items-center gap-2 text-xs font-bold text-emerald-300">
                 <MessageSquare className="h-4 w-4 text-emerald-400" />
@@ -50,6 +50,18 @@ export default function Footer() {
                   {t.footer.directChat}
                 </span>
               </Link>
+
+              {/* Direct Official Support Email */}
+              <div className="mt-3 pt-3 border-t border-emerald-500/20 flex items-center gap-2 text-xs">
+                <Mail className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                <span className="text-slate-400">অফিসিয়াল ইমেইল:</span>
+                <a
+                  href="mailto:support@rimslin.com"
+                  className="font-bold text-emerald-300 hover:text-white hover:underline transition-colors"
+                >
+                  support@rimslin.com
+                </a>
+              </div>
             </div>
           </div>
 
@@ -92,18 +104,53 @@ export default function Footer() {
           </div>
 
           {/* Col 4: Gulf Destinations */}
+          {/* Col 4: Policy & Support */}
           <div className="lg:col-span-1">
             <h3 className="text-xs font-bold uppercase tracking-wider text-gold-400">
-              {t.footer.colCountries}
+              তথ্য ও নীতিমালা
             </h3>
-            <ul className="mt-4 space-y-2">
-              {t.footer.countries.map((country, idx) => (
-                <li key={idx}>
-                  <span className="text-xs text-slate-300 block">
-                    {country.name}
-                  </span>
-                </li>
-              ))}
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <Link
+                  href="/about"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  আমাদের সম্পর্কে (About)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  যোগাযোগ (Contact)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-and-conditions"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li className="pt-2 border-t border-white/[0.06]">
+                <a
+                  href="mailto:support@rimslin.com"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-400 hover:text-emerald-300 hover:underline transition-colors font-medium"
+                >
+                  <Mail className="h-3.5 w-3.5 shrink-0" />
+                  <span>support@rimslin.com</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -118,15 +165,29 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 text-xs text-slate-400 sm:flex-row w-full max-w-full min-w-0">
           <p>{t.footer.copyright}</p>
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-emerald-400">
-              <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              {t.footer.statusText}
-            </span>
-            <span className="text-slate-400">•</span>
-            <Link href="#faq" className="hover:text-white transition-colors">
-              {t.footer.faqLink}
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs">
+            <Link href="/about" className="hover:text-white transition-colors">
+              About Us
             </Link>
+            <span className="text-slate-600 hidden sm:inline">•</span>
+            <Link href="/contact" className="hover:text-white transition-colors">
+              Contact Us
+            </Link>
+            <span className="text-slate-600 hidden sm:inline">•</span>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-slate-600 hidden sm:inline">•</span>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">
+              Terms & Conditions
+            </Link>
+            <span className="text-slate-600 hidden sm:inline">•</span>
+            <a
+              href="mailto:support@rimslin.com"
+              className="text-emerald-400 hover:text-white hover:underline transition-colors font-medium"
+            >
+              support@rimslin.com
+            </a>
           </div>
         </div>
       </div>

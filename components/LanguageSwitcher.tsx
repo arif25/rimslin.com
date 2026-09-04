@@ -120,10 +120,10 @@ export default function LanguageSwitcher({
       {/* Dropdown Menu - adapts side based on RTL */}
       {isOpen && (
         <div
-          className={`absolute z-50 mt-2 w-52 max-w-[90vw] rounded-2xl border border-slate-200 bg-white/95 p-1.5 shadow-2xl backdrop-blur-2xl animate-fade-in ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d]/95 dark:shadow-black/80 dark:ring-white/10 ${
+          className={`absolute z-[999] mt-2 w-52 max-w-[90vw] rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 ${
             isRTL
-              ? "left-0 ltr:right-0 rtl:left-0 origin-top-left"
-              : "right-0 ltr:right-0 rtl:left-0 origin-top-right"
+              ? "left-0 end-0 origin-top-left"
+              : "right-0 end-0 origin-top-right"
           }`}
         >
           <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-white/[0.06] mb-1 flex items-center justify-between">
