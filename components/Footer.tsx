@@ -57,7 +57,7 @@ export default function Footer() {
                 <span className="text-slate-400">অফিসিয়াল ইমেইল:</span>
                 <a
                   href="mailto:support@rimslin.com"
-                  className="font-bold text-emerald-300 hover:text-white hover:underline transition-colors"
+                  className="font-bold text-emerald-300 hover:text-white hover:underline transition-colors font-sans"
                 >
                   support@rimslin.com
                 </a>
@@ -145,10 +145,10 @@ export default function Footer() {
               <li className="pt-2 border-t border-white/[0.06]">
                 <a
                   href="mailto:support@rimslin.com"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-400 hover:text-emerald-300 hover:underline transition-colors font-medium"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-400 hover:text-emerald-300 hover:underline transition-colors font-medium font-sans"
                 >
                   <Mail className="h-3.5 w-3.5 shrink-0" />
-                  <span>support@rimslin.com</span>
+                  <span className="font-sans">support@rimslin.com</span>
                 </a>
               </li>
             </ul>
@@ -187,7 +187,7 @@ export default function Footer() {
             <span className="text-slate-600 hidden sm:inline">•</span>
             <a
               href="mailto:support@rimslin.com"
-              className="text-emerald-400 hover:text-white hover:underline transition-colors font-medium"
+              className="text-emerald-400 hover:text-white hover:underline transition-colors font-medium font-sans"
             >
               support@rimslin.com
             </a>

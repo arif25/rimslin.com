@@ -87,7 +87,7 @@ export default function ContactPage() {
               আরবি ভাষা শিক্ষার কোনো ক্লাস সংক্রান্ত প্রশ্ন, মতামত কিংবা পরামর্শ থাকলে আমাদের অফিসিয়াল ইমেইল{" "}
               <a
                 href="mailto:support@rimslin.com"
-                className="font-bold text-emerald-600 dark:text-gulf-400 hover:underline"
+                className="font-sans font-bold text-emerald-600 dark:text-gulf-400 hover:underline"
               >
                 support@rimslin.com
               </a>{" "}

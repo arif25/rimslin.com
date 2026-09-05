@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
                 At <strong>Rimslin</strong> (accessible from <a href="https://rimslin.com" className="text-emerald-600 dark:text-gulf-400 underline">https://rimslin.com</a>), one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information that is collected and recorded by Rimslin and how we use it.
               </p>
               <p>
-                If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at <a href="mailto:support@rimslin.com" className="text-emerald-600 dark:text-gulf-400 font-semibold underline">support@rimslin.com</a>.
+                If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at <a href="mailto:support@rimslin.com" className="font-sans font-semibold text-emerald-600 dark:text-gulf-400 underline">support@rimslin.com</a>.
               </p>
             </section>
 
@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm">
                 <li>
-                  <strong>Contact Information:</strong> If you contact us directly via our online form or email at <code className="text-xs bg-slate-100 dark:bg-surface-200 px-1 py-0.5 rounded">support@rimslin.com</code>, we may receive additional information about you such as your name, email address, the contents of the message, and any attachments you may send us.
+                  <strong>Contact Information:</strong> If you contact us directly via our online form or email at <span className="font-sans text-xs font-semibold bg-slate-100 dark:bg-surface-200 px-1.5 py-0.5 rounded text-emerald-700 dark:text-gulf-300">support@rimslin.com</span>, we may receive additional information about you such as your name, email address, the contents of the message, and any attachments you may send us.
                 </li>
                 <li>
                   <strong>Log Files:</strong> Like most standard website servers, Rimslin follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users&apos; movement on the website, and gathering demographic information.
@@ -213,7 +213,7 @@ export default function PrivacyPolicyPage() {
                 ৮. আন্তর্জাতিক ডেটা সুরক্ষা অধিকার (CCPA & GDPR Rights)
               </h2>
               <p>
-                Under data privacy regulations (including CCPA and GDPR), users have rights to request access to their personal data, request correction of any inaccurate data, request erasure of personal data under certain conditions, and opt out of the sale or processing of personal data. Rimslin does not sell any personal information. If you wish to exercise any of these rights, please contact us at <a href="mailto:support@rimslin.com" className="text-emerald-600 dark:text-gulf-400 underline font-semibold">support@rimslin.com</a>.
+                Under data privacy regulations (including CCPA and GDPR), users have rights to request access to their personal data, request correction of any inaccurate data, request erasure of personal data under certain conditions, and opt out of the sale or processing of personal data. Rimslin does not sell any personal information. If you wish to exercise any of these rights, please contact us at <a href="mailto:support@rimslin.com" className="font-sans font-semibold text-emerald-600 dark:text-gulf-400 underline">support@rimslin.com</a>.
               </p>
             </section>
 
@@ -240,7 +240,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul className="list-disc pl-5 space-y-1 text-xs sm:text-sm font-medium">
                 <li>Website: <a href="https://rimslin.com" className="text-emerald-600 dark:text-gulf-400 underline">https://rimslin.com</a></li>
-                <li>Email: <a href="mailto:support@rimslin.com" className="text-emerald-600 dark:text-gulf-400 underline">support@rimslin.com</a></li>
+                <li>Email: <a href="mailto:support@rimslin.com" className="font-sans font-semibold text-emerald-600 dark:text-gulf-400 underline">support@rimslin.com</a></li>
                 <li>Subject line: <em>Privacy Policy Inquiry</em></li>
               </ul>
             </section>

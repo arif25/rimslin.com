@@ -170,7 +170,7 @@ export default function TermsAndConditionsPage() {
                 If you have questions regarding these Terms &amp; Conditions, please reach out to us at:
               </p>
               <p className="text-xs sm:text-sm">
-                📧 Email: <a href="mailto:support@rimslin.com" className="text-emerald-600 dark:text-gulf-400 underline font-semibold">support@rimslin.com</a>
+                📧 Email: <a href="mailto:support@rimslin.com" className="font-sans font-semibold text-emerald-600 dark:text-gulf-400 underline">support@rimslin.com</a>
                 <br />
                 🌐 Website: <a href="https://rimslin.com" className="text-emerald-600 dark:text-gulf-400 underline font-semibold">https://rimslin.com</a>
               </p>

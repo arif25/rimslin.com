@@ -220,7 +220,7 @@ export default function Navbar() {
             aria-label="Official Support Email: support@rimslin.com"
           >
             <Mail className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0" />
-            <span className="font-mono text-[11px] sm:text-xs">
+            <span className="font-sans font-medium text-[11px] sm:text-xs">
               support@rimslin.com
             </span>
           </a>
@@ -310,7 +310,7 @@ export default function Navbar() {
                           ? "البريد الإلكتروني"
                           : "Email Support"}
                       </span>
-                      <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate">
+                      <span className="text-[10px] font-sans font-medium text-slate-500 dark:text-slate-400 truncate">
                         support@rimslin.com
                       </span>
                     </div>
@@ -544,7 +544,7 @@ export default function Navbar() {
                     </div>
                     <a
                       href="mailto:support@rimslin.com"
-                      className="inline-flex items-center gap-1 text-xs font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-gulf-400 hover:underline transition-colors font-mono"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-gulf-400 hover:underline transition-colors font-sans"
                     >
                       support@rimslin.com
                     </a>
@@ -713,7 +713,7 @@ export default function Navbar() {
                   className="flex items-center gap-2 text-xs font-bold text-emerald-700 hover:text-emerald-900 dark:text-emerald-300 dark:hover:text-white transition-colors"
                 >
                   <Mail className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                  <span className="font-mono">support@rimslin.com</span>
+                  <span className="font-sans font-medium">support@rimslin.com</span>
                 </a>
               </div>
 

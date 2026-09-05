@@ -51,7 +51,7 @@ export default function ContactForm() {
           ধন্যবাদ! আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে।
         </h3>
         <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto mb-6">
-          আমরা আপনার মতামত গুরুত্বসহকারে বিবেচনা করি। আমাদের টিম ২৪ থেকে ৪৮ ঘণ্টার মধ্যে <span className="font-semibold text-emerald-600 dark:text-gulf-400">support@rimslin.com</span> থেকে আপনার সাথে যোগাযোগ করবে।
+          আমরা আপনার মতামত গুরুত্বসহকারে বিবেচনা করি। আমাদের টিম ২৪ থেকে ৪৮ ঘণ্টার মধ্যে <span className="font-sans font-semibold text-emerald-600 dark:text-gulf-400">support@rimslin.com</span> থেকে আপনার সাথে যোগাযোগ করবে।
         </p>
         <button
           type="button"
@@ -172,7 +172,7 @@ export default function ContactForm() {
         <span>ফর্ম পূরণ করতে সমস্যা হলে সরাসরি ইমেইল করুন:</span>
         <a
           href="mailto:support@rimslin.com"
-          className="font-bold text-emerald-600 dark:text-gulf-400 hover:underline transition-colors"
+          className="font-sans font-bold text-emerald-600 dark:text-gulf-400 hover:underline transition-colors"
         >
           support@rimslin.com
         </a>
