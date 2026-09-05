@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Globe,
   MessageSquare,
@@ -28,18 +29,22 @@ import {
   Home,
   Info,
   FileText,
+  Briefcase,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ThemeToggle from "@/components/theme-toggle";
 
 export default function Navbar() {
-  const { t } = useLanguage();
+  const { t, language, isRTL } = useLanguage();
+  const pathname = usePathname();
   const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const moreDropdownRef = useRef<HTMLDivElement>(null);
+  const helpDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close "More" dropdown when clicked outside
+  // Close dropdowns when clicked outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -47,6 +52,12 @@ export default function Navbar() {
         !moreDropdownRef.current.contains(event.target as Node)
       ) {
         setIsMoreOpen(false);
+      }
+      if (
+        helpDropdownRef.current &&
+        !helpDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsHelpOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -61,6 +72,7 @@ export default function Navbar() {
       if (e.key === "Escape") {
         setIsMobileDrawerOpen(false);
         setIsMoreOpen(false);
+        setIsHelpOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -79,8 +91,15 @@ export default function Navbar() {
     };
   }, [isMobileDrawerOpen]);
 
+  interface NavLinkItem {
+    name: string;
+    href: string;
+    icon: React.ComponentType<{ className?: string }>;
+    badge?: string;
+  }
+
   // Primary visible items on the Tier 3 navigation bar
-  const primaryNavLinks = [
+  const primaryNavLinks: NavLinkItem[] = [
     {
       name: "হোম",
       href: "/",
@@ -187,46 +206,147 @@ export default function Navbar() {
   )}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900 dark:bg-[#060b08] shadow-sm dark:shadow-black/30 transition-colors duration-200">
+    <header className="sticky top-0 z-50 w-full overflow-visible bg-white dark:bg-gray-900 dark:bg-[#060b08] shadow-sm dark:shadow-black/30 transition-colors duration-200">
       {/* ========================================================================= */}
       {/* TIER 1: TOP UTILITY BAR (Above Logo - Right-Aligned & Slim)              */}
       {/* ========================================================================= */}
-      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-0 transition-colors duration-200 relative z-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-0 flex items-center justify-end gap-4 w-full text-slate-600 dark:text-slate-400">
-          {/* 1. Support Email */}
+      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-1 transition-colors duration-200 relative z-50 overflow-visible">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 py-0 flex items-center justify-end gap-2 sm:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-visible">
+          {/* DESKTOP VIEW (md: and above): Directly visible Support Email & WhatsApp */}
           <a
             href="mailto:support@rimslin.com"
-            className="inline-flex items-center gap-1.5 text-xs text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-gulf-300 font-medium transition-colors shrink-0"
+            className="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-gulf-300 font-medium transition-colors shrink-0"
             title="Official Support Email: support@rimslin.com"
             aria-label="Official Support Email: support@rimslin.com"
           >
             <Mail className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0" />
-            <span className="hidden sm:inline font-mono text-[11px] sm:text-xs">
+            <span className="font-mono text-[11px] sm:text-xs">
               support@rimslin.com
             </span>
-            <span className="sm:hidden font-mono text-[11px]">ইমেইল</span>
           </a>
 
-          {/* 2. WhatsApp Help */}
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 font-medium transition-colors shrink-0"
+            className="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 font-medium transition-colors shrink-0"
             title={t.navbar.whatsappHelp}
             aria-label={t.navbar.whatsappHelp}
           >
             <MessageSquare className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-            <span className="hidden sm:inline text-xs">{t.navbar.whatsappHelp}</span>
-            <span className="sm:hidden text-[11px]">হোয়াটসঅ্যাপ</span>
+            <span className="text-xs">{t.navbar.whatsappHelp}</span>
           </a>
 
-          {/* 3. Language Dropdown Selector */}
+          {/* MOBILE VIEW (< md screens): Compact consolidated Help / Support Dropdown */}
+          <div className="md:hidden relative inline-block text-left shrink-0" ref={helpDropdownRef}>
+            <button
+              type="button"
+              onClick={() => setIsHelpOpen(!isHelpOpen)}
+              className={`group inline-flex items-center gap-1 sm:gap-1.5 rounded-xl border border-slate-200/80 bg-white/90 px-2 py-1 sm:px-2.5 sm:py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0 ${
+                isHelpOpen
+                  ? "border-emerald-500 ring-2 ring-emerald-500/30 dark:border-gulf-400"
+                  : ""
+              }`}
+              aria-expanded={isHelpOpen}
+              aria-haspopup="true"
+              aria-label="Help & Support"
+            >
+              <Headphones className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0" />
+              <span className="hidden xs:inline text-[11px] font-bold">
+                {language === "bn"
+                  ? "সহায়তা"
+                  : language === "hi"
+                  ? "सहायता"
+                  : language === "ar"
+                  ? "مساعدة"
+                  : "Help"}
+              </span>
+              <ChevronDown
+                className={`h-3 w-3 text-slate-400 transition-transform duration-200 shrink-0 ${
+                  isHelpOpen ? "rotate-180 text-emerald-600 dark:text-gulf-400" : ""
+                }`}
+              />
+            </button>
+
+            {/* Mobile Dropdown Floating Popover */}
+            {isHelpOpen && (
+              <div
+                className={`absolute top-full mt-2 w-56 max-w-[85vw] rounded-2xl border border-gray-200 dark:border-gray-800 dark:border-gulf-500/30 bg-white dark:bg-gray-900 dark:bg-[#08150d] p-2 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-[999] origin-top ${
+                  isRTL ? "left-0 right-auto" : "right-0 left-auto"
+                }`}
+              >
+                <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-white/[0.06] mb-1.5 flex items-center justify-between">
+                  <span>
+                    {language === "bn"
+                      ? "সরাসরি সহায়তা"
+                      : language === "hi"
+                      ? "सीधी सहायता"
+                      : language === "ar"
+                      ? "الدعم المباشر"
+                      : "Direct Support"}
+                  </span>
+                  <span className="text-emerald-600 dark:text-gulf-400 font-mono text-[9px] font-bold">
+                    24/7
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  {/* Item 1: Email */}
+                  <a
+                    href="mailto:support@rimslin.com"
+                    onClick={() => setIsHelpOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
+                  >
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100/80 text-emerald-600 dark:bg-gulf-500/20 dark:text-gulf-400 shrink-0">
+                      <Mail className="h-3.5 w-3.5" />
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-[11px] font-bold text-slate-900 dark:text-white">
+                        {language === "bn"
+                          ? "ইমেইল সাপোর্ট"
+                          : language === "hi"
+                          ? "ईमेल सहायता"
+                          : language === "ar"
+                          ? "البريد الإلكتروني"
+                          : "Email Support"}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate">
+                        support@rimslin.com
+                      </span>
+                    </div>
+                  </a>
+
+                  {/* Item 2: WhatsApp */}
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setIsHelpOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
+                  >
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100/80 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 shrink-0">
+                      <MessageSquare className="h-3.5 w-3.5" />
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-[11px] font-bold text-slate-900 dark:text-white">
+                        WhatsApp
+                      </span>
+                      <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium truncate">
+                        {t.navbar.whatsappHelp}
+                      </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Language Dropdown Selector */}
           <div className="shrink-0">
             <LanguageSwitcher />
           </div>
 
-          {/* 4. Dark / Light Mode Toggle */}
+          {/* Dark / Light Mode Toggle */}
           <div className="shrink-0">
             <ThemeToggle />
           </div>
@@ -237,40 +357,42 @@ export default function Navbar() {
       {/* TIER 2: MAIN BRANDING BAR (Center Row with Logo & CTA)                   */}
       {/* ========================================================================= */}
       <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 dark:bg-[#060b08] backdrop-blur-md transition-colors duration-200 relative z-40">
-        <div className="mx-auto flex h-16 sm:h-20 max-w-7xl w-full items-center justify-between px-3 sm:px-6 lg:px-8 min-w-0">
+        <div className="mx-auto flex max-w-7xl w-full items-center justify-between px-2 sm:px-4 py-1 sm:py-1.5 min-w-0">
           {/* Left Side: Brand Logo */}
           <Link
             href="/"
-            className="group flex items-center gap-2.5 sm:gap-3 transition-opacity hover:opacity-90 shrink-0"
+            className="group flex items-center gap-1.5 sm:gap-2 transition-opacity hover:opacity-90 shrink min-w-0"
           >
-            <div className="relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-amber-400 p-[1px] shadow-md shadow-emerald-900/20">
-              <div className="flex h-full w-full items-center justify-center rounded-[11px] bg-slate-100 dark:bg-gray-900 dark:bg-[#07120b] transition-colors">
-                <Globe className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-12" />
+            <div className="relative flex h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-amber-400 p-[1px] shadow-sm shadow-emerald-900/20 shrink-0">
+              <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-slate-100 dark:bg-gray-900 dark:bg-[#07120b] transition-colors p-1 sm:p-1.5">
+                <Globe className="h-4 w-4 sm:h-4.5 sm:w-4.5 md:h-5 md:w-5 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-12" />
               </div>
             </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-gray-900 dark:text-white leading-tight">
+            <div className="flex flex-col min-w-0">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white leading-tight truncate">
                   Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
                 </span>
-                <span className="rounded-full bg-emerald-500/15 dark:bg-gulf-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-700 dark:text-gulf-400 border border-emerald-500/30 dark:border-gulf-500/30">
-                  {t.navbar.brandTag}
+                <span className="inline-flex items-center self-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60 text-[10px] font-semibold leading-none tracking-normal px-1.5 py-0.5 shrink-0">
+                  {t.navbar.brandTag || "Career"}
                 </span>
               </div>
-              <span className="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 font-medium tracking-wide mt-0.5">
+              <span className="mt-0 text-[10px] sm:text-[11px] leading-tight text-gray-500 dark:text-gray-400 font-medium tracking-wide truncate hidden min-[360px]:block">
                 {t.navbar.brandSubtitle}
               </span>
             </div>
           </Link>
 
+          {/* Right Side: Action Buttons & Mobile Hamburger Trigger */}
           {/* Right Side: Primary CTA Button & Mobile Hamburger Trigger */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+
             {/* Primary Start Course CTA */}
             <Link
-              href="#course-plans"
-              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white dark:from-gulf-500 dark:via-emerald-500 dark:to-gold-400 dark:text-slate-950 px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold shadow-md shadow-emerald-500/20 hover:scale-[1.02] active:scale-95 transition-all shrink-0"
+              href={pathname === "/" ? "#course-plans" : "/#course-plans"}
+              className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white dark:from-gulf-500 dark:via-emerald-500 dark:to-gold-400 dark:text-slate-950 px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold shadow-md shadow-emerald-500/20 hover:scale-[1.02] active:scale-95 transition-all shrink-0"
             >
-              <Sparkles className="h-4 w-4 shrink-0" />
+              <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
               <span className="whitespace-nowrap">{t.navbar.startCourse}</span>
             </Link>
 
@@ -278,14 +400,14 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsMobileDrawerOpen(!isMobileDrawerOpen)}
-              className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 dark:bg-surface-100 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-gulf-400 hover:border-emerald-500 dark:hover:border-gulf-400 focus:outline-none transition-colors shrink-0"
+              className="lg:hidden flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl border border-gray-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 dark:bg-surface-100 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-gulf-400 hover:border-emerald-500 dark:hover:border-gulf-400 focus:outline-none transition-colors shrink-0"
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileDrawerOpen}
             >
               {isMobileDrawerOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4 sm:h-5 sm:w-5" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
               )}
             </button>
           </div>
@@ -300,25 +422,56 @@ export default function Navbar() {
           {/* Horizontal Navigation Links (Smooth scrollable on mobile/tablet) */}
           <nav
             aria-label="Section navigation"
-            className="w-full overflow-x-auto no-scrollbar flex items-center justify-start ltr:justify-start rtl:justify-start gap-1 sm:gap-2 py-2 text-xs sm:text-sm font-medium whitespace-nowrap text-left ltr:text-left rtl:text-right min-w-0 flex-1"
+            className="w-full overflow-x-auto no-scrollbar flex items-center justify-start ltr:justify-start rtl:justify-start gap-1 sm:gap-1.5 py-2 pe-3 text-xs font-medium whitespace-nowrap text-left ltr:text-left rtl:text-right min-w-0 flex-1 scroll-smooth"
           >
             {primaryNavLinks.map((link) => {
               const Icon = link.icon;
+              const isActive =
+                link.href === "/career"
+                  ? pathname === "/career"
+                  : link.href === "/"
+                  ? pathname === "/"
+                  : pathname === link.href;
+              const targetHref =
+                link.href.startsWith("#") && pathname !== "/"
+                  ? `/${link.href}`
+                  : link.href;
               return (
                 <Link
                   key={link.href}
-                  href={link.href}
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50/80 dark:text-slate-300 dark:hover:text-gulf-300 dark:hover:bg-gulf-500/15 focus:outline-none focus:ring-1 focus:ring-emerald-500/40 dark:focus:ring-gulf-500/40 shrink-0 border border-transparent hover:border-emerald-500/20 dark:hover:border-gulf-500/20 transition-all active:scale-95"
+                  href={targetHref}
+                  className={`inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-emerald-500/40 dark:focus:ring-gulf-500/40 shrink-0 border transition-all active:scale-95 ${
+                    isActive
+                      ? "bg-emerald-600 text-white border-emerald-500 shadow-sm shadow-emerald-600/30 dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
+                      : "text-slate-600 hover:text-emerald-700 hover:bg-emerald-50/80 dark:text-slate-300 dark:hover:text-gulf-300 dark:hover:bg-gulf-500/15 border-transparent hover:border-emerald-500/20 dark:hover:border-gulf-500/20"
+                  }`}
                 >
-                  <Icon className="h-3.5 w-3.5 text-amber-500 dark:text-gold-400/90 shrink-0" />
+                  <Icon
+                    className={`h-3.5 w-3.5 shrink-0 ${
+                      isActive
+                        ? "text-white dark:text-slate-950"
+                        : "text-amber-500 dark:text-gold-400/90"
+                    }`}
+                  />
                   <span>{link.name}</span>
+                  {link.badge && (
+                    <span
+                      className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ml-1 leading-none shrink-0 ${
+                        isActive
+                          ? "bg-amber-400 text-slate-950 dark:bg-amber-300 dark:text-slate-950"
+                          : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40"
+                      }`}
+                    >
+                      {link.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}
           </nav>
 
           {/* "More" Popover Dropdown Toggle */}
-          <div className="relative shrink-0 py-2 z-50" ref={moreDropdownRef}>
+          <div className="relative shrink-0 py-2 ps-2 border-l border-gray-200/80 dark:border-gray-800/80 z-50" ref={moreDropdownRef}>
             <button
               type="button"
               onClick={() => setIsMoreOpen(!isMoreOpen)}
@@ -427,8 +580,8 @@ export default function Navbar() {
                   <span className="text-lg font-black tracking-tight text-gray-900 dark:text-white">
                     Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
                   </span>
-                  <span className="rounded-full bg-emerald-500/15 dark:bg-gulf-500/20 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700 dark:text-gulf-400 border border-emerald-500/30 dark:border-gulf-500/30">
-                    {t.navbar.brandTag}
+                  <span className="inline-flex items-center self-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60 text-[10px] font-semibold leading-none tracking-normal px-1.5 py-0.5 shrink-0">
+                    {t.navbar.brandTag || "Career"}
                   </span>
                 </div>
               </Link>
@@ -463,15 +616,42 @@ export default function Navbar() {
                 <div className="space-y-1">
                   {primaryNavLinks.map((link) => {
                     const Icon = link.icon;
+                    const isActive =
+                      link.href === "/career"
+                        ? pathname === "/career"
+                        : link.href === "/"
+                        ? pathname === "/"
+                        : pathname === link.href;
+                    const targetHref =
+                      link.href.startsWith("#") && pathname !== "/"
+                        ? `/${link.href}`
+                        : link.href;
                     return (
                       <Link
                         key={link.href}
-                        href={link.href}
+                        href={targetHref}
                         onClick={() => setIsMobileDrawerOpen(false)}
-                        className="flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
+                        className={`flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
+                          isActive
+                            ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800/60"
+                            : "text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white"
+                        }`}
                       >
-                        <Icon className="h-4 w-4 text-emerald-600 dark:text-gulf-400 shrink-0" />
-                        <span>{link.name}</span>
+                        <div className="flex items-center gap-3 min-w-0">
+                          <Icon
+                            className={`h-4 w-4 shrink-0 ${
+                              isActive
+                                ? "text-emerald-600 dark:text-emerald-400"
+                                : "text-emerald-600 dark:text-gulf-400"
+                            }`}
+                          />
+                          <span className="truncate">{link.name}</span>
+                        </div>
+                        {link.badge && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40 font-semibold leading-none shrink-0">
+                            {link.badge}
+                          </span>
+                        )}
                       </Link>
                     );
                   })}

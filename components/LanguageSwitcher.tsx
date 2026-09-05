@@ -103,15 +103,16 @@ export default function LanguageSwitcher({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="group inline-flex items-center gap-1.5 sm:gap-2 rounded-xl border border-slate-200/80 bg-white/90 px-2.5 py-1.5 sm:px-3 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white max-w-full"
+        className="group inline-flex items-center gap-1 sm:gap-2 rounded-xl border border-slate-200/80 bg-white/90 px-2 py-1 sm:px-3 sm:py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Select Language"
       >
-        <Globe className="h-4 w-4 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-45 shrink-0" />
-        <span className="font-bold text-slate-800 dark:text-white tracking-wide truncate">{currentLang.label}</span>
+        <Globe className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-45 shrink-0" />
+        <span className="font-bold text-slate-800 dark:text-white tracking-wide truncate hidden sm:inline">{currentLang.label}</span>
+        <span className="font-bold text-slate-800 dark:text-white tracking-wide truncate sm:hidden text-[11px]">{currentLang.shortCode}</span>
         <ChevronDown
-          className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 ${
+          className={`h-3 w-3 sm:h-3.5 sm:w-3.5 text-slate-400 transition-transform duration-200 shrink-0 ${
             isOpen ? "rotate-180 text-emerald-600 dark:text-gulf-400" : ""
           }`}
         />

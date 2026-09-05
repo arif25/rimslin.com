@@ -33,6 +33,7 @@ interface SlideData {
   tag: string;
   titlePrefix: string;
   highlight: string;
+  highlightSecondary?: string;
   titleSuffix?: string;
   subtitle: string;
   primaryBtn: {
@@ -60,11 +61,12 @@ export default function Hero() {
       return [
         {
           id: 1,
-          tag: "✨ Specialized Language Training for Expatriates",
-          titlePrefix: "Master High-Salary Communication with ",
-          highlight: "Gulf Spoken Arabic & Practical English",
+          tag: "✨ 3-in-1 Gulf Job Language Training",
+          titlePrefix: "Master High-Salary Expat Jobs with ",
+          highlight: "Workplace Arabic",
+          highlightSecondary: "Essential Hindi & Basic English",
           subtitle:
-            "Learn essential workplace language before traveling to Dubai, Saudi Arabia, or Qatar. Direct conversational phrases for work without complicated grammar.",
+            "Learn essential workplace communication before traveling to Dubai, Saudi Arabia, or Qatar. Arabic for bosses & customers, workplace Hindi for site colleagues, and practical English for signs & forms.",
           primaryBtn: {
             text: "Enroll in Course",
             href: "#course-plans",
@@ -227,11 +229,12 @@ export default function Hero() {
       return [
         {
           id: 1,
-          tag: "✨ प्रवासियों के लिए विशेष भाषा कोर्स",
+          tag: "✨ ३-इन-१ प्रैक्टिकल गल्फ भाषा कोर्स",
           titlePrefix: "गल्फ में अच्छी सैलरी वाली नौकरी के लिए ",
-          highlight: "आसान अरबी और स्पोकन इंग्लिश",
+          highlight: "आसान अरबी",
+          highlightSecondary: "काम की हिंदी और बेसिक इंग्लिश",
           subtitle:
-            "दुबई, सऊदी अरब और कतर जाने से पहले काम की भाषा आसानी से सीखें। बिना किसी कठिन व्याकरण के सीधे बातचीत का आसान फॉर्मूला।",
+            "सऊदी, यूएई या कतर जाने से पहले काम की भाषा आसानी से सीखें। कफील व ग्राहकों से अरबी में, साइट साथियों से हिंदी में और फॉर्म व साइनबोर्ड समझने के लिए जरूरी अंग्रेजी।",
           primaryBtn: {
             text: "कोर्स शुरू करें",
             href: "#course-plans",
@@ -394,11 +397,12 @@ export default function Hero() {
       return [
         {
           id: 1,
-          tag: "✨ برامج لغوية مهنية للوافدين",
+          tag: "✨ الدورة الشاملة لثلاث لغات عمل أساسية",
           titlePrefix: "تواصل عملي وفعال لرواتب وفرص أفضل عبر ",
-          highlight: "العربية الخليجية والإنجليزية",
+          highlight: "العربية الخليجية",
+          highlightSecondary: "لغة العمل الهندية والإنجليزية",
           subtitle:
-            "تعلم لغة العمل الحقيقية قبل السفر إلى الإمارات، السعودية أو قطر بدون تعقيدات نحوية، مباشرة عبر التخاطب العملي.",
+            "تعلم لغة العمل الحقيقية قبل السفر إلى الإمارات، السعودية أو قطر. العربية للمشرفين والزبائن، الهندية للتعامل مع الزملاء في الموقع، والإنجليزية للإجراءات والاستمارات.",
           primaryBtn: {
             text: "ابدأ الدورة الآن",
             href: "#course-plans",
@@ -561,11 +565,12 @@ export default function Hero() {
     return [
       {
         id: 1,
-        tag: "✨ প্রবাসী ভাইদের জন্য বিশেষায়িত কোর্স",
+        tag: "✨ ৩-ইন-১ প্র্যাকটিক্যাল গালফ ভাষা কোর্স",
         titlePrefix: "বিদেশে ভালো বেতনের চাকরির জন্য ",
-        highlight: "সহজ আরবি ও স্পোকেন ইংলিশ",
+        highlight: "সহজ আরবি",
+        highlightSecondary: "কাজের হিন্দি ও বেসিক ইংলিশ",
         subtitle:
-          "দুবাই, সৌদি আরব ও কাতার যাওয়ার আগে সহজে শিখুন বাস্তব কাজের ভাষা। কঠিন ব্যাকরণ ছাড়া সরাসরি কথোপকথনের সহজ ফর্মুলা।",
+          "সৌদি, আমিরাত বা কাতার যাওয়ার আগে সহজে শিখুন বাস্তব কাজের ভাষা। কফিল ও কাস্টমারের সাথে কথা বলতে আরবি, সাইটের সহকর্মীদের সাথে হিন্দি এবং জরুরি ফর্ম পূরণ ও সাইন বোঝার জন্য দরকারি ইংরেজি।",
         primaryBtn: {
           text: "কোর্স শুরু করুন",
           href: "#course-plans",
@@ -581,9 +586,9 @@ export default function Hero() {
         id: 2,
         tag: "🏗️ কনস্ট্রাকশন, ইলেকট্রিশিয়ান ও টেকনিশিয়ান",
         titlePrefix: "কাজের সাইটে ওস্তাদ এবং সুপারের সাথে ",
-        highlight: "কথা বলার দরকারি আরবি",
+        highlight: "কথা বলার দরকারি আরবি ও হিন্দি",
         subtitle:
-          "টুলস, কাজ মাপজোখ, মালামাল চাওয়া এবং কাজের নির্দেশ বোঝার জন্য প্রয়োজনীয় শব্দ ও বাক্য শিখুন।",
+          "টুলস, কাজ মাপজোখ, মালামাল চাওয়া এবং সাইটের ভারতীয়/নেপালি সহকর্মীদের সাথে সহজে হিন্দি ও আরবিতে কাজের নির্দেশ বোঝার ফর্মুলা।",
         primaryBtn: {
           text: "ট্রেড ভাষা দেখুন",
           href: "#job-tracks",
@@ -725,23 +730,42 @@ export default function Hero() {
   };
 
   const slides = getSlides();
+  const AUTO_PLAY_DURATION = 7000; // Calm 7.0s per slide for relaxed reading
+  const TICK_INTERVAL = 50; // Smooth 50ms progress step
+  const [progress, setProgress] = useState(0);
 
   const prevSlide = useCallback(() => {
+    setProgress(0);
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   }, [slides.length]);
 
   const nextSlide = useCallback(() => {
+    setProgress(0);
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   }, [slides.length]);
 
-  // Auto-play interval: 5.5 seconds (5500ms), paused on hover
+  const goToSlide = useCallback((idx: number) => {
+    setProgress(0);
+    setCurrentSlide(idx);
+  }, []);
+
+  // Smooth auto-play progress ticker & slide advancing
   useEffect(() => {
     if (isPaused) return;
+
     const timer = setInterval(() => {
-      nextSlide();
-    }, 5500);
+      setProgress((prev) => {
+        const next = prev + (TICK_INTERVAL / AUTO_PLAY_DURATION) * 100;
+        if (next >= 100) {
+          setCurrentSlide((curr) => (curr + 1) % slides.length);
+          return 0;
+        }
+        return next;
+      });
+    }, TICK_INTERVAL);
+
     return () => clearInterval(timer);
-  }, [isPaused, nextSlide]);
+  }, [isPaused, slides.length]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -753,8 +777,9 @@ export default function Hero() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  // Touch swipe support
+  // Touch swipe support with instant pause during interaction
   const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
     setTouchStartX(e.targetTouches[0].clientX);
     setTouchEndX(null);
   };
@@ -764,6 +789,7 @@ export default function Hero() {
   };
 
   const handleTouchEnd = () => {
+    setIsPaused(false);
     if (!touchStartX || !touchEndX) return;
     const distance = touchStartX - touchEndX;
     if (distance > 50) {
@@ -775,7 +801,47 @@ export default function Hero() {
     setTouchEndX(null);
   };
 
-  const activeSlide = slides[currentSlide] || slides[0];
+  const trackLabels = {
+    bn: {
+      arabic: "কাজের আরবি",
+      arabicSub: "(Workplace Arabic)",
+      hindi: "জরুরি হিন্দি",
+      hindiSub: "(Workplace Hindi)",
+      english: "সহজ ইংরেজি",
+      englishSub: "(Basic English)",
+    },
+    hi: {
+      arabic: "काम की अरबी",
+      arabicSub: "(Workplace Arabic)",
+      hindi: "जरूरी हिंदी",
+      hindiSub: "(Workplace Hindi)",
+      english: "बेसिक इंग्लिश",
+      englishSub: "(Basic English)",
+    },
+    en: {
+      arabic: "Workplace Arabic",
+      arabicSub: "(Gulf Spoken)",
+      hindi: "Workplace Hindi",
+      hindiSub: "(Site Communication)",
+      english: "Basic English",
+      englishSub: "(Forms & Signs)",
+    },
+    ar: {
+      arabic: "العربية المهنية",
+      arabicSub: "(Workplace Arabic)",
+      hindi: "لغة العمل الهندية",
+      hindiSub: "(Workplace Hindi)",
+      english: "الإنجليزية الأساسية",
+      englishSub: "(Basic English)",
+    },
+  }[language] || {
+    arabic: "কাজের আরবি",
+    arabicSub: "(Workplace Arabic)",
+    hindi: "জরুরি হিন্দি",
+    hindiSub: "(Workplace Hindi)",
+    english: "সহজ ইংরেজি",
+    englishSub: "(Basic English)",
+  };
 
   return (
     <section className="relative z-10 overflow-hidden w-full max-w-full pt-8 pb-20 md:pt-14 md:pb-28">
@@ -791,12 +857,49 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         <div className="flex flex-col items-center text-center w-full max-w-full min-w-0">
           {/* ========================================================================= */}
+          {/* PLATFORM VALUE PROPOSITION: ENGLISH TAGLINE & 3 CORE LANGUAGE TRACKS      */}
+          {/* ========================================================================= */}
+          <div className="flex flex-col items-center gap-2.5 sm:gap-3 mb-6 sm:mb-8 max-w-3xl px-2">
+            {/* English Tagline Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/80 px-3.5 py-1 text-[10px] sm:text-xs font-mono font-bold tracking-widest text-slate-700 dark:text-slate-200 uppercase shadow-sm backdrop-blur-md">
+              <Globe className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0" />
+              <span>{t.hero.subHeadline}</span>
+            </div>
+
+            {/* 3 Core Language Tracks Highlight Badges */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+              {/* 🟢 Track 1: Workplace Arabic */}
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/90 dark:border-emerald-500/30 dark:bg-emerald-950/50 px-3 py-1 text-xs font-bold text-emerald-800 dark:text-emerald-300 shadow-sm backdrop-blur-md">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                <span>{trackLabels.arabic}</span>
+                <span className="text-[10px] opacity-75 font-medium">{trackLabels.arabicSub}</span>
+              </div>
+
+              {/* 🟠 Track 2: Workplace Hindi */}
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-50/90 dark:border-amber-500/30 dark:bg-amber-950/50 px-3 py-1 text-xs font-bold text-amber-800 dark:text-amber-300 shadow-sm backdrop-blur-md">
+                <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse shrink-0" />
+                <span>{trackLabels.hindi}</span>
+                <span className="text-[10px] opacity-75 font-medium">{trackLabels.hindiSub}</span>
+              </div>
+
+              {/* 🔵 Track 3: Basic English */}
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-50/90 dark:border-sky-500/30 dark:bg-sky-950/50 px-3 py-1 text-xs font-bold text-sky-800 dark:text-sky-300 shadow-sm backdrop-blur-md">
+                <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse shrink-0" />
+                <span>{trackLabels.english}</span>
+                <span className="text-[10px] opacity-75 font-medium">{trackLabels.englishSub}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================================================= */}
           {/* INTERACTIVE HERO SLIDER / CAROUSEL CONTAINER                              */}
           {/* ========================================================================= */}
           <div
-            className="relative w-full max-w-4xl min-h-[440px] sm:min-h-[380px] md:min-h-[340px] flex flex-col items-center justify-center select-none"
+            className="relative w-full max-w-4xl flex flex-col items-center justify-center select-none"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
+            onPointerDown={() => setIsPaused(true)}
+            onPointerUp={() => setIsPaused(false)}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -821,54 +924,78 @@ export default function Hero() {
               <ChevronRight className="h-5 w-5 rtl:rotate-180" />
             </button>
 
-            {/* Active Slide Content with smooth fade-in */}
-            <div
-              key={activeSlide.id}
-              className="w-full flex flex-col items-center text-center animate-fade-in transition-all duration-500 ease-out"
-            >
-              {/* Contextual Slide Tag Badge (Clean, without year badge) */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50/90 text-emerald-800 shadow-sm dark:border-gulf-500/30 dark:bg-gulf-950/60 dark:text-gulf-300 backdrop-blur-md dark:shadow-lg dark:shadow-gulf-950/50 mb-5 px-4 py-1.5 text-xs font-semibold">
-                <span>{activeSlide.tag}</span>
-              </div>
-
-              {/* Main Headline */}
-              <h1 className="max-w-4xl text-3xl font-extrabold tracking-tight sm:text-5xl md:text-6xl leading-tight text-slate-900 dark:text-white">
-                {activeSlide.titlePrefix}
-                <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 dark:from-gulf-400 dark:via-emerald-300 dark:to-gold-400 bg-clip-text text-transparent">
-                  {activeSlide.highlight}
-                </span>
-                {activeSlide.titleSuffix || ""}
-              </h1>
-
-              {/* Tagline / Subtitle */}
-              <p className="mt-5 max-w-2xl text-base text-slate-600 dark:text-slate-300 sm:text-lg font-normal leading-relaxed">
-                {activeSlide.subtitle}
-              </p>
-
-              {/* Action Buttons */}
-              <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                <Link
-                  href={activeSlide.primaryBtn.href}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 dark:from-gulf-600 dark:via-emerald-600 dark:to-gold-500 px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-emerald-900/20 dark:shadow-gulf-900/40 transition-all duration-300 hover:scale-[1.02] active:scale-95"
-                >
-                  <span>{activeSlide.primaryBtn.text}</span>
-                  {activeSlide.primaryBtn.icon && (
-                    <activeSlide.primaryBtn.icon className="h-5 w-5 rtl:rotate-180" />
-                  )}
-                </Link>
-
-                {activeSlide.secondaryBtn && (
-                  <Link
-                    href={activeSlide.secondaryBtn.href}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl border border-slate-300 bg-white/90 text-slate-800 hover:bg-slate-100 hover:text-slate-900 dark:border-gulf-500/30 dark:bg-surface-100/80 dark:text-gulf-200 dark:hover:bg-surface-200 dark:hover:text-white px-8 py-3.5 text-base font-semibold backdrop-blur-md transition-all duration-200 shadow-sm active:scale-95"
+            {/* ========================================================================= */}
+            {/* CSS GRID STACKED SLIDES: Lock height naturally to tallest slide (Zero CLS)*/}
+            {/* ========================================================================= */}
+            <div className="grid grid-cols-1 grid-rows-1 w-full items-center justify-items-center min-h-[360px] sm:min-h-[300px] md:min-h-[260px]">
+              {slides.map((slide, idx) => {
+                const isActive = idx === currentSlide;
+                return (
+                  <div
+                    key={slide.id}
+                    className={`col-start-1 row-start-1 w-full flex flex-col items-center text-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isActive
+                        ? "opacity-100 translate-y-0 scale-100 pointer-events-auto z-10 visible"
+                        : "opacity-0 translate-y-3 scale-[0.99] pointer-events-none z-0 invisible"
+                    }`}
+                    aria-hidden={!isActive}
                   >
-                    {activeSlide.secondaryBtn.icon && (
-                      <activeSlide.secondaryBtn.icon className="h-5 w-5 text-amber-500 dark:text-gold-400" />
-                    )}
-                    <span>{activeSlide.secondaryBtn.text}</span>
-                  </Link>
-                )}
-              </div>
+                    {/* Contextual Slide Tag Badge */}
+                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50/90 text-emerald-800 shadow-sm dark:border-gulf-500/30 dark:bg-gulf-950/60 dark:text-gulf-300 backdrop-blur-md dark:shadow-lg dark:shadow-gulf-950/50 mb-5 px-4 py-1.5 text-xs font-semibold">
+                      <span>{slide.tag}</span>
+                    </div>
+
+                    {/* Main Headline with dual-gradient styling */}
+                    <h1 className="max-w-4xl text-3xl font-extrabold tracking-tight sm:text-5xl md:text-6xl leading-tight text-slate-900 dark:text-white">
+                      {slide.titlePrefix}
+                      <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 dark:from-gulf-400 dark:via-emerald-300 dark:to-teal-300 bg-clip-text text-transparent">
+                        {slide.highlight}
+                      </span>
+                      {slide.highlightSecondary ? (
+                        <>
+                          <span className="text-slate-800 dark:text-slate-200">, </span>
+                          <span className="bg-gradient-to-r from-amber-500 via-amber-600 to-orange-500 dark:from-gold-400 dark:via-amber-300 dark:to-orange-400 bg-clip-text text-transparent">
+                            {slide.highlightSecondary}
+                          </span>
+                        </>
+                      ) : null}
+                      {slide.titleSuffix || ""}
+                    </h1>
+
+                    {/* Tagline / Subtitle */}
+                    <p className="mt-5 max-w-2xl text-base text-slate-600 dark:text-slate-300 sm:text-lg font-normal leading-relaxed">
+                      {slide.subtitle}
+                    </p>
+
+                    {/* Action Buttons */}
+                    <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                      <Link
+                        href={slide.primaryBtn.href}
+                        tabIndex={isActive ? 0 : -1}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 dark:from-gulf-600 dark:via-emerald-600 dark:to-gold-500 px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-emerald-900/20 dark:shadow-gulf-900/40 transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                      >
+                        <span>{slide.primaryBtn.text}</span>
+                        {slide.primaryBtn.icon && (
+                          <slide.primaryBtn.icon className="h-5 w-5 rtl:rotate-180" />
+                        )}
+                      </Link>
+
+                      {slide.secondaryBtn && (
+                        <Link
+                          href={slide.secondaryBtn.href}
+                          tabIndex={isActive ? 0 : -1}
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl border border-slate-300 bg-white/90 text-slate-800 hover:bg-slate-100 hover:text-slate-900 dark:border-gulf-500/30 dark:bg-surface-100/80 dark:text-gulf-200 dark:hover:bg-surface-200 dark:hover:text-white px-8 py-3.5 text-base font-semibold backdrop-blur-md transition-all duration-200 shadow-sm active:scale-95"
+                        >
+                          {slide.secondaryBtn.icon && (
+                            <slide.secondaryBtn.icon className="h-5 w-5 text-amber-500 dark:text-gold-400" />
+                          )}
+                          <span>{slide.secondaryBtn.text}</span>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* ================================================================= */}
@@ -885,31 +1012,45 @@ export default function Hero() {
                 <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
               </button>
 
-              {/* Desktop/Tablet Minimal Clickable Dash Indicators */}
-              <div className="hidden sm:flex items-center gap-1.5">
-                {slides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setCurrentSlide(idx)}
-                    aria-label={`Go to slide ${idx + 1}`}
-                    className={`transition-all duration-300 rounded-full ${
-                      currentSlide === idx
-                        ? "w-7 h-2 bg-gradient-to-r from-emerald-600 to-amber-500 dark:from-gulf-500 dark:to-gold-400 shadow-sm"
-                        : "w-2 h-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/40"
-                    }`}
-                  />
-                ))}
+              {/* Desktop/Tablet Clickable Dash Indicators with Active Fill */}
+              <div className="hidden sm:flex items-center gap-2">
+                {slides.map((_, idx) => {
+                  const isActive = currentSlide === idx;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => goToSlide(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      className={`relative transition-all duration-300 rounded-full overflow-hidden ${
+                        isActive
+                          ? "w-9 h-2 bg-slate-200 dark:bg-white/15 shadow-inner"
+                          : "w-2.5 h-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/40"
+                      }`}
+                    >
+                      {isActive && (
+                        <span
+                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-emerald-600 to-amber-500 dark:from-gulf-400 dark:to-gold-400 rounded-full"
+                          style={{
+                            width: `${progress}%`,
+                            transition: isPaused ? "none" : "width 50ms linear",
+                          }}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Compact Counter Indicator & Slim Mobile Progress Bar */}
-              <div className="flex items-center gap-2.5 px-3 py-1 rounded-full border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/80 backdrop-blur-md shadow-sm">
-                {/* Mobile Slim Progress Bar */}
-                <div className="sm:hidden w-16 h-1.5 bg-slate-200 dark:bg-white/15 rounded-full overflow-hidden">
+              {/* Compact Counter Indicator & Smooth Progress Bar Line */}
+              <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/80 backdrop-blur-md shadow-sm">
+                {/* Slim Filling Progress Bar Line */}
+                <div className="w-16 sm:w-20 h-1.5 bg-slate-200 dark:bg-white/15 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-600 to-amber-500 dark:from-gulf-500 dark:to-gold-400 transition-all duration-300 rounded-full"
+                    className="h-full bg-gradient-to-r from-emerald-600 via-teal-500 to-amber-500 dark:from-gulf-500 dark:via-emerald-400 dark:to-gold-400 rounded-full"
                     style={{
-                      width: `${((currentSlide + 1) / slides.length) * 100}%`,
+                      width: `${progress}%`,
+                      transition: isPaused ? "none" : "width 50ms linear",
                     }}
                   />
                 </div>

@@ -81,6 +81,7 @@ export interface TranslationSchema {
   navbar: {
     brandTag: string;
     brandSubtitle: string;
+    career: string;
     audioDemo: string;
     jobTracks: string;
     countryDialects: string;
@@ -257,8 +258,9 @@ export interface TranslationSchema {
 export const translations: Record<Language, TranslationSchema> = {
   bn: {
     navbar: {
-      brandTag: "Language",
+      brandTag: "Career",
       brandSubtitle: "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম",
+      career: "ক্যারিয়ার",
       audioDemo: "অডিও ফ্রেজ ডেমো",
       jobTracks: "ট্রেড ও জব ট্র্যাক",
       countryDialects: "দেশভিত্তিক আঞ্চলিক ভাষা",
@@ -284,13 +286,13 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     hero: {
-      badge: "প্রবাসী ভাইদের জন্য বিশেষায়িত গালফ ভাষা কোর্স",
+      badge: "প্রবাসী ভাইদের জন্য বিশেষায়িত ৩-ইন-১ গালফ ভাষা কোর্স",
       yearBadge: "২০২৬ সংস্করণ",
-      headlinePart1: "মধ্যপ্রাচ্যে ভালো বেতনের চাকরির জন্য ",
-      headlineHighlight: "গালফ আরবি ও স্পোকেন ইংলিশ",
-      subHeadline: "Gulf Spoken Arabic (Khaleeji), Workplace English & Hindi for Gulf Jobs",
+      headlinePart1: "বিদেশে ভালো বেতনের চাকরির জন্য ",
+      headlineHighlight: "সহজ আরবি, কাজের হিন্দি ও বেসিক ইংলিশ",
+      subHeadline: "SPOKEN ARABIC, WORKPLACE HINDI & PRACTICAL ENGLISH FOR EXPAT JOBS",
       description:
-        "দুবাই, সৌদি আরব ও কাতার যাওয়ার আগে সহজে শিখুন বাস্তব কাজের ভাষা। কোনো কঠিন ব্যাকরণ নয়—সরাসরি সাইট, দোকান, কাস্টমার ও মালিকের সাথে কথা বলার সহজ ফর্মুলা।",
+        "সৌদি, আমিরাত বা কাতার যাওয়ার আগে সহজে শিখুন বাস্তব কাজের ভাষা। কফিল ও কাস্টমারের সাথে কথা বলতে আরবি, সাইটের সহকর্মীদের সাথে হিন্দি এবং জরুরি ফর্ম পূরণ ও সাইন বোঝার জন্য দরকারি ইংরেজি।",
       viewCourse: "কোর্স দেখুন",
       freeAudio: "ফ্রি অডিও শুনুন",
       prop1: "বাংলা উচ্চারণে আরবি লেখা",
@@ -961,8 +963,9 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   hi: {
     navbar: {
-      brandTag: "Language",
+      brandTag: "Career",
       brandSubtitle: "प्रवासी भाषा शिक्षण मंच",
+      career: "करियर",
       audioDemo: "ऑडियो फ्रेज डेमो",
       jobTracks: "ट्रेड व जॉब ट्रैक्स",
       countryDialects: "देशवार क्षेत्रीय बोलियाँ",
@@ -988,13 +991,13 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     hero: {
-      badge: "प्रवासी भाइयों के लिए विशेष गल्फ भाषा कोर्स",
+      badge: "प्रवासी भाइयों के लिए विशेष ३-इन-१ गल्फ भाषा कोर्स",
       yearBadge: "२०२६ संस्करण",
       headlinePart1: "मिडिल ईस्ट में अच्छी सैलरी वाली नौकरी के लिए ",
-      headlineHighlight: "गल्फ अरबी और स्पोकन इंग्लिश",
-      subHeadline: "Gulf Spoken Arabic (Khaleeji), Workplace English & Hindi for Gulf Jobs",
+      headlineHighlight: "आसान अरबी, काम की हिंदी और बेसिक इंग्लिश",
+      subHeadline: "SPOKEN ARABIC, WORKPLACE HINDI & PRACTICAL ENGLISH FOR EXPAT JOBS",
       description:
-        "दुबई, सऊदी अरब और कतर जाने से पहले आसानी से सीखें व्यावहारिक कामकाजी भाषा। बिना किसी कठिन व्याकरण के—सीधे साइट, दुकान, ग्राहकों और मालिक से बात करने का सरल फॉर्मूला।",
+        "सऊदी, यूएई या कतर जाने से पहले आसानी से सीखें व्यावहारिक कामकाजी भाषा। कफील व ग्राहकों से अरबी में, साइट साथियों से हिंदी में और फॉर्म व साइनबोर्ड समझने के लिए जरूरी अंग्रेजी।",
       viewCourse: "कोर्स देखें",
       freeAudio: "फ्री ऑडियो सुनें",
       prop1: "देवनागरी लिपि में अरबी उच्चारण",
@@ -1651,8 +1654,9 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   en: {
     navbar: {
-      brandTag: "Language",
+      brandTag: "Career",
       brandSubtitle: "Expat Language & Career Platform",
+      career: "Career",
       audioDemo: "Audio Phrase Demo",
       jobTracks: "Trade / Job Tracks",
       countryDialects: "Country Dialects",
@@ -1678,13 +1682,13 @@ export const translations: Record<Language, TranslationSchema> = {
       },
     },
     hero: {
-      badge: "Specialized Gulf Language Course for Expatriate Workers",
+      badge: "Specialized 3-in-1 Gulf Language Course for Expatriate Workers",
       yearBadge: "2026 Edition",
       headlinePart1: "Master high-salary communication in the Middle East with ",
-      headlineHighlight: "Gulf Spoken Arabic & Workplace English",
-      subHeadline: "Gulf Spoken Arabic (Khaleeji), Workplace English & Hindi for Gulf Jobs",
+      headlineHighlight: "Spoken Arabic, Workplace Hindi & Practical English",
+      subHeadline: "SPOKEN ARABIC, WORKPLACE HINDI & PRACTICAL ENGLISH FOR EXPAT JOBS",
       description:
-        "Learn practical on-site workplace Arabic before flying to Dubai, Saudi Arabia, or Qatar. No complex grammar—straightforward formulas to talk directly with bosses, supervisors, and customers.",
+        "Learn essential workplace communication before flying to Dubai, Saudi Arabia, or Qatar. Arabic for bosses & customers, workplace Hindi for site colleagues, and practical English for signs & forms.",
       viewCourse: "Explore Plans",
       freeAudio: "Listen to Free Audio",
       prop1: "Phonetic Transliteration",
@@ -2341,8 +2345,9 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   ar: {
     navbar: {
-      brandTag: "Language",
+      brandTag: "Career",
       brandSubtitle: "منصة تعليم لغات العمل للمغتربين",
+      career: "الوظائف",
       audioDemo: "نماذج الجمل الصوتية",
       jobTracks: "المسارات المهنية والحرفية",
       countryDialects: "لهجات دول الخليج",
@@ -2371,8 +2376,8 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "الدورة المتخصصة في لغات العمل للمغتربين لدول الخليج",
       yearBadge: "نسخة ٢٠٢٦",
       headlinePart1: "احصل على رواتب وفرص مهنية أفضل في الخليج عبر إتقان ",
-      headlineHighlight: "العربية الخليجية والإنجليزية المهنية",
-      subHeadline: "Gulf Spoken Arabic (Khaleeji), Workplace English & Hindi for Gulf Jobs",
+      headlineHighlight: "العربية الخليجية، لغة العمل الهندية والإنجليزية",
+      subHeadline: "SPOKEN ARABIC, WORKPLACE HINDI & PRACTICAL ENGLISH FOR EXPAT JOBS",
       description:
         "تعلم لغة مواقع العمل الحقيقية قبل السفر إلى دبي، السعودية، أو قطر. بدون تعقيدات القواعد النحوية—صيغ مباشرة للتحدث بثقة واحتراف مع المشرفين وأصحاب العمل والزبائن.",
       viewCourse: "استعرض الدورات",

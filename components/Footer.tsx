@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, MessageSquare, Mail } from "lucide-react";
+import { Globe, MessageSquare, Mail, Info } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
 export default function Footer() {
@@ -157,8 +157,11 @@ export default function Footer() {
 
         {/* Worker Rights & Education Disclaimer */}
         <div className="mt-12 rounded-2xl border border-white/[0.06] bg-[#07110a] p-4 text-[11px] text-slate-400 leading-relaxed w-full max-w-full min-w-0 overflow-hidden">
-          <p>
-            ℹ️ <strong>{t.footer.disclaimerLabel}</strong> {t.footer.disclaimerText}
+          <p className="flex items-start gap-2">
+            <Info className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+            <span>
+              <strong>{t.footer.disclaimerLabel}</strong> {t.footer.disclaimerText}
+            </span>
           </p>
         </div>
 

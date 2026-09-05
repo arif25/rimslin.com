@@ -74,22 +74,22 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   if (!mounted) {
     return (
       <div
-        className={`h-8 w-8 sm:h-9 sm:w-9 rounded-xl border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 ${className}`}
+        className={`h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 rounded-xl border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 ${className}`}
       />
     );
   }
 
   return (
-    <div className={`relative inline-block text-start z-50 ${className}`} ref={dropdownRef}>
+    <div className={`relative inline-block text-start z-50 shrink-0 ${className}`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white"
+        className="relative flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
         aria-label="Toggle theme"
         title="Toggle theme"
       >
-        <Sun className="h-4 w-4 rotate-0 scale-100 transition-all duration-300 text-amber-500 dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all duration-300 text-gulf-400 dark:rotate-0 dark:scale-100" />
+        <Sun className="h-3.5 w-3.5 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all duration-300 text-amber-500 dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-3.5 w-3.5 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all duration-300 text-gulf-400 dark:rotate-0 dark:scale-100" />
       </button>
 
       {isOpen && (
