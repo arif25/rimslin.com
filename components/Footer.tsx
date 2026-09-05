@@ -112,6 +112,15 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               <li>
                 <Link
+                  href="/books"
+                  className="text-xs sm:text-sm text-emerald-400 hover:text-gold-300 font-semibold transition-colors flex items-center gap-1.5"
+                >
+                  <span>বইসমূহ (Books Store)</span>
+                  <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-1 rounded font-normal">নতুন</span>
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
                 >

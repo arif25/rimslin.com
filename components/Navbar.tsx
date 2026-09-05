@@ -30,6 +30,7 @@ import {
   Info,
   FileText,
   Briefcase,
+  BookMarked,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -104,6 +105,19 @@ export default function Navbar() {
       name: "হোম",
       href: "/",
       icon: Home,
+    },
+    {
+      name:
+        language === "en"
+          ? "Books"
+          : language === "ar"
+          ? "الكتب"
+          : language === "hi"
+          ? "किताबें"
+          : "বইসমূহ",
+      href: "/books",
+      icon: BookMarked,
+      badge: "PDF + Print",
     },
     {
       name: t.navbar.audioDemo,
