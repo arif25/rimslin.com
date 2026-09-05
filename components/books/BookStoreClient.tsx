@@ -4,36 +4,34 @@ import { useState, useMemo } from "react";
 import {
   BookOpen,
   Search,
-  SlidersHorizontal,
   X,
   ShoppingBag,
-  Truck,
   Zap,
   ShieldCheck,
   Headphones,
   HelpCircle,
   ChevronDown,
-  Sparkles,
+  Smartphone,
+  Download,
+  FileCheck,
 } from "lucide-react";
-import { Book, BOOKS } from "@/data/books";
+import { EBook, BOOKS } from "@/data/books";
 import BookCard from "./BookCard";
 import BookSampleModal from "./BookSampleModal";
 import BookCartDrawer, { CartItem } from "./BookCartDrawer";
 
 type CategoryFilter = "all" | "arabic" | "hindi_english" | "career";
-type FormatFilter = "all" | "hardcopy" | "pdf";
 
 export default function BookStoreClient() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
-  const [selectedFormat, setSelectedFormat] = useState<FormatFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [previewBook, setPreviewBook] = useState<Book | null>(null);
+  const [previewBook, setPreviewBook] = useState<EBook | null>(null);
   const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
-  // Filter books based on category, format availability, and search query
+  // Filter books based on category and search query
   const filteredBooks = useMemo(() => {
     return BOOKS.filter((book) => {
       // Category filter
@@ -51,20 +49,12 @@ export default function BookStoreClient() {
         return false;
       }
 
-      // Format filter
-      if (selectedFormat === "hardcopy" && !book.formats.hardcopy.available) {
-        return false;
-      }
-      if (selectedFormat === "pdf" && !book.formats.pdf.available) {
-        return false;
-      }
-
       // Search query
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         const matchTitle = book.title.toLowerCase().includes(q);
         const matchSubtitle = book.subtitle.toLowerCase().includes(q);
-        const matchAuthor = book.author.toLowerCase().includes(q);
+        const matchAuthor = (book.author || "").toLowerCase().includes(q);
         const matchDescription = book.description.toLowerCase().includes(q);
         if (!matchTitle && !matchSubtitle && !matchAuthor && !matchDescription) {
           return false;
@@ -73,55 +63,43 @@ export default function BookStoreClient() {
 
       return true;
     });
-  }, [selectedCategory, selectedFormat, searchQuery]);
+  }, [selectedCategory, searchQuery]);
 
   // Cart operations
-  const handleAddToCart = (book: Book, format: "pdf" | "hardcopy") => {
+  const handleAddToCart = (book: EBook) => {
     setCartItems((prev) => {
-      const existingIndex = prev.findIndex(
-        (item) => item.book.id === book.id && item.format === format
-      );
+      const existingIndex = prev.findIndex((item) => item.book.id === book.id);
       if (existingIndex > -1) {
         const next = [...prev];
         next[existingIndex].quantity += 1;
         return next;
       } else {
-        return [...prev, { book, format, quantity: 1 }];
+        return [...prev, { book, quantity: 1 }];
       }
     });
   };
 
-  const handleUpdateQuantity = (
-    bookId: string,
-    format: "pdf" | "hardcopy",
-    quantity: number
-  ) => {
+  const handleUpdateQuantity = (bookId: string, quantity: number) => {
     if (quantity <= 0) {
-      handleRemoveItem(bookId, format);
+      handleRemoveItem(bookId);
       return;
     }
     setCartItems((prev) =>
       prev.map((item) =>
-        item.book.id === bookId && item.format === format
-          ? { ...item, quantity }
-          : item
+        item.book.id === bookId ? { ...item, quantity } : item
       )
     );
   };
 
-  const handleRemoveItem = (bookId: string, format: "pdf" | "hardcopy") => {
-    setCartItems((prev) =>
-      prev.filter(
-        (item) => !(item.book.id === bookId && item.format === format)
-      )
-    );
+  const handleRemoveItem = (bookId: string) => {
+    setCartItems((prev) => prev.filter((item) => item.book.id !== bookId));
   };
 
   const handleClearCart = () => {
     setCartItems([]);
   };
 
-  const handleOpenSampleModal = (book: Book) => {
+  const handleOpenSampleModal = (book: EBook) => {
     setPreviewBook(book);
     setIsSampleModalOpen(true);
   };
@@ -130,45 +108,45 @@ export default function BookStoreClient() {
 
   const categories = [
     { id: "all", label: "সব বই (All)" },
-    { id: "arabic", label: "আরবি ভাষা শিক্ষা (Arabic Guides)" },
-    { id: "hindi_english", label: "হিন্দি ও স্পোকেন ইংলিশ (Hindi & English)" },
-    { id: "career", label: "ট্রেড ও ভিসা গাইড (Trade & Visa Kits)" },
+    { id: "arabic", label: "আরবি গাইডবুক (Arabic)" },
+    { id: "hindi_english", label: "কাজের হিন্দি ও ইংলিশ (Hindi/English)" },
+    { id: "career", label: "রেজুমি ও ইন্টারভিউ কিট (Career Kits)" },
   ];
 
   const faqs = [
     {
-      q: "হার্ডকপি বই কীভাবে ডেলিভারি দেওয়া হয় এবং কতদিন সময় লাগে?",
-      a: "আমাদের সকল মুদ্রিত হার্ডকপি বই সুন্দরবন ও রেডেক্স কুরিয়ারের মাধ্যমে ৩ থেকে ৫ কর্মদিবসের মধ্যে আপনার উপজেলা বা জেলা সদরের ঠিকানায় হোম ডেলিভারি পৌঁছে দেওয়া হয়। ক্যাশ অন ডেলিভারি (বই হাতে পেয়ে মূল্য পরিশোধ) সুবিধা রয়েছে।"
+      q: "ডিজিটাল PDF ই-বুক কীভাবে ডাউনলোড করব এবং পড়তে পারব?",
+      a: "অর্ডার কনফার্ম করার সাথে সাথেই ডাউনলোড বাটন সক্রিয় হয়ে যাবে এবং আপনার দেওয়া হোয়াটসঅ্যাপ ও ইমেইল ঠিকানায় সরাসরি হাই-রেজোলিউশন PDF ফাইল পাঠানো হবে। আপনি যেকোনো স্মার্টফোন, ট্যাব বা ল্যাপটপে অফলাইনে আজীবন পড়তে পারবেন।"
     },
     {
-      q: "ডিজিটাল PDF ই-বুক কেনার পর কীভাবে ডাউনলোড করব?",
-      a: "ডিজিটাল PDF অর্ডারের ক্ষেত্রে পেমেন্ট সম্পন্ন হওয়া মাত্রই আপনি সরাসরি ডাউনলোড লিংক পেয়ে যাবেন। এছাড়া আপনার দেওয়া ইমেইল এবং হোয়াটসঅ্যাপ নম্বরেও তাৎক্ষণিকভাবে উচ্চমানের প্রিন্টেবল PDF কপি পাঠিয়ে দেওয়া হয়, যা আপনি আজীবন স্মার্টফোন বা ট্যাবে অফলাইনে পড়তে পারবেন।"
+      q: "হার্ডকপি মুদ্রিত বই কবে নাগাদ পাওয়া যাবে?",
+      a: "আমাদের হার্ডকপি প্রিন্টেড সংস্করণ বর্তমানে প্রেস পাইপলাইনে রয়েছে। খুব শীঘ্রই প্রি-অর্ডার শুরু হবে এবং সুন্দরবন/রেডেক্স কুরিয়ারে সারা দেশে হোম ডেলিভারি দেওয়া হবে। তবে তাৎক্ষণিক পড়ার জন্য এখনই ডিজিটাল সংস্করণ ডাউনলোড করতে পারেন।"
     },
     {
-      q: "বই কেনার আগে কি ভেতরের পৃষ্ঠা ও বিষয়বস্তু দেখার সুযোগ আছে?",
-      a: "হ্যাঁ! প্রতিটি বইয়ের কার্ডে 'ফ্রি স্যাম্পল পড়ুন (Preview Sample)' বোতামে চাপলেই বইটির সূচিপত্র ও বাস্তব নমুনা অধ্যায়ের বাক্যমালা বিনামূল্যে পড়ার সুযোগ রয়েছে।"
+      q: "কেনার আগে কি বইয়ের সূচিপত্র ও নমুনা পৃষ্ঠা দেখার সুযোগ আছে?",
+      a: "হ্যাঁ! প্রতিটি বইয়ের কার্ডে 'ফ্রি প্রিভিউ দেখুন' বোতামে চাপলেই বইটির সূচিপত্র, বাস্তব নমুনা অধ্যায় ও গুরুত্বপূর্ণ বাক্যমালা সম্পূর্ণ বিনামূল্যে পড়তে পারবেন।"
     },
     {
-      q: "প্রবাস থেকে কি সরাসরি বই বা PDF কেনা সম্ভব?",
-      a: "হ্যাঁ, বিশ্বের যেকোনো প্রান্ত থেকে বিকাশ, নগদ, মাস্টারকার্ড/ভিসা কার্ডের মাধ্যমে ডিজিটাল PDF কিনতে পারবেন। এছাড়া দেশে অবস্থানরত আপনার পরিবারের ঠিকানায় হার্ডকপি বই পাঠিয়ে দেওয়ার অর্ডারও করতে পারবেন।"
+      q: "প্রবাস থেকে কোন কোন মাধ্যমে পেমেন্ট করা যাবে?",
+      a: "বাংলাদেশ ও প্রবাস থেকে বিকাশ, নগদ, রকেট, আন্তর্জাতিক মাস্টারকার্ড, ভিসা কার্ড এবং হোয়াটসঅ্যাপ অর্ডারের মাধ্যমে সহজে পেমেন্ট করে তাৎক্ষণিক ই-বুক ডাউনলোড করতে পারবেন।"
     }
   ];
 
   return (
     <div className="w-full">
       {/* ========================================================================= */}
-      {/* FILTER & CATEGORY TOOLBAR SECTION                                        */}
+      {/* FILTER & SEARCH TOOLBAR SECTION                                          */}
       {/* ========================================================================= */}
       <section className="mb-10 rounded-3xl border border-slate-200/90 bg-white/80 p-4 sm:p-6 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-surface-100/90">
-        <div className="flex flex-col gap-5">
-          {/* Top Row: Search Bar & Format Switcher */}
+        <div className="flex flex-col gap-4 sm:gap-5">
+          {/* Top Row: Search Input & PDF Instant Delivery Pill */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Search Input */}
             <div className="relative w-full md:max-w-md">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input
                 type="text"
-                placeholder="বইয়ের নাম, বিষয় বা লেখক দিয়ে খুঁজুন..."
+                placeholder="ই-বুকের নাম, বিষয় বা লেখক দিয়ে খুঁজুন..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full rounded-2xl border border-slate-200 bg-slate-50/70 pl-10 pr-9 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 transition-colors focus:border-emerald-500 focus:bg-white focus:outline-none dark:border-white/10 dark:bg-black/30 dark:text-white dark:focus:border-emerald-400"
@@ -185,45 +163,10 @@ export default function BookStoreClient() {
               )}
             </div>
 
-            {/* Format Switcher: All Formats | Hardcopy | Instant PDF */}
-            <div className="flex items-center gap-1 sm:gap-1.5 p-1 rounded-2xl border border-slate-200 bg-slate-100/80 dark:border-white/10 dark:bg-black/40 w-full md:w-auto overflow-x-auto no-scrollbar">
-              <button
-                type="button"
-                onClick={() => setSelectedFormat("all")}
-                className={`flex-1 md:flex-none px-3 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                  selectedFormat === "all"
-                    ? "bg-white text-slate-900 shadow-sm dark:bg-surface-200 dark:text-white"
-                    : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                }`}
-              >
-                সব ফরম্যাট (All)
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedFormat("hardcopy")}
-                className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                  selectedFormat === "hardcopy"
-                    ? "bg-emerald-600 text-white shadow-sm dark:bg-emerald-500 dark:text-slate-950"
-                    : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                }`}
-              >
-                <BookOpen className="h-3.5 w-3.5" />
-                <span>📖 হার্ডকপি (Printed)</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedFormat("pdf")}
-                className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                  selectedFormat === "pdf"
-                    ? "bg-emerald-600 text-white shadow-sm dark:bg-emerald-500 dark:text-slate-950"
-                    : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                }`}
-              >
-                <Zap className="h-3.5 w-3.5" />
-                <span>📱 ডিজিটাল PDF (Instant)</span>
-              </button>
+            {/* Instant Delivery Feature Indicator */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/60 rounded-2xl px-3.5 py-2 w-full md:w-auto justify-center">
+              <Zap className="h-4 w-4 text-emerald-600 dark:text-emerald-400 fill-emerald-500" />
+              <span>১০০% ডিজিটাল ফরম্যাট • পেমেন্টেই ফোনে তাৎক্ষণিক ডাউনলোড</span>
             </div>
           </div>
 
@@ -239,9 +182,9 @@ export default function BookStoreClient() {
                   key={cat.id}
                   type="button"
                   onClick={() => setSelectedCategory(cat.id as CategoryFilter)}
-                  className={`rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap shrink-0 border ${
+                  className={`rounded-full px-4 py-2 text-xs font-bold transition-all whitespace-nowrap shrink-0 border ${
                     isActive
-                      ? "bg-slate-900 text-white border-slate-900 shadow-sm dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
+                      ? "bg-emerald-600 text-white border-emerald-600 shadow-md shadow-emerald-600/20 dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
                       : "border-slate-200/90 bg-white text-slate-600 hover:border-emerald-500/30 hover:bg-slate-50 dark:border-white/10 dark:bg-surface-200/60 dark:text-slate-300 dark:hover:border-emerald-400/30"
                   }`}
                 >
@@ -254,12 +197,12 @@ export default function BookStoreClient() {
       </section>
 
       {/* ========================================================================= */}
-      {/* RESULTS HEADER & ACTIVE FILTERS                                          */}
+      {/* RESULTS HEADER & ACTIVE VIEW                                             */}
       {/* ========================================================================= */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-            বইয়ের তালিকা ({filteredBooks.length}টি বই উপলব্ধ)
+            ডিজিটাল হ্যান্ডবুক কালেকশন ({filteredBooks.length}টি ই-বুক উপলব্ধ)
           </h2>
         </div>
 
@@ -267,7 +210,7 @@ export default function BookStoreClient() {
         <button
           type="button"
           onClick={() => setIsCartOpen(true)}
-          className="relative inline-flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-surface-200 border border-slate-200 dark:border-white/10 px-3 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 hover:border-emerald-500/40 transition-colors"
+          className="relative inline-flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-surface-200 border border-slate-200 dark:border-white/10 px-3.5 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 hover:border-emerald-500/40 transition-colors"
         >
           <ShoppingBag className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
           <span>কার্ট দেখুন</span>
@@ -280,7 +223,7 @@ export default function BookStoreClient() {
       </div>
 
       {/* ========================================================================= */}
-      {/* BOOK CATALOG GRID (3 or 4-column layout)                                 */}
+      {/* RESPONSIVE BOOK GRID (4-column layout)                                   */}
       {/* ========================================================================= */}
       {filteredBooks.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -290,7 +233,6 @@ export default function BookStoreClient() {
               book={book}
               onPreviewSample={handleOpenSampleModal}
               onAddToCart={handleAddToCart}
-              activeFilterFormat={selectedFormat}
             />
           ))}
         </div>
@@ -298,68 +240,67 @@ export default function BookStoreClient() {
         <div className="rounded-3xl border border-dashed border-slate-200 dark:border-white/10 p-12 text-center space-y-3">
           <BookOpen className="h-10 w-10 mx-auto text-slate-400" />
           <h3 className="text-base font-bold text-slate-700 dark:text-slate-200">
-            কোনো বই খুঁজে পাওয়া যায়নি
+            কোনো ই-বুক খুঁজে পাওয়া যায়নি
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
-            আপনার ফিল্টার বা সার্চ কিওয়ার্ড পরিবর্তন করে পুনরায় চেষ্টা করুন।
+            অন্য কোনো কিওয়ার্ড বা ফিল্টার দিয়ে পুনরায় চেষ্টা করুন।
           </p>
           <button
             type="button"
             onClick={() => {
               setSelectedCategory("all");
-              setSelectedFormat("all");
               setSearchQuery("");
             }}
             className="rounded-xl border border-emerald-600 px-4 py-2 text-xs font-bold text-emerald-600 hover:bg-emerald-50 dark:border-emerald-400 dark:text-emerald-400 transition-colors"
           >
-            ফিল্টার রিসেট করুন
+            সব ই-বুক দেখুন
           </button>
         </div>
       )}
 
       {/* ========================================================================= */}
-      {/* VALUE PROPOSITIONS / STORE TRUST BADGES                                  */}
+      {/* VALUE PROPOSITIONS / DIGITAL STORE TRUST BADGES                           */}
       {/* ========================================================================= */}
       <section className="mt-16 sm:mt-24 rounded-3xl border border-slate-200/90 bg-white/70 dark:border-white/10 dark:bg-surface-100/80 p-6 sm:p-10 backdrop-blur-md shadow-sm">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="flex items-start gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
-              <Zap className="h-5 w-5" />
+              <Download className="h-5 w-5" />
             </div>
             <div>
               <h4 className="text-sm font-bold text-slate-900 dark:text-white">
                 ইনস্ট্যান্ট PDF ডাউনলোড
               </h4>
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                পেমেন্টের সাথে সাথেই ডিজিটাল কপি আপনার ফোনে সংরক্ষণ করুন।
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60">
-              <Truck className="h-5 w-5" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                সারা দেশে হোম ডেলিভারি
-              </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                ৩ থেকে ৫ কর্মদিবসের মধ্যে সরাসরি ক্যাশ অন ডেলিভারি সুবিধা।
+                পেমেন্ট সম্পন্ন হওয়ামাত্রই ডাউনলোড লিংক পান এবং অফলাইনে পড়ুন।
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-50 text-sky-600 dark:bg-sky-950/60 dark:text-sky-400 border border-sky-200/60 dark:border-sky-800/60">
-              <ShieldCheck className="h-5 w-5" />
+              <Smartphone className="h-5 w-5" />
             </div>
             <div>
               <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                ১০০% প্রবাস-বান্ধব কনটেন্ট
+                মোবাইল ও ট্যাবে সহজ পাঠ
               </h4>
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                বাস্তব কর্মক্ষেত্র ও অভিজ্ঞ অভিবাসীদের নির্দেশনায় সংকলিত।
+                যেকোনো স্মার্টফোনে ক্লিয়ার ফন্ট ও বুকমার্ক সুবিধাসহ পড়া যায়।
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3.5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60">
+              <FileCheck className="h-5 w-5" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                হার্ডকপি পাইপলাইন
+              </h4>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                প্রিন্টেড হার্ডকপি সংস্করণ শীঘ্রই আসছে সারা দেশে হোম ডেলিভারিসহ।
               </p>
             </div>
           </div>
@@ -370,10 +311,10 @@ export default function BookStoreClient() {
             </div>
             <div>
               <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                ২৪/৭ হোয়াটসঅ্যাপ সহায়তা
+                ২৪/৭ হোয়াটসঅ্যাপ সাপোর্ট
               </h4>
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                যেকোনো জিজ্ঞাসা বা অর্ডারে সার্বক্ষণিক সরাসরি সাপোর্ট।
+                যেকোনো অর্ডার বা ফাইল ডাউনলোডে তাৎক্ষণিক সরাসরি সহায়তা।
               </p>
             </div>
           </div>
@@ -390,7 +331,7 @@ export default function BookStoreClient() {
             <span>সচরাচর জিজ্ঞাসা</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
-            বই ক্রয় ও ডেলিভারি সম্পর্কিত প্রশ্নোত্তর
+            ডিজিটাল ই-বুক ক্রয় ও ডাউনলোড সম্পর্কিত প্রশ্নোত্তর
           </h3>
         </div>
 
@@ -426,17 +367,17 @@ export default function BookStoreClient() {
       </section>
 
       {/* ========================================================================= */}
-      {/* FLOATING CART BUTTON (BOTTOM RIGHT)                                      */}
+      {/* FLOATING CART TRIGGER (BOTTOM RIGHT)                                     */}
       {/* ========================================================================= */}
       {totalCartCount > 0 && (
         <div className="fixed bottom-6 right-6 z-50 animate-bounce">
           <button
             type="button"
             onClick={() => setIsCartOpen(true)}
-            className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 py-3 shadow-xl shadow-emerald-900/30 hover:scale-105 active:scale-95 transition-all"
+            className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white px-4 py-3 shadow-xl shadow-emerald-900/30 hover:scale-105 active:scale-95 transition-all"
           >
             <ShoppingBag className="h-5 w-5" />
-            <span className="text-xs font-extrabold">কার্ট ({totalCartCount})</span>
+            <span className="text-xs font-extrabold">ই-বুক কার্ট ({totalCartCount})</span>
           </button>
         </div>
       )}

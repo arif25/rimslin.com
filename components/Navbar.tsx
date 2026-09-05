@@ -117,7 +117,7 @@ export default function Navbar() {
           : "বইসমূহ",
       href: "/books",
       icon: BookMarked,
-      badge: "PDF + Print",
+      badge: "PDF Store",
     },
     {
       name: t.navbar.audioDemo,
@@ -482,7 +482,11 @@ export default function Navbar() {
                   {link.badge && (
                     <span
                       className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ml-1 leading-none shrink-0 ${
-                        isActive
+                        link.badge === "PDF Store"
+                          ? isActive
+                            ? "bg-white text-emerald-950 dark:bg-emerald-300 dark:text-slate-950 shadow-sm"
+                            : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60"
+                          : isActive
                           ? "bg-amber-400 text-slate-950 dark:bg-amber-300 dark:text-slate-950"
                           : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40"
                       }`}
@@ -673,7 +677,13 @@ export default function Navbar() {
                           <span className="truncate">{link.name}</span>
                         </div>
                         {link.badge && (
-                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40 font-semibold leading-none shrink-0">
+                          <span
+                            className={`text-[10px] px-1.5 py-0.5 rounded font-semibold leading-none shrink-0 ${
+                              link.badge === "PDF Store"
+                                ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60"
+                                : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40"
+                            }`}
+                          >
                             {link.badge}
                           </span>
                         )}
