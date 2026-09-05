@@ -384,8 +384,19 @@ export default function Navbar() {
           </Link>
 
           {/* Right Side: Action Buttons & Mobile Hamburger Trigger */}
-          {/* Right Side: Primary CTA Button & Mobile Hamburger Trigger */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            {/* Career Hub CTA Button */}
+            <Link
+              href="/career"
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold rounded-xl border transition-all shrink-0 active:scale-95 ${
+                pathname === "/career"
+                  ? "bg-emerald-600 text-white border-emerald-500 shadow-sm shadow-emerald-600/30 dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
+                  : "border-emerald-300 dark:border-emerald-700/60 bg-emerald-50/70 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60"
+              }`}
+            >
+              <Briefcase className={`h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 ${pathname === "/career" ? "text-white dark:text-slate-950" : "text-emerald-600 dark:text-emerald-400"}`} />
+              <span className="whitespace-nowrap">Career</span>
+            </Link>
 
             {/* Primary Start Course CTA */}
             <Link
