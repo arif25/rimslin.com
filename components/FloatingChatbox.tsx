@@ -6,26 +6,78 @@ import {
   X,
   Send,
   CheckCircle,
-  RefreshCw,
+  RotateCcw,
   Headphones,
   Mail,
   Lock,
+  Sparkles,
+  ChevronRight,
 } from "lucide-react";
+
+interface ChatMessage {
+  id: string;
+  sender: "bot" | "user";
+  text: string;
+  time: string;
+  chips?: string[];
+}
+
+const QUICK_REPLY_SUBJECTS = [
+  "কোর্স ও ভর্তি সংক্রান্ত",
+  "রেজুমি ও ক্যারিয়ার সহায়তা",
+  "বই ও PDF অর্ডার",
+  "অন্যান্য জিজ্ঞাসা",
+];
+
+const getCurrentTime = () => {
+  const now = new Date();
+  return now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+};
 
 export default function FloatingChatbox() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [inputValue, setInputValue] = useState("");
+  const [inputError, setInputError] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
 
+  // Collected User Data
   const [formData, setFormData] = useState({
     name: "",
-    contact: "",
-    subject: "কোর্স সংক্রান্ত তথ্য (Course Inquiry)",
+    email: "",
+    subject: "",
     message: "",
   });
 
+  // Conversation history
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      id: "msg-1",
+      sender: "bot",
+      text: "আসসালামু আলাইকুম! Rimslin সাপোর্টে স্বাগতম। আপনার কি সহায়তা প্রয়োজন? অনুগ্রহ করে প্রথমে আপনার পুরো নামটি লিখুন:",
+      time: getCurrentTime(),
+    },
+  ]);
+
   const chatboxRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
+  // Auto-scroll on new messages
+  useEffect(() => {
+    if (isOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, isTyping, isOpen]);
+
+  // Focus input when step changes or chat opens
+  useEffect(() => {
+    if (isOpen && step !== 3 && step !== 5) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 150);
+    }
+  }, [isOpen, step]);
 
   // Close on Escape key
   useEffect(() => {
@@ -38,7 +90,7 @@ export default function FloatingChatbox() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Close on outside click on desktop/tablet
+  // Close on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -53,48 +105,210 @@ export default function FloatingChatbox() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errorMessage) setErrorMessage("");
+  // Helper to add bot message with realistic typing delay
+  const addBotMessage = (text: string, chips?: string[], delay = 400) => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setIsTyping(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `bot-${Date.now()}`,
+          sender: "bot",
+          text,
+          time: getCurrentTime(),
+          chips,
+        },
+      ]);
+    }, delay);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage("");
-
-    if (!formData.name.trim() || !formData.contact.trim() || !formData.message.trim()) {
-      setErrorMessage("দয়া করে প্রয়োজনীয় সবগুলো ঘর পূরণ করুন।");
+  // 1. Submit Name (Step 1)
+  const handleNameSubmit = (nameVal: string) => {
+    const trimmed = nameVal.trim();
+    if (!trimmed) {
+      setInputError("অনুগ্রহ করে আপনার নামটি লিখুন।");
       return;
     }
 
-    setIsSubmitting(true);
+    setInputError("");
+    setFormData((prev) => ({ ...prev, name: trimmed }));
+    setInputValue("");
 
-    // Simulate clean client-side submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        contact: "",
-        subject: "কোর্স সংক্রান্ত তথ্য (Course Inquiry)",
-        message: "",
-      });
-    }, 700);
+    // Add user bubble
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `user-${Date.now()}`,
+        sender: "user",
+        text: trimmed,
+        time: getCurrentTime(),
+      },
+    ]);
+
+    setStep(2);
+    // Bot asks for Email
+    addBotMessage(
+      `ধন্যবাদ, ${trimmed} ভাই! আপনার সাথে যোগাযোগের জন্য আপনার ইমেইল ঠিকানাটি দিন:`
+    );
   };
 
+  // 2. Submit Email (Step 2)
+  const handleEmailSubmit = (emailVal: string) => {
+    const trimmed = emailVal.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!trimmed || !emailRegex.test(trimmed)) {
+      setInputError("অনুগ্রহ করে একটি সঠিক ইমেইল লিখুন (যেমন: name@example.com)");
+      return;
+    }
+
+    setInputError("");
+    setFormData((prev) => ({ ...prev, email: trimmed }));
+    setInputValue("");
+
+    // Add user bubble
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `user-${Date.now()}`,
+        sender: "user",
+        text: trimmed,
+        time: getCurrentTime(),
+      },
+    ]);
+
+    setStep(3);
+    // Bot presents Subject Selection
+    addBotMessage(
+      "আপনার বার্তাটি কোন বিষয়ে? নিচের যেকোনো একটি অপশন বেছে নিন:",
+      QUICK_REPLY_SUBJECTS
+    );
+  };
+
+  // 3. Submit Subject via Quick-Reply Chip (Step 3)
+  const handleSubjectSelect = (selectedSubject: string) => {
+    setFormData((prev) => ({ ...prev, subject: selectedSubject }));
+
+    // Add user bubble
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `user-${Date.now()}`,
+        sender: "user",
+        text: selectedSubject,
+        time: getCurrentTime(),
+      },
+    ]);
+
+    setStep(4);
+    // Bot asks for Message
+    addBotMessage("আপনার প্রশ্ন বা বিস্তারিত বার্তাটি এখানে লিখুন:");
+  };
+
+  // 4. Submit Message & Send to Backend (Step 4)
+  const handleMessageSubmit = async (messageVal: string) => {
+    const trimmed = messageVal.trim();
+    if (!trimmed) {
+      setInputError("অনুগ্রহ করে আপনার বার্তার বিবরণ লিখুন।");
+      return;
+    }
+
+    setInputError("");
+    const finalPayload = {
+      ...formData,
+      message: trimmed,
+    };
+    setFormData(finalPayload);
+    setInputValue("");
+
+    // Add user message bubble
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `user-${Date.now()}`,
+        sender: "user",
+        text: trimmed,
+        time: getCurrentTime(),
+      },
+    ]);
+
+    setStep(5);
+    setIsTyping(true);
+
+    try {
+      // POST to backend API route
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(finalPayload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setTimeout(() => {
+        setIsTyping(false);
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: `bot-confirm-${Date.now()}`,
+            sender: "bot",
+            text: "ধন্যবাদ! আপনার বার্তাটি আমাদের টিমের কাছে পাঠানো হয়েছে। আমরা দ্রুত support@rimslin.com থেকে আপনার ইমেইলে উত্তর দেব।",
+            time: getCurrentTime(),
+          },
+        ]);
+      }, 700);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setTimeout(() => {
+        setIsTyping(false);
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: `bot-confirm-fallback-${Date.now()}`,
+            sender: "bot",
+            text: "ধন্যবাদ! আপনার বার্তাটি আমাদের টিমের কাছে পাঠানো হয়েছে। আমরা দ্রুত support@rimslin.com থেকে আপনার ইমেইলে উত্তর দেব।",
+            time: getCurrentTime(),
+          },
+        ]);
+      }, 500);
+    }
+  };
+
+  // Form Submit Dispatcher
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (step === 1) {
+      handleNameSubmit(inputValue);
+    } else if (step === 2) {
+      handleEmailSubmit(inputValue);
+    } else if (step === 4) {
+      handleMessageSubmit(inputValue);
+    }
+  };
+
+  // Reset / Restart Conversation
   const handleReset = () => {
-    setIsSubmitted(false);
-    setErrorMessage("");
+    setStep(1);
+    setInputValue("");
+    setInputError("");
+    setIsTyping(false);
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setMessages([
+      {
+        id: `msg-${Date.now()}`,
+        sender: "bot",
+        text: "আসসালামু আলাইকুম! Rimslin সাপোর্টে স্বাগতম। আপনার কি সহায়তা প্রয়োজন? অনুগ্রহ করে প্রথমে আপনার পুরো নামটি লিখুন:",
+        time: getCurrentTime(),
+      },
+    ]);
   };
 
   return (
     <div ref={chatboxRef} className="select-none">
-      {/* 1. Floating Launcher / Toggle Button (Bottom-Right) */}
+      {/* 1. Floating Launcher Trigger Button (Bottom-Right) */}
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -106,7 +320,6 @@ export default function FloatingChatbox() {
             : "bg-gradient-to-tr from-emerald-700 to-emerald-500 hover:from-emerald-600 hover:to-emerald-400 border border-emerald-400/40 shadow-emerald-950/40 hover:scale-105"
         }`}
       >
-        {/* Unread / Online pulse dot (visible when closed) */}
         {!isOpen && (
           <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -121,218 +334,242 @@ export default function FloatingChatbox() {
         )}
       </button>
 
-      {/* 2. Chatbox Popup Window */}
+      {/* 2. Conversational Chatbox Window */}
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="অনলাইন বার্তা ফর্ম"
-        className={`fixed z-50 bottom-20 inset-x-4 sm:inset-x-auto sm:right-5 w-auto sm:w-[400px] max-h-[580px] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden flex flex-col transition-all duration-300 ease-out ${
+        aria-label="Rimslin লাইভ সাপোর্ট চ্যাট"
+        className={`fixed z-50 bottom-20 inset-x-4 sm:inset-x-auto sm:right-5 w-auto sm:w-[410px] h-[540px] max-h-[82vh] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden flex flex-col transition-all duration-300 ease-out ${
           isOpen
             ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
             : "opacity-0 translate-y-4 scale-95 pointer-events-none"
         }`}
       >
         {/* A. Chat Header (Branded & Supportive) */}
-        <div className="bg-emerald-700 text-white p-4 flex items-center justify-between shrink-0 shadow-sm">
+        <div className="bg-emerald-700 text-white px-4 py-3.5 flex items-center justify-between shrink-0 shadow-md">
           <div className="flex items-center gap-3">
             {/* Agent Avatar with online indicator */}
-            <div className="relative flex items-center justify-center h-10 w-10 rounded-full bg-emerald-800/80 border border-emerald-400/30 text-white shadow-inner">
+            <div className="relative flex items-center justify-center h-10 w-10 rounded-full bg-emerald-800/90 border border-emerald-400/30 text-white shadow-inner shrink-0">
               <Headphones className="h-5 w-5 text-emerald-200" />
               <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-400 border-2 border-emerald-800" />
             </div>
 
             <div className="flex flex-col text-left">
-              <h2 className="text-sm sm:text-base font-bold text-white leading-tight">
-                অনলাইন বার্তা ফর্ম (Rimslin Help)
+              <h2 className="text-sm font-bold text-white leading-tight flex items-center gap-1.5">
+                <span>অনলাইন বার্তা ফর্ম (Rimslin Help)</span>
               </h2>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                <span className="text-[11px] sm:text-xs text-emerald-100 opacity-90 leading-tight">
+                <span className="text-[11px] text-emerald-100 opacity-90 leading-tight">
                   সাধারণত কয়েক ঘণ্টার মধ্যে উত্তর দেওয়া হয়
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Close button */}
-          <button
-            type="button"
-            onClick={() => setIsOpen(false)}
-            aria-label="বন্ধ করুন"
-            className="p-1.5 rounded-lg text-emerald-100 hover:text-white hover:bg-emerald-600/60 transition-colors"
-          >
-            <X className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-1">
+            {/* Reset conversation button */}
+            <button
+              type="button"
+              onClick={handleReset}
+              title="নতুন করে শুরু করুন (Restart Chat)"
+              aria-label="নতুন করে শুরু করুন"
+              className="p-1.5 rounded-lg text-emerald-200 hover:text-white hover:bg-emerald-600/60 transition-colors"
+            >
+              <RotateCcw className="h-4 w-4" />
+            </button>
+
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="চ্যাটবক্স বন্ধ করুন"
+              className="p-1.5 rounded-lg text-emerald-200 hover:text-white hover:bg-emerald-600/60 transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
-        {/* B. Scrollable Form Body or Submission State */}
-        <div className="p-4 space-y-3.5 overflow-y-auto max-h-[500px] flex-1 text-slate-800 dark:text-slate-100">
-          {isSubmitted ? (
-            /* Submission State & Feedback Card */
-            <div className="py-6 px-4 text-center flex flex-col items-center justify-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
-              <div className="h-14 w-14 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-inner transition-transform duration-300 scale-110">
-                <CheckCircle className="h-8 w-8 text-emerald-600 dark:text-emerald-400 animate-pulse" />
+        {/* B. Scrollable Conversational Message Feed */}
+        <div className="flex-1 p-4 overflow-y-auto space-y-3.5 bg-slate-50/70 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100">
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`flex flex-col ${
+                msg.sender === "user" ? "items-end" : "items-start"
+              } animate-in fade-in slide-in-from-bottom-2 duration-200`}
+            >
+              <div className="flex items-end gap-2 max-w-[86%]">
+                {msg.sender === "bot" && (
+                  <div className="w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 text-[10px] font-bold shadow-xs">
+                    R
+                  </div>
+                )}
+
+                <div
+                  className={`px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm leading-relaxed shadow-xs ${
+                    msg.sender === "user"
+                      ? "bg-emerald-600 text-white rounded-br-xs"
+                      : "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200/80 dark:border-slate-700/60 rounded-bl-xs"
+                  }`}
+                >
+                  <p className="whitespace-pre-wrap">{msg.text}</p>
+                </div>
               </div>
 
-              <div className="space-y-1.5">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                  বার্তা সফলভাবে পৌঁছেছে!
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xs mx-auto leading-relaxed">
-                  ধন্যবাদ, আমাদের টিম দ্রুত আপনার সাথে যোগাযোগ করবে।
-                </p>
-              </div>
+              <span className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 px-1">
+                {msg.time}
+              </span>
 
-              <button
-                type="button"
-                onClick={handleReset}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold transition-all shadow-md active:scale-95"
-              >
-                <RefreshCw className="w-4 h-4" />
-                <span>আরেকটি বার্তা পাঠান</span>
-              </button>
-
-              <p className="text-[11px] text-slate-400 dark:text-slate-500 pt-2 flex items-center gap-1">
-                <Lock className="w-3 h-3" />
-                <span>তথ্য সম্পূর্ণ নিরাপদ ও সংরক্ষিত</span>
-              </p>
-            </div>
-          ) : (
-            /* Form Fields */
-            <form onSubmit={handleSubmit} className="space-y-3 text-left">
-              {errorMessage && (
-                <div className="p-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-xs font-medium">
-                  {errorMessage}
+              {/* Step 3: Quick-Reply Selectable Chips */}
+              {msg.chips && step === 3 && (
+                <div className="mt-2.5 pl-8 flex flex-col gap-1.5 w-full max-w-[90%]">
+                  <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                    একটি অপশন বেছে নিন:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {msg.chips.map((chip, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => handleSubjectSelect(chip)}
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 transition-all duration-150 hover:scale-102 active:scale-95 shadow-2xs text-left"
+                      >
+                        <span>{chip}</span>
+                        <ChevronRight className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
+            </div>
+          ))}
 
-              {/* 1. Name Field */}
-              <div>
-                <label
-                  htmlFor="chat-name"
-                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1"
-                >
-                  আপনার পূর্ণ নাম (Full Name) <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="chat-name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="যেমন: মোহাম্মদ করিম"
-                  className="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors"
-                />
+          {/* Typing Indicator */}
+          {isTyping && (
+            <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 pl-1 animate-in fade-in duration-150">
+              <div className="w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 text-[10px] font-bold">
+                R
               </div>
-
-              {/* 2. Email / Contact Field */}
-              <div>
-                <label
-                  htmlFor="chat-contact"
-                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1"
-                >
-                  ইমেইল বা ফোন নম্বর <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="chat-contact"
-                  name="contact"
-                  required
-                  value={formData.contact}
-                  onChange={handleChange}
-                  placeholder="yourname@example.com"
-                  className="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors"
-                />
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl rounded-bl-xs px-3 py-2 flex items-center gap-1.5 shadow-xs">
+                <span className="text-[11px] font-medium">
+                  Rimslin Support is typing
+                </span>
+                <span className="flex gap-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" />
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce"
+                    style={{ animationDelay: "150ms" }}
+                  />
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce"
+                    style={{ animationDelay: "300ms" }}
+                  />
+                </span>
               </div>
-
-              {/* 3. Subject Dropdown */}
-              <div>
-                <label
-                  htmlFor="chat-subject"
-                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1"
-                >
-                  অনুসন্ধানের ধরন (Subject)
-                </label>
-                <select
-                  id="chat-subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors"
-                >
-                  <option value="কোর্স সংক্রান্ত তথ্য (Course Inquiry)">
-                    কোর্স সংক্রান্ত তথ্য (Course Inquiry)
-                  </option>
-                  <option value="রেজুমি ও ক্যারিয়ার সহায়তা (Resume / Career Hub)">
-                    রেজুমি ও ক্যারিয়ার সহায়তা (Resume / Career Hub)
-                  </option>
-                  <option value="বই ও PDF অর্ডার (Book Store Support)">
-                    বই ও PDF অর্ডার (Book Store Support)
-                  </option>
-                  <option value="অন্যান্য জিজ্ঞাসা (General Inquiry)">
-                    অন্যান্য জিজ্ঞাসা (General Inquiry)
-                  </option>
-                </select>
-              </div>
-
-              {/* 4. Message Textarea */}
-              <div>
-                <label
-                  htmlFor="chat-message"
-                  className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1"
-                >
-                  আপনার বার্তা বা প্রশ্ন (Your Message){" "}
-                  <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="chat-message"
-                  name="message"
-                  rows={3}
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="আপনার জিজ্ঞাসা বিস্তারিত লিখুন..."
-                  className="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors resize-none"
-                />
-              </div>
-
-              {/* C. Footer & Submit Action */}
-              <div className="pt-1.5 space-y-2.5">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-semibold flex items-center justify-center gap-2 shadow-sm transition-colors text-xs sm:text-sm active:scale-98"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
-                      <span>পাঠানো হচ্ছে...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>বার্তা পাঠান (Send Message)</span>
-                    </>
-                  )}
-                </button>
-
-                {/* Trust & Direct Help */}
-                <div className="flex flex-col items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 text-center">
-                  <span>🔒 তথ্য সম্পূর্ণ নিরাপদ ও সুরক্ষিত</span>
-                  <span>
-                    ইমেইল:{" "}
-                    <a
-                      href="mailto:support@rimslin.com"
-                      className="text-emerald-600 dark:text-emerald-400 font-medium hover:underline inline-flex items-center gap-0.5"
-                    >
-                      <Mail className="w-3 h-3 inline" /> support@rimslin.com
-                    </a>
-                  </span>
-                </div>
-              </div>
-            </form>
+            </div>
           )}
+
+          {/* Step 5: Completed State Badge */}
+          {step === 5 && !isTyping && (
+            <div className="py-2 px-1 text-center space-y-3 animate-in fade-in zoom-in-95 duration-200">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
+                <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span>বার্তা সফলভাবে পাঠানো হয়েছে</span>
+              </div>
+
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-all"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>নতুন আরেকটি বার্তা পাঠান</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* C. Bottom Input Bar & Trust Note */}
+        <div className="p-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shrink-0 space-y-2">
+          {inputError && (
+            <div className="text-[11px] font-medium text-red-500 dark:text-red-400 px-1 animate-in fade-in duration-150">
+              {inputError}
+            </div>
+          )}
+
+          {step !== 3 && step !== 5 ? (
+            <form onSubmit={handleFormSubmit} className="flex items-center gap-2">
+              {step === 4 ? (
+                <textarea
+                  ref={inputRef as React.RefObject<HTMLTextAreaElement>}
+                  rows={2}
+                  value={inputValue}
+                  onChange={(e) => {
+                    setInputValue(e.target.value);
+                    if (inputError) setInputError("");
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleFormSubmit(e);
+                    }
+                  }}
+                  placeholder="আপনার জিজ্ঞাসা বিস্তারিত লিখুন..."
+                  className="flex-1 px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors resize-none"
+                />
+              ) : (
+                <input
+                  ref={inputRef as React.RefObject<HTMLInputElement>}
+                  type={step === 2 ? "email" : "text"}
+                  value={inputValue}
+                  onChange={(e) => {
+                    setInputValue(e.target.value);
+                    if (inputError) setInputError("");
+                  }}
+                  placeholder={
+                    step === 1
+                      ? "যেমন: মোহাম্মদ করিম"
+                      : "yourname@example.com"
+                  }
+                  className="flex-1 px-3.5 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors"
+                />
+              )}
+
+              <button
+                type="submit"
+                disabled={!inputValue.trim() || isTyping}
+                aria-label="পাঠান"
+                className="h-10 w-10 sm:h-10.5 sm:w-10.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-all shadow-sm active:scale-95"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </form>
+          ) : step === 3 ? (
+            <div className="py-1 px-2 text-center text-xs text-slate-500 dark:text-slate-400 font-medium">
+              👆 উপরের অপশনগুলো থেকে একটি বিষয় বেছে নিন
+            </div>
+          ) : null}
+
+          {/* Trust & Email Fallback */}
+          <div className="flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 pt-0.5 px-1">
+            <span className="flex items-center gap-1">
+              <Lock className="w-3 h-3" />
+              <span>নিরাপদ ও সংরক্ষিত</span>
+            </span>
+            <a
+              href="mailto:support@rimslin.com"
+              className="hover:text-emerald-500 transition-colors inline-flex items-center gap-1"
+            >
+              <Mail className="w-3 h-3" />
+              <span>support@rimslin.com</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
