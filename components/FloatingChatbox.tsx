@@ -10,8 +10,8 @@ import {
   Headphones,
   Mail,
   Lock,
-  Sparkles,
   ChevronRight,
+  RefreshCw,
 } from "lucide-react";
 
 interface ChatMessage {
@@ -21,6 +21,8 @@ interface ChatMessage {
   time: string;
   chips?: string[];
 }
+
+type ChatStep = 1 | 2 | 3 | 4 | "COMPLETED";
 
 const QUICK_REPLY_SUBJECTS = [
   "কোর্স ও ভর্তি সংক্রান্ত",
@@ -36,10 +38,12 @@ const getCurrentTime = () => {
 
 export default function FloatingChatbox() {
   const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [step, setStep] = useState<ChatStep>(1);
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Collected User Data
   const [formData, setFormData] = useState({
@@ -63,16 +67,16 @@ export default function FloatingChatbox() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
-  // Auto-scroll on new messages
+  // Auto-scroll on new messages or state changes
   useEffect(() => {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages, isTyping, isOpen]);
+  }, [messages, isTyping, isSubmitting, isOpen]);
 
   // Focus input when step changes or chat opens
   useEffect(() => {
-    if (isOpen && step !== 3 && step !== 5) {
+    if (isOpen && step !== 3 && step !== "COMPLETED") {
       setTimeout(() => {
         inputRef.current?.focus();
       }, 150);
@@ -106,7 +110,7 @@ export default function FloatingChatbox() {
   }, [isOpen]);
 
   // Helper to add bot message with realistic typing delay
-  const addBotMessage = (text: string, chips?: string[], delay = 400) => {
+  const addBotMessage = (text: string, chips?: string[], delay = 350) => {
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
@@ -132,6 +136,7 @@ export default function FloatingChatbox() {
     }
 
     setInputError("");
+    setSubmitError(null);
     setFormData((prev) => ({ ...prev, name: trimmed }));
     setInputValue("");
 
@@ -164,6 +169,7 @@ export default function FloatingChatbox() {
     }
 
     setInputError("");
+    setSubmitError(null);
     setFormData((prev) => ({ ...prev, email: trimmed }));
     setInputValue("");
 
@@ -188,6 +194,8 @@ export default function FloatingChatbox() {
 
   // 3. Submit Subject via Quick-Reply Chip (Step 3)
   const handleSubjectSelect = (selectedSubject: string) => {
+    setInputError("");
+    setSubmitError(null);
     setFormData((prev) => ({ ...prev, subject: selectedSubject }));
 
     // Add user bubble
@@ -206,74 +214,63 @@ export default function FloatingChatbox() {
     addBotMessage("আপনার প্রশ্ন বা বিস্তারিত বার্তাটি এখানে লিখুন:");
   };
 
-  // 4. Submit Message & Send to Backend (Step 4)
-  const handleMessageSubmit = async (messageVal: string) => {
-    const trimmed = messageVal.trim();
+  // 4. Submit Message & Send to Backend (Step 4 -> COMPLETED)
+  const handleFinalSubmit = async (finalMessage: string) => {
+    const trimmed = finalMessage.trim();
     if (!trimmed) {
       setInputError("অনুগ্রহ করে আপনার বার্তার বিবরণ লিখুন।");
       return;
     }
 
     setInputError("");
-    const finalPayload = {
-      ...formData,
-      message: trimmed,
-    };
-    setFormData(finalPayload);
-    setInputValue("");
-
-    // Add user message bubble
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `user-${Date.now()}`,
-        sender: "user",
-        text: trimmed,
-        time: getCurrentTime(),
-      },
-    ]);
-
-    setStep(5);
-    setIsTyping(true);
+    setSubmitError(null);
+    setIsSubmitting(true);
 
     try {
-      // POST to backend API route
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(finalPayload),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || "General Inquiry",
+          message: trimmed,
+        }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error(data.error || "Failed to dispatch email");
       }
 
-      setTimeout(() => {
-        setIsTyping(false);
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: `bot-confirm-${Date.now()}`,
-            sender: "bot",
-            text: "ধন্যবাদ! আপনার বার্তাটি আমাদের টিমের কাছে পাঠানো হয়েছে। আমরা দ্রুত support@rimslin.com থেকে আপনার ইমেইলে উত্তর দেব।",
-            time: getCurrentTime(),
-          },
-        ]);
-      }, 700);
-    } catch (err) {
-      console.error("Submission error:", err);
-      setTimeout(() => {
-        setIsTyping(false);
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: `bot-confirm-fallback-${Date.now()}`,
-            sender: "bot",
-            text: "ধন্যবাদ! আপনার বার্তাটি আমাদের টিমের কাছে পাঠানো হয়েছে। আমরা দ্রুত support@rimslin.com থেকে আপনার ইমেইলে উত্তর দেব।",
-            time: getCurrentTime(),
-          },
-        ]);
-      }, 500);
+      // Append user message bubble first, then transition to success
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `user-${Date.now()}`,
+          sender: "user",
+          text: trimmed,
+          time: getCurrentTime(),
+        },
+        {
+          id: `bot-confirm-${Date.now() + 1}`,
+          sender: "bot",
+          text: "ধন্যবাদ! আপনার বার্তাটি আমাদের টিমের কাছে পাঠানো হয়েছে। আমরা দ্রুত support@rimslin.com থেকে আপনার ইমেইলে উত্তর দেব।",
+          time: getCurrentTime(),
+        },
+      ]);
+
+      setFormData((prev) => ({ ...prev, message: trimmed }));
+      setInputValue("");
+      setStep("COMPLETED");
+    } catch (err: any) {
+      console.error("Resend dispatch error:", err);
+      setSubmitError(
+        "বার্তা পাঠানো যায়নি। ইন্টারনেট সংযোগ চেক করে আবার চেষ্টা করুন।"
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -285,7 +282,7 @@ export default function FloatingChatbox() {
     } else if (step === 2) {
       handleEmailSubmit(inputValue);
     } else if (step === 4) {
-      handleMessageSubmit(inputValue);
+      handleFinalSubmit(inputValue);
     }
   };
 
@@ -294,7 +291,9 @@ export default function FloatingChatbox() {
     setStep(1);
     setInputValue("");
     setInputError("");
+    setSubmitError(null);
     setIsTyping(false);
+    setIsSubmitting(false);
     setFormData({ name: "", email: "", subject: "", message: "" });
     setMessages([
       {
@@ -446,7 +445,7 @@ export default function FloatingChatbox() {
             </div>
           ))}
 
-          {/* Typing Indicator */}
+          {/* Typing Indicator for Bot responses */}
           {isTyping && (
             <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 pl-1 animate-in fade-in duration-150">
               <div className="w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 text-[10px] font-bold">
@@ -471,19 +470,34 @@ export default function FloatingChatbox() {
             </div>
           )}
 
-          {/* Step 5: Completed State Badge */}
-          {step === 5 && !isTyping && (
-            <div className="py-2 px-1 text-center space-y-3 animate-in fade-in zoom-in-95 duration-200">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
-                <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <span>বার্তা সফলভাবে পাঠানো হয়েছে</span>
+          {/* Dispatch / Sending Indicator */}
+          {isSubmitting && (
+            <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 pl-1 animate-in fade-in duration-150">
+              <div className="w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 text-[10px] font-bold">
+                R
+              </div>
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl rounded-bl-xs px-3.5 py-2.5 flex items-center gap-2 shadow-xs">
+                <RefreshCw className="w-3.5 h-3.5 animate-spin text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                  বার্তা পাঠানো হচ্ছে...
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Step COMPLETED: Success State */}
+          {step === "COMPLETED" && (
+            <div className="py-3 px-1 text-center space-y-3.5 animate-in fade-in zoom-in-95 duration-200">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-semibold shadow-xs">
+                <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span>✓ বার্তা সফলভাবে পাঠানো হয়েছে</span>
               </div>
 
               <div className="flex justify-center">
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-all"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-all active:scale-98 shadow-xs"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>নতুন আরেকটি বার্তা পাঠান</span>
@@ -495,24 +509,34 @@ export default function FloatingChatbox() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* C. Bottom Input Bar & Trust Note */}
+        {/* C. Bottom Input Bar & Error Feedback */}
         <div className="p-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shrink-0 space-y-2">
+          {/* Input Validation Error */}
           {inputError && (
             <div className="text-[11px] font-medium text-red-500 dark:text-red-400 px-1 animate-in fade-in duration-150">
               {inputError}
             </div>
           )}
 
-          {step !== 3 && step !== 5 ? (
+          {/* Network / Dispatch Error: shown above send button to protect typed message */}
+          {submitError && (
+            <div className="text-red-500 text-xs font-medium px-1 mt-1 flex items-center gap-1 animate-in fade-in duration-150">
+              <span>⚠️ {submitError}</span>
+            </div>
+          )}
+
+          {step !== 3 && step !== "COMPLETED" ? (
             <form onSubmit={handleFormSubmit} className="flex items-center gap-2">
               {step === 4 ? (
                 <textarea
                   ref={inputRef as React.RefObject<HTMLTextAreaElement>}
                   rows={2}
                   value={inputValue}
+                  disabled={isSubmitting}
                   onChange={(e) => {
                     setInputValue(e.target.value);
                     if (inputError) setInputError("");
+                    if (submitError) setSubmitError(null);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
@@ -521,33 +545,39 @@ export default function FloatingChatbox() {
                     }
                   }}
                   placeholder="আপনার জিজ্ঞাসা বিস্তারিত লিখুন..."
-                  className="flex-1 px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors resize-none"
+                  className="flex-1 px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-60 transition-colors resize-none"
                 />
               ) : (
                 <input
                   ref={inputRef as React.RefObject<HTMLInputElement>}
                   type={step === 2 ? "email" : "text"}
                   value={inputValue}
+                  disabled={isSubmitting}
                   onChange={(e) => {
                     setInputValue(e.target.value);
                     if (inputError) setInputError("");
+                    if (submitError) setSubmitError(null);
                   }}
                   placeholder={
                     step === 1
                       ? "যেমন: মোহাম্মদ করিম"
                       : "yourname@example.com"
                   }
-                  className="flex-1 px-3.5 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors"
+                  className="flex-1 px-3.5 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:opacity-60 transition-colors"
                 />
               )}
 
               <button
                 type="submit"
-                disabled={!inputValue.trim() || isTyping}
+                disabled={!inputValue.trim() || isSubmitting || isTyping}
                 aria-label="পাঠান"
                 className="h-10 w-10 sm:h-10.5 sm:w-10.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-all shadow-sm active:scale-95"
               >
-                <Send className="w-4 h-4" />
+                {isSubmitting ? (
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
               </button>
             </form>
           ) : step === 3 ? (
