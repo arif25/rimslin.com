@@ -9,7 +9,7 @@ import {
   Minus,
   ShoppingBag,
   Zap,
-  MessageSquare,
+  MessageCircle,
   ShieldCheck,
   CheckCircle2,
   IndianRupee,
@@ -80,7 +80,7 @@ ${orderItemsSummary}
 
 দয়া করে আমার ডিজিটাল ই-বুক অর্ডারের পেমেন্ট ও ডাউনলোড লিংক পাঠান।`;
 
-    return `https://wa.me/8801700000000?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/916290051284?text=${encodeURIComponent(message)}`;
   };
 
   const handleFormOrder = (e: React.FormEvent) => {
@@ -149,10 +149,10 @@ ${orderItemsSummary}
             <a
               href={buildWhatsAppUrl()}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-md hover:bg-emerald-700 transition-colors"
             >
-              <MessageSquare className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4" />
               <span>হোয়াটসঅ্যাপে ডাউনলোড লিংক চান</span>
             </a>
           </div>
@@ -333,10 +333,10 @@ ${orderItemsSummary}
               <a
                 href={buildWhatsAppUrl()}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 py-2.5 px-4 text-xs font-bold text-white shadow-md shadow-emerald-600/20 active:scale-95 transition-all"
               >
-                <MessageSquare className="h-4 w-4 shrink-0" />
+                <MessageCircle className="h-4 w-4 shrink-0" />
                 <span>হোয়াটসঅ্যাপে ডাউনলোড লিংক নিন</span>
               </a>
 

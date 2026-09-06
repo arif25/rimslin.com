@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/language-context";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollToTop from "@/components/ScrollToTop";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -126,6 +127,7 @@ const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     email: "support@rimslin.com",
+    telephone: "+916290051284",
     contactType: "customer support",
     availableLanguage: ["Bengali", "English", "Hindi", "Arabic"],
   },
@@ -157,6 +159,7 @@ export default function RootLayout({
         >
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
+        <FloatingWhatsApp />
         <ScrollToTop />
         <Analytics />
       </body>

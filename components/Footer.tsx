@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, MessageSquare, Mail, Info } from "lucide-react";
+import { Globe, MessageCircle, Mail, Info } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
 export default function Footer() {
@@ -36,16 +36,16 @@ export default function Footer() {
             {/* Direct WhatsApp & Email Support Card */}
             <div className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/40 p-4 max-w-sm">
               <div className="flex items-center gap-2 text-xs font-bold text-emerald-300">
-                <MessageSquare className="h-4 w-4 text-emerald-400" />
-                <span>{t.footer.hotlineTitle}</span>
+                <MessageCircle className="h-4 w-4 text-emerald-400" />
+                <span>24/7 Expat WhatsApp Support</span>
               </div>
               <Link
-                href="https://wa.me/8801700000000?text=I%20want%20information%20about%20Rimslin"
+                href="https://wa.me/916290051284"
                 target="_blank"
-                rel="noreferrer"
-                className="mt-2 inline-flex items-center gap-2 text-sm font-black text-white hover:text-emerald-300 transition-colors"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-white hover:text-emerald-300 transition-colors"
               >
-                <span>+৮৮০ ১৭০০-০০০০০০</span>
+                <span>WhatsApp Support (Live Chat)</span>
                 <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-300">
                   {t.footer.directChat}
                 </span>

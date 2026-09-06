@@ -74,7 +74,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   if (!mounted) {
     return (
       <div
-        className={`h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 rounded-xl border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 ${className}`}
+        className={`h-6.5 w-6.5 sm:h-7 sm:w-7 rounded-lg border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 ${className}`}
       />
     );
   }
@@ -84,7 +84,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
+        className="relative flex h-6.5 w-6.5 sm:h-7 sm:w-7 items-center justify-center rounded-lg border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
         aria-label="Toggle theme"
         title="Toggle theme"
       >

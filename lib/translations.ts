@@ -258,7 +258,7 @@ export interface TranslationSchema {
 export const translations: Record<Language, TranslationSchema> = {
   bn: {
     navbar: {
-      brandTag: "Career",
+      brandTag: "StepAhead",
       brandSubtitle: "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম",
       career: "ক্যারিয়ার",
       audioDemo: "অডিও ফ্রেজ ডেমো",
@@ -927,7 +927,7 @@ export const translations: Record<Language, TranslationSchema> = {
     footer: {
       brandSubtitle: "প্রবাসী ভাষা ও ক্যারিয়ার প্ল্যাটফর্ম",
       description: "বাংলাদেশ থেকে সৌদি আরব, দুবাই, কাতার, কুয়েত ও ওমানগামী ভাইদের জন্য সহজ গালফ স্পোকেন আরবি, জব ইংলিশ ও হিন্দি শিক্ষার নির্ভরযোগ্য মাধ্যম।",
-      hotlineTitle: "২৪/৭ প্রবাসী হোয়াটসঅ্যাপ হেল্পলাইন:",
+      hotlineTitle: "24/7 Expat WhatsApp Support:",
       directChat: "সরাসরি চ্যাট",
       colJobTracks: "কাজের স্পেশাল ট্র্যাক",
       colCurriculum: "কোর্স ও কারিকুলাম",
@@ -963,7 +963,7 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   hi: {
     navbar: {
-      brandTag: "Career",
+      brandTag: "StepAhead",
       brandSubtitle: "प्रवासी भाषा शिक्षण मंच",
       career: "करियर",
       audioDemo: "ऑडियो फ्रेज डेमो",
@@ -1618,7 +1618,7 @@ export const translations: Record<Language, TranslationSchema> = {
     footer: {
       brandSubtitle: "प्रवासी भाषा और करियर प्लेटफॉर्म",
       description: "सऊदी अरब, दुबई, कतर, कुवैत और ओमान जाने वाले प्रवासियों के लिए आसान गल्फ स्पोकन अरबी, वर्कप्लेस इंग्लिश और हिंदी सीखने का विश्वसनीय मंच।",
-      hotlineTitle: "२४/७ प्रवासी व्हाट्सएप हेल्पलाइन:",
+      hotlineTitle: "24/7 Expat WhatsApp Support:",
       directChat: "सीधी चैट",
       colJobTracks: "जॉब स्पेशल ट्रैक्स",
       colCurriculum: "कोर्स और पाठ्यक्रम",
@@ -1654,7 +1654,7 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   en: {
     navbar: {
-      brandTag: "Career",
+      brandTag: "StepAhead",
       brandSubtitle: "Expat Language & Career Platform",
       career: "Career",
       audioDemo: "Audio Phrase Demo",
@@ -2309,7 +2309,7 @@ export const translations: Record<Language, TranslationSchema> = {
     footer: {
       brandSubtitle: "Expat Language & Career Platform",
       description: "The trusted platform for learning Gulf Spoken Arabic, Workplace English, and Hindi for migrant workers heading to Saudi Arabia, Dubai, Qatar, Kuwait, and Oman.",
-      hotlineTitle: "24/7 Expat WhatsApp Helpline:",
+      hotlineTitle: "24/7 Expat WhatsApp Support:",
       directChat: "Live Chat",
       colJobTracks: "Specialized Job Tracks",
       colCurriculum: "Courses & Plans",
@@ -2345,7 +2345,7 @@ export const translations: Record<Language, TranslationSchema> = {
   },
   ar: {
     navbar: {
-      brandTag: "Career",
+      brandTag: "StepAhead",
       brandSubtitle: "منصة تعليم لغات العمل للمغتربين",
       career: "الوظائف",
       audioDemo: "نماذج الجمل الصوتية",
@@ -3012,7 +3012,7 @@ export const translations: Record<Language, TranslationSchema> = {
     footer: {
       brandSubtitle: "منصة تعليم لغات العمل للمغتربين",
       description: "المنصة الرائدة والموثوقة في تعليم العربية الخليجية والإنجليزية المهنية والهندية للعمال والمهنيين القادمين للعمل في السعودية والإمارات وقطر والكويت وعُمان.",
-      hotlineTitle: "خط مساعدة المغتربين على مدار الساعة عبر واتساب:",
+      hotlineTitle: "24/7 Expat WhatsApp Support:",
       directChat: "محادثة فورية",
       colJobTracks: "المسارات المهنية المتخصصة",
       colCurriculum: "خطط الدورات والمناهج",

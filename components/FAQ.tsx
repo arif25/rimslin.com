@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle, MessageSquare } from "lucide-react";
+import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 
@@ -78,12 +78,12 @@ export default function FAQ() {
           </p>
           <div className="mt-4 flex justify-center">
             <Link
-              href="https://wa.me/8801700000000?text=I%20have%20questions%20about%20Rimslin"
+              href="https://wa.me/916290051284?text=Hello%20Rimslin%20Support,%20I%20have%20questions%20about%20Rimslin"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-500/40 px-5 py-2.5 text-xs font-bold text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950/70 dark:text-emerald-300 dark:hover:bg-emerald-900 transition-colors shadow-sm"
             >
-              <MessageSquare className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <MessageCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
               <span>{t.faq.whatsappChat}</span>
             </Link>
           </div>

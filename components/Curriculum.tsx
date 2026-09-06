@@ -8,7 +8,7 @@ import {
   ShieldCheck,
   Award,
   BookOpen,
-  MessageSquare,
+  MessageCircle,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
@@ -136,11 +136,11 @@ export default function Curriculum() {
                 {/* Card Bottom CTA */}
                 <div className="mt-8 pt-6 border-t border-slate-100 dark:border-white/[0.08]">
                   <Link
-                    href={`https://wa.me/8801700000000?text=${encodeURIComponent(
+                    href={`https://wa.me/916290051284?text=${encodeURIComponent(
                       `${t.curriculum.whatsappCtaPrefix}${plan.title}`
                     )}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-sm font-bold transition-all duration-300 ${
                       plan.popular
                         ? "bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white dark:from-gulf-500 dark:via-emerald-500 dark:to-gold-400 dark:text-slate-950 shadow-xl shadow-emerald-500/20 hover:scale-[1.02]"
@@ -182,12 +182,12 @@ export default function Curriculum() {
           </div>
 
           <Link
-            href="https://wa.me/8801700000000?text=I%20want%20free%20consultation%20on%20Rimslin%20courses"
+            href="https://wa.me/916290051284?text=Hello%20Rimslin%20Support,%20I%20want%20free%20consultation%20on%20Rimslin%20courses"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/60 px-5 py-2.5 text-xs font-bold text-emerald-300 hover:bg-emerald-900/80 transition-colors shrink-0"
           >
-            <MessageSquare className="h-4 w-4" />
+            <MessageCircle className="h-4 w-4" />
             <span>{t.curriculum.freeConsultCta}</span>
           </Link>
         </div>

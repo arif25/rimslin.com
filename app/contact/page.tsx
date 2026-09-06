@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import {
   Mail,
-  MessageSquare,
+  MessageCircle,
   Clock,
   MapPin,
   HelpCircle,
@@ -33,10 +33,10 @@ export default function ContactPage() {
       desc: "যেকোনো আনুষ্ঠানিক যোগাযোগ, কোর্সের তথ্য ও পরামর্শের জন্য।",
     },
     {
-      icon: MessageSquare,
+      icon: MessageCircle,
       title: "হোয়াটসঅ্যাপ হেল্পলাইন (WhatsApp Helpline)",
-      value: "+৮৮০ ১৭০০-০০০০০০",
-      link: "https://wa.me/8801700000000?text=I%20have%20an%20inquiry%20about%20Rimslin",
+      value: "WhatsApp Support (Live Chat)",
+      link: "https://wa.me/916290051284?text=Hello%20Rimslin%20Support,%20I%20need%20help%20with...",
       desc: "দ্রুত সহায়তা ও প্রবাসী ভাইদের তাত্ক্ষণিক বার্তা পাঠানোর জন্য।",
     },
     {
@@ -116,6 +116,8 @@ export default function ContactPage() {
                         {item.link ? (
                           <a
                             href={item.link}
+                            target={item.link.startsWith("http") ? "_blank" : undefined}
+                            rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
                             className="text-base font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-gulf-400 hover:underline transition-colors mt-0.5 inline-block"
                           >
                             {item.value}

@@ -38,7 +38,7 @@ export default function ScrollToTop() {
       onClick={scrollToTop}
       aria-label="Scroll to top"
       title="Scroll to top"
-      className={`group fixed bottom-6 right-6 z-50 flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-gradient-to-tr from-emerald-600 to-gulf-500 hover:from-emerald-500 hover:to-gulf-400 dark:from-gulf-600 dark:to-emerald-500 dark:hover:from-gulf-500 dark:hover:to-emerald-400 text-white shadow-lg shadow-emerald-950/25 dark:shadow-gulf-950/50 border border-emerald-400/30 dark:border-gulf-400/40 backdrop-blur-sm transition-all duration-300 ease-out hover:scale-110 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-gulf-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-background ${
+      className={`group fixed bottom-20 right-5.5 sm:bottom-20 sm:right-6 z-40 flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-gradient-to-tr from-emerald-600 to-gulf-500 hover:from-emerald-500 hover:to-gulf-400 dark:from-gulf-600 dark:to-emerald-500 dark:hover:from-gulf-500 dark:hover:to-emerald-400 text-white shadow-lg shadow-emerald-950/25 dark:shadow-gulf-950/50 border border-emerald-400/30 dark:border-gulf-400/40 backdrop-blur-sm transition-all duration-300 ease-out hover:scale-110 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-gulf-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-background ${
         isVisible
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 translate-y-4 pointer-events-none"

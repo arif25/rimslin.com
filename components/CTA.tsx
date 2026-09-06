@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Sparkles, MessageSquare, Headphones, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Sparkles, MessageCircle, Headphones, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
 export default function CTA() {
@@ -37,14 +37,14 @@ export default function CTA() {
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={`https://wa.me/8801700000000?text=${encodeURIComponent(
+                href={`https://wa.me/916290051284?text=${encodeURIComponent(
                   t.cta.whatsappDirectMessage
                 )}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-gulf-600 via-emerald-600 to-gold-500 px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-gulf-900/50 transition-all duration-300 hover:shadow-gulf-500/40 hover:scale-[1.02]"
               >
-                <MessageSquare className="h-5 w-5" />
+                <MessageCircle className="h-5 w-5" />
                 <span>{t.cta.whatsappDirect}</span>
                 <ArrowRight className="h-5 w-5 rtl:rotate-180" />
               </Link>
