@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/lib/language-context";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollToTop from "@/components/ScrollToTop";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import FloatingChatbox from "@/components/FloatingChatbox";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -160,6 +161,7 @@ export default function RootLayout({
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
         <FloatingWhatsApp />
+        <FloatingChatbox />
         <ScrollToTop />
         <Analytics />
       </body>

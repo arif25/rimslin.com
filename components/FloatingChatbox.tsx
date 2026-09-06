@@ -222,6 +222,16 @@ export default function FloatingChatbox() {
       return;
     }
 
+    // 1. Gather all collected fields from state:
+    const payload = {
+      name: formData.name,       // state storing the full name
+      email: formData.email,     // state storing the email
+      subject: formData.subject || "General Inquiry", // state storing the selected subject
+      message: trimmed,          // the current message text
+    };
+
+    console.log("Submitting contact payload:", payload);
+
     setInputError("");
     setSubmitError(null);
     setIsSubmitting(true);
@@ -229,23 +239,18 @@ export default function FloatingChatbox() {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name, // Pass the stored name from step 1
-          email: formData.email, // Pass the stored email from step 2
-          subject: formData.subject || "General Inquiry", // Pass the selected subject from step 3
-          message: trimmed, // Pass the text message from step 4
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
+      const result = await res.json().catch(() => ({}));
+      console.log("Server response:", result);
+
       if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || "Failed to send message");
+        throw new Error(result.error || "Failed to dispatch email");
       }
 
-      // Only trigger the green success bubble AFTER the response is successful:
+      // 2. Only show the success bubble AFTER the request succeeds:
       setMessages((prev) => [
         ...prev,
         {
@@ -266,11 +271,11 @@ export default function FloatingChatbox() {
       setInputValue("");
       setStep("COMPLETED");
     } catch (error: any) {
-      console.error("Submit error:", error);
+      console.error("Submission failed:", error);
       const errMsg =
-        error.message || "মেসেজ পাঠানো সম্ভব হয়নি। দয়া করে আবার চেষ্টা করুন।";
+        error.message || "বার্তা পাঠানো সম্ভব হয়নি। দয়া করে আবার চেষ্টা করুন।";
       setSubmitError(errMsg);
-      alert("মেসেজ পাঠানো সম্ভব হয়নি। দয়া করে আবার চেষ্টা করুন।");
+      alert("বার্তা পাঠানো সম্ভব হয়নি। দয়া করে আবার চেষ্টা করুন।");
     } finally {
       setIsSubmitting(false);
     }
