@@ -844,7 +844,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative z-10 overflow-hidden w-full max-w-full pt-8 pb-20 md:pt-14 md:pb-28">
+    <section className="relative z-10 overflow-x-clip w-full max-w-full pt-8 pb-20 md:pt-14 md:pb-28">
       {/* Background ambient lighting */}
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden -z-10"
@@ -1091,6 +1091,20 @@ export default function Hero() {
               <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-gulf-400" />
               <span>{t.hero.prop3}</span>
             </div>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* MOBILE STICKY "START COURSE" ACTION BAR (< md only)                       */}
+          {/* ========================================================================= */}
+          <div className="md:hidden sticky bottom-4 z-30 w-full px-4 mt-6 flex justify-center pointer-events-none">
+            <Link
+              href="#course-plans"
+              className="pointer-events-auto w-full max-w-sm inline-flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-emerald-950/40 border border-emerald-400/40 backdrop-blur-md active:scale-95 transition-all duration-200"
+            >
+              <Sparkles className="h-4 w-4 shrink-0 text-amber-300" />
+              <span>{t.navbar.startCourse}</span>
+              <ArrowRight className="h-4 w-4 rtl:rotate-180 shrink-0" />
+            </Link>
           </div>
 
           {/* Gulf Country Trust Flags Strip */}
