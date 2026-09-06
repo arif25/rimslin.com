@@ -227,24 +227,25 @@ export default function FloatingChatbox() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || "General Inquiry",
-          message: trimmed,
+          name: formData.name, // Pass the stored name from step 1
+          email: formData.email, // Pass the stored email from step 2
+          subject: formData.subject || "General Inquiry", // Pass the selected subject from step 3
+          message: trimmed, // Pass the text message from step 4
         }),
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to dispatch email");
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || "Failed to send message");
       }
 
-      // Append user message bubble first, then transition to success
+      // Only trigger the green success bubble AFTER the response is successful:
       setMessages((prev) => [
         ...prev,
         {
@@ -264,11 +265,12 @@ export default function FloatingChatbox() {
       setFormData((prev) => ({ ...prev, message: trimmed }));
       setInputValue("");
       setStep("COMPLETED");
-    } catch (err: any) {
-      console.error("Resend dispatch error:", err);
-      setSubmitError(
-        "বার্তা পাঠানো যায়নি। ইন্টারনেট সংযোগ চেক করে আবার চেষ্টা করুন।"
-      );
+    } catch (error: any) {
+      console.error("Submit error:", error);
+      const errMsg =
+        error.message || "মেসেজ পাঠানো সম্ভব হয়নি। দয়া করে আবার চেষ্টা করুন।";
+      setSubmitError(errMsg);
+      alert("মেসেজ পাঠানো সম্ভব হয়নি। দয়া করে আবার চেষ্টা করুন।");
     } finally {
       setIsSubmitting(false);
     }
