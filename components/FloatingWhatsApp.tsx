@@ -4,8 +4,7 @@ import React from "react";
 import { MessageCircle } from "lucide-react";
 
 export default function FloatingWhatsApp() {
-  const whatsappUrl =
-    "https://wa.me/916290051284?text=Hello%20Rimslin%20Support,%20I%20need%20help%20with...";
+  const whatsappUrl = "https://wa.me/message/BA7ZADIS4EEDG1";
 
   return (
     <div className="fixed bottom-6 left-6 z-40 group select-none">
