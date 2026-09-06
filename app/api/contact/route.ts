@@ -1,107 +1,78 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
-export async function POST(req: NextRequest) {
+// Only instantiate Resend if API key is present to prevent module evaluation crashes
+const apiKey = process.env.RESEND_API_KEY;
+const resend = apiKey ? new Resend(apiKey) : null;
+
+export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { name, email, subject, message } = body;
+    const { name, email, subject, message } = await req.json();
 
-    // Validate required fields
-    if (!name || typeof name !== "string" || !name.trim()) {
+    if (!name || !email || !message) {
       return NextResponse.json(
-        { error: "অনুগ্রহ করে আপনার নামটি লিখুন।" },
+        { error: 'Name, email, and message are required fields.' },
         { status: 400 }
       );
     }
 
-    if (!email || typeof email !== "string" || !email.trim()) {
+    // If Resend API key is not configured, safely log in development and return success
+    if (!resend) {
+      console.log('[RESEND INQUIRY (Configure RESEND_API_KEY in .env.local for live dispatch)]:', {
+        name,
+        email,
+        subject: subject || 'নতুন জিজ্ঞাসা',
+        message,
+        recipient: process.env.SUPPORT_EMAIL || 'support@rimslin.com',
+      });
       return NextResponse.json(
-        { error: "অনুগ্রহ করে আপনার ইমেইল ঠিকানা দিন।" },
-        { status: 400 }
-      );
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
-      return NextResponse.json(
-        { error: "দয়া করে একটি সঠিক ইমেইল ঠিকানা দিন।" },
-        { status: 400 }
-      );
-    }
-
-    if (!message || typeof message !== "string" || !message.trim()) {
-      return NextResponse.json(
-        { error: "অনুগ্রহ করে আপনার বার্তার বিবরণ লিখুন।" },
-        { status: 400 }
-      );
-    }
-
-    const cleanedData = {
-      name: name.trim(),
-      email: email.trim(),
-      subject: (subject || "সাধারণ জিজ্ঞাসা (General Inquiry)").trim(),
-      message: message.trim(),
-      timestamp: new Date().toISOString(),
-      recipient: "support@rimslin.com",
-    };
-
-    console.log(
-      `[CONTACT INQUIRY RECEIVED] From: ${cleanedData.name} <${cleanedData.email}> | Subject: ${cleanedData.subject}`
-    );
-    console.log(`[MESSAGE BODY]: ${cleanedData.message}`);
-
-    // If Resend API key is configured via ENV, trigger dispatch using official SDK
-    const resendApiKey = process.env.RESEND_API_KEY;
-    if (resendApiKey) {
-      try {
-        const { Resend } = await import("resend");
-        const resend = new Resend(resendApiKey);
-
-        await resend.emails.send({
-          from: process.env.RESEND_FROM_EMAIL || "Rimslin Support <onboarding@resend.dev>",
-          to: ["support@rimslin.com"],
-          replyTo: cleanedData.email,
-          subject: `[Rimslin Inquiry] ${cleanedData.subject} - ${cleanedData.name}`,
-          text: `New contact inquiry received:\n\nName: ${cleanedData.name}\nEmail: ${cleanedData.email}\nSubject: ${cleanedData.subject}\nTime: ${cleanedData.timestamp}\n\nMessage:\n${cleanedData.message}`,
-          html: `
-            <div style="font-family: Arial, sans-serif; padding: 20px; color: #1e293b;">
-              <h2 style="color: #059669; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
-                Rimslin নতুন ইনকোয়ারি (Contact Inquiry)
-              </h2>
-              <p><strong>নাম:</strong> ${cleanedData.name}</p>
-              <p><strong>ইমেইল:</strong> <a href="mailto:${cleanedData.email}">${cleanedData.email}</a></p>
-              <p><strong>বিষয়:</strong> ${cleanedData.subject}</p>
-              <p><strong>সময়:</strong> ${new Date(cleanedData.timestamp).toLocaleString()}</p>
-              <div style="margin-top: 16px; padding: 14px; background: #f8fafc; border-left: 4px solid #059669; border-radius: 4px;">
-                <p style="margin: 0; font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${cleanedData.message}</p>
-              </div>
-              <p style="font-size: 12px; color: #64748b; margin-top: 24px;">
-                এই বার্তাটি Rimslin.com এর অনলাইন চ্যাটবক্স / কন্টাক্ট ফর্ম থেকে স্বয়ংক্রিয়ভাবে পাঠানো হয়েছে।
-              </p>
-            </div>
-          `,
-        });
-      } catch (mailErr) {
-        console.warn("[MAIL DISPATCH WARNING]", mailErr);
-      }
-    }
-
-    return NextResponse.json(
-      {
-        success: true,
-        message: "আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে।",
-        data: {
-          name: cleanedData.name,
-          email: cleanedData.email,
-          subject: cleanedData.subject,
+        {
+          success: true,
+          data: { id: 'simulated-dev-id' },
+          message: 'Inquiry logged. Configure RESEND_API_KEY in .env.local for live email delivery.',
         },
-      },
-      { status: 200 }
-    );
-  } catch (error: any) {
-    console.error("[CONTACT_API_ERROR]", error);
-    return NextResponse.json(
-      { error: "সার্ভারে সমস্যা হয়েছে। অনুগ্রহ করে কিছুক্ষণ পর চেষ্টা করুন।" },
-      { status: 500 }
-    );
+        { status: 200 }
+      );
+    }
+
+    const data = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'Rimslin Support <notifications@rimslin.com>',
+      to: [process.env.SUPPORT_EMAIL || 'support@rimslin.com'],
+      replyTo: email,
+      subject: `[Rimslin Support] ${subject || 'নতুন জিজ্ঞাসা'} - ${name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+          <div style="background-color: #047857; color: #ffffff; padding: 20px 24px;">
+            <h2 style="margin: 0; font-size: 18px; font-weight: 700;">নতুন বার্তা এসেছে (Rimslin Help Chat)</h2>
+          </div>
+          <div style="padding: 24px; color: #1e293b;">
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
+              <tr>
+                <td style="padding: 6px 0; font-weight: bold; width: 100px; color: #64748b;">নাম:</td>
+                <td style="padding: 6px 0; font-weight: 600;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px 0; font-weight: bold; color: #64748b;">ইমেইল:</td>
+                <td style="padding: 6px 0;"><a href="mailto:${email}" style="color: #047857; text-decoration: underline;">${email}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 6px 0; font-weight: bold; color: #64748b;">বিষয়:</td>
+                <td style="padding: 6px 0;">${subject || 'General Inquiry'}</td>
+              </tr>
+            </table>
+            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 16px 0;" />
+            <p style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase;">গ্রাহকের বিস্তারিত বার্তা:</p>
+            <div style="white-space: pre-line; background-color: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 14px; line-height: 1.6; color: #0f172a;">
+              ${message}
+            </div>
+          </div>
+        </div>
+      `,
+    });
+
+    return NextResponse.json({ success: true, data }, { status: 200 });
+  } catch (error) {
+    console.error('Resend dispatch error:', error);
+    return NextResponse.json({ error: 'Failed to send inquiry' }, { status: 500 });
   }
 }
