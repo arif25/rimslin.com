@@ -49,23 +49,36 @@ export async function POST(req: NextRequest) {
     );
     console.log(`[MESSAGE BODY]: ${cleanedData.message}`);
 
-    // If an external email provider (Resend, SendGrid, etc.) is configured via ENV, trigger dispatch
+    // If Resend API key is configured via ENV, trigger dispatch using official SDK
     const resendApiKey = process.env.RESEND_API_KEY;
     if (resendApiKey) {
       try {
-        await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${resendApiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            from: "Rimslin Support <notifications@rimslin.com>",
-            to: ["support@rimslin.com"],
-            reply_to: cleanedData.email,
-            subject: `[Rimslin Inquiry] ${cleanedData.subject} - ${cleanedData.name}`,
-            text: `New contact inquiry received:\n\nName: ${cleanedData.name}\nEmail: ${cleanedData.email}\nSubject: ${cleanedData.subject}\nTime: ${cleanedData.timestamp}\n\nMessage:\n${cleanedData.message}`,
-          }),
+        const { Resend } = await import("resend");
+        const resend = new Resend(resendApiKey);
+
+        await resend.emails.send({
+          from: process.env.RESEND_FROM_EMAIL || "Rimslin Support <onboarding@resend.dev>",
+          to: ["support@rimslin.com"],
+          replyTo: cleanedData.email,
+          subject: `[Rimslin Inquiry] ${cleanedData.subject} - ${cleanedData.name}`,
+          text: `New contact inquiry received:\n\nName: ${cleanedData.name}\nEmail: ${cleanedData.email}\nSubject: ${cleanedData.subject}\nTime: ${cleanedData.timestamp}\n\nMessage:\n${cleanedData.message}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; padding: 20px; color: #1e293b;">
+              <h2 style="color: #059669; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
+                Rimslin নতুন ইনকোয়ারি (Contact Inquiry)
+              </h2>
+              <p><strong>নাম:</strong> ${cleanedData.name}</p>
+              <p><strong>ইমেইল:</strong> <a href="mailto:${cleanedData.email}">${cleanedData.email}</a></p>
+              <p><strong>বিষয়:</strong> ${cleanedData.subject}</p>
+              <p><strong>সময়:</strong> ${new Date(cleanedData.timestamp).toLocaleString()}</p>
+              <div style="margin-top: 16px; padding: 14px; background: #f8fafc; border-left: 4px solid #059669; border-radius: 4px;">
+                <p style="margin: 0; font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${cleanedData.message}</p>
+              </div>
+              <p style="font-size: 12px; color: #64748b; margin-top: 24px;">
+                এই বার্তাটি Rimslin.com এর অনলাইন চ্যাটবক্স / কন্টাক্ট ফর্ম থেকে স্বয়ংক্রিয়ভাবে পাঠানো হয়েছে।
+              </p>
+            </div>
+          `,
         });
       } catch (mailErr) {
         console.warn("[MAIL DISPATCH WARNING]", mailErr);
