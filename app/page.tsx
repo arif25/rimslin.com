@@ -24,7 +24,7 @@ export default function Home() {
         <Hero />
         <Stats />
         <AudioPhraseDemo limit={3} />
-        <YouTubeGallery />
+        <YouTubeGallery limit={4} />
         <JobTracks />
         <Curriculum />
         <AIVoiceCoach />

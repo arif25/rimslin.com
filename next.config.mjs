@@ -41,6 +41,11 @@ const nextConfig = {
         destination: '/audio-phrases',
         permanent: false,
       },
+      {
+        source: '/arabic-classes',
+        destination: '/video-classes',
+        permanent: false,
+      },
     ];
   },
 };

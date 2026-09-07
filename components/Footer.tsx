@@ -129,6 +129,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/video-classes"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  ভিডিও ক্লাস (Video Classes)
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
                 >
