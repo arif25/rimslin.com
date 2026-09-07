@@ -374,10 +374,10 @@ export default function BookStoreClient() {
           <button
             type="button"
             onClick={() => setIsCartOpen(true)}
-            className="flex items-center gap-2 rounded-full border-2 border-white/40 bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] text-white px-4 py-2.5 shadow-2xl shadow-emerald-950/40 hover:shadow-emerald-950/60 hover:scale-105 active:scale-95 transition-all"
+            className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white px-4 py-3 shadow-xl shadow-emerald-900/30 hover:scale-105 active:scale-95 transition-all"
           >
-            <ShoppingBag className="h-5 w-5 text-white" />
-            <span className="text-xs font-extrabold text-white">ই-বুক কার্ট ({totalCartCount})</span>
+            <ShoppingBag className="h-5 w-5" />
+            <span className="text-xs font-extrabold">ই-বুক কার্ট ({totalCartCount})</span>
           </button>
         </div>
       )}

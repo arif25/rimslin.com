@@ -320,39 +320,23 @@ export default function FloatingChatbox() {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label={isOpen ? "বার্তা ফর্ম বন্ধ করুন" : "অনলাইন বার্তা ফর্ম খুলুন"}
         aria-expanded={isOpen}
-        className={`group fixed bottom-5 right-5 z-50 flex h-13 w-13 sm:h-14 sm:w-14 items-center justify-center overflow-hidden rounded-full text-white shadow-2xl transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 active:scale-95 ${
+        className={`fixed bottom-5 right-5 z-50 flex h-13 w-13 sm:h-14 sm:w-14 items-center justify-center rounded-full text-white shadow-2xl transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 active:scale-95 ${
           isOpen
-            ? "bg-slate-800 hover:bg-slate-700 border-2 border-white/30 shadow-slate-950/60 rotate-90"
-            : "border-2 border-white/40 bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] shadow-emerald-950/40 hover:shadow-emerald-950/60 hover:scale-105"
+            ? "bg-slate-800 hover:bg-slate-700 border border-slate-600 shadow-slate-900/50 rotate-90"
+            : "bg-gradient-to-tr from-emerald-700 to-emerald-500 hover:from-emerald-600 hover:to-emerald-400 border border-emerald-400/40 shadow-emerald-950/40 hover:scale-105"
         }`}
       >
-        {/* Subtle dot pattern texture overlay when closed */}
         {!isOpen && (
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 rounded-full opacity-20 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] [background-size:8px_8px]"
-          />
-        )}
-
-        {/* Traveling light shine animation on hover when closed */}
-        {!isOpen && (
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-1000 ease-in-out pointer-events-none rounded-full"
-          />
-        )}
-
-        {!isOpen && (
-          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 z-20">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80" />
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-white border-2 border-emerald-900" />
+          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-slate-900" />
           </span>
         )}
 
         {isOpen ? (
-          <X className="h-6 w-6 text-white relative z-10 drop-shadow-sm transition-transform duration-200" />
+          <X className="h-6 w-6 text-white transition-transform duration-200" />
         ) : (
-          <MessageCircle className="h-6 w-6 fill-current text-white relative z-10 drop-shadow-sm transition-transform duration-200" />
+          <MessageCircle className="h-6 w-6 fill-current text-white transition-transform duration-200" />
         )}
       </button>
 
