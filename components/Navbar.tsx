@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Globe,
   Sparkles,
@@ -38,13 +38,14 @@ import ThemeToggle from "@/components/theme-toggle";
 export default function Navbar() {
   const { t, language, isRTL } = useLanguage();
   const pathname = usePathname();
+  const router = useRouter();
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const moreDropdownRef = useRef<HTMLDivElement>(null);
   const helpDropdownRef = useRef<HTMLDivElement>(null);
-  const courseFabRef = useRef<HTMLAnchorElement>(null);
+  const courseFabRef = useRef<HTMLButtonElement>(null);
   const collapseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-collapse Start Course button after 4 seconds on initial load
@@ -60,18 +61,32 @@ export default function Navbar() {
 
   const handleFabClick = (e: React.MouseEvent) => {
     if (!isExpanded) {
-      // Step 1: Prevent navigation on first tap when collapsed, expand the button
+      // Step 1: Prevent premature navigation on first tap when collapsed, expand the button
       e.preventDefault();
+      e.stopPropagation();
       setIsExpanded(true);
 
-      // Auto-collapse again after 6 seconds of inactivity
+      // If opened manually, start a 4-second timeout to re-collapse if the user doesn't tap again
       if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
       collapseTimerRef.current = setTimeout(() => {
         setIsExpanded(false);
-      }, 6000);
+      }, 4000);
+      return;
+    }
+
+    // Step 2: Only navigate on 2nd tap when already expanded
+    if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
+    const targetUrl = pathname === "/" ? "#course-plans" : "/#course-plans";
+    if (pathname === "/") {
+      const el = document.getElementById("course-plans");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", "#course-plans");
+      } else {
+        router.push(targetUrl);
+      }
     } else {
-      // Step 2: When already expanded, allow normal navigation to course target
-      if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
+      router.push(targetUrl);
     }
   };
 
@@ -95,6 +110,7 @@ export default function Navbar() {
         !courseFabRef.current.contains(event.target as Node)
       ) {
         setIsExpanded(false);
+        if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -817,9 +833,9 @@ export default function Navbar() {
       {/* ========================================================================= */}
       {/* PERSISTENT FLOATING STICKY "START COURSE" BUTTON (Top 100px, Right)      */}
       {/* ========================================================================= */}
-      <Link
+      <button
         ref={courseFabRef}
-        href={pathname === "/" ? "#course-plans" : "/#course-plans"}
+        type="button"
         onClick={handleFabClick}
         onMouseEnter={() => {
           if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
@@ -831,7 +847,7 @@ export default function Navbar() {
             setIsExpanded(false);
           }, 2000);
         }}
-        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center overflow-hidden rounded-full shadow-2xl shadow-emerald-950/40 hover:shadow-emerald-950/60 border-2 border-white/40 bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] active:scale-95 transition-all duration-300 ease-in-out group select-none ${
+        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center overflow-hidden rounded-full shadow-2xl shadow-emerald-950/40 hover:shadow-emerald-950/60 border-2 border-white/40 bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] active:scale-95 transition-all duration-300 ease-in-out group select-none cursor-pointer ${
           isExpanded
             ? "px-4 py-2.5 max-w-[240px]"
             : "w-11 h-11 sm:w-12 sm:h-12 p-0 justify-center max-w-[48px] hover:scale-105"
@@ -890,7 +906,7 @@ export default function Navbar() {
           </span>
           <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180 shrink-0 text-white/90 drop-shadow-sm" />
         </div>
-      </Link>
+      </button>
     </header>
   );
 }
