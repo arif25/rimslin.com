@@ -29,6 +29,7 @@ import {
   Info,
   FileText,
   Briefcase,
+  ArrowRight,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -447,15 +448,6 @@ export default function Navbar() {
               <span className="whitespace-nowrap">Career</span>
             </Link>
 
-            {/* 3. Primary Start Course CTA (Desktop md+ only) */}
-            <Link
-              href={pathname === "/" ? "#course-plans" : "/#course-plans"}
-              className="hidden md:inline-flex items-center justify-center gap-1 sm:gap-1.5 h-8 sm:h-9 px-3 sm:px-4 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-colors shrink-0 active:scale-95"
-            >
-              <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
-              <span className="whitespace-nowrap">{t.navbar.startCourse}</span>
-            </Link>
-
             {/* Mobile Hamburger Drawer Button (Visible on screens < lg) */}
             <button
               type="button"
@@ -784,6 +776,22 @@ export default function Navbar() {
           </div>
         </>
       )}
+
+      {/* ========================================================================= */}
+      {/* PERSISTENT FLOATING STICKY "START COURSE" BUTTON (Top 100px, Right)      */}
+      {/* ========================================================================= */}
+      <Link
+        href={pathname === "/" ? "#course-plans" : "/#course-plans"}
+        className={`fixed top-[100px] right-3 sm:right-6 z-40 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white border border-emerald-500/30 whitespace-nowrap flex items-center gap-1.5 group active:scale-95 ${
+          isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        title={t.navbar.startCourse}
+        aria-label={t.navbar.startCourse}
+      >
+        <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-amber-300" />
+        <span className="whitespace-nowrap">{t.navbar.startCourse}</span>
+        <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
+      </Link>
     </header>
   );
 }

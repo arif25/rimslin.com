@@ -1093,20 +1093,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ========================================================================= */}
-          {/* MOBILE STICKY "START COURSE" ACTION BAR (< md only)                       */}
-          {/* ========================================================================= */}
-          <div className="md:hidden sticky bottom-4 z-30 w-full px-4 mt-6 flex justify-center pointer-events-none">
-            <Link
-              href="#course-plans"
-              className="pointer-events-auto w-full max-w-sm inline-flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white font-bold text-sm sm:text-base shadow-xl shadow-emerald-950/40 border border-emerald-400/40 backdrop-blur-md active:scale-95 transition-all duration-200"
-            >
-              <Sparkles className="h-4 w-4 shrink-0 text-amber-300" />
-              <span>{t.navbar.startCourse}</span>
-              <ArrowRight className="h-4 w-4 rtl:rotate-180 shrink-0" />
-            </Link>
-          </div>
-
           {/* Gulf Country Trust Flags Strip */}
           <div className="mt-14 w-full max-w-5xl rounded-2xl border border-slate-200/80 bg-white/70 shadow-lg shadow-black/5 dark:border-white/[0.08] dark:bg-surface-100/50 p-6 backdrop-blur-xl">
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-4 flex items-center justify-center gap-2">
