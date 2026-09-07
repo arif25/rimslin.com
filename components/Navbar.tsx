@@ -778,11 +778,11 @@ export default function Navbar() {
       )}
 
       {/* ========================================================================= */}
-      {/* PERSISTENT FLOATING STICKY "START COURSE" BUTTON (Top 100px, Right)      */}
+      {/* PERSISTENT FLOATING STICKY "START COURSE" FAB (Top 100px, Right)         */}
       {/* ========================================================================= */}
       <Link
         href={pathname === "/" ? "#course-plans" : "/#course-plans"}
-        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] border border-white/40 shadow-lg shadow-emerald-950/30 hover:shadow-xl hover:shadow-emerald-950/45 hover:scale-105 active:scale-95 transition-all duration-200 ease-out group overflow-hidden select-none ${
+        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] border-2 border-white/40 shadow-2xl shadow-emerald-900/50 hover:shadow-emerald-900/70 hover:scale-105 active:scale-95 transition-all duration-300 ease-out group overflow-hidden select-none ${
           isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         title={t.navbar.startCourse}
@@ -791,47 +791,22 @@ export default function Navbar() {
         {/* Subtle dot pattern texture overlay */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 rounded-full opacity-15 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:6px_6px]"
+          className="absolute inset-0 rounded-full opacity-20 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] [background-size:8px_8px]"
         />
 
         {/* Traveling light shine animation on hover */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-in-out pointer-events-none"
+          className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-1000 ease-in-out pointer-events-none"
         />
 
-        {/* Comprehensive Multi-Concept Course Learning Icon (Video, Docs/PDF, Live Online) */}
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.75"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white shrink-0 relative z-10 drop-shadow-sm transition-transform duration-200 group-hover:scale-110"
-          aria-hidden="true"
-        >
-          {/* Screen / Monitor frame */}
-          <rect x="2" y="3" width="20" height="13" rx="2" />
-          <path d="M8 20h8" />
-          <path d="M12 16v4" />
-          {/* Video Lesson: Play triangle badge */}
-          <polygon points="6,6.5 10.5,9.5 6,12.5" fill="currentColor" stroke="none" />
-          {/* Document / PDF Curriculum Lines */}
-          <line x1="13" y1="7" x2="18" y2="7" strokeWidth="1.5" />
-          <line x1="13" y1="9.5" x2="18" y2="9.5" strokeWidth="1.5" />
-          <line x1="13" y1="12" x2="16" y2="12" strokeWidth="1.5" />
-          {/* Live Broadcast Blinking Indicator Dot */}
-          <circle cx="19" cy="5" r="1.3" fill="#EF4444" stroke="#EF4444" className="animate-pulse" />
-        </svg>
+        {/* Prominent White Play Icon in Circle */}
+        <PlayCircle className="w-6 h-6 text-white shrink-0 relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-110" />
 
-        {/* Text */}
-        <span className="text-xs font-semibold tracking-wide text-white whitespace-nowrap relative z-10 drop-shadow-sm">
+        {/* White, Bold, Uppercase Text with Letter Spacing */}
+        <span className="text-sm sm:text-lg font-extrabold tracking-widest text-white uppercase whitespace-nowrap relative z-10 drop-shadow-sm">
           {t.navbar.startCourse}
         </span>
-
-        {/* Subtle Arrow */}
-        <ArrowRight className="w-3 h-3 rtl:rotate-180 text-white/85 shrink-0 relative z-10 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white" />
       </Link>
     </header>
   );
