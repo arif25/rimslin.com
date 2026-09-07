@@ -36,6 +36,11 @@ const nextConfig = {
         destination: '/#audio-downloads',
         permanent: false,
       },
+      {
+        source: '/audio-demo',
+        destination: '/audio-phrases',
+        permanent: false,
+      },
     ];
   },
 };

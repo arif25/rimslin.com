@@ -23,7 +23,7 @@ export default function Home() {
       <main className="flex-1 w-full max-w-full overflow-x-hidden relative z-0">
         <Hero />
         <Stats />
-        <AudioPhraseDemo />
+        <AudioPhraseDemo limit={3} />
         <YouTubeGallery />
         <JobTracks />
         <Curriculum />

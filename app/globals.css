@@ -201,11 +201,12 @@
   background: rgba(16, 185, 129, 0.7);
 }
 
-/* Cross-browser No Scrollbar Utility */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+@keyframes waveBar {
+  0% {
+    height: 20%;
+  }
+  100% {
+    height: 100%;
+  }
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+

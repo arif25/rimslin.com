@@ -150,6 +150,8 @@ export interface TranslationSchema {
     bottomNote: string;
     tashkeelWithLabel?: string;
     tashkeelWithoutLabel?: string;
+    viewAllButton?: string;
+    viewAllSubtext?: string;
     phrases: AudioPhraseItem[];
   };
   jobTracks: {
@@ -363,6 +365,8 @@ export const translations: Record<Language, TranslationSchema> = {
       popularBadge: "বেশি ব্যবহৃত",
       tashkeelWithLabel: "হরকত সহ (যের-যবর)",
       tashkeelWithoutLabel: "হরকত ছাড়া (সাধারণ)",
+      viewAllButton: "সব অডিও ফ্রেজ দেখুন",
+      viewAllSubtext: "১২+ গুরুত্বপূর্ণ কাজের আরবি ও ইংরেজি বাক্য শুনুন",
       bottomNote: "💡 পুরো কোর্সে এমন ১,০০০+ বাস্তব জীবনের কাজের অডিও ফ্রেজ রয়েছে যা আপনি অফলাইনেও শুনতে পারবেন।",
       phrases: [
         {
@@ -1066,6 +1070,8 @@ export const translations: Record<Language, TranslationSchema> = {
       copySuccess: "कॉपी हो गया!",
       copyTooltip: "वाक्यांश कॉपी करें",
       popularBadge: "अत्यधिक उपयोगी",
+      viewAllButton: "सभी ऑडियो वाक्यांश देखें",
+      viewAllSubtext: "१२+ महत्वपूर्ण कामकाजी अरबी और अंग्रेज़ी वाक्यांश सुनें",
       bottomNote: "💡 पूरे कोर्स में ऐसे १,०००+ व्यावहारिक कामकाजी ऑडियो वाक्यांश हैं जिन्हें आप ऑफलाइन भी सुन सकते हैं।",
       phrases: [
         {
@@ -1757,6 +1763,8 @@ export const translations: Record<Language, TranslationSchema> = {
       copySuccess: "Copied to clipboard!",
       copyTooltip: "Copy phrase",
       popularBadge: "Top Essential",
+      viewAllButton: "View All Audio Phrases",
+      viewAllSubtext: "Listen to all 12+ essential workplace Arabic & English phrases",
       bottomNote: "💡 The complete course features over 1,000+ real-world audio phrases available for offline download.",
       phrases: [
         {
@@ -2448,6 +2456,8 @@ export const translations: Record<Language, TranslationSchema> = {
       copySuccess: "تم النسخ بنجاح!",
       copyTooltip: "نسخ الجملة",
       popularBadge: "الأكثر تداولاً",
+      viewAllButton: "عرض جميع النماذج الصوتية",
+      viewAllSubtext: "استمع إلى أكثر من ١٢ عبارة خليجية وإنجليزية لبيئات العمل",
       bottomNote: "💡 تحتوي الدورة الكاملة على أكثر من ١,٠٠٠ جملة صوتية من صلب مواقع العمل وقابلة للتحميل والاستماع دون إنترنت.",
       phrases: [
         {
