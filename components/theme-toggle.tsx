@@ -74,13 +74,21 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   if (!mounted) {
     return (
       <div
-        className={`h-8 w-8 md:h-7 md:w-7 rounded-md md:rounded-lg border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 flex-shrink-0 self-center ${className}`}
-      />
+        aria-hidden="true"
+        className={`relative inline-block text-start z-50 shrink-0 flex-shrink-0 self-center ${className}`}
+      >
+        <div
+          className="flex h-8 w-8 md:h-7 md:w-7 self-center items-center justify-center rounded-md md:rounded-lg border border-slate-200/80 bg-white/90 shadow-sm dark:border-gulf-500/30 dark:bg-surface-100/90 shrink-0 flex-shrink-0"
+        />
+      </div>
     );
   }
 
   return (
-    <div className={`relative inline-block text-start z-50 shrink-0 flex-shrink-0 self-center ${className}`} ref={dropdownRef}>
+    <div
+      className={`relative inline-block text-start z-50 shrink-0 flex-shrink-0 self-center ${className}`}
+      ref={dropdownRef}
+    >
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}

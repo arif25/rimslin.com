@@ -105,7 +105,13 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/rimslin-logo-square.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/rimslin-logo-square.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
@@ -151,7 +157,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-slate-50 text-slate-900 dark:bg-background dark:text-slate-100 antialiased selection:bg-gulf-500 selection:text-white overflow-x-hidden max-w-full w-full relative transition-colors duration-200">
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-slate-50 text-slate-900 dark:bg-background dark:text-slate-100 antialiased selection:bg-gulf-500 selection:text-white overflow-x-hidden max-w-full w-full relative transition-colors duration-200"
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

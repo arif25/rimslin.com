@@ -37,6 +37,7 @@ const getCurrentTime = () => {
 };
 
 export default function FloatingChatbox() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<ChatStep>(1);
   const [inputValue, setInputValue] = useState("");
@@ -44,6 +45,11 @@ export default function FloatingChatbox() {
   const [isTyping, setIsTyping] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  // Client mount check to avoid any SSR time/locale mismatch
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   // Collected User Data
   const [formData, setFormData] = useState({
@@ -311,6 +317,8 @@ export default function FloatingChatbox() {
       },
     ]);
   };
+
+  if (!hasMounted) return null;
 
   return (
     <div ref={chatboxRef} className="select-none">

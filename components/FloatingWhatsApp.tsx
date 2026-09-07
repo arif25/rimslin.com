@@ -1,9 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 
 export default function FloatingWhatsApp() {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) return null;
+
   const whatsappUrl = "https://wa.me/message/BA7ZADIS4EEDG1";
 
   return (
