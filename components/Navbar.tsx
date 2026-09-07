@@ -34,6 +34,7 @@ import {
 import { useLanguage } from "@/lib/language-context";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ThemeToggle from "@/components/theme-toggle";
+import AuthButton from "@/components/AuthButton";
 
 export default function Navbar() {
   const { t, language, isRTL } = useLanguage();
@@ -508,6 +509,9 @@ export default function Navbar() {
               <span className="whitespace-nowrap">Career</span>
             </Link>
 
+            {/* 3. Firebase Google Authentication / User Profile Button */}
+            <AuthButton variant="header" />
+
             {/* Mobile Hamburger Drawer Button (Visible on screens < lg) */}
             <button
               type="button"
@@ -713,7 +717,13 @@ export default function Navbar() {
             </div>
 
             {/* Drawer Body (Scrollable) */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-6">
+            <div className="flex-1 overflow-y-auto p-4 space-y-5">
+              {/* User Authentication Status / Google Login Card */}
+              <AuthButton
+                variant="mobile"
+                onActionComplete={() => setIsMobileDrawerOpen(false)}
+              />
+
               {/* Primary Start Course CTA */}
               <Link
                 href="#course-plans"

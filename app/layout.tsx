@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Sans_Arabic, Amiri } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/language-context";
+import { AuthProvider } from "@/context/AuthContext";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollToTop from "@/components/ScrollToTop";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -167,7 +168,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </LanguageProvider>
         </ThemeProvider>
         <FloatingWhatsApp />
         <FloatingChatbox />
