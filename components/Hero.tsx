@@ -844,7 +844,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative z-10 overflow-x-clip w-full max-w-full pt-8 pb-20 md:pt-14 md:pb-28">
+    <section className="relative z-10 overflow-x-clip w-full max-w-full min-h-[calc(100svh-4rem)] md:min-h-0 py-3 sm:py-6 md:pt-14 md:pb-28 flex flex-col justify-center">
       {/* Background ambient lighting */}
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden -z-10"
@@ -854,39 +854,39 @@ export default function Hero() {
         <div className="absolute top-1/2 right-0 h-[400px] w-full max-w-[400px] rounded-full bg-gold-glow blur-[100px]" />
       </div>
 
-      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
+      <div className="mx-auto max-w-7xl w-full px-3 sm:px-6 lg:px-8 min-w-0 my-auto">
         <div className="flex flex-col items-center text-center w-full max-w-full min-w-0">
           {/* ========================================================================= */}
           {/* PLATFORM VALUE PROPOSITION: ENGLISH TAGLINE & 3 CORE LANGUAGE TRACKS      */}
           {/* ========================================================================= */}
-          <div className="flex flex-col items-center gap-2.5 sm:gap-3 mb-6 sm:mb-8 max-w-3xl px-2">
+          <div className="flex flex-col items-center gap-1 sm:gap-2 md:gap-3 mb-2 sm:mb-4 md:mb-8 max-w-3xl px-2">
             {/* English Tagline Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/80 px-3.5 py-1 text-[10px] sm:text-xs font-mono font-bold tracking-widest text-slate-700 dark:text-slate-200 uppercase shadow-sm backdrop-blur-md">
-              <Globe className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0" />
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/80 px-2.5 py-0.5 sm:px-3.5 sm:py-1 text-[9px] sm:text-xs font-mono font-bold tracking-wider sm:tracking-widest text-slate-700 dark:text-slate-200 uppercase shadow-sm backdrop-blur-md">
+              <Globe className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0" />
               <span>{t.hero.subHeadline}</span>
             </div>
 
             {/* 3 Core Language Tracks Highlight Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 md:gap-2.5">
               {/* 🟢 Track 1: Workplace Arabic */}
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/90 dark:border-emerald-500/30 dark:bg-emerald-950/50 px-3 py-1 text-xs font-bold text-emerald-800 dark:text-emerald-300 shadow-sm backdrop-blur-md">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/90 dark:border-emerald-500/30 dark:bg-emerald-950/50 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-bold text-emerald-800 dark:text-emerald-300 shadow-sm backdrop-blur-md">
+                <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                 <span>{trackLabels.arabic}</span>
-                <span className="text-[10px] opacity-75 font-medium">{trackLabels.arabicSub}</span>
+                <span className="text-[9px] sm:text-[10px] opacity-75 font-medium">{trackLabels.arabicSub}</span>
               </div>
 
               {/* 🟠 Track 2: Workplace Hindi */}
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-50/90 dark:border-amber-500/30 dark:bg-amber-950/50 px-3 py-1 text-xs font-bold text-amber-800 dark:text-amber-300 shadow-sm backdrop-blur-md">
-                <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse shrink-0" />
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full border border-amber-500/30 bg-amber-50/90 dark:border-amber-500/30 dark:bg-amber-950/50 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-bold text-amber-800 dark:text-amber-300 shadow-sm backdrop-blur-md">
+                <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-amber-500 animate-pulse shrink-0" />
                 <span>{trackLabels.hindi}</span>
-                <span className="text-[10px] opacity-75 font-medium">{trackLabels.hindiSub}</span>
+                <span className="text-[9px] sm:text-[10px] opacity-75 font-medium">{trackLabels.hindiSub}</span>
               </div>
 
               {/* 🔵 Track 3: Basic English */}
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-50/90 dark:border-sky-500/30 dark:bg-sky-950/50 px-3 py-1 text-xs font-bold text-sky-800 dark:text-sky-300 shadow-sm backdrop-blur-md">
-                <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse shrink-0" />
+              <div className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full border border-sky-500/30 bg-sky-50/90 dark:border-sky-500/30 dark:bg-sky-950/50 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-bold text-sky-800 dark:text-sky-300 shadow-sm backdrop-blur-md">
+                <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-sky-500 animate-pulse shrink-0" />
                 <span>{trackLabels.english}</span>
-                <span className="text-[10px] opacity-75 font-medium">{trackLabels.englishSub}</span>
+                <span className="text-[9px] sm:text-[10px] opacity-75 font-medium">{trackLabels.englishSub}</span>
               </div>
             </div>
           </div>
@@ -927,7 +927,7 @@ export default function Hero() {
             {/* ========================================================================= */}
             {/* CSS GRID STACKED SLIDES: Lock height naturally to tallest slide (Zero CLS)*/}
             {/* ========================================================================= */}
-            <div className="grid grid-cols-1 grid-rows-1 w-full items-center justify-items-center min-h-[360px] sm:min-h-[300px] md:min-h-[260px]">
+            <div className="grid grid-cols-1 grid-rows-1 w-full items-center justify-items-center min-h-[190px] sm:min-h-[230px] md:min-h-[260px]">
               {slides.map((slide, idx) => {
                 const isActive = idx === currentSlide;
                 return (
@@ -941,12 +941,12 @@ export default function Hero() {
                     aria-hidden={!isActive}
                   >
                     {/* Contextual Slide Tag Badge */}
-                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50/90 text-emerald-800 shadow-sm dark:border-gulf-500/30 dark:bg-gulf-950/60 dark:text-gulf-300 backdrop-blur-md dark:shadow-lg dark:shadow-gulf-950/50 mb-5 px-4 py-1.5 text-xs font-semibold">
+                    <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-emerald-500/30 bg-emerald-50/90 text-emerald-800 shadow-sm dark:border-gulf-500/30 dark:bg-gulf-950/60 dark:text-gulf-300 backdrop-blur-md dark:shadow-lg dark:shadow-gulf-950/50 mb-1.5 sm:mb-3 md:mb-5 px-2.5 py-0.5 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs font-semibold">
                       <span>{slide.tag}</span>
                     </div>
 
                     {/* Main Headline with dual-gradient styling */}
-                    <h1 className="max-w-4xl text-3xl font-extrabold tracking-tight sm:text-5xl md:text-6xl leading-tight text-slate-900 dark:text-white">
+                    <h1 className="max-w-4xl text-xl sm:text-2xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug sm:leading-tight md:leading-tight text-slate-900 dark:text-white">
                       {slide.titlePrefix}
                       <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 dark:from-gulf-400 dark:via-emerald-300 dark:to-teal-300 bg-clip-text text-transparent">
                         {slide.highlight}
@@ -963,20 +963,20 @@ export default function Hero() {
                     </h1>
 
                     {/* Tagline / Subtitle */}
-                    <p className="mt-5 max-w-2xl text-base text-slate-600 dark:text-slate-300 sm:text-lg font-normal leading-relaxed">
+                    <p className="mt-1 sm:mt-2.5 md:mt-5 max-w-2xl text-xs sm:text-sm md:text-base lg:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
                       {slide.subtitle}
                     </p>
 
                     {/* Action Buttons */}
-                    <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                    <div className="mt-2.5 sm:mt-4 md:mt-8 flex flex-row items-center justify-center gap-2 sm:gap-4 w-full sm:w-auto max-w-full px-1">
                       <Link
                         href={slide.primaryBtn.href}
                         tabIndex={isActive ? 0 : -1}
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 dark:from-gulf-600 dark:via-emerald-600 dark:to-gold-500 px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-emerald-900/20 dark:shadow-gulf-900/40 transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 dark:from-gulf-600 dark:via-emerald-600 dark:to-gold-500 px-3.5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs sm:text-sm md:text-base font-bold text-white shadow-lg sm:shadow-xl shadow-emerald-900/20 dark:shadow-gulf-900/40 transition-all duration-300 hover:scale-[1.02] active:scale-95 text-center truncate"
                       >
                         <span>{slide.primaryBtn.text}</span>
                         {slide.primaryBtn.icon && (
-                          <slide.primaryBtn.icon className="h-5 w-5 rtl:rotate-180" />
+                          <slide.primaryBtn.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 rtl:rotate-180 shrink-0" />
                         )}
                       </Link>
 
@@ -984,10 +984,10 @@ export default function Hero() {
                         <Link
                           href={slide.secondaryBtn.href}
                           tabIndex={isActive ? 0 : -1}
-                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl border border-slate-300 bg-white/90 text-slate-800 hover:bg-slate-100 hover:text-slate-900 dark:border-gulf-500/30 dark:bg-surface-100/80 dark:text-gulf-200 dark:hover:bg-surface-200 dark:hover:text-white px-8 py-3.5 text-base font-semibold backdrop-blur-md transition-all duration-200 shadow-sm active:scale-95"
+                          className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2.5 rounded-xl border border-slate-300 bg-white/90 text-slate-800 hover:bg-slate-100 hover:text-slate-900 dark:border-gulf-500/30 dark:bg-surface-100/80 dark:text-gulf-200 dark:hover:bg-surface-200 dark:hover:text-white px-3.5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs sm:text-sm md:text-base font-semibold backdrop-blur-md transition-all duration-200 shadow-sm active:scale-95 text-center truncate"
                         >
                           {slide.secondaryBtn.icon && (
-                            <slide.secondaryBtn.icon className="h-5 w-5 text-amber-500 dark:text-gold-400" />
+                            <slide.secondaryBtn.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 text-amber-500 dark:text-gold-400 shrink-0" />
                           )}
                           <span>{slide.secondaryBtn.text}</span>
                         </Link>
@@ -1001,15 +1001,15 @@ export default function Hero() {
             {/* ================================================================= */}
             {/* SLIDE NAVIGATION CONTROLS (Responsive Counter, Progress & Dashes) */}
             {/* ================================================================= */}
-            <div className="flex items-center justify-center gap-3 mt-8 max-w-full px-2">
+            <div className="flex items-center justify-center gap-2 sm:gap-3 mt-2 sm:mt-4 md:mt-8 max-w-full px-2">
               {/* Mobile Previous Chevron Button */}
               <button
                 type="button"
                 onClick={prevSlide}
                 aria-label="Previous Slide"
-                className="sm:hidden flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white/90 dark:border-white/10 dark:bg-surface-100/90 text-slate-700 dark:text-slate-200 shadow-sm active:scale-90 transition-transform"
+                className="sm:hidden flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white/90 dark:border-white/10 dark:bg-surface-100/90 text-slate-700 dark:text-slate-200 shadow-sm active:scale-90 transition-transform"
               >
-                <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
+                <ChevronLeft className="h-3.5 w-3.5 rtl:rotate-180" />
               </button>
 
               {/* Desktop/Tablet Clickable Dash Indicators with Active Fill */}
@@ -1043,9 +1043,9 @@ export default function Hero() {
               </div>
 
               {/* Compact Counter Indicator & Smooth Progress Bar Line */}
-              <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/80 backdrop-blur-md shadow-sm">
+              <div className="flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/80 backdrop-blur-md shadow-sm">
                 {/* Slim Filling Progress Bar Line */}
-                <div className="w-16 sm:w-20 h-1.5 bg-slate-200 dark:bg-white/15 rounded-full overflow-hidden">
+                <div className="w-12 sm:w-20 h-1 sm:h-1.5 bg-slate-200 dark:bg-white/15 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-emerald-600 via-teal-500 to-amber-500 dark:from-gulf-500 dark:via-emerald-400 dark:to-gold-400 rounded-full"
                     style={{
@@ -1056,11 +1056,11 @@ export default function Hero() {
                 </div>
 
                 {/* Counter display (e.g. 03 / 09) */}
-                <span className="text-xs font-mono font-bold tracking-wider text-slate-700 dark:text-slate-300">
+                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-wider text-slate-700 dark:text-slate-300">
                   <span className="text-emerald-700 dark:text-gulf-400">
                     {String(currentSlide + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-slate-400 dark:text-slate-500 mx-1">/</span>
+                  <span className="text-slate-400 dark:text-slate-500 mx-0.5 sm:mx-1">/</span>
                   <span>{String(slides.length).padStart(2, "0")}</span>
                 </span>
               </div>
@@ -1070,46 +1070,46 @@ export default function Hero() {
                 type="button"
                 onClick={nextSlide}
                 aria-label="Next Slide"
-                className="sm:hidden flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white/90 dark:border-white/10 dark:bg-surface-100/90 text-slate-700 dark:text-slate-200 shadow-sm active:scale-90 transition-transform"
+                className="sm:hidden flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white/90 dark:border-white/10 dark:bg-surface-100/90 text-slate-700 dark:text-slate-200 shadow-sm active:scale-90 transition-transform"
               >
-                <ChevronRight className="h-4 w-4 rtl:rotate-180" />
+                <ChevronRight className="h-3.5 w-3.5 rtl:rotate-180" />
               </button>
             </div>
           </div>
 
           {/* Key Value Props */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium">
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-gulf-400" />
+          <div className="mt-2.5 sm:mt-4 md:mt-8 flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-6 gap-y-1 sm:gap-y-2 text-[10px] sm:text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-gulf-400 shrink-0" />
               <span>{t.hero.prop1}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-gulf-400" />
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-gulf-400 shrink-0" />
               <span>{t.hero.prop2}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-gulf-400" />
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600 dark:text-gulf-400 shrink-0" />
               <span>{t.hero.prop3}</span>
             </div>
           </div>
 
           {/* Gulf Country Trust Flags Strip */}
-          <div className="mt-14 w-full max-w-5xl rounded-2xl border border-slate-200/80 bg-white/70 shadow-lg shadow-black/5 dark:border-white/[0.08] dark:bg-surface-100/50 p-6 backdrop-blur-xl">
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-4 flex items-center justify-center gap-2">
-              <Building2 className="h-4 w-4 text-amber-500 dark:text-gold-400" />
+          <div className="mt-3 sm:mt-6 md:mt-14 w-full max-w-5xl rounded-2xl border border-slate-200/80 bg-white/70 shadow-lg shadow-black/5 dark:border-white/[0.08] dark:bg-surface-100/50 p-2.5 sm:p-4 md:p-6 backdrop-blur-xl">
+            <div className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-2 sm:mb-3 md:mb-4 flex items-center justify-center gap-1.5 sm:gap-2">
+              <Building2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-500 dark:text-gold-400" />
               <span>{t.hero.destinationsTitle}</span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2.5 md:gap-3">
               {t.hero.destinations.map((dest, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-slate-50/90 hover:bg-white hover:border-emerald-500/40 dark:border-white/[0.05] dark:bg-surface-200/50 dark:hover:bg-surface-200 dark:hover:border-gulf-500/40 py-3 px-2 text-center transition-all shadow-sm dark:shadow-none"
+                  className="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-slate-50/90 hover:bg-white hover:border-emerald-500/40 dark:border-white/[0.05] dark:bg-surface-200/50 dark:hover:bg-surface-200 dark:hover:border-gulf-500/40 py-1.5 sm:py-2.5 md:py-3 px-1 sm:px-2 text-center transition-all shadow-sm dark:shadow-none"
                 >
-                  <span className="text-2xl mb-1">{dest.flag}</span>
-                  <span className="text-xs font-bold text-slate-800 dark:text-white leading-tight">
+                  <span className="text-base sm:text-xl md:text-2xl mb-0.5">{dest.flag}</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-slate-800 dark:text-white leading-tight">
                     {dest.country}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-300 font-mono mt-0.5">
+                  <span className="text-[8px] sm:text-[10px] text-slate-500 dark:text-slate-300 font-mono mt-0.5">
                     {dest.code}
                   </span>
                 </div>
