@@ -782,15 +782,15 @@ export default function Navbar() {
       {/* ========================================================================= */}
       <Link
         href={pathname === "/" ? "#course-plans" : "/#course-plans"}
-        className={`fixed top-[100px] right-3 sm:right-6 z-40 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white border border-emerald-500/30 whitespace-nowrap flex items-center gap-1.5 group active:scale-95 ${
+        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold text-xs sm:text-[13px] tracking-wide whitespace-nowrap border border-white/20 dark:border-white/15 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 backdrop-blur-md transition-all duration-200 group active:scale-95 select-none ${
           isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         title={t.navbar.startCourse}
         aria-label={t.navbar.startCourse}
       >
-        <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-amber-300" />
-        <span className="whitespace-nowrap">{t.navbar.startCourse}</span>
-        <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
+        <Sparkles className="w-3.5 h-3.5 text-white/90 shrink-0 transition-transform duration-200 group-hover:rotate-12" />
+        <span className="leading-none">{t.navbar.startCourse}</span>
+        <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 rtl:rotate-180 shrink-0 text-white/80 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white" />
       </Link>
     </header>
   );
