@@ -778,19 +778,35 @@ export default function Navbar() {
       )}
 
       {/* ========================================================================= */}
-      {/* PERSISTENT FLOATING STICKY "START COURSE" BUTTON (Top 100px, Right)      */}
+      {/* PERSISTENT FLOATING STICKY "START COURSE" FAB (Top 100px, Right)         */}
       {/* ========================================================================= */}
       <Link
         href={pathname === "/" ? "#course-plans" : "/#course-plans"}
-        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold text-xs sm:text-[13px] tracking-wide whitespace-nowrap border border-white/20 dark:border-white/15 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 backdrop-blur-md transition-all duration-200 group active:scale-95 select-none ${
+        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] border-2 border-white/40 shadow-2xl shadow-emerald-900/50 hover:shadow-emerald-900/70 hover:scale-105 active:scale-95 transition-all duration-300 ease-out group overflow-hidden select-none ${
           isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         title={t.navbar.startCourse}
         aria-label={t.navbar.startCourse}
       >
-        <Sparkles className="w-3.5 h-3.5 text-white/90 shrink-0 transition-transform duration-200 group-hover:rotate-12" />
-        <span className="leading-none">{t.navbar.startCourse}</span>
-        <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 rtl:rotate-180 shrink-0 text-white/80 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white" />
+        {/* Subtle dot pattern texture overlay */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full opacity-20 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] [background-size:8px_8px]"
+        />
+
+        {/* Traveling light shine animation on hover */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-1000 ease-in-out pointer-events-none"
+        />
+
+        {/* Prominent White Play Icon in Circle */}
+        <PlayCircle className="w-6 h-6 text-white shrink-0 relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-110" />
+
+        {/* White, Bold, Uppercase Text with Letter Spacing */}
+        <span className="text-sm sm:text-lg font-extrabold tracking-widest text-white uppercase whitespace-nowrap relative z-10 drop-shadow-sm">
+          {t.navbar.startCourse}
+        </span>
       </Link>
     </header>
   );
