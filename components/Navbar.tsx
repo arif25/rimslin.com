@@ -41,24 +41,8 @@ export default function Navbar() {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
-  const [isCourseFabExpanded, setIsCourseFabExpanded] = useState(true);
   const moreDropdownRef = useRef<HTMLDivElement>(null);
   const helpDropdownRef = useRef<HTMLDivElement>(null);
-
-  // Auto-minimize floating Start Course FAB after 5 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsCourseFabExpanded(false);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleFabClick = (e: React.MouseEvent) => {
-    if (!isCourseFabExpanded) {
-      e.preventDefault();
-      setIsCourseFabExpanded(true);
-    }
-  };
 
   // Close dropdowns when clicked outside
   useEffect(() => {
@@ -798,14 +782,9 @@ export default function Navbar() {
       {/* ========================================================================= */}
       <Link
         href={pathname === "/" ? "#course-plans" : "/#course-plans"}
-        onClick={handleFabClick}
-        onMouseEnter={() => setIsCourseFabExpanded(true)}
-        onMouseLeave={() => setIsCourseFabExpanded(false)}
-        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center overflow-hidden rounded-full shadow-xl hover:shadow-2xl border-2 border-white/40 bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] active:scale-95 transition-all duration-500 ease-in-out group select-none ${
-          isCourseFabExpanded
-            ? "px-4 py-2.5 max-w-[220px]"
-            : "w-11 h-11 sm:w-12 sm:h-12 p-0 justify-center max-w-[48px] hover:scale-105"
-        } ${isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+        className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] border-2 border-white/40 shadow-2xl shadow-emerald-900/50 hover:shadow-emerald-900/70 hover:scale-105 active:scale-95 transition-all duration-300 ease-out group overflow-hidden select-none ${
+          isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
         title={t.navbar.startCourse}
         aria-label={t.navbar.startCourse}
       >
@@ -821,44 +800,13 @@ export default function Navbar() {
           className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-1000 ease-in-out pointer-events-none"
         />
 
-        {/* Comprehensive Multi-Concept Course Learning Icon (Video, Docs/PDF, Live Online) */}
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0 relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
-          aria-hidden="true"
-        >
-          {/* Screen / Monitor frame */}
-          <rect x="2" y="3" width="20" height="13" rx="2" />
-          <path d="M8 20h8" />
-          <path d="M12 16v4" />
-          {/* Video Lesson: Play triangle badge */}
-          <polygon points="6,6.5 10.5,9.5 6,12.5" fill="currentColor" stroke="none" />
-          {/* Document / PDF Curriculum Lines */}
-          <line x1="13" y1="7" x2="18" y2="7" />
-          <line x1="13" y1="9.5" x2="18" y2="9.5" />
-          <line x1="13" y1="12" x2="16" y2="12" />
-          {/* Live Class Indicator Dot */}
-          <circle cx="19" cy="5" r="1.2" fill="#EF4444" stroke="#EF4444" />
-        </svg>
+        {/* Prominent White Play Icon in Circle */}
+        <PlayCircle className="w-6 h-6 text-white shrink-0 relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-110" />
 
-        {/* Smooth Auto-minimizing Text Container */}
-        <div
-          className={`transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap flex items-center gap-1.5 relative z-10 ${
-            isCourseFabExpanded
-              ? "opacity-100 max-w-[140px] ml-2"
-              : "opacity-0 max-w-0 ml-0 pointer-events-none"
-          }`}
-        >
-          <span className="text-xs sm:text-sm font-extrabold tracking-wider text-white uppercase drop-shadow-sm whitespace-nowrap">
-            {t.navbar.startCourse}
-          </span>
-          <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180 shrink-0 text-white/90 drop-shadow-sm" />
-        </div>
+        {/* White, Bold, Uppercase Text with Letter Spacing */}
+        <span className="text-sm sm:text-lg font-extrabold tracking-widest text-white uppercase whitespace-nowrap relative z-10 drop-shadow-sm">
+          {t.navbar.startCourse}
+        </span>
       </Link>
     </header>
   );
