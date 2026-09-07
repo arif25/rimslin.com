@@ -593,13 +593,13 @@ export default function FloatingChatbox() {
             </div>
           ) : null}
 
-          {/* Direct WhatsApp Action Button */}
+          {/* Direct WhatsApp Action Link */}
           <a
             href="https://wa.me/message/BA7ZADIS4EEDG1"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="হোয়াটসঅ্যাপে সরাসরি কথা বলুন"
-            className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold shadow-sm hover:shadow transition-all duration-150 active:scale-[0.99] group select-none"
+            className="w-full flex items-center justify-center gap-2 pt-4 text-sm font-medium text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 hover:underline transition-colors group select-none"
           >
             <svg
               viewBox="0 0 24 24"
