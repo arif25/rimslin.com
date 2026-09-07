@@ -74,7 +74,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   if (!mounted) {
     return (
       <div
-        className={`h-8 w-8 md:h-7 md:w-7 rounded-lg border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 self-center ${className}`}
+        className={`h-9 w-9 md:h-7 md:w-7 rounded-md md:rounded-lg border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 self-center ${className}`}
       />
     );
   }
@@ -84,7 +84,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex h-8 w-8 md:h-7 md:w-7 self-center items-center justify-center rounded-lg border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
+        className="relative flex h-9 w-9 md:h-7 md:w-7 self-center items-center justify-center rounded-md md:rounded-lg border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
         aria-label="Toggle theme"
         title="Toggle theme"
       >
@@ -93,7 +93,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[150px] rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top">
+        <div className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[150px] rounded-md md:rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top">
           <div className="space-y-0.5">
             {themeOptions.map((opt) => {
               const Icon = opt.icon;
@@ -106,7 +106,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
                     setTheme(opt.value);
                     setIsOpen(false);
                   }}
-                  className={`flex w-full items-center justify-between gap-2 rounded-xl px-2.5 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`flex w-full items-center justify-between gap-2 rounded-md md:rounded-xl px-2.5 py-1.5 text-xs font-semibold transition-colors ${
                     isSelected
                       ? "bg-emerald-50 text-emerald-700 dark:bg-gulf-500/20 dark:text-gulf-300 font-bold"
                       : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-surface-200"

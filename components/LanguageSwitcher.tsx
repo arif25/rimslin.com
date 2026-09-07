@@ -103,7 +103,7 @@ export default function LanguageSwitcher({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="group inline-flex items-center justify-center gap-1 sm:gap-1.5 h-8 md:h-7 rounded-lg border border-slate-200/80 bg-white/90 px-2 sm:px-2.5 py-1 text-xs font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
+        className="group inline-flex items-center justify-center gap-1 sm:gap-1.5 h-9 md:h-7 rounded-md md:rounded-lg border border-slate-200/80 bg-white/90 px-2 sm:px-2.5 py-1.5 md:py-1 text-xs font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Select Language"
@@ -121,7 +121,7 @@ export default function LanguageSwitcher({
       {/* Dropdown Menu - adapts side based on RTL */}
       {isOpen && (
         <div
-          className={`absolute z-[999] mt-2 w-52 max-w-[90vw] rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 ${
+          className={`absolute z-[999] mt-2 w-52 max-w-[90vw] rounded-md md:rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 ${
             isRTL
               ? "left-0 end-0 origin-top-left"
               : "right-0 end-0 origin-top-right"
@@ -140,7 +140,7 @@ export default function LanguageSwitcher({
                   key={lang.code}
                   type="button"
                   onClick={() => handleSelectLanguage(lang.code)}
-                  className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-all ${
+                  className={`flex w-full items-center justify-between rounded-md md:rounded-xl px-3 py-2 text-xs font-semibold transition-all ${
                     isSelected
                       ? "bg-emerald-50 text-emerald-700 dark:bg-gulf-500/20 dark:text-gulf-300 font-bold border border-emerald-300 dark:border-gulf-500/40"
                       : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-surface-200 dark:hover:text-white"

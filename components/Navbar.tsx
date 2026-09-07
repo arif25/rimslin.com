@@ -210,13 +210,13 @@ export default function Navbar() {
       {/* TIER 1: TOP UTILITY BAR (Above Logo - Right-Aligned & Slim)              */}
       {/* ========================================================================= */}
       <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-1 sm:py-1 md:py-0.5 transition-colors duration-200 relative z-50 overflow-visible leading-none">
-        <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 flex items-center justify-between md:justify-end gap-1.5 sm:gap-2 md:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-visible leading-none">
+        <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 flex items-center justify-end gap-2 md:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-visible leading-none">
           {/* MOBILE ONLY (< md): "Books" and "Career" action items in Top Tier */}
-          <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex md:hidden items-center gap-2 shrink-0">
             {/* 1. Books Button (Mobile) */}
             <Link
               href="/books"
-              className={`inline-flex items-center gap-1.5 h-8 px-2 sm:px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors shrink-0 ${
+              className={`inline-flex items-center gap-1.5 h-9 px-2 sm:px-2.5 py-1.5 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors shrink-0 ${
                 pathname === "/books"
                   ? "bg-slate-200/80 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 border-emerald-500/40 font-bold"
                   : "bg-white/90 dark:bg-surface-100/90"
@@ -232,7 +232,7 @@ export default function Navbar() {
             {/* 2. Career Button (Mobile) */}
             <Link
               href="/career"
-              className={`inline-flex items-center gap-1.5 h-8 px-2 sm:px-2.5 py-1 text-xs font-semibold rounded-lg border transition-colors shrink-0 active:scale-95 ${
+              className={`inline-flex items-center gap-1.5 h-9 px-2 sm:px-2.5 py-1.5 text-xs font-semibold rounded-md border transition-colors shrink-0 active:scale-95 ${
                 pathname === "/career"
                   ? "bg-emerald-600 text-white border-emerald-500 shadow-xs dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
                   : "border-emerald-300 dark:border-emerald-700/60 bg-emerald-50/90 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60"
@@ -244,7 +244,7 @@ export default function Navbar() {
           </div>
 
           {/* Right-aligned Controls Container */}
-          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-4 shrink-0">
+          <div className="flex items-center gap-2 md:gap-4 shrink-0">
             {/* DESKTOP VIEW (md: and above): Directly visible Support Email & WhatsApp */}
             <a
               href="mailto:support@rimslin.com"
@@ -275,7 +275,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsHelpOpen(!isHelpOpen)}
-                className={`group inline-flex items-center justify-center gap-1 sm:gap-1.5 h-8 rounded-lg border border-slate-200/80 bg-white/90 px-2 sm:px-2.5 py-1 text-xs font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0 ${
+                className={`group inline-flex items-center justify-center gap-1 sm:gap-1.5 h-9 rounded-md border border-slate-200/80 bg-white/90 px-2 sm:px-2.5 py-1.5 text-xs font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0 ${
                   isHelpOpen
                     ? "border-emerald-500 ring-2 ring-emerald-500/30 dark:border-gulf-400"
                     : ""
@@ -304,7 +304,7 @@ export default function Navbar() {
               {/* Mobile Dropdown Floating Popover */}
               {isHelpOpen && (
                 <div
-                  className={`absolute top-full mt-2 w-56 max-w-[85vw] rounded-2xl border border-gray-200 dark:border-gray-800 dark:border-gulf-500/30 bg-white dark:bg-gray-900 dark:bg-[#08150d] p-2 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-[999] origin-top ${
+                  className={`absolute top-full mt-2 w-56 max-w-[85vw] rounded-md border border-gray-200 dark:border-gray-800 dark:border-gulf-500/30 bg-white dark:bg-gray-900 dark:bg-[#08150d] p-2 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-[999] origin-top ${
                     isRTL ? "left-0 right-auto" : "right-0 left-auto"
                   }`}
                 >
@@ -328,9 +328,9 @@ export default function Navbar() {
                     <a
                       href="mailto:support@rimslin.com"
                       onClick={() => setIsHelpOpen(false)}
-                      className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
+                      className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
                     >
-                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100/80 text-emerald-600 dark:bg-gulf-500/20 dark:text-gulf-400 shrink-0">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-100/80 text-emerald-600 dark:bg-gulf-500/20 dark:text-gulf-400 shrink-0">
                         <Mail className="h-3.5 w-3.5" />
                       </div>
                       <div className="flex flex-col min-w-0">
@@ -355,9 +355,9 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsHelpOpen(false)}
-                      className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
+                      className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
                     >
-                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100/80 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 shrink-0">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-100/80 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 shrink-0">
                         <MessageCircle className="h-3.5 w-3.5" />
                       </div>
                       <div className="flex flex-col min-w-0">
