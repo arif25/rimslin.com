@@ -208,23 +208,22 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full overflow-visible bg-white dark:bg-gray-900 dark:bg-[#060b08] shadow-sm dark:shadow-black/30 transition-colors duration-200">
       {/* ========================================================================= */}
       {/* TIER 1: TOP UTILITY BAR (Above Logo - Right-Aligned & Slim)              */}
-      {/* ========================================================================= */}
       <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-1 sm:py-1 md:py-0.5 transition-colors duration-200 relative z-50 overflow-visible leading-none">
-        <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 flex items-center justify-end gap-2 md:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-visible leading-none">
+        <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 lg:px-8 flex flex-nowrap items-center justify-end gap-1 sm:gap-1.5 md:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-hidden md:overflow-visible leading-none">
           {/* MOBILE ONLY (< md): "Books" and "Career" action items in Top Tier */}
-          <div className="flex md:hidden items-center gap-2 shrink-0">
+          <div className="flex md:hidden items-center gap-1 sm:gap-1.5 shrink-0 flex-shrink-0">
             {/* 1. Books Button (Mobile) */}
             <Link
               href="/books"
-              className={`inline-flex items-center gap-1.5 h-9 px-2 sm:px-2.5 py-1.5 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors shrink-0 ${
+              className={`inline-flex items-center gap-1 h-8 px-1.5 sm:px-2 py-1 text-[11px] font-semibold rounded-md border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0 flex-shrink-0 ${
                 pathname === "/books"
                   ? "bg-slate-200/80 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 border-emerald-500/40 font-bold"
                   : "bg-white/90 dark:bg-surface-100/90"
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <BookOpen className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0 flex-shrink-0" />
               <span>Books</span>
-              <span className="text-[10px] font-bold px-1 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 shrink-0 leading-none">
+              <span className="text-[9px] font-bold px-1 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 shrink-0 flex-shrink-0 leading-none">
                 PDF
               </span>
             </Link>
@@ -232,19 +231,19 @@ export default function Navbar() {
             {/* 2. Career Button (Mobile) */}
             <Link
               href="/career"
-              className={`inline-flex items-center gap-1.5 h-9 px-2 sm:px-2.5 py-1.5 text-xs font-semibold rounded-md border transition-colors shrink-0 active:scale-95 ${
+              className={`inline-flex items-center gap-1 h-8 px-1.5 sm:px-2 py-1 text-[11px] font-semibold rounded-md border transition-colors whitespace-nowrap shrink-0 flex-shrink-0 active:scale-95 ${
                 pathname === "/career"
                   ? "bg-emerald-600 text-white border-emerald-500 shadow-xs dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
                   : "border-emerald-300 dark:border-emerald-700/60 bg-emerald-50/90 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60"
               }`}
             >
-              <Briefcase className={`h-3.5 w-3.5 shrink-0 ${pathname === "/career" ? "text-white dark:text-slate-950" : "text-emerald-600 dark:text-emerald-400"}`} />
+              <Briefcase className={`h-3.5 w-3.5 shrink-0 flex-shrink-0 ${pathname === "/career" ? "text-white dark:text-slate-950" : "text-emerald-600 dark:text-emerald-400"}`} />
               <span className="whitespace-nowrap">Career</span>
             </Link>
           </div>
 
           {/* Right-aligned Controls Container */}
-          <div className="flex items-center gap-2 md:gap-4 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-1.5 md:gap-4 shrink-0 flex-shrink-0">
             {/* DESKTOP VIEW (md: and above): Directly visible Support Email & WhatsApp */}
             <a
               href="mailto:support@rimslin.com"
@@ -271,11 +270,11 @@ export default function Navbar() {
             </a>
 
             {/* MOBILE VIEW (< md screens): Compact consolidated Help / Support Dropdown */}
-            <div className="md:hidden relative inline-block text-left shrink-0" ref={helpDropdownRef}>
+            <div className="md:hidden relative inline-block text-left shrink-0 flex-shrink-0" ref={helpDropdownRef}>
               <button
                 type="button"
                 onClick={() => setIsHelpOpen(!isHelpOpen)}
-                className={`group inline-flex items-center justify-center gap-1 sm:gap-1.5 h-9 rounded-md border border-slate-200/80 bg-white/90 px-2 sm:px-2.5 py-1.5 text-xs font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0 ${
+                className={`group inline-flex items-center justify-center gap-1 h-8 rounded-md border border-slate-200/80 bg-white/90 px-1.5 sm:px-2 py-1 text-[11px] font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white whitespace-nowrap shrink-0 flex-shrink-0 ${
                   isHelpOpen
                     ? "border-emerald-500 ring-2 ring-emerald-500/30 dark:border-gulf-400"
                     : ""
@@ -284,8 +283,8 @@ export default function Navbar() {
                 aria-haspopup="true"
                 aria-label="Help & Support"
               >
-                <Headphones className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0" />
-                <span className="hidden xs:inline text-xs font-semibold">
+                <Headphones className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 shrink-0 flex-shrink-0" />
+                <span className="hidden xs:inline text-[11px] font-semibold">
                   {language === "bn"
                     ? "সহায়তা"
                     : language === "hi"
@@ -295,7 +294,7 @@ export default function Navbar() {
                     : "Help"}
                 </span>
                 <ChevronDown
-                  className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 ${
+                  className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 flex-shrink-0 ${
                     isHelpOpen ? "rotate-180 text-emerald-600 dark:text-gulf-400" : ""
                   }`}
                 />
@@ -304,8 +303,8 @@ export default function Navbar() {
               {/* Mobile Dropdown Floating Popover */}
               {isHelpOpen && (
                 <div
-                  className={`absolute top-full mt-2 w-56 max-w-[85vw] rounded-md border border-gray-200 dark:border-gray-800 dark:border-gulf-500/30 bg-white dark:bg-gray-900 dark:bg-[#08150d] p-2 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-[999] origin-top ${
-                    isRTL ? "left-0 right-auto" : "right-0 left-auto"
+                  className={`fixed sm:absolute top-11 sm:top-full mt-1 w-56 max-w-[85vw] rounded-md border border-gray-200 dark:border-gray-800 dark:border-gulf-500/30 bg-white dark:bg-gray-900 dark:bg-[#08150d] p-2 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-[999] origin-top ${
+                    isRTL ? "left-2 sm:left-0 sm:right-auto" : "right-2 sm:right-0 sm:left-auto"
                   }`}
                 >
                   <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-white/[0.06] mb-1.5 flex items-center justify-between">
@@ -375,12 +374,12 @@ export default function Navbar() {
             </div>
 
             {/* Language Dropdown Selector */}
-            <div className="shrink-0">
+            <div className="shrink-0 flex-shrink-0">
               <LanguageSwitcher />
             </div>
 
             {/* Dark / Light Mode Toggle */}
-            <div className="shrink-0 self-center flex items-center">
+            <div className="shrink-0 flex-shrink-0 self-center flex items-center">
               <ThemeToggle />
             </div>
           </div>

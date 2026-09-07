@@ -99,20 +99,20 @@ export default function LanguageSwitcher({
   }
 
   return (
-    <div className={`relative inline-block text-start max-w-full z-50 ${className}`} ref={dropdownRef}>
+    <div className={`relative inline-block text-start max-w-full z-50 shrink-0 flex-shrink-0 ${className}`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="group inline-flex items-center justify-center gap-1 sm:gap-1.5 h-9 md:h-7 rounded-md md:rounded-lg border border-slate-200/80 bg-white/90 px-2 sm:px-2.5 py-1.5 md:py-1 text-xs font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
+        className="group inline-flex items-center justify-center gap-1 sm:gap-1.5 h-8 md:h-7 rounded-md md:rounded-lg border border-slate-200/80 bg-white/90 px-1.5 sm:px-2 md:px-2.5 py-1 text-[11px] md:text-xs font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white whitespace-nowrap shrink-0 flex-shrink-0"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Select Language"
       >
-        <Globe className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-45 shrink-0" />
+        <Globe className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-45 shrink-0 flex-shrink-0" />
         <span className="font-bold text-slate-800 dark:text-white tracking-wide truncate hidden sm:inline">{currentLang.label}</span>
-        <span className="font-bold text-slate-800 dark:text-white tracking-wide truncate sm:hidden text-xs">{currentLang.shortCode}</span>
+        <span className="font-bold text-slate-800 dark:text-white tracking-wide truncate sm:hidden text-[11px]">{currentLang.shortCode}</span>
         <ChevronDown
-          className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 ${
+          className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 flex-shrink-0 ${
             isOpen ? "rotate-180 text-emerald-600 dark:text-gulf-400" : ""
           }`}
         />
@@ -121,10 +121,10 @@ export default function LanguageSwitcher({
       {/* Dropdown Menu - adapts side based on RTL */}
       {isOpen && (
         <div
-          className={`absolute z-[999] mt-2 w-52 max-w-[90vw] rounded-md md:rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 ${
+          className={`fixed sm:absolute z-[999] top-11 sm:top-full mt-1 w-52 max-w-[90vw] rounded-md md:rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 ${
             isRTL
-              ? "left-0 end-0 origin-top-left"
-              : "right-0 end-0 origin-top-right"
+              ? "left-2 sm:left-0 sm:end-0 origin-top-left"
+              : "right-2 sm:right-0 sm:end-0 origin-top-right"
           }`}
         >
           <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-white/[0.06] mb-1 flex items-center justify-between">

@@ -74,26 +74,26 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   if (!mounted) {
     return (
       <div
-        className={`h-9 w-9 md:h-7 md:w-7 rounded-md md:rounded-lg border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 self-center ${className}`}
+        className={`h-8 w-8 md:h-7 md:w-7 rounded-md md:rounded-lg border border-slate-200 dark:border-gulf-500/30 bg-white/80 dark:bg-surface-100/90 shrink-0 flex-shrink-0 self-center ${className}`}
       />
     );
   }
 
   return (
-    <div className={`relative inline-block text-start z-50 shrink-0 self-center ${className}`} ref={dropdownRef}>
+    <div className={`relative inline-block text-start z-50 shrink-0 flex-shrink-0 self-center ${className}`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex h-9 w-9 md:h-7 md:w-7 self-center items-center justify-center rounded-md md:rounded-lg border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white shrink-0"
+        className="relative flex h-8 w-8 md:h-7 md:w-7 self-center items-center justify-center rounded-md md:rounded-lg border border-slate-200/80 bg-white/90 text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white whitespace-nowrap shrink-0 flex-shrink-0"
         aria-label="Toggle theme"
         title="Toggle theme"
       >
-        <Sun className="h-3.5 w-3.5 md:h-4 md:w-4 rotate-0 scale-100 transition-all duration-300 text-amber-500 dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute h-3.5 w-3.5 md:h-4 md:w-4 rotate-90 scale-0 transition-all duration-300 text-gulf-400 dark:rotate-0 dark:scale-100" />
+        <Sun className="h-3.5 w-3.5 md:h-4 md:w-4 rotate-0 scale-100 transition-all duration-300 text-amber-500 dark:-rotate-90 dark:scale-0 shrink-0 flex-shrink-0" />
+        <Moon className="absolute h-3.5 w-3.5 md:h-4 md:w-4 rotate-90 scale-0 transition-all duration-300 text-gulf-400 dark:rotate-0 dark:scale-100 shrink-0 flex-shrink-0" />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[150px] rounded-md md:rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top">
+        <div className="fixed sm:absolute top-11 sm:top-full mt-1 end-2 sm:end-0 right-2 sm:right-0 rtl:right-auto rtl:left-2 sm:rtl:left-0 z-[999] min-w-[150px] rounded-md md:rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top">
           <div className="space-y-0.5">
             {themeOptions.map((opt) => {
               const Icon = opt.icon;
