@@ -88,6 +88,11 @@ export default function Navbar() {
     } else {
       router.push(targetUrl);
     }
+
+    // Auto-collapse back to compact icon after exactly 2 seconds following navigation
+    collapseTimerRef.current = setTimeout(() => {
+      setIsExpanded(false);
+    }, 2000);
   };
 
   // Close dropdowns and collapsed elements when clicked outside
