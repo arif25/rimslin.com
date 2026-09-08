@@ -35,6 +35,7 @@ import { useLanguage } from "@/lib/language-context";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ThemeToggle from "@/components/theme-toggle";
 import AuthButton from "@/components/AuthButton";
+import StickyCourseButton from "@/components/StickyCourseButton";
 
 export default function Navbar() {
   const { t, language, isRTL } = useLanguage();
@@ -44,61 +45,14 @@ export default function Navbar() {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(true);
   const moreDropdownRef = useRef<HTMLDivElement>(null);
   const helpDropdownRef = useRef<HTMLDivElement>(null);
-  const courseFabRef = useRef<HTMLButtonElement>(null);
-  const collapseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto-collapse Start Course button after 4 seconds on initial load
   useEffect(() => {
     setHasMounted(true);
-    collapseTimerRef.current = setTimeout(() => {
-      setIsExpanded(false);
-    }, 4000);
-
-    return () => {
-      if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
-    };
   }, []);
 
-  const handleFabClick = (e: React.MouseEvent) => {
-    if (!isExpanded) {
-      // Step 1: Prevent premature navigation on first tap when collapsed, expand the button
-      e.preventDefault();
-      e.stopPropagation();
-      setIsExpanded(true);
-
-      // If opened manually, start a 4-second timeout to re-collapse if the user doesn't tap again
-      if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
-      collapseTimerRef.current = setTimeout(() => {
-        setIsExpanded(false);
-      }, 4000);
-      return;
-    }
-
-    // Step 2: Only navigate on 2nd tap when already expanded
-    if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
-    const targetUrl = pathname === "/" ? "#course-plans" : "/#course-plans";
-    if (pathname === "/") {
-      const el = document.getElementById("course-plans");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", "#course-plans");
-      } else {
-        router.push(targetUrl);
-      }
-    } else {
-      router.push(targetUrl);
-    }
-
-    // Auto-collapse back to compact icon after exactly 2 seconds following navigation
-    collapseTimerRef.current = setTimeout(() => {
-      setIsExpanded(false);
-    }, 2000);
-  };
-
-  // Close dropdowns and collapsed elements when clicked outside
+  // Close dropdowns when clicked outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -112,13 +66,6 @@ export default function Navbar() {
         !helpDropdownRef.current.contains(event.target as Node)
       ) {
         setIsHelpOpen(false);
-      }
-      if (
-        courseFabRef.current &&
-        !courseFabRef.current.contains(event.target as Node)
-      ) {
-        setIsExpanded(false);
-        if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -848,84 +795,11 @@ export default function Navbar() {
       )}
 
       {/* ========================================================================= */}
-      {/* PERSISTENT FLOATING STICKY "START COURSE" BUTTON (Top 100px, Right)      */}
+      {/* PERSISTENT STICKY "START COURSE" BUTTON (Bottom Floating Action CTA)      */}
       {/* ========================================================================= */}
-      {hasMounted && (
-        <button
-          ref={courseFabRef}
-          type="button"
-          onClick={handleFabClick}
-          onMouseEnter={() => {
-            if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
-            setIsExpanded(true);
-          }}
-          onMouseLeave={() => {
-            if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
-            collapseTimerRef.current = setTimeout(() => {
-              setIsExpanded(false);
-            }, 2000);
-          }}
-          className={`fixed top-[100px] right-3 sm:right-6 z-40 flex items-center overflow-hidden rounded-full shadow-2xl shadow-emerald-950/40 hover:shadow-emerald-950/60 border-2 border-white/40 bg-gradient-to-br from-[#1DE9B6] via-[#00BFA5] to-[#009688] hover:from-[#00F5D4] hover:via-[#1DE9B6] hover:to-[#00BFA5] active:scale-95 transition-all duration-300 ease-in-out group select-none cursor-pointer ${
-            isExpanded
-              ? "px-4 py-2.5 max-w-[240px]"
-              : "w-11 h-11 sm:w-12 sm:h-12 p-0 justify-center max-w-[48px] hover:scale-105"
-          } ${isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-          title={t.navbar.startCourse}
-          aria-label={t.navbar.startCourse}
-          aria-expanded={isExpanded}
-        >
-          {/* Subtle dot pattern texture overlay */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 rounded-full opacity-20 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] [background-size:8px_8px]"
-          />
-
-          {/* Traveling light shine animation on hover */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-1000 ease-in-out pointer-events-none"
-          />
-
-          {/* Comprehensive Multi-Concept Course Learning Icon (Video, Docs/PDF, Live Online) */}
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.75"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0 relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
-            aria-hidden="true"
-          >
-            {/* Screen / Monitor frame */}
-            <rect x="2" y="3" width="20" height="13" rx="2" />
-            <path d="M8 20h8" />
-            <path d="M12 16v4" />
-            {/* Video Lesson: Play triangle badge */}
-            <polygon points="6,6.5 10.5,9.5 6,12.5" fill="currentColor" stroke="none" />
-            {/* Document / PDF Curriculum Lines */}
-            <line x1="13" y1="7" x2="18" y2="7" strokeWidth="1.5" />
-            <line x1="13" y1="9.5" x2="18" y2="9.5" strokeWidth="1.5" />
-            <line x1="13" y1="12" x2="16" y2="12" strokeWidth="1.5" />
-            {/* Live Broadcast Blinking Indicator Dot */}
-            <circle cx="19" cy="5" r="1.3" fill="#EF4444" stroke="#EF4444" className="animate-pulse" />
-          </svg>
-
-          {/* Smooth Auto-minimizing Text Container */}
-          <div
-            className={`transition-all duration-300 ease-in-out overflow-hidden whitespace-nowrap flex items-center gap-1.5 relative z-10 ${
-              isExpanded
-                ? "opacity-100 max-w-[160px] ml-2"
-                : "opacity-0 max-w-0 ml-0 pointer-events-none"
-            }`}
-          >
-            <span className="text-xs sm:text-sm font-extrabold tracking-wider text-white uppercase drop-shadow-sm whitespace-nowrap">
-              {t.navbar.startCourse}
-            </span>
-            <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180 shrink-0 text-white/90 drop-shadow-sm" />
-          </div>
-        </button>
-      )}
+      <StickyCourseButton
+        className={isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"}
+      />
     </header>
   );
 }
