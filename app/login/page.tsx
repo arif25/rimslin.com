@@ -1,4 +1,4 @@
-﻿/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -55,6 +55,10 @@ export default function LoginPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
 
+  // Location detection: Default to India ("IN") while loading for seamless UX
+  const [country, setCountry] = useState<string>("IN");
+  const isIndia = country === "IN";
+
   // Auth step state: "phone" (enter mobile) | "otp" (enter 6-digit code)
   const [authStep, setAuthStep] = useState<"phone" | "otp">("phone");
 
@@ -82,14 +86,99 @@ export default function LoginPage() {
   // OTP input refs
   const otpInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // 1. If already logged in, redirect to dashboard
+  // 1. Detect User Location (IN vs outside IN)
+  useEffect(() => {
+    let isMounted = true;
+
+    // Check for query override (e.g. ?country=US or ?country=IN for testing)
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const queryCountry = searchParams.get("country");
+      if (queryCountry) {
+        setCountry(queryCountry.toUpperCase());
+        return;
+      }
+
+      // Check session cache to avoid repeated network calls
+      const cached = sessionStorage.getItem("rimslin_user_country");
+      if (cached) {
+        setCountry(cached.toUpperCase());
+        return;
+      }
+    }
+
+    const detectCountry = async () => {
+      let detected: string | null = null;
+
+      // Try 1: Next.js internal geo route handler (headers like x-vercel-ip-country)
+      try {
+        const res = await fetch("/api/geo");
+        if (res.ok) {
+          const data = await res.json();
+          if (data?.country) {
+            detected = data.country;
+          }
+        }
+      } catch {
+        // Continue to fallback
+      }
+
+      // Try 2: Free, fast external geolocation fallback (api.country.is)
+      if (!detected) {
+        try {
+          const res = await fetch("https://api.country.is");
+          if (res.ok) {
+            const data = await res.json();
+            if (data?.country) {
+              detected = data.country;
+            }
+          }
+        } catch {
+          // Continue to fallback
+        }
+      }
+
+      // Try 3: Secondary external geolocation fallback (ipapi.co)
+      if (!detected) {
+        try {
+          const res = await fetch("https://ipapi.co/json/");
+          if (res.ok) {
+            const data = await res.json();
+            if (data?.country_code) {
+              detected = data.country_code;
+            }
+          }
+        } catch {
+          // Graceful fallback to default 'IN'
+        }
+      }
+
+      if (detected && isMounted) {
+        const upper = detected.toUpperCase();
+        setCountry(upper);
+        try {
+          sessionStorage.setItem("rimslin_user_country", upper);
+        } catch {
+          // Ignore session storage errors
+        }
+      }
+    };
+
+    detectCountry();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // 2. If already logged in, redirect to dashboard
   useEffect(() => {
     if (!loading && user) {
       router.replace("/dashboard");
     }
   }, [user, loading, router]);
 
-  // 2. Lifecycle cleanup on unmount for reCAPTCHA
+  // 3. Lifecycle cleanup on unmount for reCAPTCHA
   useEffect(() => {
     return () => {
       if (typeof window !== "undefined" && window.recaptchaVerifier) {
@@ -107,7 +196,7 @@ export default function LoginPage() {
     };
   }, []);
 
-  // 3. Countdown timer for Resend OTP
+  // 4. Countdown timer for Resend OTP
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (authStep === "otp" && resendCountdown > 0) {
@@ -121,8 +210,9 @@ export default function LoginPage() {
   }, [authStep, resendCountdown]);
 
   // Helper to ensure RecaptchaVerifier instance is available (Singleton)
+  // Only rendered/initialized if isIndia is true
   const getOrCreateRecaptchaVerifier = () => {
-    if (typeof window === "undefined") return null;
+    if (typeof window === "undefined" || !isIndia) return null;
 
     // If verifier already exists, reuse it without remounting
     if (window.recaptchaVerifier) {
@@ -407,8 +497,8 @@ export default function LoginPage() {
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-background text-slate-900 dark:text-slate-100 transition-colors duration-200">
       <Navbar />
 
-      {/* Invisible container required for Firebase reCAPTCHA */}
-      <div id="recaptcha-container" />
+      {/* Invisible container required for Firebase reCAPTCHA - only rendered if user is in India */}
+      {isIndia && <div id="recaptcha-container" />}
 
       {/* Main Centered Sign-In Content */}
       <main className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16 relative overflow-hidden bg-hero-emerald-glow">
@@ -434,15 +524,19 @@ export default function LoginPage() {
               </h1>
 
               <p className="text-sm text-slate-500 dark:text-slate-400">
-                {authStep === "phone" ? (
-                  "Enter your mobile number to get started"
-                ) : (
-                  <span>
-                    Enter the 6-digit code sent to{" "}
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">
-                      {finalFormattedPhone || `${countryCode} ${phoneNumber}`}
+                {isIndia ? (
+                  authStep === "phone" ? (
+                    "Enter your mobile number to get started"
+                  ) : (
+                    <span>
+                      Enter the 6-digit code sent to{" "}
+                      <span className="font-semibold text-slate-800 dark:text-slate-200">
+                        {finalFormattedPhone || `${countryCode} ${phoneNumber}`}
+                      </span>
                     </span>
-                  </span>
+                  )
+                ) : (
+                  "Sign in with Google to get started (Mobile OTP is currently available in India only)"
                 )}
               </p>
             </div>
@@ -464,9 +558,9 @@ export default function LoginPage() {
             )}
 
             {/* ============================================================= */}
-            {/* STEP 1: MOBILE NUMBER INPUT */}
+            {/* STEP 1: MOBILE NUMBER INPUT (INDIA ONLY) */}
             {/* ============================================================= */}
-            {authStep === "phone" && (
+            {isIndia && authStep === "phone" && (
               <form onSubmit={handleSendOtp} className="space-y-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
@@ -536,9 +630,9 @@ export default function LoginPage() {
             )}
 
             {/* ============================================================= */}
-            {/* STEP 2: OTP VERIFICATION */}
+            {/* STEP 2: OTP VERIFICATION (INDIA ONLY) */}
             {/* ============================================================= */}
-            {authStep === "otp" && (
+            {isIndia && authStep === "otp" && (
               <form onSubmit={handleVerifyOtp} className="space-y-5 animate-in fade-in-50 duration-200">
                 {/* Masked Number & Prominent Edit Button */}
                 <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
@@ -633,18 +727,20 @@ export default function LoginPage() {
             )}
 
             {/* ============================================================= */}
-            {/* DIVIDER: "OR" */}
+            {/* DIVIDER: "OR" (INDIA ONLY) */}
             {/* ============================================================= */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200 dark:border-slate-800" />
+            {isIndia && (
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-slate-200 dark:border-slate-800" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-white dark:bg-surface-100 px-3 text-slate-400 dark:text-slate-500 font-bold tracking-wider">
+                    OR
+                  </span>
+                </div>
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white dark:bg-surface-100 px-3 text-slate-400 dark:text-slate-500 font-bold tracking-wider">
-                  OR
-                </span>
-              </div>
-            </div>
+            )}
 
             {/* ============================================================= */}
             {/* STEP 3: GOOGLE SIGN-IN */}
@@ -654,7 +750,10 @@ export default function LoginPage() {
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={isGoogleSigningIn || isSendingOtp || isVerifyingOtp}
-                className="w-full h-12 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/80 text-slate-800 dark:text-slate-100 font-bold text-sm shadow-sm flex items-center justify-center gap-3 transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                className={`w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/80 text-slate-800 dark:text-slate-100 font-bold text-sm shadow-sm flex items-center justify-center gap-3 transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed ${!isIndia
+                  ? "h-14 py-3.5 border-emerald-500/40 hover:border-emerald-500 shadow-lg shadow-emerald-500/10 text-base ring-2 ring-emerald-500/20"
+                  : "h-12"
+                  }`}
               >
                 {isGoogleSigningIn ? (
                   <>
