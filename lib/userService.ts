@@ -59,3 +59,22 @@ export async function syncUserWithDatabase(user: User): Promise<void> {
     console.error("Error syncing user with Firestore database:", error);
   }
 }
+
+/**
+ * Fetches user profile document from Firestore 'users/{uid}'.
+ */
+export async function getUserProfile(uid: string): Promise<UserProfile | null> {
+  if (!uid) return null;
+  try {
+    const userDocRef = doc(db, "users", uid);
+    const docSnap = await getDoc(userDocRef);
+    if (docSnap.exists()) {
+      return docSnap.data() as UserProfile;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error fetching user profile from Firestore:", error);
+    return null;
+  }
+}
+

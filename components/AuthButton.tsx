@@ -3,7 +3,8 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { User, LogOut, ChevronDown, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { User, LogOut, ChevronDown, GraduationCap, LogIn } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 interface AuthButtonProps {
@@ -17,11 +18,11 @@ export default function AuthButton({
   onActionComplete,
   className = "",
 }: AuthButtonProps) {
-  const { user, loading, loginWithGoogle, logout } = useAuth();
+  const router = useRouter();
+  const { user, loading, logout } = useAuth();
   const [hasMounted, setHasMounted] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const [isSigningIn, setIsSigningIn] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,18 +56,6 @@ export default function AuthButton({
     };
   }, [isDropdownOpen]);
 
-  const handleLogin = async () => {
-    try {
-      setIsSigningIn(true);
-      await loginWithGoogle();
-      if (onActionComplete) onActionComplete();
-    } catch (err) {
-      console.error("Login failed:", err);
-    } finally {
-      setIsSigningIn(false);
-    }
-  };
-
   const handleLogout = async () => {
     try {
       setIsDropdownOpen(false);
@@ -76,32 +65,6 @@ export default function AuthButton({
       console.error("Logout failed:", err);
     }
   };
-
-  // Google 4-color "G" Logo SVG
-  const GoogleGIcon = () => (
-    <svg
-      className="h-4 w-4 shrink-0"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        fill="#4285F4"
-        d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
-      />
-      <path
-        fill="#34A853"
-        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.36 24 12 24z"
-      />
-      <path
-        fill="#FBBC05"
-        d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 10.03 0 12s.45 3.82 1.25 5.42l4.03-3.15z"
-      />
-      <path
-        fill="#EA4335"
-        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.36 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
-      />
-    </svg>
-  );
 
   // 1. Pre-mount & Auth Loading Skeleton Placeholder
   if (!hasMounted || loading) {
@@ -123,10 +86,12 @@ export default function AuthButton({
         .slice(0, 2)
         .map((n) => n[0].toUpperCase())
         .join("")
-    : user?.email?.[0].toUpperCase() || "U";
+    : user?.email?.[0]?.toUpperCase() || user?.phoneNumber?.slice(-2) || "U";
 
   // First name for header pill display
-  const firstName = user?.displayName?.trim().split(" ")[0] || "ইউজার";
+  const firstName =
+    user?.displayName?.trim().split(" ")[0] ||
+    (user?.phoneNumber ? user.phoneNumber.slice(-4) : "User");
 
   // =========================================================================
   // 2. MOBILE DRAWER VARIANT
@@ -134,19 +99,16 @@ export default function AuthButton({
   if (variant === "mobile") {
     if (!user) {
       return (
-        <button
-          type="button"
-          onClick={handleLogin}
-          disabled={isSigningIn}
-          className={`w-full flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold text-sm shadow-sm hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-slate-800/80 transition-all active:scale-98 ${className}`}
+        <Link
+          href="/login"
+          onClick={() => {
+            if (onActionComplete) onActionComplete();
+          }}
+          className={`w-full flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm shadow-emerald-600/20 transition-all active:scale-98 ${className}`}
         >
-          {isSigningIn ? (
-            <div className="h-4 w-4 rounded-full border-2 border-emerald-600 border-t-transparent animate-spin" />
-          ) : (
-            <GoogleGIcon />
-          )}
-          <span>{isSigningIn ? "লগইন হচ্ছে..." : "গুগল দিয়ে লগইন"}</span>
-        </button>
+          <LogIn className="h-4 w-4" />
+          <span>Sign In</span>
+        </Link>
       );
     }
 
@@ -170,39 +132,52 @@ export default function AuthButton({
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1.5">
               <span className="text-sm font-bold text-slate-900 dark:text-white truncate">
-                {user.displayName || "সম্মানিত ইউজার"}
+                {user.displayName || "Student"}
               </span>
-              <span className="inline-flex px-1.5 py-0.2 text-[9px] font-bold rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
-                Google
+              <span className="inline-flex px-1.5 py-0.5 text-[9px] font-bold rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
+                {user.phoneNumber ? "Phone" : "Google"}
               </span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
-              {user.email}
+              {user.email || user.phoneNumber}
             </p>
           </div>
         </div>
 
         {/* Action Links */}
-        <div className="grid grid-cols-2 gap-2 pt-1 border-t border-emerald-500/15 dark:border-emerald-500/10">
+        <div className="space-y-2 pt-1 border-t border-emerald-500/15 dark:border-emerald-500/10">
           <Link
-            href="/profile"
+            href="/dashboard"
             onClick={() => {
               if (onActionComplete) onActionComplete();
             }}
-            className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold shadow-md hover:from-emerald-500 hover:to-teal-500 transition-all active:scale-95"
           >
-            <User className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>প্রোফাইল</span>
+            <GraduationCap className="h-4 w-4" />
+            <span>Dashboard</span>
           </Link>
 
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white dark:bg-slate-900 border border-red-200 dark:border-red-900/40 text-xs font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors shadow-sm"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            <span>লগআউট</span>
-          </button>
+          <div className="grid grid-cols-2 gap-2">
+            <Link
+              href="/profile"
+              onClick={() => {
+                if (onActionComplete) onActionComplete();
+              }}
+              className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
+            >
+              <User className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>Profile</span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white dark:bg-slate-900 border border-red-200 dark:border-red-900/40 text-xs font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors shadow-sm"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              <span>Sign out</span>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -213,25 +188,14 @@ export default function AuthButton({
   // =========================================================================
   if (!user) {
     return (
-      <button
-        type="button"
-        onClick={handleLogin}
-        disabled={isSigningIn}
-        className={`inline-flex items-center gap-1.5 sm:gap-2 h-8 sm:h-9 px-2.5 sm:px-3 text-xs sm:text-sm font-semibold rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-gray-900 dark:bg-[#08150d] text-slate-700 dark:text-slate-200 hover:border-emerald-500/50 hover:bg-emerald-50/60 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white transition-all shadow-sm active:scale-95 shrink-0 ${className}`}
-        title="গুগল দিয়ে লগইন করুন"
+      <Link
+        href="/login"
+        className={`inline-flex items-center gap-1.5 sm:gap-2 h-8 sm:h-9 px-3 sm:px-3.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white shadow-sm shadow-emerald-600/20 hover:shadow-emerald-600/30 transition-all active:scale-95 shrink-0 ${className}`}
+        title="Sign In"
       >
-        {isSigningIn ? (
-          <div className="h-3.5 w-3.5 rounded-full border-2 border-emerald-600 border-t-transparent animate-spin" />
-        ) : (
-          <GoogleGIcon />
-        )}
-        <span className="hidden sm:inline whitespace-nowrap">
-          {isSigningIn ? "লগইন হচ্ছে..." : "গুগল দিয়ে লগইন"}
-        </span>
-        <span className="sm:hidden whitespace-nowrap">
-          {isSigningIn ? "..." : "লগইন"}
-        </span>
-      </button>
+        <LogIn className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+        <span className="whitespace-nowrap">Sign In</span>
+      </Link>
     );
   }
 
@@ -244,7 +208,7 @@ export default function AuthButton({
         className="flex items-center gap-1.5 sm:gap-2 h-8 sm:h-9 pl-1.5 pr-2 sm:pr-2.5 rounded-full sm:rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-gray-900 dark:bg-[#08150d] text-slate-700 dark:text-slate-200 hover:border-emerald-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/30 shrink-0"
         aria-expanded={isDropdownOpen}
         aria-haspopup="true"
-        title={user.displayName || user.email || "ইউজার প্রোফাইল"}
+        title={user.displayName || user.email || user.phoneNumber || "User Profile"}
       >
         {/* User Avatar image / fallback */}
         <div className="relative h-6 w-6 sm:h-6.5 sm:w-6.5 rounded-full overflow-hidden border border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold text-[10px] shrink-0">
@@ -294,10 +258,10 @@ export default function AuthButton({
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
-                  {user.displayName || "সম্মানিত ইউজার"}
+                  {user.displayName || "Student"}
                 </p>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
-                  {user.email}
+                  {user.email || user.phoneNumber}
                 </p>
               </div>
             </div>
@@ -306,15 +270,27 @@ export default function AuthButton({
           {/* Navigation Links */}
           <div className="space-y-0.5">
             <Link
+              href="/dashboard"
+              onClick={() => {
+                setIsDropdownOpen(false);
+                if (onActionComplete) onActionComplete();
+              }}
+              className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50/60 dark:bg-emerald-950/40 hover:bg-emerald-100/80 dark:hover:bg-emerald-900/50 transition-colors"
+            >
+              <GraduationCap className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span>Dashboard</span>
+            </Link>
+
+            <Link
               href="/profile"
               onClick={() => {
                 setIsDropdownOpen(false);
                 if (onActionComplete) onActionComplete();
               }}
-              className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-emerald-50 hover:text-emerald-800 dark:hover:bg-slate-800/80 dark:hover:text-white transition-colors"
+              className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 hover:text-emerald-800 dark:hover:bg-slate-800/80 dark:hover:text-white transition-colors"
             >
-              <User className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              <span>প্রোফাইল (My Profile)</span>
+              <User className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+              <span>My Profile</span>
             </Link>
           </div>
 
@@ -327,7 +303,7 @@ export default function AuthButton({
             className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40 transition-colors text-left"
           >
             <LogOut className="h-4 w-4" />
-            <span>লগআউট (Sign out)</span>
+            <span>Sign out</span>
           </button>
         </div>
       )}

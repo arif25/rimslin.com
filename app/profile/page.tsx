@@ -6,6 +6,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 import {
   User,
   LogOut,
@@ -21,6 +22,7 @@ import {
 } from "lucide-react";
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { user, loading, loginWithGoogle, logout } = useAuth();
   const [hasMounted, setHasMounted] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -33,7 +35,10 @@ export default function ProfilePage() {
   const handleLogin = async () => {
     try {
       setIsSigningIn(true);
-      await loginWithGoogle();
+      const loggedInUser = await loginWithGoogle();
+      if (loggedInUser) {
+        router.push("/dashboard");
+      }
     } catch (err) {
       console.error(err);
     } finally {
