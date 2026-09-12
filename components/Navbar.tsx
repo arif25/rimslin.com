@@ -30,6 +30,7 @@ import {
   FileText,
   Briefcase,
   ArrowRight,
+  Video,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -112,6 +113,11 @@ export default function Navbar() {
       name: "হোম",
       href: "/",
       icon: Home,
+    },
+    {
+      name: "🔴 লাইভ ব্যাচ",
+      href: "#live-batch",
+      icon: Video,
     },
     {
       name: t.navbar.audioDemo,

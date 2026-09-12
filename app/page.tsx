@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
+import LiveBatchSection from "@/components/LiveBatchSection";
 import AudioPhraseDemo from "@/components/AudioPhraseDemo";
 import JobTracks from "@/components/JobTracks";
 import Curriculum from "@/components/Curriculum";
@@ -23,6 +24,7 @@ export default function Home() {
       <main className="flex-1 w-full max-w-full overflow-x-hidden relative z-0">
         <Hero />
         <Stats />
+        <LiveBatchSection />
         <AudioPhraseDemo limit={3} />
         <YouTubeGallery limit={4} />
         <JobTracks />
