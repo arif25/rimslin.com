@@ -17,26 +17,26 @@ export default function Stats() {
             return (
               <div
                 key={idx}
-                className="relative rounded-2xl border border-slate-200/80 bg-white/90 shadow-sm dark:border-white/[0.08] dark:bg-surface-100/60 p-6 backdrop-blur-md transition-all duration-300 hover:border-emerald-500/40 dark:hover:border-gulf-500/40 dark:hover:bg-surface-200/80 min-w-0 max-w-full"
+                className="relative rounded-2xl border border-slate-200/80 bg-white/90 shadow-sm dark:border-white/[0.08] dark:bg-surface-100/60 p-6 backdrop-blur-md transition-all duration-300 hover:border-emerald-500/40 dark:hover:border-gulf-500/40 dark:hover:bg-surface-200/80 min-w-0 max-w-full flex flex-col justify-between"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-amber-500/10 text-emerald-700 dark:from-gulf-500/20 dark:to-gold-500/10 dark:text-gulf-300 border border-emerald-500/30 dark:border-gulf-500/30">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-amber-500/10 text-emerald-700 dark:from-gulf-500/20 dark:to-gold-500/10 dark:text-gulf-300 border border-emerald-500/30 dark:border-gulf-500/30">
                     <Icon className="h-6 w-6 text-amber-500 dark:text-gold-400" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                       {stat.value}
                     </div>
-                    <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
+                    <div className="text-[10px] sm:text-[11px] font-mono font-medium text-slate-500 dark:text-slate-400 leading-tight">
                       {stat.englishValue}
                     </div>
                   </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.06]">
+                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.06] flex-1 flex flex-col justify-start">
                   <div className="text-sm font-bold text-emerald-700 dark:text-gulf-300">
                     {stat.label}
                   </div>
-                  <div className="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
+                  <div className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
                     {stat.description}
                   </div>
                 </div>

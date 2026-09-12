@@ -441,8 +441,8 @@ export default function StudentDashboardPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {availableCourses.map((course) => (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    {availableCourses.slice(0, 2).map((course) => (
                       <div
                         key={course.id || course.slug}
                         className="group overflow-hidden rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
@@ -497,6 +497,17 @@ export default function StudentDashboardPage() {
                         </div>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Bottom CTA Button to Courses Page */}
+                  <div className="mt-8 flex justify-center">
+                    <Link
+                      href="/courses"
+                      className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm sm:text-base shadow-sm hover:shadow-md transition-all"
+                    >
+                      <span>সব কোর্স দেখুন</span>
+                      <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
+                    </Link>
                   </div>
                 </div>
               )}

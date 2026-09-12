@@ -13,7 +13,7 @@ import {
 import { useLanguage } from "@/lib/language-context";
 
 export default function Curriculum() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const planStyles = [
     {
@@ -31,7 +31,7 @@ export default function Curriculum() {
   ];
 
   return (
-    <section id="course-plans" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20 transition-colors duration-200">
+    <section id="course-plans" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full pt-10 sm:pt-14 pb-6 sm:pb-8 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20 transition-colors duration-200">
       <span id="courses" className="sr-only" aria-hidden="true" />
       <span id="curriculum" className="sr-only" aria-hidden="true" />
       {/* Background Ambience */}
@@ -64,31 +64,23 @@ export default function Curriculum() {
             return (
               <div
                 key={plan.id}
-                className={`relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white/95 shadow-md hover:shadow-xl dark:border-white/10 dark:bg-gradient-to-b ${style.gradient} p-6 sm:p-8 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${style.accentBorder} ${
-                  plan.popular ? "scale-[1.02] ring-2 ring-emerald-500/40 dark:ring-gulf-400/40 shadow-xl" : "hover:-translate-y-1"
-                }`}
+                className={`relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white/95 shadow-md hover:shadow-xl dark:border-white/10 dark:bg-gradient-to-b ${style.gradient} p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${style.accentBorder} ${plan.popular ? "scale-[1.02] ring-2 ring-emerald-500/40 dark:ring-gulf-400/40 shadow-xl" : "hover:-translate-y-1"
+                  }`}
               >
-                {/* Popular Badge */}
-                {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-600 to-amber-500 dark:from-gulf-500 dark:to-gold-500 px-4 py-1 text-[11px] font-black uppercase tracking-wider text-white dark:text-slate-950 shadow-lg shadow-emerald-500/30">
-                    ★ {t.curriculum.popularStarBadge}
-                  </div>
-                )}
-
                 <div>
                   {/* Duration & Header */}
-                  <div className="flex items-center justify-between gap-2 border-b border-slate-100 dark:border-white/[0.08] pb-4">
-                    <div className="flex items-center gap-2 text-amber-600 dark:text-gold-300">
-                      <Clock className="h-4 w-4" />
-                      <span className="text-sm font-bold">{plan.duration}</span>
+                  <div className="w-full bg-amber-50/60 border border-amber-200/70 rounded-xl p-2 sm:p-3.5 flex flex-col gap-1 dark:bg-gold-950/20 dark:border-gold-500/20">
+                    <div className="flex items-center gap-2 text-amber-800 dark:text-gold-300 font-bold text-sm sm:text-base">
+                      <Clock className="w-4 h-4 shrink-0 text-amber-600 dark:text-gold-400" />
+                      <span className="whitespace-nowrap">{plan.duration}</span>
                     </div>
-                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium pl-6 leading-tight">
                       {plan.durationEn}
-                    </span>
+                    </p>
                   </div>
 
                   {/* Course Title */}
-                  <h3 className="mt-5 text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-snug">
+                  <h3 className="mt-5 text-sm font-semibold text-slate-900 dark:text-white leading-snug line-clamp-2 overflow-hidden text-ellipsis break-words min-h-[2.5rem]">
                     {plan.title}
                   </h3>
                   <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -116,17 +108,17 @@ export default function Curriculum() {
                   </div>
 
                   {/* Feature Checklist */}
-                  <div className="mt-6 space-y-3">
+                  <div className="mt-6">
                     <div className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-300">
                       {t.curriculum.featuresHeader}
                     </div>
-                    <ul className="space-y-2.5">
-                      {plan.features.map((feature, fIdx) => (
+                    <ul className="space-y-2.5 my-4 text-sm text-slate-700 dark:text-slate-200">
+                      {plan.features.slice(0, 4).map((feature, fIdx) => (
                         <li
                           key={fIdx}
-                          className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200"
+                          className="flex items-center gap-2.5"
                         >
-                          <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-gulf-400 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                           <span className="leading-snug">{feature}</span>
                         </li>
                       ))}
@@ -135,18 +127,25 @@ export default function Curriculum() {
                 </div>
 
                 {/* Card Bottom CTA */}
-                <div className="mt-8 pt-6 border-t border-slate-100 dark:border-white/[0.08]">
+                <div className="mt-4 pt-6 border-t border-slate-100 dark:border-white/[0.08]">
+                  {plan.popular && (
+                    <div className="w-full flex justify-center mb-2.5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300/80 shadow-2xs dark:bg-amber-950/60 dark:text-gold-300 dark:border-amber-700/50">
+                        ★ {language === "en" ? "Most Popular Choice" : t.curriculum.popularStarBadge}
+                      </span>
+                    </div>
+                  )}
+
                   <Link
                     href={`https://wa.me/916290051284?text=${encodeURIComponent(
                       `${t.curriculum.whatsappCtaPrefix}${plan.title}`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-sm font-bold transition-all duration-300 ${
-                      plan.popular
-                        ? "bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white dark:from-gulf-500 dark:via-emerald-500 dark:to-gold-400 dark:text-slate-950 shadow-xl shadow-emerald-500/20 hover:scale-[1.02]"
-                        : "border border-emerald-600/40 bg-emerald-50 text-emerald-800 hover:bg-emerald-600 hover:text-white dark:border-gulf-500/40 dark:bg-surface-100/90 dark:text-white dark:hover:bg-gulf-600 dark:hover:border-gulf-400"
-                    }`}
+                    className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-sm font-bold transition-all duration-300 ${plan.popular
+                      ? "bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white dark:from-gulf-500 dark:via-emerald-500 dark:to-gold-400 dark:text-slate-950 shadow-xl shadow-emerald-500/20 hover:scale-[1.02]"
+                      : "border border-emerald-600/40 bg-emerald-50 text-emerald-800 hover:bg-emerald-600 hover:text-white dark:border-gulf-500/40 dark:bg-surface-100/90 dark:text-white dark:hover:bg-gulf-600 dark:hover:border-gulf-400"
+                      }`}
                   >
                     <span>{plan.ctaText}</span>
                     <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -167,7 +166,7 @@ export default function Curriculum() {
         </div>
 
         {/* Curriculum Guarantee Note */}
-        <div className="mt-12 rounded-2xl border border-slate-200/80 bg-white/90 shadow-sm dark:border-gulf-500/20 dark:bg-surface-100/60 p-5 sm:p-6 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0 overflow-hidden">
+        <div className="mt-8 sm:mt-10 mb-6 sm:mb-8 rounded-2xl border border-slate-200/80 bg-white/90 shadow-sm dark:border-gulf-500/20 dark:bg-surface-100/60 p-5 sm:p-6 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0 overflow-hidden">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:text-gold-400 border border-amber-500/20 dark:border-gold-500/20 shrink-0">
               <Award className="h-6 w-6" />

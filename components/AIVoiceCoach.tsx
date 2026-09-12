@@ -84,7 +84,7 @@ export default function AIVoiceCoach() {
   };
 
   return (
-    <section id="ai-coach" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-slate-50 border-t border-slate-200/80 dark:bg-[#060e09] dark:border-gulf-500/20 transition-colors duration-200">
+    <section id="ai-coach" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full pt-4 sm:pt-6 pb-10 sm:pb-14 bg-slate-50 border-t border-slate-200/80 dark:bg-[#060e09] dark:border-gulf-500/20 transition-colors duration-200">
       <span id="ai-voice" className="sr-only" aria-hidden="true" />
       {/* Background glow */}
       <div
@@ -95,7 +95,7 @@ export default function AIVoiceCoach() {
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center w-full min-w-0">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 px-4 py-1.5 text-xs font-semibold text-emerald-800 dark:border-gulf-400/30 dark:bg-gulf-950/60 dark:text-gulf-300 backdrop-blur-md mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 px-4 py-1.5 text-xs font-semibold text-emerald-800 dark:border-gulf-400/30 dark:bg-gulf-950/60 dark:text-gulf-300 backdrop-blur-md mb-3 shadow-sm">
             <Sparkles className="h-3.5 w-3.5 text-amber-500 dark:text-gold-400 animate-pulse" />
             <span>{t.aiVoice.badge}</span>
           </div>

@@ -6,14 +6,14 @@ import YouTubeGallery from "@/components/YouTubeGallery";
 import { Tv, Sparkles, BookOpen, MessageCircle, ArrowLeft, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "আরবি ভাষা শিক্ষা ভিডিও কালেকশন (২৪ টি ক্লাস) - Rimslin",
+  title: "আরবি ভাষা শিক্ষা ভিডিও কালেকশন - Rimslin",
   description:
-    "সৌদি আরব, দুবাই (UAE), কাতার, কুয়েত ও ওমান কাজের জন্য প্রয়োজনীয় ২৪টি বাস্তব গালফ স্পোকেন আরবি ও ইংরেজি ভিডিও ক্লাস। সরাসরি দেখুন সম্পূর্ণ ভিডিও প্লেলিস্ট।",
+    "সৌদি আরব, দুবাই (UAE), কাতার, কুয়েত ও ওমান কাজের জন্য প্রয়োজনীয় বাস্তব গালফ স্পোকেন আরবি ও ইংরেজি ভিডিও ক্লাস। সরাসরি দেখুন সম্পূর্ণ ভিডিও প্লেলিস্ট।",
   alternates: {
     canonical: "https://rimslin.com/video-classes",
   },
   openGraph: {
-    title: "আরবি ভাষা শিক্ষা ভিডিও কালেকশন (২৪ টি ক্লাস) - Rimslin",
+    title: "আরবি ভাষা শিক্ষা ভিডিও কালেকশন - Rimslin",
     description:
       "সৌদি আরব, দুবাই, কাতার, কুয়েত কাজের জন্য বাস্তব কাজের গালফ স্পোকেন আরবি ও ইংরেজি ভিডিও ক্লাস। ২৪টি সম্পূর্ণ লেসনের প্লেলিস্ট।",
     url: "https://rimslin.com/video-classes",
@@ -72,7 +72,7 @@ export default function VideoClassesPage() {
             <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               আরবি ভাষা শিক্ষা{" "}
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 dark:from-[#6ee7b7] dark:via-[#34d399] dark:to-[#fcd34d] bg-clip-text text-transparent">
-                ভিডিও কালেকশন (২৪ টি ক্লাস)
+                ভিডিও কালেকশন
               </span>
             </h1>
 

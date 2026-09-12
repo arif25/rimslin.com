@@ -313,25 +313,25 @@ export const translations: Record<Language, TranslationSchema> = {
     stats: {
       items: [
         {
-          value: "২৫,০০০+",
+          value: "25,000+",
           englishValue: "25,000+ Learners",
           label: "প্রবাসী শিক্ষার্থী",
           description: "বাংলাদেশ থেকে মধ্যপ্রাচ্যগামী ভাইয়েরা যুক্ত",
         },
         {
-          value: "৬টি",
-          englishValue: "6 Gulf Nations",
-          label: "গালফ দেশ কভারেজ",
-          description: "সৌদি, দুবাই, কাতার, কুয়েত, ওমান ও বাহরাইন",
+          value: "15+ দেশ",
+          englishValue: "15+ Global Expat Destinations",
+          label: "গ্লোবাল জব ডেস্টিনেশন",
+          description: "গালফ (সৌদি, দুবাই, কাতার) এবং ইউরোপ-রাশিয়া সহ প্রধান আন্তর্জাতিক কাজের দেশসমূহ।",
         },
         {
-          value: "১,২০০+",
+          value: "1,200+",
           englishValue: "1,200+ Audio Clips",
           label: "কাজের অডিও ফ্রেজ",
-          description: "সাইট, বাজার ও বসের সাথে কাজের খাঁটি ডায়ালগ",
+          description: "সাইট, বাজার ও বসের সাথে কাজের খাঁটি ডায়ালগ",
         },
         {
-          value: "৯৮.৪%",
+          value: "98.4%",
           englishValue: "98.4% Success Rate",
           label: "সফলতা ও আত্মবিশ্বাস",
           description: "কাজে যোগদান ও সহজে বেতন বৃদ্ধির অভিজ্ঞতা",
@@ -609,7 +609,7 @@ export const translations: Record<Language, TranslationSchema> = {
       popularStarBadge: "সবচেয়ে জনপ্রিয়",
       offerFeeLabel: "অফার কোর্স ফি",
       discountBadge: "সীমিত সময়ের ছাড়",
-      featuresHeader: "কোর্সে যা যা পাচ্ছেন:",
+      featuresHeader: "প্যাকেজের সাথে যা যা পাচ্ছেন:",
       paymentNote: "বিকাশ / নগদ পেমেন্ট",
       accessNote: "সরাসরি এক্সেস",
       whatsappCtaPrefix: "আমি রিমসলিন এর কোর্স সম্পর্কে বিস্তারিত জানতে চাই: ",
@@ -1026,10 +1026,10 @@ export const translations: Record<Language, TranslationSchema> = {
           description: "गल्फ देशों में जाने वाले हजारों युवा जुड़े",
         },
         {
-          value: "६ देश",
-          englishValue: "6 Gulf Nations",
-          label: "गल्फ देश कवरेज",
-          description: "सऊदी, दुबई, कतर, कुवैत, ओमान और बहरीन",
+          value: "१५+ देश",
+          englishValue: "15+ Global Expat Destinations",
+          label: "ग्लोबल जॉब डेस्टिनेशन",
+          description: "गल्फ (सऊदी, दुबई, कतर) और यूरोप-रूस सहित प्रमुख अंतरराष्ट्रीय कार्यस्थल।",
         },
         {
           value: "१,२००+",
@@ -1719,10 +1719,10 @@ export const translations: Record<Language, TranslationSchema> = {
           description: "Aspiring migrant workers across South Asia",
         },
         {
-          value: "6 Nations",
-          englishValue: "6 Gulf Nations",
-          label: "Gulf Country Coverage",
-          description: "Saudi Arabia, UAE, Qatar, Kuwait, Oman & Bahrain",
+          value: "15+ Nations",
+          englishValue: "15+ Global Expat Destinations",
+          label: "Global Job Destinations",
+          description: "Gulf nations, Europe, Russia, and key global work destinations for expats.",
         },
         {
           value: "1,200+",
@@ -2412,10 +2412,10 @@ export const translations: Record<Language, TranslationSchema> = {
           description: "آلاف العمال والمهنيين المسافرين للخليج",
         },
         {
-          value: "٦ دول",
-          englishValue: "6 Gulf Nations",
-          label: "تغطية دول الخليج",
-          description: "السعودية، الإمارات، قطر، الكويت، عُمان، والبحرين",
+          value: "+١٥ دولة",
+          englishValue: "15+ Global Expat Destinations",
+          label: "وجهات العمل العالمية",
+          description: "دول الخليج (السعودية، دبي، قطر)، وأوروبا وروسيا وأبرز وجهات العمل الدولية للمغتربين.",
         },
         {
           value: "١,٢٠٠+",

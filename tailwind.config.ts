@@ -58,7 +58,14 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        arabic: ["var(--font-amiri)", "serif"],
+        arabic: [
+          "var(--font-arabic)",
+          "var(--font-amiri)",
+          "'Amiri'",
+          "'Noto Naskh Arabic'",
+          "sans-serif",
+        ],
+        cairo: ["var(--font-cairo)", "'Cairo'", "'Tajawal'", "system-ui", "sans-serif"],
         bengali: ["var(--font-bengali)", "'Noto Sans Bengali'", "sans-serif"],
       },
       backgroundImage: {
@@ -72,6 +79,7 @@ const config: Config = {
         "wave-bar": "waveBar 1.2s ease-in-out infinite alternate",
         "pulse-glow": "pulseGlow 2.5s infinite",
         "float-gentle": "floatGentle 4s ease-in-out infinite",
+        marquee: "marquee 35s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -89,6 +97,10 @@ const config: Config = {
         floatGentle: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-5px)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
     },

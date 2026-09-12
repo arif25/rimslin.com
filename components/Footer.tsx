@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Globe, MessageCircle, Mail, Info } from "lucide-react";
+import { MessageCircle, Mail, Info } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
+import LogoIcon from "@/components/LogoIcon";
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -14,17 +15,13 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2">
             <Link href="/" className="group flex items-center gap-3">
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-gulf-600 via-gulf-400 to-gold-400 p-[1px]">
-                <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-[#07120b]">
-                  <Globe className="h-5 w-5 text-gulf-400" />
-                </div>
-              </div>
+              <LogoIcon size={40} className="h-10 w-10 transition-transform duration-300 group-hover:scale-105" />
               <div className="flex flex-col">
                 <span className="text-2xl font-black tracking-tight text-white">
                   Rimslin<span className="text-gold-400">.com</span>
                 </span>
                 <span className="text-[11px] text-gulf-300 font-medium">
-                  {t.footer.brandSubtitle}
+                  {t.footer.brandSubtitle || "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম"}
                 </span>
               </div>
             </Link>

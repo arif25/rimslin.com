@@ -8,7 +8,7 @@ export default function CTA() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="relative overflow-hidden w-full max-w-full py-24 sm:py-32">
+    <section id="contact" className="relative overflow-hidden w-full max-w-full py-10 sm:py-14">
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         <div className="relative overflow-hidden w-full max-w-full rounded-3xl border border-gulf-500/30 bg-gradient-to-b from-[#0e2116] via-[#09160e] to-[#050b07] px-5 py-12 sm:px-16 sm:py-20 shadow-2xl shadow-gulf-950/60 backdrop-blur-2xl min-w-0">
           {/* Subtle background glow */}

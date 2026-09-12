@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
+import { ChevronDown, HelpCircle, MessageCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/language-context";
 
@@ -10,7 +10,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-24 sm:py-32 bg-slate-50 border-t border-slate-200/80 dark:bg-[#060e09] dark:border-gulf-500/20 transition-colors duration-200">
+    <section id="faq" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-10 sm:py-14 bg-slate-50 border-t border-slate-200/80 dark:bg-[#060e09] dark:border-gulf-500/20 transition-colors duration-200">
       <div className="mx-auto max-w-5xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto w-full min-w-0">
@@ -69,6 +69,17 @@ export default function FAQ() {
               </div>
             );
           })}
+        </div>
+
+        {/* All FAQs CTA Button */}
+        <div className="mt-10 w-full flex justify-center items-center">
+          <Link
+            href="/faq"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-medium text-sm sm:text-base border border-slate-200/90 shadow-sm hover:shadow-md hover:border-emerald-500/40 transition-all dark:bg-surface-100 dark:border-white/10 dark:text-white dark:hover:bg-surface-200"
+          >
+            <span>সব সাধারণ প্রশ্ন ও উত্তর দেখুন</span>
+            <ArrowRight className="w-4 h-4 text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
 
         {/* Additional Help Callout */}

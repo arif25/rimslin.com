@@ -214,10 +214,12 @@ export default function Navbar() {
   )}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full overflow-visible bg-white dark:bg-gray-900 dark:bg-[#060b08] shadow-sm dark:shadow-black/30 transition-colors duration-200">
+    <>
       {/* ========================================================================= */}
       {/* TIER 1: TOP UTILITY BAR (Above Logo - Right-Aligned & Slim)              */}
-      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-1 sm:py-1 md:py-0.5 transition-colors duration-200 relative z-50 overflow-visible leading-none">
+      {/* Scrolls away naturally with the page                                     */}
+      {/* ========================================================================= */}
+      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-1 sm:py-1 md:py-0.5 transition-colors duration-200 relative z-30 overflow-visible leading-none">
         <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 lg:px-8 flex flex-nowrap items-center justify-end gap-1 sm:gap-1.5 md:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-hidden md:overflow-visible leading-none">
           {/* MOBILE ONLY (< md): "Books" and "Career" action items in Top Tier */}
           <div className="flex md:hidden items-center gap-1 sm:gap-1.5 shrink-0 flex-shrink-0">
@@ -396,33 +398,30 @@ export default function Navbar() {
       </div>
 
       {/* ========================================================================= */}
-      {/* TIER 2: MAIN BRANDING BAR (Center Row with Logo & CTA)                   */}
+      {/* STICKY CONTAINER: TIER 2 (BRANDING) & TIER 3 (CATEGORY TABS)             */}
       {/* ========================================================================= */}
-      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 dark:bg-[#060b08] backdrop-blur-md transition-colors duration-200 relative z-40">
-        <div className="mx-auto flex max-w-7xl w-full items-center justify-between px-2 sm:px-4 py-1.5 sm:py-2 min-w-0">
-          {/* Left Side: Brand Logo */}
+      <header className="sticky top-0 z-50 w-full bg-white/95 dark:bg-[#060b08]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10 shadow-xs transition-all">
+        {/* ========================================================================= */}
+        {/* TIER 2: MAIN BRANDING BAR (Center Row with Logo & CTA)                   */}
+        {/* ========================================================================= */}
+        <div className="w-full border-b border-slate-200/60 dark:border-white/[0.06] transition-colors duration-200 relative z-40">
+          <div className="mx-auto flex max-w-7xl w-full items-center justify-between px-2 sm:px-4 py-2.5 sm:py-3 min-w-0">
+          {/* Left Side: Brand Text Lockup */}
           <Link
             href="/"
-            className="group flex items-center gap-1.5 sm:gap-2 transition-opacity hover:opacity-90 shrink min-w-0"
+            className="flex flex-col items-start min-w-0 transition-opacity hover:opacity-95 shrink"
           >
-            <div className="relative flex h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-amber-400 p-[1px] shadow-sm shadow-emerald-900/20 shrink-0">
-              <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-slate-100 dark:bg-gray-900 dark:bg-[#07120b] transition-colors p-1 sm:p-1.5">
-                <Globe className="h-4 w-4 sm:h-4.5 sm:w-4.5 md:h-5 md:w-5 text-emerald-600 dark:text-gulf-400 transition-transform duration-300 group-hover:rotate-12" />
-              </div>
-            </div>
-            <div className="flex flex-col min-w-0">
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white leading-tight truncate">
-                  Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
-                </span>
-                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold tracking-tight rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60 leading-none shrink-0">
-                  {t.navbar.brandTag || "StepAhead"}
-                </span>
-              </div>
-              <span className="mt-0 text-[10px] sm:text-[11px] leading-tight text-gray-500 dark:text-gray-400 font-medium tracking-wide truncate hidden min-[360px]:block">
-                {t.navbar.brandSubtitle}
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white leading-tight truncate">
+                Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
+              </span>
+              <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold tracking-tight rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60 leading-none shrink-0">
+                {t.navbar.brandTag || "StepAhead"}
               </span>
             </div>
+            <span className="mt-0 text-[10px] sm:text-[11px] leading-tight text-gray-500 dark:text-gray-400 font-medium tracking-wide truncate hidden min-[360px]:block">
+              {t.navbar.brandSubtitle || "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম"}
+            </span>
           </Link>
 
           {/* Right Side: Action Buttons & Mobile Hamburger Trigger */}
@@ -480,12 +479,12 @@ export default function Navbar() {
       {/* ========================================================================= */}
       {/* TIER 3: NAVIGATION MENU BAR (Lower Section with Nav Links & More Menu)   */}
       {/* ========================================================================= */}
-      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-50/95 dark:bg-gray-950 dark:bg-[#07130b] transition-colors duration-200 relative z-30">
-        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+      <div className="w-full bg-slate-50/80 dark:bg-[#07130b]/80 transition-colors duration-200 relative z-30">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 py-1.5 sm:py-2">
           {/* Horizontal Navigation Links (Smooth scrollable on mobile/tablet) */}
           <nav
             aria-label="Section navigation"
-            className="w-full overflow-x-auto no-scrollbar flex items-center justify-start ltr:justify-start rtl:justify-start gap-1 sm:gap-1.5 py-1 sm:py-1.5 pe-3 text-xs font-medium whitespace-nowrap text-left ltr:text-left rtl:text-right min-w-0 flex-1 scroll-smooth"
+            className="w-full overflow-x-auto no-scrollbar flex items-center justify-start ltr:justify-start rtl:justify-start gap-1 sm:gap-1.5 py-0.5 pe-3 text-xs font-medium whitespace-nowrap text-left ltr:text-left rtl:text-right min-w-0 flex-1 scroll-smooth"
           >
             {primaryNavLinks.map((link) => {
               const Icon = link.icon;
@@ -611,6 +610,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </header>
 
       {/* ========================================================================= */}
       {/* MOBILE SLIDE-OUT NAVIGATION DRAWER (Full Sheet)                          */}
@@ -636,21 +636,14 @@ export default function Navbar() {
               <Link
                 href="/"
                 onClick={() => setIsMobileDrawerOpen(false)}
-                className="flex items-center gap-2"
+                className="flex items-center gap-1.5"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 to-amber-400 p-[1px]">
-                  <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-slate-100 dark:bg-gray-900 dark:bg-[#07120b] transition-colors">
-                    <Globe className="h-4 w-4 text-emerald-600 dark:text-gulf-400" />
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-lg font-black tracking-tight text-gray-900 dark:text-white">
-                    Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
-                  </span>
-                  <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold tracking-tight rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60 leading-none shrink-0">
-                    {t.navbar.brandTag || "StepAhead"}
-                  </span>
-                </div>
+                <span className="text-lg font-black tracking-tight text-gray-900 dark:text-white">
+                  Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
+                </span>
+                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold tracking-tight rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60 leading-none shrink-0">
+                  {t.navbar.brandTag || "StepAhead"}
+                </span>
               </Link>
 
               <button
@@ -800,6 +793,6 @@ export default function Navbar() {
       <StickyCourseButton
         className={isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"}
       />
-    </header>
+    </>
   );
 }
