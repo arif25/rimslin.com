@@ -21,19 +21,19 @@ export default function TermsPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden bg-slate-50 dark:bg-[#060b08] text-slate-900 dark:text-slate-100 transition-colors">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden py-8 sm:py-14">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden py-5 sm:py-8 md:py-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Top Clean Header with Back Link */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-6 md:mb-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-4"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-2.5 sm:mb-4"
             >
               ← হোমপেজে ফিরে যান
             </Link>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-2 sm:mb-3">
               <Scale className="w-3.5 h-3.5" />
               <span>ব্যবহারের শর্তাবলী ও নীতিমালা</span>
             </div>
@@ -50,7 +50,7 @@ export default function TermsPage() {
           </div>
 
           {/* Terms Article */}
-          <article className="rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 p-6 sm:p-10 shadow-sm space-y-8 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300 mb-12">
+          <article className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 p-4 sm:p-6 md:p-10 shadow-sm space-y-5 sm:space-y-8 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 md:mb-12">
             
             {/* 1. Acceptance of Terms */}
             <section className="space-y-3">
@@ -123,11 +123,11 @@ export default function TermsPage() {
           </article>
 
           {/* Bottom Live Batch CTA Banner */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg border border-white/10">
+          <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-8 md:p-10 text-center shadow-lg border border-white/10">
             <h2 className="text-xl sm:text-2xl font-black mb-2">
               শর্তহীনভাবে ৩ দিনের ফ্রি ক্লাসে অংশ নিন
             </h2>
-            <p className="text-slate-300 text-xs sm:text-sm mb-6 max-w-lg mx-auto">
+            <p className="text-slate-300 text-xs sm:text-sm mb-4 sm:mb-6 max-w-lg mx-auto">
               কোনো প্রকার কার্ড ছাড়াই ৩ দিনের ফ্রি ডেমো ক্লাসে যোগ দিয়ে নিজেই পরখ করুন।
             </p>
             <Link

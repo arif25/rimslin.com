@@ -163,11 +163,11 @@ export default function LiveBatchBookingModal({
           <X className="w-5 h-5" />
         </button>
 
-        <div className="p-6 sm:p-8">
+        <div className="p-4 sm:p-6 md:p-8">
           {!isSuccess ? (
             <>
               {/* Modal Header */}
-              <div className="text-center mb-6">
+              <div className="text-center mb-4 sm:mb-6">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold mb-2.5">
                   <Video className="w-3.5 h-3.5 text-emerald-600" />
                   <span>৩ দিনের ফ্রি লাইভ ডেমো ক্লাস</span>

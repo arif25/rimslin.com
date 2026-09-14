@@ -31,7 +31,7 @@ export default function Curriculum() {
   ];
 
   return (
-    <section id="course-plans" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full pt-10 sm:pt-14 pb-6 sm:pb-8 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20 transition-colors duration-200">
+    <section id="course-plans" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full pt-6 sm:pt-10 md:pt-14 pb-4 sm:pb-6 md:pb-8 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20 transition-colors duration-200">
       <span id="courses" className="sr-only" aria-hidden="true" />
       <span id="curriculum" className="sr-only" aria-hidden="true" />
       {/* Background Ambience */}
@@ -58,13 +58,13 @@ export default function Curriculum() {
         </div>
 
         {/* Course Cards Grid */}
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3 items-stretch w-full max-w-full min-w-0">
+        <div className="mt-6 sm:mt-10 md:mt-16 grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8 items-stretch w-full max-w-full min-w-0">
           {t.curriculum.plans.map((plan, idx) => {
             const style = planStyles[idx % planStyles.length];
             return (
               <div
                 key={plan.id}
-                className={`relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white/95 shadow-md hover:shadow-xl dark:border-white/10 dark:bg-gradient-to-b ${style.gradient} p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${style.accentBorder} ${plan.popular ? "scale-[1.02] ring-2 ring-emerald-500/40 dark:ring-gulf-400/40 shadow-xl" : "hover:-translate-y-1"
+                className={`relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white/95 shadow-md hover:shadow-xl dark:border-white/10 dark:bg-gradient-to-b ${style.gradient} p-4 sm:p-5 md:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${style.accentBorder} ${plan.popular ? "scale-[1.02] ring-2 ring-emerald-500/40 dark:ring-gulf-400/40 shadow-xl" : "hover:-translate-y-1"
                   }`}
               >
                 <div>
@@ -166,7 +166,7 @@ export default function Curriculum() {
         </div>
 
         {/* Curriculum Guarantee Note */}
-        <div className="mt-8 sm:mt-10 mb-6 sm:mb-8 rounded-2xl border border-slate-200/80 bg-white/90 shadow-sm dark:border-gulf-500/20 dark:bg-surface-100/60 p-5 sm:p-6 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0 overflow-hidden">
+        <div className="mt-5 sm:mt-8 md:mt-10 mb-4 sm:mb-6 md:mb-8 rounded-2xl border border-slate-200/80 bg-white/90 shadow-sm dark:border-gulf-500/20 dark:bg-surface-100/60 p-4 sm:p-5 md:p-6 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-full min-w-0 overflow-hidden">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:text-gold-400 border border-amber-500/20 dark:border-gold-500/20 shrink-0">
               <Award className="h-6 w-6" />

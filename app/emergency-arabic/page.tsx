@@ -139,18 +139,18 @@ export default function EmergencyArabicPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden relative bg-slate-50 text-slate-900 dark:bg-[#060b08] dark:text-slate-100 transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 dark:bg-[#060b08]">
-        <div className="max-w-6xl mx-auto space-y-10">
+      <main className="flex-1 min-h-screen bg-slate-50 py-6 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 dark:bg-[#060b08]">
+        <div className="max-w-6xl mx-auto space-y-6 sm:space-y-10">
 
           {/* Header */}
           <div className="text-center">
             <Link
-              className="inline-flex items-center text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-3 hover:underline"
+              className="inline-flex items-center text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2 sm:mb-3 hover:underline"
               href="/"
             >
               ← হোমপেজে ফিরে যান
             </Link>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               জরুরি অবস্থা ও হাসপাতাল আরবি গাইড (Emergency & Medical Arabic)
             </h1>
             <p className="text-slate-600 dark:text-slate-300 mt-2 text-sm sm:text-base max-w-2xl mx-auto">
@@ -158,7 +158,7 @@ export default function EmergencyArabicPage() {
             </p>
 
             {/* Quick Emergency Helplines Bar */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-bold">
+            <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-bold">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-950/70 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50">
                 <ShieldAlert className="w-3.5 h-3.5 text-rose-600" />
                 <span>পুলিশ: ৯৯৯</span>
@@ -181,7 +181,7 @@ export default function EmergencyArabicPage() {
                 key={tab.key}
                 type="button"
                 onClick={() => setActiveCategory(tab.key)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                   activeCategory === tab.key
                     ? 'bg-rose-600 text-white shadow-xs dark:bg-rose-600 dark:text-white font-bold'
                     : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 dark:bg-surface-100/90 dark:text-slate-300 dark:border-white/10 dark:hover:bg-surface-200'
@@ -193,11 +193,11 @@ export default function EmergencyArabicPage() {
           </div>
 
           {/* Emergency Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
             {filteredPhrases.map((item) => (
               <div
                 key={item.id}
-                className="bg-white dark:bg-surface-100 border border-slate-200/90 dark:border-white/10 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                className="bg-white dark:bg-surface-100 border border-slate-200/90 dark:border-white/10 rounded-2xl p-4 sm:p-5 md:p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -247,7 +247,7 @@ export default function EmergencyArabicPage() {
           </div>
 
           {/* Bottom Live Batch CTA Banner */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg border border-white/10">
+          <div className="bg-slate-900 text-white rounded-2xl p-4 sm:p-8 md:p-10 text-center shadow-lg border border-white/10">
             <h2 className="text-xl sm:text-2xl font-black mb-2">
               জরুরি মুহূর্তে যাতে মুখে আটকে না যায়, এখনই প্র্যাকটিস করুন
             </h2>

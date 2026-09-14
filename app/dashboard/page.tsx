@@ -172,10 +172,10 @@ export default function StudentDashboardPage() {
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-background dark:text-slate-100 selection:bg-gulf-500 selection:text-white transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 py-8 sm:py-14">
+      <main className="flex-1 py-5 sm:py-8 md:py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb Navigation */}
-          <div className="mb-6 flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+          <div className="mb-4 sm:mb-6 flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
             <Link
               href="/"
               className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
@@ -190,24 +190,24 @@ export default function StudentDashboardPage() {
 
           {/* 1. Loading Skeleton State */}
           {loading ? (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Profile Card Skeleton */}
-              <div className="h-48 w-full rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
+              <div className="h-48 w-full rounded-2xl sm:rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
 
               {/* Courses Header Skeleton */}
               <div className="h-8 w-48 rounded-lg bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
 
               {/* Courses Grid Skeleton */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="h-64 rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
-                <div className="h-64 rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
-                <div className="h-64 rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div className="h-64 rounded-2xl sm:rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
+                <div className="h-64 rounded-2xl sm:rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
+                <div className="h-64 rounded-2xl sm:rounded-3xl bg-slate-200/80 dark:bg-surface-200 animate-pulse" />
               </div>
             </div>
           ) : (
-            <div className="space-y-10">
+            <div className="space-y-6 sm:space-y-8 md:space-y-10">
               {/* 2. Student Profile Header Card */}
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-surface-100/95 p-6 sm:p-8 shadow-xl backdrop-blur-md">
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-surface-100/95 p-4 sm:p-6 md:p-8 shadow-xl backdrop-blur-md">
                 {/* Background Ambient Glow */}
                 <div
                   aria-hidden="true"
@@ -292,7 +292,7 @@ export default function StudentDashboardPage() {
               </div>
 
               {/* 3. Enrolled Courses Section */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 dark:border-white/10 pb-4">
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 shadow-sm">
@@ -321,7 +321,7 @@ export default function StudentDashboardPage() {
 
                 {/* Condition A: Empty State (No Courses Enrolled) */}
                 {enrolledCourses.length === 0 ? (
-                  <div className="relative overflow-hidden rounded-3xl border border-dashed border-slate-300 dark:border-white/20 bg-white/60 dark:bg-surface-100/60 p-8 sm:p-14 text-center shadow-sm backdrop-blur-sm">
+                  <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-dashed border-slate-300 dark:border-white/20 bg-white/60 dark:bg-surface-100/60 p-6 sm:p-10 md:p-14 text-center shadow-sm backdrop-blur-sm">
                     {/* Empty Icon */}
                     <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-300/40 shadow-inner">
                       <AlertCircle className="h-8 w-8" />
@@ -337,7 +337,7 @@ export default function StudentDashboardPage() {
                     </p>
 
                     {/* CTA Button Linking to /#courses */}
-                    <div className="mt-8 flex justify-center">
+                    <div className="mt-6 sm:mt-8 flex justify-center">
                       <Link
                         href="/#courses"
                         className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-emerald-950/30 hover:shadow-emerald-900/40 transition-all active:scale-95"
@@ -350,7 +350,7 @@ export default function StudentDashboardPage() {
                   </div>
                 ) : (
                   /* Condition B: Enrolled State (Responsive Grid) */
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {enrolledCourses.map((courseId, idx) => {
                       // Check Firestore catalog first, then fallback to local catalog
                       const firestoreMatch = availableCourses.find(
@@ -374,7 +374,7 @@ export default function StudentDashboardPage() {
                       return (
                         <div
                           key={idx}
-                          className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100/90 p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                          className="group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100/90 p-4 sm:p-5 md:p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                         >
                           {/* Card Top Row: Badge & Duration */}
                           <div>
@@ -424,7 +424,7 @@ export default function StudentDashboardPage() {
 
               {/* 4. Live Firestore Available Courses Catalog */}
               {availableCourses.length > 0 && (
-                <div className="space-y-6 pt-4">
+                <div className="space-y-4 sm:space-y-6 pt-3 sm:pt-4">
                   <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-4">
                     <div className="flex items-center gap-2.5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-950/70 text-amber-700 dark:text-amber-300 shadow-sm">
@@ -441,11 +441,11 @@ export default function StudentDashboardPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
                     {availableCourses.slice(0, 2).map((course) => (
                       <div
                         key={course.id || course.slug}
-                        className="group overflow-hidden rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                        className="group overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
                       >
                         <div>
                           {/* Thumbnail */}
@@ -513,13 +513,13 @@ export default function StudentDashboardPage() {
               )}
 
               {/* 5. Quick Access Learning Hub */}
-              <div className="mt-12 rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-surface-100/70 p-6 sm:p-8 backdrop-blur-md">
+              <div className="mt-6 sm:mt-10 md:mt-12 rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-surface-100/70 p-4 sm:p-6 md:p-8 backdrop-blur-md">
                 <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-amber-500" />
                   <span>অন্যান্য লার্নিং টুলস ও ম্যাটেরিয়ালস (Learning Hub)</span>
                 </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                   <Link
                     href="/video-classes"
                     className="flex items-center justify-between p-4 rounded-2xl bg-white dark:bg-surface-200 border border-slate-200 dark:border-white/5 hover:border-emerald-500/50 hover:bg-emerald-50/40 dark:hover:bg-surface-300 transition-all shadow-xs group"

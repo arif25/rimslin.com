@@ -234,7 +234,7 @@ export default function FAQPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden relative bg-slate-50 text-slate-900 dark:bg-[#060b08] dark:text-slate-100 transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-8 sm:py-14">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-5 sm:py-8 md:py-14">
         {/* Ambient Glow */}
         <div
           className="pointer-events-none absolute top-10 left-1/2 -z-10 h-[550px] w-full max-w-[900px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[150px] opacity-75"
@@ -243,7 +243,7 @@ export default function FAQPage() {
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb Navigation & Back to Home */}
-          <div className="flex items-center justify-between gap-4 mb-8">
+          <div className="flex items-center justify-between gap-4 mb-4 sm:mb-6 md:mb-8">
             <nav
               aria-label="Breadcrumb"
               className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400"
@@ -270,8 +270,8 @@ export default function FAQPage() {
           </div>
 
           {/* 1. Page Header */}
-          <header className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-4 py-1.5 text-xs font-bold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-4 shadow-xs">
+          <header className="text-center max-w-3xl mx-auto mb-6 sm:mb-10 md:mb-12">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-4 py-1.5 text-xs font-bold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-2 sm:mb-4 shadow-xs">
               <HelpCircle className="h-4 w-4 text-emerald-600 dark:text-gulf-400" />
               <span>
                 {language === "en"
@@ -289,7 +289,7 @@ export default function FAQPage() {
             </p>
 
             {/* Search Input */}
-            <div className="mt-8 max-w-xl mx-auto relative">
+            <div className="mt-4 sm:mt-6 md:mt-8 max-w-xl mx-auto relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
               <input
                 type="text"
@@ -311,7 +311,7 @@ export default function FAQPage() {
           </header>
 
           {/* 2. Category Tabs */}
-          <div className="mb-8 overflow-x-auto pb-2 scrollbar-none">
+          <div className="mb-4 sm:mb-6 md:mb-8 overflow-x-auto pb-2 scrollbar-none">
             <div className="flex items-center gap-2 sm:gap-3 min-w-max justify-start sm:justify-center px-1">
               {CATEGORIES.map((cat) => {
                 const Icon = cat.icon;
@@ -352,9 +352,9 @@ export default function FAQPage() {
           </div>
 
           {/* 3. Accordion FAQ List */}
-          <div className="space-y-4 w-full max-w-full">
+          <div className="space-y-2.5 sm:space-y-4 w-full max-w-full">
             {filteredFaqs.length === 0 ? (
-              <div className="text-center py-16 bg-white dark:bg-surface-100 rounded-2xl border border-slate-200/90 dark:border-white/10 p-8">
+              <div className="text-center py-10 sm:py-16 bg-white dark:bg-surface-100 rounded-2xl border border-slate-200/90 dark:border-white/10 p-6 sm:p-8">
                 <HelpCircle className="w-12 h-12 text-slate-400 mx-auto mb-3" />
                 <p className="text-base font-bold text-slate-800 dark:text-white">
                   কোনো প্রশ্নোত্তর পাওয়া যায়নি
@@ -389,7 +389,7 @@ export default function FAQPage() {
                     <button
                       type="button"
                       onClick={() => setOpenId(isOpen ? null : faq.id)}
-                      className="flex w-full items-start justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer"
+                      className="flex w-full items-start justify-between gap-4 p-3.5 sm:p-5 md:p-6 text-left cursor-pointer"
                       aria-expanded={isOpen}
                     >
                       <div className="flex-1 pr-2">
@@ -414,7 +414,7 @@ export default function FAQPage() {
                     </button>
 
                     {isOpen && (
-                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-white/[0.06] pt-4 animate-fade-in">
+                      <div className="px-3.5 pb-4 sm:px-6 sm:pb-6 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-white/[0.06] pt-3 sm:pt-4 animate-fade-in">
                         <div className="flex items-start gap-2.5">
                           <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 mt-1 shrink-0" />
                           <p className="flex-1">{faq.answer}</p>
@@ -428,7 +428,7 @@ export default function FAQPage() {
           </div>
 
           {/* 4. WhatsApp Support Assistance */}
-          <div className="mt-14 text-center rounded-2xl border border-slate-200 bg-white dark:border-white/[0.08] dark:bg-surface-100/60 p-6 sm:p-8 shadow-xs">
+          <div className="mt-6 sm:mt-10 md:mt-14 text-center rounded-2xl border border-slate-200 bg-white dark:border-white/[0.08] dark:bg-surface-100/60 p-4 sm:p-6 md:p-8 shadow-xs">
             <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 mb-3">
               <Sparkles className="h-6 w-6" />
             </div>
@@ -438,7 +438,7 @@ export default function FAQPage() {
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5 max-w-xl mx-auto leading-relaxed">
               প্রবাসের যেকোনো দেশ থেকে আমাদের ডেডিকেটেড হোয়াটসঅ্যাপ হেল্পলাইনে যেকোনো সময় ভয়েস বা টেক্সট পাঠিয়ে সরাসরি সহায়তা নিন।
             </p>
-            <div className="mt-5 flex justify-center">
+            <div className="mt-4 sm:mt-5 flex justify-center">
               <Link
                 href="https://wa.me/916290051284?text=Hello%20Rimslin%20Support,%20I%20have%20questions%20about%20Rimslin%20Course"
                 target="_blank"
@@ -452,11 +452,11 @@ export default function FAQPage() {
           </div>
 
           {/* 5. Bottom Live Batch CTA Banner */}
-          <div className="mt-8 bg-slate-900 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg border border-white/10">
+          <div className="mt-5 sm:mt-8 bg-slate-900 text-white rounded-2xl p-5 sm:p-8 md:p-10 text-center shadow-lg border border-white/10">
             <h2 className="text-xl sm:text-2xl font-black mb-2">
               আপনার প্রশ্নের সমাধান পেয়েছেন? লাইভ ক্লাসে অংশ নিয়ে নিজেই যাচাই করুন!
             </h2>
-            <p className="text-slate-300 text-xs sm:text-sm mb-6 max-w-lg mx-auto">
+            <p className="text-slate-300 text-xs sm:text-sm mb-4 sm:mb-6 max-w-lg mx-auto">
               কোনো প্রকার দ্বিধা না রেখে আজই ৩ দিনের ফ্রি ডেমো ব্যাচে যোগ দিয়ে সরাসরি শিক্ষকের সাথে কথা বলুন।
             </p>
             <Link

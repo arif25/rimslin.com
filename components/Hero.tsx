@@ -926,7 +926,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative z-10 overflow-x-clip w-full max-w-full min-h-[calc(100svh-4rem)] md:min-h-0 py-3 sm:py-6 md:pt-10 md:pb-20 flex flex-col justify-center select-none bg-slate-50/50 dark:bg-transparent">
+    <section className="relative z-10 overflow-x-clip w-full max-w-full min-h-0 py-3 sm:py-6 md:pt-10 md:pb-20 flex flex-col justify-center select-none bg-slate-50/50 dark:bg-transparent">
       {/* Background ambient lighting & soft-emerald pattern */}
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden -z-10"

@@ -11,17 +11,17 @@ export default function VideoClassesPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden relative bg-slate-50 text-slate-900 dark:bg-[#060b08] dark:text-slate-100 transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 dark:bg-[#060b08]">
-        <div className="max-w-6xl mx-auto space-y-10">
+      <main className="flex-1 min-h-screen bg-slate-50 py-6 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 dark:bg-[#060b08]">
+        <div className="max-w-6xl mx-auto space-y-6 sm:space-y-10">
           {/* Top Header (Matches Audio Phrases Style) */}
           <div className="text-center">
             <Link
-              className="inline-flex items-center text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-3 hover:underline"
+              className="inline-flex items-center text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2 sm:mb-3 hover:underline"
               href="/"
             >
               ← হোমপেজে ফিরে যান
             </Link>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               আরবি ভাষা শিক্ষা ভিডিও কালেকশন
             </h1>
             <p className="text-slate-600 dark:text-slate-300 mt-2 text-sm sm:text-base max-w-xl mx-auto">
@@ -35,7 +35,7 @@ export default function VideoClassesPage() {
           </div>
 
           {/* Bottom Live Batch CTA Banner */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg border border-white/10">
+          <div className="bg-slate-900 text-white rounded-2xl p-4 sm:p-8 md:p-10 text-center shadow-lg border border-white/10">
             <h2 className="text-xl sm:text-2xl font-black mb-2">
               ভিডিও দেখার পাশাপাশি সরাসরি শিক্ষকের সাথে প্র্যাকটিস করতে চান?
             </h2>

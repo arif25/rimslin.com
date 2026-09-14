@@ -8,9 +8,9 @@ export default function CTA() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="relative overflow-hidden w-full max-w-full py-10 sm:py-14">
+    <section id="contact" className="relative overflow-hidden w-full max-w-full py-6 sm:py-10 md:py-14">
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 min-w-0">
-        <div className="relative overflow-hidden w-full max-w-full rounded-3xl border border-gulf-500/30 bg-gradient-to-b from-[#0e2116] via-[#09160e] to-[#050b07] px-5 py-12 sm:px-16 sm:py-20 shadow-2xl shadow-gulf-950/60 backdrop-blur-2xl min-w-0">
+        <div className="relative overflow-hidden w-full max-w-full rounded-3xl border border-gulf-500/30 bg-gradient-to-b from-[#0e2116] via-[#09160e] to-[#050b07] px-4 py-8 sm:px-10 sm:py-14 md:px-16 md:py-20 shadow-2xl shadow-gulf-950/60 backdrop-blur-2xl min-w-0">
           {/* Subtle background glow */}
           <div
             className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-80 w-full max-w-[650px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[120px]"
@@ -18,7 +18,7 @@ export default function CTA() {
           />
 
           <div className="mx-auto max-w-3xl text-center w-full min-w-0">
-            <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/60 px-4 py-1.5 text-xs font-semibold text-gold-300 backdrop-blur-md mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/60 px-4 py-1.5 text-xs font-semibold text-gold-300 backdrop-blur-md mb-3.5 sm:mb-6">
               <Sparkles className="h-3.5 w-3.5 text-gold-400 animate-pulse" />
               <span>{t.cta.badge}</span>
             </div>
@@ -35,14 +35,14 @@ export default function CTA() {
             </p>
 
             {/* Action Buttons */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <Link
                 href={`https://wa.me/916290051284?text=${encodeURIComponent(
                   t.cta.whatsappDirectMessage
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-gulf-600 via-emerald-600 to-gold-500 px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-gulf-900/50 transition-all duration-300 hover:shadow-gulf-500/40 hover:scale-[1.02]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-gulf-600 via-emerald-600 to-gold-500 px-6 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-bold text-white shadow-xl shadow-gulf-900/50 transition-all duration-300 hover:shadow-gulf-500/40 hover:scale-[1.02]"
               >
                 <MessageCircle className="h-5 w-5" />
                 <span>{t.cta.whatsappDirect}</span>
@@ -51,7 +51,7 @@ export default function CTA() {
 
               <Link
                 href="/audio-phrases"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-surface-100/90 px-8 py-3.5 text-base font-semibold text-slate-200 hover:bg-surface-200 hover:text-white transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-surface-100/90 px-6 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold text-slate-200 hover:bg-surface-200 hover:text-white transition-colors"
               >
                 <Headphones className="h-5 w-5 text-gold-400" />
                 <span>{t.cta.freeTrial}</span>
@@ -59,7 +59,7 @@ export default function CTA() {
             </div>
 
             {/* Trust Points */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300">
+            <div className="mt-6 sm:mt-10 flex flex-wrap items-center justify-center gap-3.5 sm:gap-6 text-xs text-slate-300">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-gulf-400" />
                 <span>{t.cta.trust1}</span>

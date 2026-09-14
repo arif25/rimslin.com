@@ -501,19 +501,19 @@ export default function LoginPage() {
       {isIndia && <div id="recaptcha-container" />}
 
       {/* Main Centered Sign-In Content */}
-      <main className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16 relative overflow-hidden bg-hero-emerald-glow">
+      <main className="flex-1 flex items-center justify-center px-4 py-8 sm:py-12 md:py-16 relative overflow-hidden bg-hero-emerald-glow">
         {/* Subtle decorative background ambient orbs */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-amber-500/10 dark:bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="w-full max-w-md relative z-10">
           {/* Card Container */}
-          <div className="relative rounded-3xl bg-white/95 dark:bg-surface-100/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-2xl shadow-emerald-950/5 dark:shadow-black/60 p-6 sm:p-8 overflow-hidden">
+          <div className="relative rounded-2xl sm:rounded-3xl bg-white/95 dark:bg-surface-100/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-2xl shadow-emerald-950/5 dark:shadow-black/60 p-5 sm:p-8 overflow-hidden">
             {/* Top Gradient Accent Bar */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-amber-500" />
 
             {/* Header / Brand Badge */}
-            <div className="text-center space-y-2 mb-7">
+            <div className="text-center space-y-2 mb-5 sm:mb-7">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-semibold shadow-sm">
                 <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>Rimslin Spoken & Career Hub</span>

@@ -67,7 +67,7 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="relative py-24 sm:py-32">
+    <section id="features" className="relative py-10 sm:py-16 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-2xl text-left md:text-center md:mx-auto">
@@ -84,13 +84,13 @@ export default function Features() {
         </div>
 
         {/* Feature Grid */}
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
               <div
                 key={idx}
-                className="group relative flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-surface-100/40 p-8 backdrop-blur-xl transition-all duration-300 hover:border-brand-500/40 hover:bg-surface-200/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/10"
+                className="group relative flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-surface-100/40 p-5 sm:p-8 backdrop-blur-xl transition-all duration-300 hover:border-brand-500/40 hover:bg-surface-200/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/10"
               >
                 <div>
                   <div className="flex items-center justify-between">

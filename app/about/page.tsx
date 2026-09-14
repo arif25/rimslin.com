@@ -64,7 +64,7 @@ export default function AboutPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden relative bg-slate-50 text-slate-900 dark:bg-[#060b08] dark:text-slate-100 transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-12 sm:py-20">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-6 sm:py-10 md:py-16 lg:py-20">
         {/* Ambient Glow */}
         <div
           className="pointer-events-none absolute top-10 left-1/2 -z-10 h-[500px] w-full max-w-[850px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[140px] opacity-70"
@@ -73,7 +73,7 @@ export default function AboutPage() {
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-8">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-4 sm:mb-6 md:mb-8">
             <Link href="/" className="hover:text-emerald-600 dark:hover:text-gulf-400 transition-colors">
               হোম (Home)
             </Link>
@@ -82,8 +82,8 @@ export default function AboutPage() {
           </nav>
 
           {/* Header Hero */}
-          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-4 shadow-sm">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-20">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-2 sm:mb-4 shadow-sm">
               <Globe className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400" />
               <span>এডুকেশনাল হাব ও মিশন</span>
             </div>
@@ -95,13 +95,13 @@ export default function AboutPage() {
               </span>
             </h1>
 
-            <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="mt-3 sm:mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Rimslin.com একটি আধুনিক শিক্ষামূলক প্ল্যাটফর্ম, যা বিশেষভাবে মধ্যপ্রাচ্যগামী ও কর্মরত প্রবাসী ভাই-বোনদের জন্য সরাসরি কাজের স্পোকেন আরবি ও কর্মক্ষেত্রের ইংরেজি ভাষা শেখার সুযোগ তৈরি করেছে।
             </p>
           </div>
 
           {/* Mission Section */}
-          <section className="mb-16 rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/90 backdrop-blur-md p-6 sm:p-10 shadow-xl">
+          <section className="mb-8 sm:mb-12 md:mb-16 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/90 backdrop-blur-md p-4 sm:p-6 md:p-10 shadow-xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-gulf-400">
                 <BookOpen className="w-6 h-6" />
@@ -121,7 +121,7 @@ export default function AboutPage() {
             </div>
 
             {/* Stat Counters */}
-            <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 border-t border-slate-100 dark:border-white/5 pt-8">
+            <div className="mt-5 sm:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 border-t border-slate-100 dark:border-white/5 pt-5 sm:pt-8">
               {milestones.map((m, i) => (
                 <div key={i} className="text-center p-3 rounded-xl bg-slate-50 dark:bg-black/30 border border-slate-100 dark:border-white/5">
                   <div className="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-gulf-400">{m.number}</div>
@@ -133,8 +133,8 @@ export default function AboutPage() {
           </section>
 
           {/* Core Values Grid */}
-          <section className="mb-16">
-            <div className="text-center mb-10">
+          <section className="mb-8 sm:mb-12 md:mb-16">
+            <div className="text-center mb-5 sm:mb-8 md:mb-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                 আমাদের মূল দর্শন ও অঙ্গীকার (Core Values)
               </h2>
@@ -143,13 +143,13 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
               {values.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-6 rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 hover:border-emerald-500/40 transition-all duration-200 shadow-sm"
+                    className="p-4 sm:p-5 md:p-6 rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 hover:border-emerald-500/40 transition-all duration-200 shadow-sm"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-gulf-500/15 text-emerald-600 dark:text-gulf-400">
@@ -172,7 +172,7 @@ export default function AboutPage() {
           </section>
 
           {/* Educational Approach & Content Integrity */}
-          <section className="mb-16 rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/90 p-6 sm:p-10 shadow-sm">
+          <section className="mb-8 sm:mb-12 md:mb-16 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-surface-100/90 p-4 sm:p-6 md:p-10 shadow-sm">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">
               পাঠ্যক্রম ও শিক্ষার মান নিয়ন্ত্রণ (Editorial & Content Integrity)
             </h2>
@@ -197,11 +197,11 @@ export default function AboutPage() {
           </section>
 
           {/* Quick CTA */}
-          <div className="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-amber-500/10 p-8 sm:p-12 text-center">
+          <div className="rounded-2xl sm:rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-amber-500/10 p-5 sm:p-8 md:p-12 text-center">
             <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2">
               আজই শুরু করুন আপনার ভাষা শিক্ষার যাত্রা
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto mb-6">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto mb-4 sm:mb-6">
               আমাদের ফ্রি ভিডিও গ্যালারি ও অডিও প্র্যাকটিস সেশনে যুক্ত হয়ে গালফ আরবিতে আত্মবিশ্বাসী হয়ে উঠুন।
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">

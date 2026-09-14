@@ -162,19 +162,19 @@ export default function LaborRightsPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden bg-slate-50 dark:bg-[#060b08] text-slate-900 dark:text-slate-100 transition-colors">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden py-8 sm:py-14">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden py-5 sm:py-8 md:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Top Clean Header with Back Link */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-6 md:mb-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-4"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-2.5 sm:mb-4"
             >
               ← হোমপেজে ফিরে যান
             </Link>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-2 sm:mb-3">
               <Scale className="w-3.5 h-3.5" />
               <span>আইনি সুরক্ষা ও আন্তর্জাতিক শ্রম অধিকার</span>
             </div>
@@ -188,7 +188,7 @@ export default function LaborRightsPage() {
           </div>
 
           {/* Quick Notice Banner */}
-          <div className="bg-emerald-600/10 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 mb-8 flex items-start gap-3.5">
+          <div className="bg-emerald-600/10 border border-emerald-500/30 rounded-2xl p-3.5 sm:p-5 mb-4 sm:mb-6 md:mb-8 flex items-start gap-3.5">
             <ShieldCheck className="w-6 h-6 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
             <div className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 space-y-1">
               <p className="font-bold text-slate-900 dark:text-white">
@@ -201,7 +201,7 @@ export default function LaborRightsPage() {
           </div>
 
           {/* Country Selection Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2.5 sm:pb-3 mb-5 sm:mb-8 no-scrollbar">
             {LABOR_COUNTRIES.map((item) => {
               const isActive = selectedCountry === item.countryCode;
               return (
@@ -223,13 +223,13 @@ export default function LaborRightsPage() {
           </div>
 
           {/* Selected Country Labor Rights Details Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             
             {/* Left 2 Columns: Core Legal Rights */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
               
               {/* Working Hours & Overtime */}
-              <div className="bg-white dark:bg-surface-100 rounded-2xl p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
+              <div className="bg-white dark:bg-surface-100 rounded-2xl p-4 sm:p-5 md:p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
                 <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 dark:border-white/5">
                   <Clock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
@@ -254,7 +254,7 @@ export default function LaborRightsPage() {
               </div>
 
               {/* Wage Protection System (WPS) */}
-              <div className="bg-white dark:bg-surface-100 rounded-2xl p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
+              <div className="bg-white dark:bg-surface-100 rounded-2xl p-4 sm:p-5 md:p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
                 <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 dark:border-white/5">
                   <Coins className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
@@ -271,7 +271,7 @@ export default function LaborRightsPage() {
               </div>
 
               {/* Passport & Iqama Rights */}
-              <div className="bg-white dark:bg-surface-100 rounded-2xl p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
+              <div className="bg-white dark:bg-surface-100 rounded-2xl p-4 sm:p-5 md:p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
                 <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 dark:border-white/5">
                   <FileCheck2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
@@ -298,10 +298,10 @@ export default function LaborRightsPage() {
             </div>
 
             {/* Right Column: Emergency Helplines & Embassy Directory */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               
               {/* Ministry Hotline Card */}
-              <div className="bg-emerald-900 text-white rounded-2xl p-6 shadow-md border border-emerald-700/50">
+              <div className="bg-emerald-900 text-white rounded-2xl p-4 sm:p-5 md:p-6 shadow-md border border-emerald-700/50">
                 <div className="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">
                   <Building2 className="w-4 h-4" />
                   <span>শ্রম মন্ত্রণালয় হটলাইন</span>
@@ -331,7 +331,7 @@ export default function LaborRightsPage() {
               </div>
 
               {/* Bangladesh Embassy / Consulate Contacts */}
-              <div className="bg-white dark:bg-surface-100 rounded-2xl p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
+              <div className="bg-white dark:bg-surface-100 rounded-2xl p-4 sm:p-5 md:p-6 border border-slate-200/90 dark:border-white/10 shadow-xs">
                 <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 dark:border-white/5">
                   <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   <h3 className="text-base font-bold text-slate-900 dark:text-white">
@@ -364,7 +364,7 @@ export default function LaborRightsPage() {
               </div>
 
               {/* Emergency Arabic Advice */}
-              <div className="bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-5 border border-amber-200 dark:border-amber-900/40 text-xs">
+              <div className="bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-3.5 sm:p-5 border border-amber-200 dark:border-amber-900/40 text-xs">
                 <div className="flex items-center gap-2 font-bold text-amber-800 dark:text-amber-300 mb-2">
                   <AlertOctagon className="w-4 h-4 text-amber-600" />
                   <span>জরুরি আরবি বাক্যটি মুখস্থ রাখুন</span>
@@ -385,11 +385,11 @@ export default function LaborRightsPage() {
           </div>
 
           {/* Bottom Live Batch CTA Banner */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg border border-white/10">
+          <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-8 md:p-10 text-center shadow-lg border border-white/10">
             <h2 className="text-xl sm:text-2xl font-black mb-2">
               কর্মক্ষেত্রে আত্মবিশ্বাসের সাথে কথা বলুন ও নিজের অধিকার রক্ষা করুন
             </h2>
-            <p className="text-slate-300 text-xs sm:text-sm mb-6 max-w-lg mx-auto">
+            <p className="text-slate-300 text-xs sm:text-sm mb-4 sm:mb-6 max-w-lg mx-auto">
               কফিল বা সুপারের সামনে দ্বিধাদ্বন্দ্ব না রেখে সাবলীল আরবিতে কথা বলতে শিখুন আমাদের প্র্যাকটিক্যাল লাইভ ক্লাসে।
             </p>
             <Link

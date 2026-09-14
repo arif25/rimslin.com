@@ -116,9 +116,9 @@ export default function LiveBatchContent() {
       {/* ========================================================================= */}
       {/* 1. HERO SECTION WITH LIVE BADGE & TRUST PILLS                            */}
       {/* ========================================================================= */}
-      <section className="pt-10 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
+      <section className="pt-6 sm:pt-12 md:pt-16 pb-6 sm:pb-10 md:pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center">
         {/* Live Indicator Pill */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/70 shadow-xs mb-5 text-xs font-bold text-rose-700 dark:text-rose-300">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/70 shadow-xs mb-3.5 sm:mb-5 text-xs font-bold text-rose-700 dark:text-rose-300">
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-600" />
@@ -140,23 +140,23 @@ export default function LiveBatchContent() {
         </h1>
 
         {/* Hero Subtitle */}
-        <p className="mt-5 text-base sm:text-xl text-slate-700 dark:text-slate-300 font-medium leading-relaxed max-w-3xl mx-auto">
+        <p className="mt-4 sm:mt-5 text-base sm:text-xl text-slate-700 dark:text-slate-300 font-medium leading-relaxed max-w-3xl mx-auto">
           প্রথম ৩ দিনের ফ্রি ডেমো ক্লাস করে নিজের লেভেল যাচাই করুন। কোনো অগ্রিম ফি
           বা ক্রেডিট কার্ড ছাড়াই জয়েন করুন।
         </p>
 
         {/* Urgency Callout */}
-        <div className="mt-6 inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-amber-900 dark:text-gold-200 bg-amber-50/90 dark:bg-gold-950/50 border border-amber-200/90 dark:border-gold-800/60 px-4 py-1.5 rounded-full shadow-2xs">
+        <div className="mt-4 sm:mt-6 inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-amber-900 dark:text-gold-200 bg-amber-50/90 dark:bg-gold-950/50 border border-amber-200/90 dark:border-gold-800/60 px-4 py-1.5 rounded-full shadow-2xs">
           <span>🔥 পরবর্তী ব্যাচে আর মাত্র ৭টি সিট বাকি</span>
           <span className="hidden sm:inline">• আগামী সোমবার থেকে ক্লাস শুরু</span>
         </div>
 
         {/* Hero CTA Button Cluster */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
+        <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
           <button
             type="button"
             onClick={scrollToBooking}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-700/25 hover:shadow-emerald-700/40 border border-emerald-400/40 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-700/25 hover:shadow-emerald-700/40 border border-emerald-400/40 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
           >
             <span>৩ দিনের ফ্রি ডেমো ক্লাসে সিট বুক করুন</span>
             <ArrowRight className="w-4 h-4 shrink-0" />
@@ -165,7 +165,7 @@ export default function LiveBatchContent() {
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-[#0b1910] hover:bg-slate-100 dark:hover:bg-surface-200 border border-slate-200 dark:border-white/10 shadow-sm transition-all cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-[#0b1910] hover:bg-slate-100 dark:hover:bg-surface-200 border border-slate-200 dark:border-white/10 shadow-sm transition-all cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-amber-500" />
             <span>সরাসরি পপ-আপ ফর্ম</span>
@@ -173,7 +173,7 @@ export default function LiveBatchContent() {
         </div>
 
         {/* Trust Badges */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
+        <div className="mt-5 sm:mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3.5 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-100/70 dark:bg-emerald-950/50 border border-emerald-300/70 dark:border-emerald-800/60 shadow-2xs">
             <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
             <span>✓ ৩ দিনের ফ্রি ট্রায়াল</span>
@@ -196,8 +196,8 @@ export default function LiveBatchContent() {
       {/* ========================================================================= */}
       {/* 2. HOW IT WORKS / 3-STEP PROGRESSION ROADMAP                             */}
       {/* ========================================================================= */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200/80 dark:border-white/10">
-        <div className="text-center mb-10">
+      <section className="py-6 sm:py-10 md:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200/80 dark:border-white/10">
+        <div className="text-center mb-5 sm:mb-8 md:mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-2">
             <span>ধাপভিত্তিক রোডম্যাপ</span>
           </div>
@@ -209,11 +209,11 @@ export default function LiveBatchContent() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-6 relative">
           {/* Step 1 */}
-          <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-6 sm:p-7 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+          <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-4 sm:p-6 md:p-7 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black text-lg border border-emerald-300 dark:border-emerald-800">
+              <span className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black text-base sm:text-lg border border-emerald-300 dark:border-emerald-800">
                 ০১
               </span>
               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
@@ -230,9 +230,9 @@ export default function LiveBatchContent() {
           </div>
 
           {/* Step 2 */}
-          <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-6 sm:p-7 border border-amber-300/80 dark:border-gold-500/30 shadow-sm hover:shadow-md transition-shadow">
+          <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-4 sm:p-6 md:p-7 border border-amber-300/80 dark:border-gold-500/30 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 dark:bg-gold-950 text-amber-800 dark:text-gold-300 font-black text-lg border border-amber-300 dark:border-gold-800">
+              <span className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-amber-100 dark:bg-gold-950 text-amber-800 dark:text-gold-300 font-black text-base sm:text-lg border border-amber-300 dark:border-gold-800">
                 ০২
               </span>
               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-amber-50 dark:bg-gold-950/70 text-amber-800 dark:text-gold-300 border border-amber-200 dark:border-gold-800/60">
@@ -249,9 +249,9 @@ export default function LiveBatchContent() {
           </div>
 
           {/* Step 3 */}
-          <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-6 sm:p-7 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+          <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-4 sm:p-6 md:p-7 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black text-lg border border-emerald-300 dark:border-emerald-800">
+              <span className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black text-base sm:text-lg border border-emerald-300 dark:border-emerald-800">
                 ০৩
               </span>
               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
@@ -272,8 +272,8 @@ export default function LiveBatchContent() {
       {/* ========================================================================= */}
       {/* 3. BATCH FEATURES GRID                                                    */}
       {/* ========================================================================= */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200/80 dark:border-white/10">
-        <div className="text-center mb-10">
+      <section className="py-6 sm:py-10 md:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-slate-200/80 dark:border-white/10">
+        <div className="text-center mb-5 sm:mb-8 md:mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 text-xs font-bold mb-2">
             <span>লাইভ ক্লাসের বিশেষত্ব</span>
           </div>
@@ -285,9 +285,9 @@ export default function LiveBatchContent() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5 lg:gap-6">
           {/* Feature 1 */}
-          <div className="rounded-2xl p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
+          <div className="rounded-2xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 mb-4">
               <Headphones className="w-6 h-6" />
             </div>
@@ -300,7 +300,7 @@ export default function LiveBatchContent() {
           </div>
 
           {/* Feature 2 */}
-          <div className="rounded-2xl p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
+          <div className="rounded-2xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 mb-4">
               <FileText className="w-6 h-6" />
             </div>
@@ -313,7 +313,7 @@ export default function LiveBatchContent() {
           </div>
 
           {/* Feature 3 */}
-          <div className="rounded-2xl p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
+          <div className="rounded-2xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 mb-4">
               <MessageSquare className="w-6 h-6" />
             </div>
@@ -326,7 +326,7 @@ export default function LiveBatchContent() {
           </div>
 
           {/* Feature 4 */}
-          <div className="rounded-2xl p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
+          <div className="rounded-2xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 mb-4">
               <Users className="w-6 h-6" />
             </div>
@@ -339,7 +339,7 @@ export default function LiveBatchContent() {
           </div>
 
           {/* Feature 5 */}
-          <div className="rounded-2xl p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
+          <div className="rounded-2xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 mb-4">
               <Globe2 className="w-6 h-6" />
             </div>
@@ -352,7 +352,7 @@ export default function LiveBatchContent() {
           </div>
 
           {/* Feature 6 */}
-          <div className="rounded-2xl p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
+          <div className="rounded-2xl p-4 sm:p-5 md:p-6 bg-white dark:bg-[#0c1811] border border-slate-200 dark:border-white/10 shadow-xs hover:border-emerald-400 dark:hover:border-emerald-600/50 transition-all">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 mb-4">
               <Clock className="w-6 h-6" />
             </div>
@@ -371,14 +371,14 @@ export default function LiveBatchContent() {
       {/* ========================================================================= */}
       <section
         id="booking-form"
-        className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto scroll-mt-24"
+        className="py-6 sm:py-10 md:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto scroll-mt-24"
       >
-        <div className="relative rounded-3xl border-2 border-emerald-400/80 dark:border-emerald-500/40 bg-white dark:bg-[#0b1b10] shadow-2xl shadow-emerald-950/10 p-6 sm:p-10 overflow-hidden">
+        <div className="relative rounded-3xl border-2 border-emerald-400/80 dark:border-emerald-500/40 bg-white dark:bg-[#0b1b10] shadow-2xl shadow-emerald-950/10 p-4 sm:p-8 md:p-10 overflow-hidden">
           {/* Accent top gradient line */}
           <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-500" />
 
           {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-8">
+          <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-8">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-3">
               <Video className="w-3.5 h-3.5 text-emerald-600" />
               <span>১০০% ফ্রি রেজিস্ট্রেশন • ৩ দিনের ট্রায়াল</span>

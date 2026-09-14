@@ -30,7 +30,7 @@ export default function LiveBatchSection() {
   return (
     <section
       id="live-batch"
-      className="relative scroll-mt-24 sm:scroll-mt-28 w-full max-w-full py-12 sm:py-16 bg-gradient-to-b from-emerald-50/70 via-white to-slate-50/80 dark:from-[#041209]/80 dark:via-[#060e09] dark:to-[#040a06] border-y border-emerald-200/80 dark:border-emerald-900/40 transition-colors duration-200 overflow-hidden"
+      className="relative scroll-mt-24 sm:scroll-mt-28 w-full max-w-full py-6 sm:py-10 md:py-16 bg-gradient-to-b from-emerald-50/70 via-white to-slate-50/80 dark:from-[#041209]/80 dark:via-[#060e09] dark:to-[#040a06] border-y border-emerald-200/80 dark:border-emerald-900/40 transition-colors duration-200 overflow-hidden"
     >
       {/* Background Decorative Ambient Blobs */}
       <div
@@ -98,8 +98,8 @@ export default function LiveBatchSection() {
         {/* ========================================================================= */}
         {/* 2. HERO OFFER BANNER CARD & PRIMARY CTA                                  */}
         {/* ========================================================================= */}
-        <div className="mt-10 max-w-4xl mx-auto">
-          <div className="relative rounded-2xl sm:rounded-3xl border-2 border-emerald-400/80 dark:border-emerald-500/40 bg-white dark:bg-[#0b1b10] shadow-xl shadow-emerald-900/10 p-6 sm:p-8 overflow-hidden">
+        <div className="mt-5 sm:mt-8 md:mt-10 max-w-4xl mx-auto">
+          <div className="relative rounded-2xl sm:rounded-3xl border-2 border-emerald-400/80 dark:border-emerald-500/40 bg-white dark:bg-[#0b1b10] shadow-xl shadow-emerald-900/10 p-4 sm:p-6 md:p-8 overflow-hidden">
             {/* Subtle Gradient Accent Border Line at Top */}
             <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-500" />
 
@@ -186,8 +186,8 @@ export default function LiveBatchSection() {
         {/* ========================================================================= */}
         {/* 3. LEVEL PROGRESSION EXPLAINER (HOW IT WORKS - 3 STEP ROADMAP)           */}
         {/* ========================================================================= */}
-        <div className="mt-14 max-w-5xl mx-auto">
-          <div className="text-center mb-8">
+        <div className="mt-6 sm:mt-10 md:mt-14 max-w-5xl mx-auto">
+          <div className="text-center mb-4 sm:mb-6 md:mb-8">
             <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
               কীভাবে আপনার উপযুক্ত ব্যাচ নির্বাচন করা হয়?
             </h3>
@@ -196,9 +196,9 @@ export default function LiveBatchSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-6 relative">
             {/* Step 1 */}
-            <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-6 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+            <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-4 sm:p-6 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-4">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black text-base border border-emerald-300 dark:border-emerald-800">
                   ০১
@@ -217,7 +217,7 @@ export default function LiveBatchSection() {
             </div>
 
             {/* Step 2 */}
-            <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-6 border border-amber-300/80 dark:border-gold-500/30 shadow-sm hover:shadow-md transition-shadow">
+            <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-4 sm:p-6 border border-amber-300/80 dark:border-gold-500/30 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-4">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-gold-950 text-amber-800 dark:text-gold-300 font-black text-base border border-amber-300 dark:border-gold-800">
                   ০২
@@ -236,7 +236,7 @@ export default function LiveBatchSection() {
             </div>
 
             {/* Step 3 */}
-            <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-6 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+            <div className="relative rounded-2xl bg-white dark:bg-[#0c1811] p-4 sm:p-6 border border-emerald-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-4">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black text-base border border-emerald-300 dark:border-emerald-800">
                   ০৩
@@ -257,7 +257,7 @@ export default function LiveBatchSection() {
           </div>
 
           {/* Bottom Roadmap Action Bar */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-slate-100/90 dark:bg-surface-100 border border-slate-200 dark:border-white/10">
+          <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl bg-slate-100/90 dark:bg-surface-100 border border-slate-200 dark:border-white/10">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-white shrink-0">
                 <Award className="w-4 h-4" />

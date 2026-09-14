@@ -84,9 +84,9 @@ export default function CareerContent() {
       {/* ========================================================================= */}
       {/* SECTION 1: HERO HEADER                                                    */}
       {/* ========================================================================= */}
-      <section className="relative pt-12 pb-16 sm:pt-16 sm:pb-20 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <section className="relative pt-6 pb-10 sm:pt-12 sm:pb-16 md:pt-16 md:pb-20 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         {/* Hub Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/40 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-emerald-800 dark:text-emerald-300 shadow-sm backdrop-blur-md mb-6">
+        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/40 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-emerald-800 dark:text-emerald-300 shadow-sm backdrop-blur-md mb-3.5 sm:mb-6">
           <span>🚀 প্রবাসী ক্যারিয়ার সহায়তা কেন্দ্র</span>
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-600 dark:text-emerald-400">
@@ -103,12 +103,12 @@ export default function CareerContent() {
         </h1>
 
         {/* Subheadline */}
-        <p className="mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+        <p className="mt-4 sm:mt-6 max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
           গালফ ও ইউরোপের চাকরির সুযোগ বাড়াতে তৈরি করুন আন্তর্জাতিক মানের বায়োডাটা, দিন এআই ইন্টারভিউ মক টেস্ট এবং শিখুন বাস্তব কাজের ভাষা।
         </p>
 
         {/* Trust Badges Bar */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <div className="mt-5 sm:mt-8 flex flex-wrap items-center justify-center gap-2.5 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300">
           <div className="inline-flex items-center gap-1.5 rounded-lg bg-white/80 dark:bg-gray-900/80 px-3 py-1.5 border border-slate-200 dark:border-gray-800 shadow-sm">
             <Zap className="h-4 w-4 text-amber-500" />
             <span>১০০% বিনামূল্যে ক্যারিয়ার টুলস</span>
@@ -127,8 +127,8 @@ export default function CareerContent() {
       {/* ========================================================================= */}
       {/* SECTION 2: CORE 3-PRODUCT GRID (FEATURE CARDS)                            */}
       {/* ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-        <div className="text-center mb-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-14">
+        <div className="text-center mb-5 sm:mb-8 md:mb-12">
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             প্রবাসী ক্যারিয়ার ইকোসিস্টেম
           </h2>
@@ -137,9 +137,9 @@ export default function CareerContent() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* CARD 1: AI Resume Builder */}
-          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-6 sm:p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/40 hover:shadow-2xl hover:border-emerald-500/50 dark:hover:border-emerald-500/40 transition-all duration-300">
+          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-4 sm:p-6 md:p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/40 hover:shadow-2xl hover:border-emerald-500/50 dark:hover:border-emerald-500/40 transition-all duration-300">
             <div>
               {/* Header: Icon & Badge */}
               <div className="flex items-center justify-between gap-2 mb-5">
@@ -193,12 +193,12 @@ export default function CareerContent() {
           </div>
 
           {/* CARD 2: AI Mock Interview */}
-          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-6 sm:p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/40 hover:shadow-2xl hover:border-amber-500/50 dark:hover:border-amber-500/40 transition-all duration-300">
+          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-4 sm:p-6 md:p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/40 hover:shadow-2xl hover:border-amber-500/50 dark:hover:border-amber-500/40 transition-all duration-300">
             <div>
               {/* Header: Icon & Badge */}
-              <div className="flex items-center justify-between gap-2 mb-5">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 text-amber-600 dark:text-amber-400 group-hover:scale-105 transition-transform">
-                  <Bot className="h-7 w-7" />
+              <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 text-amber-600 dark:text-amber-400 group-hover:scale-105 transition-transform">
+                  <Bot className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 px-3 py-1 text-xs font-bold">
                   <Mic className="h-3 w-3 text-amber-600 animate-bounce" />
@@ -218,7 +218,7 @@ export default function CareerContent() {
               </p>
 
               {/* Feature Points */}
-              <ul className="mt-6 space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <ul className="mt-5 sm:mt-6 space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                 <li className="flex items-start gap-2">
                   <Check className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
                   <span>কফিল ও ডাইরেক্ট সিলেকশন ইন্টারভিউয়ের বাস্তব ৫০+ প্রশ্ন</span>
@@ -235,7 +235,7 @@ export default function CareerContent() {
             </div>
 
             {/* CTA Button */}
-            <div className="mt-8 pt-4 border-t border-slate-100 dark:border-gray-800/80">
+            <div className="mt-5 sm:mt-8 pt-3 sm:pt-4 border-t border-slate-100 dark:border-gray-800/80">
               <button
                 type="button"
                 onClick={() => {
@@ -251,12 +251,12 @@ export default function CareerContent() {
           </div>
 
           {/* CARD 3: Trade & Workplace Language */}
-          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-6 sm:p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/40 hover:shadow-2xl hover:border-teal-500/50 dark:hover:border-teal-500/40 transition-all duration-300">
+          <div className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-4 sm:p-6 md:p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/40 hover:shadow-2xl hover:border-teal-500/50 dark:hover:border-teal-500/40 transition-all duration-300">
             <div>
               {/* Header: Icon & Badge */}
-              <div className="flex items-center justify-between gap-2 mb-5">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800/60 text-teal-600 dark:text-teal-400 group-hover:scale-105 transition-transform">
-                  <Languages className="h-7 w-7" />
+              <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800/60 text-teal-600 dark:text-teal-400 group-hover:scale-105 transition-transform">
+                  <Languages className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-teal-100 text-teal-800 dark:bg-teal-950/80 dark:text-teal-300 border border-teal-200 dark:border-teal-800/60 px-3 py-1 text-xs font-bold">
                   <Sparkles className="h-3 w-3 text-teal-600" />
@@ -305,7 +305,7 @@ export default function CareerContent() {
             </div>
 
             {/* CTA Button */}
-            <div className="mt-8 pt-4 border-t border-slate-100 dark:border-gray-800/80">
+            <div className="mt-5 sm:mt-8 pt-3 sm:pt-4 border-t border-slate-100 dark:border-gray-800/80">
               <Link
                 href="/#course-plans"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-4 text-sm shadow-md shadow-teal-600/20 hover:scale-[1.02] active:scale-95 transition-all"
@@ -321,15 +321,15 @@ export default function CareerContent() {
       {/* ========================================================================= */}
       {/* SECTION 3: FUTURE JOB BOARD TEASER (COMING SOON BANNER)                   */}
       {/* ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/60 via-gray-900 to-slate-900 p-8 sm:p-12 lg:p-16 text-white shadow-2xl">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-16">
+        <div className="relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/60 via-gray-900 to-slate-900 p-5 sm:p-10 lg:p-16 text-white shadow-2xl">
           {/* Subtle Background Elements */}
           <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-emerald-500/20 blur-[100px]" />
           <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-amber-500/15 blur-[100px]" />
 
           <div className="relative z-10 max-w-3xl mx-auto text-center">
             {/* Tag */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 px-3.5 py-1 text-xs sm:text-sm font-bold text-amber-300 mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 px-3.5 py-1 text-xs sm:text-sm font-bold text-amber-300 mb-4 sm:mb-6">
               <Bell className="h-3.5 w-3.5 text-amber-300 animate-bounce" />
               <span>Coming Soon / খুব শীঘ্রই আসছে</span>
             </div>

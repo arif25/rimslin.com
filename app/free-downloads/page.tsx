@@ -125,14 +125,14 @@ export default function FreeDownloadsPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden bg-slate-50 dark:bg-[#060b08] text-slate-900 dark:text-slate-100 transition-colors">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden py-8 sm:py-14">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden py-5 sm:py-8 md:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Top Clean Header with Back Link */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-4"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-2 sm:mb-4"
             >
               ← হোমপেজে ফিরে যান
             </Link>
@@ -151,7 +151,7 @@ export default function FreeDownloadsPage() {
           </div>
 
           {/* Quick WhatsApp Assistance Ribbon */}
-          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-3.5 sm:p-5 mb-4 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
                 <MessageCircle className="w-5 h-5" />
@@ -178,7 +178,7 @@ export default function FreeDownloadsPage() {
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-4 sm:mb-8 no-scrollbar">
             {[
               { key: 'all', label: 'সব ডাউনলোড' },
               { key: 'pdf', label: 'ভোকাবুলারি শিট (PDF)' },
@@ -191,7 +191,7 @@ export default function FreeDownloadsPage() {
                   key={tab.key}
                   type="button"
                   onClick={() => setSelectedTab(tab.key as any)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+                  className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
                     isActive
                       ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
                       : 'bg-white dark:bg-surface-100 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-white/10 hover:border-emerald-400'
@@ -204,11 +204,11 @@ export default function FreeDownloadsPage() {
           </div>
 
           {/* Resource Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mb-6 sm:mb-10 md:mb-14">
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white dark:bg-surface-100 rounded-2xl p-6 border border-slate-200/90 dark:border-white/10 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all"
+                className="bg-white dark:bg-surface-100 rounded-2xl p-4 sm:p-5 md:p-6 border border-slate-200/90 dark:border-white/10 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">

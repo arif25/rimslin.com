@@ -52,7 +52,7 @@ export default function ContactPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden relative bg-slate-50 text-slate-900 dark:bg-[#060b08] dark:text-slate-100 transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-12 sm:py-20">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-6 sm:py-10 md:py-16 lg:py-20">
         {/* Ambient Glow */}
         <div
           className="pointer-events-none absolute top-10 left-1/2 -z-10 h-[500px] w-full max-w-[850px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[140px] opacity-70"
@@ -61,7 +61,7 @@ export default function ContactPage() {
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-8">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-4 sm:mb-6 md:mb-8">
             <Link href="/" className="hover:text-emerald-600 dark:hover:text-gulf-400 transition-colors">
               হোম (Home)
             </Link>
@@ -70,8 +70,8 @@ export default function ContactPage() {
           </nav>
 
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-4 shadow-sm">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10 md:mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-2 sm:mb-4 shadow-sm">
               <Mail className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400" />
               <span>সহায়তা ও অনুসন্ধান</span>
             </div>
@@ -83,7 +83,7 @@ export default function ContactPage() {
               </span>
             </h1>
 
-            <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <p className="mt-2.5 sm:mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
               আরবি ভাষা শিক্ষার কোনো ক্লাস সংক্রান্ত প্রশ্ন, মতামত কিংবা পরামর্শ থাকলে আমাদের অফিসিয়াল ইমেইল{" "}
               <a
                 href="mailto:support@rimslin.com"
@@ -95,15 +95,15 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-start">
             {/* Contact Info Cards (Left Col - 5 cols) */}
-            <div className="lg:col-span-5 space-y-4">
+            <div className="lg:col-span-5 space-y-3 sm:space-y-4">
               {contactDetails.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 shadow-sm"
+                    className="p-3.5 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-surface-100 shadow-sm"
                   >
                     <div className="flex items-start gap-3.5">
                       <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-gulf-500/15 text-emerald-600 dark:text-gulf-400 shrink-0">
@@ -137,7 +137,7 @@ export default function ContactPage() {
               })}
 
               {/* Inquiry Advice Card */}
-              <div className="p-5 rounded-2xl border border-amber-500/30 bg-amber-500/5 dark:border-gold-500/20 dark:bg-gold-500/5">
+              <div className="p-3.5 sm:p-5 rounded-2xl border border-amber-500/30 bg-amber-500/5 dark:border-gold-500/20 dark:bg-gold-500/5">
                 <div className="flex items-center gap-2 text-amber-700 dark:text-gold-400 font-bold text-sm mb-2">
                   <HelpCircle className="w-4 h-4" />
                   <span>কোন ধরনের বিষয়ে লিখতে পারেন?</span>
@@ -152,8 +152,8 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form (Right Col - 7 cols) */}
-            <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/90 dark:bg-surface-100/90 backdrop-blur-md shadow-xl">
-              <div className="mb-6">
+            <div className="lg:col-span-7 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/90 dark:bg-surface-100/90 backdrop-blur-md shadow-xl">
+              <div className="mb-4 sm:mb-6">
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                   অনলাইন বার্তা ফর্ম (Inquiry Form)
                 </h2>

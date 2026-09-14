@@ -157,9 +157,9 @@ export default function JobTracks() {
   };
 
   return (
-    <section id="job-tracks" className="max-w-6xl mx-auto px-4 py-12">
+    <section id="job-tracks" className="max-w-6xl mx-auto px-4 py-6 sm:py-10 md:py-12">
       {/* 1. Section Heading: Centered title */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-4 sm:mb-6 md:mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
           {language === "en"
             ? "Specialized Language Tracks for Your Profession"
@@ -226,7 +226,7 @@ export default function JobTracks() {
           ref={scrollRef}
           onScroll={checkScroll}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          className="grid grid-flow-col auto-cols-[100%] sm:auto-cols-[calc(50%-12px)] gap-6 overflow-x-auto [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth p-1"
+          className="grid grid-flow-col auto-cols-[100%] sm:auto-cols-[calc(50%-12px)] gap-3 sm:gap-4 md:gap-6 overflow-x-auto [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth p-1"
         >
           {tracks.map((track) => {
             const BadgeIcon = track.badgeIcon;
@@ -234,7 +234,7 @@ export default function JobTracks() {
             return (
               <div
                 key={track.id}
-                className="bg-white dark:bg-surface-100 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm p-6 flex flex-col justify-between hover:border-emerald-500/60 hover:shadow-md transition-all snap-start"
+                className="bg-white dark:bg-surface-100 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm p-4 sm:p-5 md:p-6 flex flex-col justify-between hover:border-emerald-500/60 hover:shadow-md transition-all snap-start"
               >
                 <div>
                   {/* Top Badge: Category pill tag */}
@@ -280,7 +280,7 @@ export default function JobTracks() {
       </div>
 
       {/* 4. Bottom "সব পেশার ট্র্যাক দেখুন" Button */}
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <div className="mt-5 sm:mt-8 md:mt-10 flex flex-wrap items-center justify-center gap-4">
         <Link
           href="/trade-tracks"
           className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm sm:text-base shadow-sm hover:shadow-md transition-all active:scale-[0.99]"

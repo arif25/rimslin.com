@@ -328,7 +328,7 @@ export default function AudioDemoContent() {
   };
 
   return (
-    <div className="w-full relative py-8 sm:py-14">
+    <div className="w-full relative py-5 sm:py-8 md:py-14">
       {/* Decorative Glow */}
       <div
         className="pointer-events-none absolute top-10 left-1/2 -z-10 h-[500px] w-full max-w-[850px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[140px] opacity-75"
@@ -337,7 +337,7 @@ export default function AudioDemoContent() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <div className="flex items-center justify-between gap-4 mb-6 sm:mb-8">
+        <div className="flex items-center justify-between gap-4 mb-4 sm:mb-6 md:mb-8">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400"
@@ -365,8 +365,8 @@ export default function AudioDemoContent() {
         {/* ========================================================================= */}
         {/* 1. PAGE HEADER & INTRODUCTION                                            */}
         {/* ========================================================================= */}
-        <header className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-bold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-4 shadow-sm">
+        <header className="text-center max-w-3xl mx-auto mb-5 sm:mb-8 md:mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-bold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-3.5 sm:mb-4 shadow-sm">
             <Volume2 className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400 animate-pulse" />
             <span>লাইভ অডিও লার্নিং প্লেয়ার</span>
           </div>
@@ -384,7 +384,7 @@ export default function AudioDemoContent() {
           </p>
 
           {/* Search Box */}
-          <div className="mt-8 max-w-xl mx-auto relative">
+          <div className="mt-4 sm:mt-6 md:mt-8 max-w-xl mx-auto relative">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
             <input
               type="text"
@@ -439,13 +439,13 @@ export default function AudioDemoContent() {
         {/* ========================================================================= */}
         {/* FILTER / CATEGORY TABS                                                   */}
         {/* ========================================================================= */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-5 sm:mb-8 md:mb-10">
           {CATEGORY_TABS.map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setSelectedCategory(tab.id)}
-              className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              className={`rounded-xl px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                 selectedCategory === tab.id
                   ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20 dark:bg-emerald-500 dark:text-slate-950"
                   : "border border-slate-200 bg-white/90 text-slate-700 hover:bg-slate-100 dark:border-white/10 dark:bg-surface-100/60 dark:text-slate-300 dark:hover:bg-surface-200 dark:hover:text-white"
@@ -460,7 +460,7 @@ export default function AudioDemoContent() {
         {/* 2. INTERACTIVE AUDIO PHRASE CARDS GRID                                   */}
         {/* ========================================================================= */}
         {filteredPhrases.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3.5 sm:gap-6">
             {filteredPhrases.map((phrase) => {
               const isPlaying = playingId === phrase.id;
               const isCopied = copiedId === phrase.id;
@@ -470,7 +470,7 @@ export default function AudioDemoContent() {
               return (
                 <div
                   key={phrase.id}
-                  className={`flex flex-col justify-between rounded-2xl border p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 ${
+                  className={`flex flex-col justify-between rounded-2xl border p-4 sm:p-5 md:p-6 backdrop-blur-xl transition-all duration-300 ${
                     isPlaying
                       ? "border-emerald-500 bg-emerald-50/50 shadow-xl shadow-emerald-500/10 ring-1 ring-emerald-500/50 dark:border-emerald-400 dark:bg-emerald-950/30"
                       : "border-slate-200 bg-white/95 shadow-sm hover:border-emerald-400 hover:shadow-md dark:border-white/[0.08] dark:bg-surface-100/70 dark:hover:border-emerald-500/40"
@@ -636,7 +636,7 @@ export default function AudioDemoContent() {
         {/* ========================================================================= */}
         {/* 3. BOTTOM CTA BANNER: LINK TO /live-batch                                 */}
         {/* ========================================================================= */}
-        <section className="mt-16 sm:mt-20 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-900/20 via-slate-900/30 to-slate-950 p-6 sm:p-10 text-center relative overflow-hidden backdrop-blur-xl">
+        <section className="mt-8 sm:mt-14 md:mt-20 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-900/20 via-slate-900/30 to-slate-950 p-4 sm:p-8 md:p-10 text-center relative overflow-hidden backdrop-blur-xl">
           <div className="max-w-3xl mx-auto relative z-10">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-500/20 border border-rose-400/30 px-3.5 py-1 text-xs font-bold text-rose-300 mb-4">
               <Sparkles className="h-3.5 w-3.5" />

@@ -65,7 +65,7 @@ function PhraseCard({
 
   return (
     <div
-      className={`relative flex flex-col justify-between rounded-2xl border w-full overflow-hidden p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full ${
+      className={`relative flex flex-col justify-between rounded-2xl border w-full overflow-hidden p-3.5 sm:p-5 md:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full ${
         isPlaying
           ? "border-emerald-500 bg-emerald-50/50 shadow-xl shadow-emerald-500/10 ring-1 ring-emerald-500/50 dark:border-gulf-400 dark:bg-gulf-950/40 dark:shadow-gulf-500/20 dark:ring-gulf-400/50 scale-[1.01]"
           : "border-slate-200/90 bg-white/95 shadow-sm hover:border-emerald-500/40 hover:shadow-md dark:border-white/[0.08] dark:bg-surface-100/70 dark:hover:border-gulf-500/40 dark:hover:bg-surface-200/80"
@@ -331,8 +331,8 @@ export default function AudioPhraseDemo({
       id="phrase-demo"
       className={`relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full ${
         isStandalonePage
-          ? "py-8 sm:py-14 bg-transparent"
-          : "py-10 sm:py-14 bg-white/70 border-y border-slate-200/80 dark:bg-[#07110c] dark:border-gulf-500/20"
+          ? "py-5 sm:py-8 md:py-14 bg-transparent"
+          : "py-6 sm:py-10 md:py-14 bg-white/70 border-y border-slate-200/80 dark:bg-[#07110c] dark:border-gulf-500/20"
       } transition-colors duration-200`}
     >
       <span id="audio-demo" className="sr-only" aria-hidden="true" />
@@ -349,7 +349,7 @@ export default function AudioPhraseDemo({
         {/* Section Header (rendered on homepage or if not standalone) */}
         {!isStandalonePage && (
           <div className="text-center max-w-3xl mx-auto w-full min-w-0">
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-50 dark:border-gold-500/30 dark:bg-gold-950/40 px-3.5 py-1 text-xs font-semibold text-amber-800 dark:text-gold-300 backdrop-blur-md mb-4 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-50 dark:border-gold-500/30 dark:bg-gold-950/40 px-3.5 py-1 text-xs font-semibold text-amber-800 dark:text-gold-300 backdrop-blur-md mb-3.5 sm:mb-4 shadow-sm">
               <Volume2 className="h-3.5 w-3.5 text-amber-500 dark:text-gold-400" />
               <span>{t.audioDemo.badge}</span>
             </div>
@@ -369,7 +369,7 @@ export default function AudioPhraseDemo({
 
         {/* Standalone Search Bar */}
         {isStandalonePage && (
-          <div className="mb-8 max-w-xl mx-auto w-full">
+          <div className="mb-4 sm:mb-8 max-w-xl mx-auto w-full">
             <div className="relative">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
               <input
@@ -398,7 +398,7 @@ export default function AudioPhraseDemo({
         )}
 
         {/* Category Filter Tabs */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 w-full max-w-full min-w-0">
+        <div className="mt-4 sm:mt-6 md:mt-8 flex flex-wrap items-center justify-center gap-2 w-full max-w-full min-w-0">
           {t.audioDemo.categories.map((cat) => (
             <button
               key={cat.id}
@@ -417,7 +417,7 @@ export default function AudioPhraseDemo({
 
         {/* Phrases Grid with 50/50 Controls and Bottom Play Button */}
         {displayPhrases.length > 0 ? (
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 w-full max-w-full min-w-0">
+          <div className="mt-5 sm:mt-8 md:mt-10 grid grid-cols-1 gap-3.5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 w-full max-w-full min-w-0">
             {displayPhrases.map((phrase) => (
               <PhraseCard
                 key={phrase.id}
@@ -452,7 +452,7 @@ export default function AudioPhraseDemo({
 
         {/* Centered Modern "View All" CTA Button (when limited on homepage) */}
         {showViewAll && (
-          <div className="mt-14 flex flex-col items-center justify-center text-center px-4">
+          <div className="mt-6 sm:mt-10 md:mt-14 flex flex-col items-center justify-center text-center px-4">
             <Link
               href="/audio-phrases"
               className="group inline-flex items-center gap-2.5 mx-auto py-2.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white shadow-sm hover:shadow-md hover:shadow-emerald-900/10 transition-all duration-200"
@@ -468,7 +468,7 @@ export default function AudioPhraseDemo({
                 }`}
               />
             </Link>
-            <p className="mt-2.5 text-xs text-slate-500 dark:text-slate-400 max-w-md">
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 max-w-md">
               {t.audioDemo.viewAllSubtext ||
                 (isRTL
                   ? "استمع إلى عبارات خليجية وإنجليزية لبيئات العمل"
@@ -478,7 +478,7 @@ export default function AudioPhraseDemo({
         )}
 
         {/* Bottom Banner Note */}
-        <div className="mt-12 text-center">
+        <div className="mt-6 sm:mt-8 md:mt-12 text-center">
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             {t.audioDemo.bottomNote}
           </p>

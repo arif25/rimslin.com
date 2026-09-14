@@ -157,12 +157,12 @@ export default function ResumeBuilderClient() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-16">
       {/* Background Glows */}
       <div className="pointer-events-none absolute top-16 left-1/2 -z-10 h-[500px] w-full max-w-[900px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[130px] dark:bg-emerald-500/15" />
 
       {/* Page Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
+      <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
           Rimslin AI Resume Builder
         </h1>
@@ -194,11 +194,11 @@ export default function ResumeBuilderClient() {
       </div>
 
       {/* Main Two-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start">
         {/* ========================================================================= */}
         {/* LEFT COLUMN: INPUT FORM                                                   */}
         {/* ========================================================================= */}
-        <div className="lg:col-span-5 rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-6 sm:p-8 shadow-xl">
+        <div className="lg:col-span-5 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/90 p-4 sm:p-6 md:p-8 shadow-xl">
           <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 dark:border-gray-800 mb-6">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400">
               <FileText className="h-5 w-5" />
@@ -402,7 +402,7 @@ export default function ResumeBuilderClient() {
               {/* Formatted Resume Sheet */}
               <div
                 id="resume-printable-sheet"
-                className="rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/95 p-6 sm:p-8 shadow-xl text-slate-800 dark:text-slate-100 space-y-6"
+                className="rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-900/95 p-4 sm:p-6 md:p-8 shadow-xl text-slate-800 dark:text-slate-100 space-y-4 sm:space-y-6"
               >
                 {/* 1. Header & Contact */}
                 <div className="border-b border-slate-200 dark:border-gray-800 pb-6 relative group">
@@ -593,7 +593,7 @@ export default function ResumeBuilderClient() {
             </div>
           ) : (
             /* Empty State / Prompt to Generate */
-            <div className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-300 dark:border-gray-800 bg-slate-50/50 dark:bg-gray-900/40 p-12 text-center min-h-[460px]">
+            <div className="flex flex-col items-center justify-center rounded-2xl sm:rounded-3xl border-2 border-dashed border-slate-300 dark:border-gray-800 bg-slate-50/50 dark:bg-gray-900/40 p-6 sm:p-12 text-center min-h-[260px] sm:min-h-[460px]">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 mb-4 shadow-sm">
                 <FileText className="h-8 w-8" />
               </div>

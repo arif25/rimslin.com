@@ -84,7 +84,7 @@ export default function AIVoiceCoach() {
   };
 
   return (
-    <section id="ai-coach" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full pt-4 sm:pt-6 pb-10 sm:pb-14 bg-slate-50 border-t border-slate-200/80 dark:bg-[#060e09] dark:border-gulf-500/20 transition-colors duration-200">
+    <section id="ai-coach" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full pt-3 sm:pt-5 pb-6 sm:pb-10 md:pb-14 bg-slate-50 border-t border-slate-200/80 dark:bg-[#060e09] dark:border-gulf-500/20 transition-colors duration-200">
       <span id="ai-voice" className="sr-only" aria-hidden="true" />
       {/* Background glow */}
       <div
@@ -113,7 +113,7 @@ export default function AIVoiceCoach() {
         </div>
 
         {/* Scenario Selector Tabs */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5">
+        <div className="mt-5 sm:mt-8 md:mt-10 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
           {scenarios.map((scen) => (
             <button
               key={scen.id}
@@ -123,7 +123,7 @@ export default function AIVoiceCoach() {
                 setAccuracyScore(null);
                 setIsRecording(false);
               }}
-              className={`flex items-center gap-2 rounded-2xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all ${
+              className={`flex items-center gap-2 rounded-2xl px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold transition-all ${
                 activeScenarioId === scen.id
                   ? "bg-emerald-600 text-white font-bold shadow-lg shadow-emerald-600/20 dark:bg-gradient-to-r dark:from-gulf-500 dark:to-emerald-600 dark:text-slate-950"
                   : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:border-white/10 dark:bg-surface-100/70 dark:text-slate-300 dark:hover:bg-surface-200 dark:hover:text-white shadow-sm"
@@ -138,9 +138,9 @@ export default function AIVoiceCoach() {
         </div>
 
         {/* Main AI Simulator Interactive Card */}
-        <div className="mt-10 max-w-4xl mx-auto w-full rounded-3xl border border-slate-200/90 bg-white/95 shadow-xl dark:border-gulf-500/30 dark:bg-[#0a1610]/90 p-5 sm:p-10 backdrop-blur-2xl dark:shadow-2xl dark:shadow-gulf-950/60 min-w-0 max-w-full overflow-hidden">
+        <div className="mt-5 sm:mt-8 md:mt-10 max-w-4xl mx-auto w-full rounded-3xl border border-slate-200/90 bg-white/95 shadow-xl dark:border-gulf-500/30 dark:bg-[#0a1610]/90 p-4 sm:p-6 md:p-10 backdrop-blur-2xl dark:shadow-2xl dark:shadow-gulf-950/60 min-w-0 max-w-full overflow-hidden">
           {/* Top Status Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-white/[0.08] pb-5 mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-white/[0.08] pb-3 sm:pb-5 mb-4 sm:mb-8">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-gulf-500/20 dark:text-gulf-400 dark:border-gulf-500/30">
                 <Bot className="h-5 w-5" />
@@ -173,13 +173,13 @@ export default function AIVoiceCoach() {
           </div>
 
           {/* Dialogue Progression Box */}
-          <div className="space-y-6">
+          <div className="space-y-3.5 sm:space-y-6">
             {/* Step 1: Arbab Line */}
             {activeScenario.dialogue[0] && (
-              <div className="rounded-2xl border border-amber-300/60 bg-amber-50/60 dark:border-gold-500/40 dark:bg-[#141b12] p-5 shadow-md dark:shadow-gold-500/5">
+              <div className="rounded-2xl border border-amber-300/60 bg-amber-50/60 dark:border-gold-500/40 dark:bg-[#141b12] p-3.5 sm:p-5 shadow-md dark:shadow-gold-500/5">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl">{activeScenario.dialogue[0].avatarIcon}</span>
+                    <span className="text-2xl sm:text-3xl">{activeScenario.dialogue[0].avatarIcon}</span>
                     <div>
                       <div className="text-xs font-bold text-amber-800 dark:text-gold-400">
                         {activeScenario.dialogue[0].speakerName}
@@ -228,7 +228,7 @@ export default function AIVoiceCoach() {
 
             {/* Step 2: Worker Response Section */}
             {activeScenario.dialogue[1] && (
-              <div className="rounded-2xl border border-emerald-300/60 bg-emerald-50/60 dark:border-gulf-500/40 dark:bg-[#091a10] p-5 sm:p-6 shadow-md dark:shadow-xl dark:shadow-gulf-950/50">
+              <div className="rounded-2xl border border-emerald-300/60 bg-emerald-50/60 dark:border-gulf-500/40 dark:bg-[#091a10] p-3.5 sm:p-5 md:p-6 shadow-md dark:shadow-xl dark:shadow-gulf-950/50">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{activeScenario.dialogue[1].avatarIcon}</span>
@@ -280,7 +280,7 @@ export default function AIVoiceCoach() {
                 </div>
 
                 {/* Interactive Microphone Box */}
-                <div className="mt-6 flex flex-col items-center justify-center rounded-2xl bg-white dark:bg-[#06110a] p-6 border border-slate-200 dark:border-gulf-500/20 text-center shadow-inner">
+                <div className="mt-4 sm:mt-6 flex flex-col items-center justify-center rounded-2xl bg-white dark:bg-[#06110a] p-4 sm:p-6 border border-slate-200 dark:border-gulf-500/20 text-center shadow-inner">
                   {/* Glowing Mic Button */}
                   <div className="relative mb-3">
                     {isRecording && (
@@ -289,7 +289,7 @@ export default function AIVoiceCoach() {
                     <button
                       type="button"
                       onClick={handleMicClick}
-                      className={`relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full transition-all duration-300 ${
+                      className={`relative flex h-14 w-14 sm:h-20 sm:w-20 items-center justify-center rounded-full transition-all duration-300 ${
                         isRecording
                           ? "bg-rose-600 text-white shadow-xl shadow-rose-600/50 scale-105 ring-4 ring-rose-400"
                           : "bg-gradient-to-tr from-gulf-600 via-emerald-500 to-gold-400 text-slate-950 shadow-xl shadow-gulf-500/30 hover:scale-105"
@@ -297,9 +297,9 @@ export default function AIVoiceCoach() {
                       aria-label="Toggle Microphone"
                     >
                       {isRecording ? (
-                        <Mic className="h-8 w-8 animate-pulse text-white" />
+                        <Mic className="h-6 w-6 sm:h-8 sm:w-8 animate-pulse text-white" />
                       ) : (
-                        <Mic className="h-8 w-8" />
+                        <Mic className="h-6 w-6 sm:h-8 sm:w-8" />
                       )}
                     </button>
                   </div>
@@ -317,7 +317,7 @@ export default function AIVoiceCoach() {
 
                   {/* Score & Analysis Feedback */}
                   {hasRecorded && accuracyScore && (
-                    <div className="mt-5 w-full max-w-md rounded-xl bg-gulf-950/80 p-4 border border-gulf-400/50 animate-fade-in text-left">
+                    <div className="mt-4 sm:mt-5 w-full max-w-md rounded-xl bg-gulf-950/80 p-3.5 sm:p-4 border border-gulf-400/50 animate-fade-in text-left">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
                           <CheckCircle2 className="h-5 w-5 text-emerald-400" />
@@ -345,7 +345,7 @@ export default function AIVoiceCoach() {
 
                   {/* Pro AI Tip */}
                   {activeScenario.dialogue[1].aiTip && (
-                    <div className="mt-4 flex items-center gap-2 text-xs text-gold-300/90 bg-gold-950/40 px-4 py-2 rounded-xl border border-gold-500/20">
+                    <div className="mt-3 sm:mt-4 flex items-center gap-2 text-xs text-gold-300/90 bg-gold-950/40 px-3.5 py-2 rounded-xl border border-gold-500/20">
                       <span>💡</span>
                       <span>{activeScenario.dialogue[1].aiTip}</span>
                     </div>
@@ -356,7 +356,7 @@ export default function AIVoiceCoach() {
           </div>
 
           {/* Waitlist Callout */}
-          <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50/90 dark:border-white/[0.08] dark:bg-[#07130b] p-6 text-center">
+          <div className="mt-6 sm:mt-10 rounded-2xl border border-slate-200 bg-slate-50/90 dark:border-white/[0.08] dark:bg-[#07130b] p-4 sm:p-6 text-center">
             <h4 className="text-base font-bold text-slate-900 dark:text-white">
               {t.aiVoice.waitlistTitle}
             </h4>

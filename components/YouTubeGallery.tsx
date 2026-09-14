@@ -305,7 +305,7 @@ export default function YouTubeGallery({
       className={`relative scroll-mt-24 sm:scroll-mt-28 overflow-hidden w-full max-w-full ${
         isStandalonePage
           ? "py-0 bg-transparent"
-          : "py-10 sm:py-14 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20"
+          : "py-6 sm:py-10 md:py-14 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20"
       } transition-colors duration-200 ${className}`}
     >
       {/* Background Ambience Glow */}
@@ -318,10 +318,10 @@ export default function YouTubeGallery({
         aria-hidden="true"
       />
 
-      <div className={`max-w-6xl mx-auto ${isStandalonePage ? "px-0 py-0" : "px-4 py-8"}`}>
+      <div className={`max-w-6xl mx-auto ${isStandalonePage ? "px-0 py-0" : "px-4 py-3 sm:py-6 md:py-8"}`}>
         {/* Section Header (rendered on homepage or custom title) */}
         {!isStandalonePage && (
-          <div className="max-w-3xl mx-auto text-center w-full mb-8 sm:mb-10">
+          <div className="max-w-3xl mx-auto text-center w-full mb-4 sm:mb-6 md:mb-10">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-3 shadow-sm">
               <Tv className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400" />
               <span>{badge || "আরবি ভাষা শিক্ষা ভিডিও কালেকশন"}</span>
@@ -462,7 +462,7 @@ export default function YouTubeGallery({
 
           {/* 3. Right Side: Locked Height + Scrollable List (lg:col-span-1) */}
           <div
-            className="lg:col-span-1 h-[530px] sm:h-[550px] flex flex-col bg-white dark:bg-[#07130b] border border-slate-200/80 dark:border-gulf-500/20 rounded-2xl shadow-xs overflow-hidden"
+            className="lg:col-span-1 h-[340px] sm:h-[420px] lg:h-[550px] flex flex-col bg-white dark:bg-[#07130b] border border-slate-200/80 dark:border-gulf-500/20 rounded-2xl shadow-xs overflow-hidden"
           >
             {/* Header (Fixed at top) */}
             <div className="p-3.5 border-b border-slate-100 dark:border-white/5 bg-slate-50 dark:bg-surface-200/50 shrink-0 flex items-center justify-between">

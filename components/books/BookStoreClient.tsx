@@ -137,7 +137,7 @@ export default function BookStoreClient() {
       {/* ========================================================================= */}
       {/* FILTER & SEARCH TOOLBAR SECTION                                          */}
       {/* ========================================================================= */}
-      <section className="mb-10 rounded-3xl border border-slate-200/90 bg-white/80 p-4 sm:p-6 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-surface-100/90">
+      <section className="mb-6 sm:mb-10 rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white/80 p-3.5 sm:p-6 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-surface-100/90">
         <div className="flex flex-col gap-4 sm:gap-5">
           {/* Top Row: Search Input & PDF Instant Delivery Pill */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -199,7 +199,7 @@ export default function BookStoreClient() {
       {/* ========================================================================= */}
       {/* RESULTS HEADER & ACTIVE VIEW                                             */}
       {/* ========================================================================= */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-4 sm:mb-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
             ডিজিটাল হ্যান্ডবুক কালেকশন ({filteredBooks.length}টি ই-বুক উপলব্ধ)
@@ -226,7 +226,7 @@ export default function BookStoreClient() {
       {/* RESPONSIVE BOOK GRID (4-column layout)                                   */}
       {/* ========================================================================= */}
       {filteredBooks.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {filteredBooks.map((book) => (
             <BookCard
               key={book.id}
@@ -261,8 +261,8 @@ export default function BookStoreClient() {
       {/* ========================================================================= */}
       {/* VALUE PROPOSITIONS / DIGITAL STORE TRUST BADGES                           */}
       {/* ========================================================================= */}
-      <section className="mt-16 sm:mt-24 rounded-3xl border border-slate-200/90 bg-white/70 dark:border-white/10 dark:bg-surface-100/80 p-6 sm:p-10 backdrop-blur-md shadow-sm">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="mt-8 sm:mt-14 md:mt-24 rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white/70 dark:border-white/10 dark:bg-surface-100/80 p-4 sm:p-6 md:p-10 backdrop-blur-md shadow-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <div className="flex items-start gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
               <Download className="h-5 w-5" />
@@ -324,8 +324,8 @@ export default function BookStoreClient() {
       {/* ========================================================================= */}
       {/* FREQUENTLY ASKED QUESTIONS (FAQ)                                         */}
       {/* ========================================================================= */}
-      <section className="mt-16 sm:mt-20">
-        <div className="text-center max-w-2xl mx-auto mb-8">
+      <section className="mt-8 sm:mt-14 md:mt-20">
+        <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-8">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-emerald-500/30 dark:bg-emerald-950/40 px-3 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 mb-2">
             <HelpCircle className="h-3.5 w-3.5" />
             <span>সচরাচর জিজ্ঞাসা</span>

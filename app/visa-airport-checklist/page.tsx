@@ -208,19 +208,19 @@ export default function VisaAirportChecklistPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden bg-slate-50 dark:bg-[#060b08] text-slate-900 dark:text-slate-100 transition-colors">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden py-8 sm:py-14">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden py-5 sm:py-8 md:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Top Clean Header with Back Link */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-6 md:mb-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-4"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline mb-2.5 sm:mb-4"
             >
               ← হোমপেজে ফিরে যান
             </Link>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-2 sm:mb-3">
               <Plane className="w-3.5 h-3.5" />
               <span>নিরাপদ ভ্রমণ ও ইমিগ্রেশন গাইডলাইন</span>
             </div>
@@ -234,7 +234,7 @@ export default function VisaAirportChecklistPage() {
           </div>
 
           {/* Interactive Progress Bar */}
-          <div className="bg-white dark:bg-surface-100 rounded-2xl p-5 border border-slate-200/90 dark:border-white/10 shadow-xs mb-10">
+          <div className="bg-white dark:bg-surface-100 rounded-2xl p-3.5 sm:p-5 border border-slate-200/90 dark:border-white/10 shadow-xs mb-5 sm:mb-8 md:mb-10">
             <div className="flex items-center justify-between gap-4 mb-3">
               <div>
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
@@ -266,7 +266,7 @@ export default function VisaAirportChecklistPage() {
           </div>
 
           {/* 3 Interactive Checklist Categories */}
-          <div className="space-y-10 mb-14">
+          <div className="space-y-6 sm:space-y-8 md:space-y-10 mb-6 sm:mb-10 md:mb-14">
             
             {/* 1. ফ্লাইটের আগের প্রস্তুতি */}
             <div>
@@ -277,14 +277,14 @@ export default function VisaAirportChecklistPage() {
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 {CHECKLIST_ITEMS.filter((i) => i.category === 'prep').map((item) => {
                   const isChecked = !!checkedState[item.id];
                   return (
                     <div
                       key={item.id}
                       onClick={() => toggleCheck(item.id)}
-                      className={`cursor-pointer rounded-2xl p-5 border transition-all select-none ${
+                      className={`cursor-pointer rounded-2xl p-3.5 sm:p-5 border transition-all select-none ${
                         isChecked
                           ? 'bg-emerald-50/70 border-emerald-300 dark:bg-emerald-950/20 dark:border-emerald-800/60'
                           : 'bg-white dark:bg-surface-100 border-slate-200/90 dark:border-white/10 hover:border-slate-300'
@@ -334,14 +334,14 @@ export default function VisaAirportChecklistPage() {
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {CHECKLIST_ITEMS.filter((i) => i.category === 'docs').map((item) => {
                   const isChecked = !!checkedState[item.id];
                   return (
                     <div
                       key={item.id}
                       onClick={() => toggleCheck(item.id)}
-                      className={`cursor-pointer rounded-2xl p-5 border transition-all select-none ${
+                      className={`cursor-pointer rounded-2xl p-3.5 sm:p-5 border transition-all select-none ${
                         isChecked
                           ? 'bg-emerald-50/70 border-emerald-300 dark:bg-emerald-950/20 dark:border-emerald-800/60'
                           : 'bg-white dark:bg-surface-100 border-slate-200/90 dark:border-white/10 hover:border-slate-300'
@@ -391,14 +391,14 @@ export default function VisaAirportChecklistPage() {
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 {CHECKLIST_ITEMS.filter((i) => i.category === 'luggage').map((item) => {
                   const isChecked = !!checkedState[item.id];
                   return (
                     <div
                       key={item.id}
                       onClick={() => toggleCheck(item.id)}
-                      className={`cursor-pointer rounded-2xl p-5 border transition-all select-none ${
+                      className={`cursor-pointer rounded-2xl p-3.5 sm:p-5 border transition-all select-none ${
                         isChecked
                           ? 'bg-emerald-50/70 border-emerald-300 dark:bg-emerald-950/20 dark:border-emerald-800/60'
                           : 'bg-white dark:bg-surface-100 border-slate-200/90 dark:border-white/10 hover:border-slate-300'
@@ -440,22 +440,22 @@ export default function VisaAirportChecklistPage() {
             </div>
 
             {/* 4. এয়ারপোর্ট ইমিগ্রেশনের প্রয়োজনীয় আরবি বাক্য */}
-            <div className="pt-4">
+            <div className="pt-2 sm:pt-4">
               <div className="flex items-center gap-2.5 mb-2 pb-2 border-b border-slate-200 dark:border-white/10">
                 <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                   ৪. এয়ারপোর্ট ইমিগ্রেশনের প্রয়োজনীয় আরবি বাক্য (Airport Arabic Dialogues)
                 </h2>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mb-6">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mb-3.5 sm:mb-6">
                 আরবের এয়ারপোর্টে অফিসারদের মুখোমুখি হওয়ার সময় এই বাক্যগুলো সঠিকভাবে বলুন। অডিও শুনতে বাটনে চাপ দিন।
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 {IMMIGRATION_PHRASES.map((item) => (
                   <div
                     key={item.id}
-                    className="bg-white dark:bg-surface-100 rounded-2xl p-5 border border-slate-200/90 dark:border-white/10 shadow-xs flex flex-col justify-between"
+                    className="bg-white dark:bg-surface-100 rounded-2xl p-3.5 sm:p-5 border border-slate-200/90 dark:border-white/10 shadow-xs flex flex-col justify-between"
                   >
                     <div>
                       <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md">
@@ -502,11 +502,11 @@ export default function VisaAirportChecklistPage() {
           </div>
 
           {/* Bottom Live Batch CTA Banner */}
-          <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg border border-white/10">
+          <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-8 md:p-10 text-center shadow-lg border border-white/10">
             <h2 className="text-xl sm:text-2xl font-black mb-2">
               বিমানে ওঠার আগেই বেসিক আরবি শিখে প্রস্তুত হোন
             </h2>
-            <p className="text-slate-300 text-xs sm:text-sm mb-6 max-w-lg mx-auto">
+            <p className="text-slate-300 text-xs sm:text-sm mb-4 sm:mb-6 max-w-lg mx-auto">
               নতুন দেশে যাওয়ার ভয় দূর করতে আমাদের ৩ দিনের ফ্রি লাইভ ওরিয়েন্টেশন ক্লাসে যোগ দিন।
             </p>
             <Link

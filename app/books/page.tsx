@@ -27,7 +27,7 @@ export default function BooksPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden relative bg-slate-50 text-slate-900 dark:bg-[#060b08] dark:text-slate-100 transition-colors duration-200">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-10 sm:py-16">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden relative py-6 sm:py-10 md:py-16">
         {/* Ambient Hero Emerald Glow */}
         <div
           className="pointer-events-none absolute top-10 left-1/2 -z-10 h-[520px] w-full max-w-[850px] -translate-x-1/2 rounded-full bg-hero-emerald-glow blur-[140px] opacity-75"
@@ -38,7 +38,7 @@ export default function BooksPage() {
           {/* Breadcrumb Navigation */}
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-8"
+            className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-4 sm:mb-6 md:mb-8"
           >
             <Link
               href="/"
@@ -55,9 +55,9 @@ export default function BooksPage() {
           {/* ========================================================================= */}
           {/* A. HERO HEADER SECTION                                                   */}
           {/* ========================================================================= */}
-          <header className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <header className="text-center max-w-3xl mx-auto mb-6 sm:mb-10 md:mb-16">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-bold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-4 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 dark:border-gulf-500/30 dark:bg-gulf-950/50 px-3.5 py-1 text-xs font-bold text-emerald-800 dark:text-gulf-300 backdrop-blur-md mb-2 sm:mb-4 shadow-sm">
               <span className="text-base leading-none">📱</span>
               <span>ইনস্ট্যান্ট ডিজিটাল ই-বুক ও স্টাডি গাইড</span>
             </div>
@@ -71,7 +71,7 @@ export default function BooksPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-5 text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-3 sm:mt-5 text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
               কাজের সাইট, কফিল ও ইন্টারভিউয়ের প্রয়োজনীয় আরবি, হিন্দি ও ইংলিশ গাইড। অর্ডার করলেই ফোনে ইনস্ট্যান্ট ডাউনলোড করে পড়ার সুবিধা।
             </p>
 

@@ -19,12 +19,12 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-10 sm:py-14 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050c07] dark:border-gulf-500/20 transition-colors duration-200"
+      className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full py-6 sm:py-10 md:py-14 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050c07] dark:border-gulf-500/20 transition-colors duration-200"
     >
       <span id="reviews" className="sr-only" aria-hidden="true" />
 
       {/* Section Header */}
-      <div className="max-w-3xl mx-auto text-center w-full px-4 mb-12">
+      <div className="max-w-3xl mx-auto text-center w-full px-4 mb-4 sm:mb-6 md:mb-12">
         <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-50 dark:border-gold-500/30 dark:bg-gold-950/60 px-3.5 py-1 text-xs font-semibold text-amber-800 dark:text-gold-300 backdrop-blur-md mb-3 shadow-xs">
           <Quote className="h-3.5 w-3.5 text-amber-500 dark:text-gold-400" />
           <span>
@@ -59,7 +59,7 @@ export default function Testimonials() {
 
       {/* Single-Row Continuous Infinite Marquee with Soft Edge Masking */}
       <div
-        className="w-full overflow-hidden relative py-4"
+        className="w-full overflow-hidden relative py-2 sm:py-4"
         style={{
           maskImage:
             "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
@@ -67,11 +67,11 @@ export default function Testimonials() {
             "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         }}
       >
-        <div className="flex gap-6 w-max animate-[marquee_45s_linear_infinite] hover:[animation-play-state:paused]">
+        <div className="flex gap-3.5 sm:gap-6 w-max animate-[marquee_45s_linear_infinite] hover:[animation-play-state:paused]">
           {duplicatedItems.map((item, idx) => (
             <div
               key={`${item.name}-${idx}`}
-              className="w-[320px] sm:w-[360px] shrink-0 bg-white dark:bg-surface-100 rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-emerald-500/50 transition-all p-5 flex flex-col justify-between"
+              className="w-[280px] sm:w-[360px] shrink-0 bg-white dark:bg-surface-100 rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-emerald-500/50 transition-all p-4 sm:p-5 flex flex-col justify-between"
             >
               <div>
                 {/* Expat Profile: Avatar, name, destination country badge */}
