@@ -295,7 +295,7 @@ export default function CareerContent() {
               <ul className="mt-5 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                 <li className="flex items-start gap-2">
                   <Check className="h-4 w-4 text-teal-500 mt-0.5 shrink-0" />
-                  <span>২৪+ অডিও ও ভিডিও ডিরেক্ট স্পিকিং লেসন</span>
+                  <span>অডিও ও ভিডিও ডিরেক্ট স্পিকিং লেসন</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="h-4 w-4 text-teal-500 mt-0.5 shrink-0" />

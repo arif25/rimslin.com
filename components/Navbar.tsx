@@ -37,6 +37,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ThemeToggle from "@/components/theme-toggle";
 import AuthButton from "@/components/AuthButton";
 import StickyCourseButton from "@/components/StickyCourseButton";
+import LiveBatchBookingModal from "@/components/LiveBatchBookingModal";
 
 export default function Navbar() {
   const { t, language, isRTL } = useLanguage();
@@ -46,11 +47,21 @@ export default function Navbar() {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const moreDropdownRef = useRef<HTMLDivElement>(null);
   const helpDropdownRef = useRef<HTMLDivElement>(null);
 
+  const openBookingModal = () => setIsBookingModalOpen(true);
+
   useEffect(() => {
     setHasMounted(true);
+  }, []);
+
+  // Listen for global open-live-batch-modal custom event
+  useEffect(() => {
+    const handleOpenModal = () => setIsBookingModalOpen(true);
+    window.addEventListener("open-live-batch-modal", handleOpenModal);
+    return () => window.removeEventListener("open-live-batch-modal", handleOpenModal);
   }, []);
 
   // Close dropdowns when clicked outside
@@ -115,38 +126,33 @@ export default function Navbar() {
       icon: Home,
     },
     {
-      name: "🔴 লাইভ ব্যাচ",
-      href: "#live-batch",
-      icon: Video,
-    },
-    {
       name: t.navbar.audioDemo,
-      href: "#phrase-demo",
+      href: "/audio-phrases",
       icon: Volume2,
     },
     {
       name: "ভিডিও ক্লাস",
-      href: "#video-gallery",
+      href: "/video-classes",
       icon: Tv,
     },
     {
       name: t.navbar.jobTracks,
-      href: "#job-tracks",
+      href: "/trade-tracks",
       icon: HardHat,
     },
     {
       name: t.navbar.countryDialects,
-      href: "#country-dialects",
+      href: "/country-dialects",
       icon: Compass,
     },
     {
       name: t.navbar.dailyDialogues,
-      href: "#daily-dialogues",
+      href: "/daily-conversations",
       icon: MessageCircle,
     },
     {
       name: t.navbar.aiVoice,
-      href: "#ai-coach",
+      href: "/ai-voice-coach",
       icon: Bot,
     },
     {
@@ -175,42 +181,42 @@ export default function Navbar() {
   const moreNavLinks = [
     {
       name: t.navbar.moreItems.testimonials,
-      href: "#testimonials",
+      href: "/reviews",
       icon: Star,
     },
     {
       name: t.navbar.moreItems.emergencyPhrases,
-      href: "#emergency-phrases",
+      href: "/emergency-arabic",
       icon: HeartPulse,
     },
     {
       name: t.navbar.moreItems.workerRights,
-      href: "#worker-rights",
+      href: "/labor-rights",
       icon: ShieldCheck,
     },
     {
       name: t.navbar.moreItems.airportGuide,
-      href: "#airport-guide",
+      href: "/visa-airport-checklist",
       icon: Plane,
     },
     {
       name: t.navbar.moreItems.audioDownloads,
-      href: "#audio-downloads",
+      href: "/free-downloads",
       icon: Download,
     },
     {
       name: t.navbar.moreItems.faq,
-      href: "#faq",
+      href: "/faq",
       icon: HelpCircle,
     },
     {
       name: "Privacy Policy",
-      href: "/privacy-policy",
+      href: "/privacy",
       icon: ShieldCheck,
     },
     {
       name: "Terms & Conditions",
-      href: "/terms-and-conditions",
+      href: "/terms",
       icon: FileText,
     },
   ];
@@ -225,18 +231,17 @@ export default function Navbar() {
       {/* TIER 1: TOP UTILITY BAR (Above Logo - Right-Aligned & Slim)              */}
       {/* Scrolls away naturally with the page                                     */}
       {/* ========================================================================= */}
-      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-1 sm:py-1 md:py-0.5 transition-colors duration-200 relative z-30 overflow-visible leading-none">
-        <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 lg:px-8 flex flex-nowrap items-center justify-end gap-1 sm:gap-1.5 md:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-hidden md:overflow-visible leading-none">
+      <div className="w-full border-b border-gray-200 dark:border-gray-800 bg-slate-100/95 dark:bg-gray-950 dark:bg-[#030704] text-xs py-1 sm:py-1 md:py-0.5 transition-colors duration-200 relative z-[60] overflow-visible leading-none">
+        <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 lg:px-8 flex flex-nowrap items-center justify-end gap-1 sm:gap-1.5 md:gap-4 w-full text-slate-600 dark:text-slate-400 overflow-visible leading-none">
           {/* MOBILE ONLY (< md): "Books" and "Career" action items in Top Tier */}
           <div className="flex md:hidden items-center gap-1 sm:gap-1.5 shrink-0 flex-shrink-0">
             {/* 1. Books Button (Mobile) */}
             <Link
               href="/books"
-              className={`inline-flex items-center gap-1 h-8 px-1.5 sm:px-2 py-1 text-[11px] font-semibold rounded-md border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0 flex-shrink-0 ${
-                pathname === "/books"
+              className={`inline-flex items-center gap-1 h-8 px-1.5 sm:px-2 py-1 text-[11px] font-semibold rounded-md border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0 flex-shrink-0 ${pathname === "/books"
                   ? "bg-slate-200/80 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 border-emerald-500/40 font-bold"
                   : "bg-white/90 dark:bg-surface-100/90"
-              }`}
+                }`}
             >
               <BookOpen className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0 flex-shrink-0" />
               <span>Books</span>
@@ -248,11 +253,10 @@ export default function Navbar() {
             {/* 2. Career Button (Mobile) */}
             <Link
               href="/career"
-              className={`inline-flex items-center gap-1 h-8 px-1.5 sm:px-2 py-1 text-[11px] font-semibold rounded-md border transition-colors whitespace-nowrap shrink-0 flex-shrink-0 active:scale-95 ${
-                pathname === "/career"
+              className={`inline-flex items-center gap-1 h-8 px-1.5 sm:px-2 py-1 text-[11px] font-semibold rounded-md border transition-colors whitespace-nowrap shrink-0 flex-shrink-0 active:scale-95 ${pathname === "/career"
                   ? "bg-emerald-600 text-white border-emerald-500 shadow-xs dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
                   : "border-emerald-300 dark:border-emerald-700/60 bg-emerald-50/90 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60"
-              }`}
+                }`}
             >
               <Briefcase className={`h-3.5 w-3.5 shrink-0 flex-shrink-0 ${pathname === "/career" ? "text-white dark:text-slate-950" : "text-emerald-600 dark:text-emerald-400"}`} />
               <span className="whitespace-nowrap">Career</span>
@@ -291,11 +295,10 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsHelpOpen(!isHelpOpen)}
-                className={`group inline-flex items-center justify-center gap-1 h-8 rounded-md border border-slate-200/80 bg-white/90 px-1.5 sm:px-2 py-1 text-[11px] font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white whitespace-nowrap shrink-0 flex-shrink-0 ${
-                  isHelpOpen
+                className={`group inline-flex items-center justify-center gap-1 h-8 rounded-md border border-slate-200/80 bg-white/90 px-1.5 sm:px-2 py-1 text-[11px] font-semibold leading-none text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-emerald-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 dark:border-gulf-500/30 dark:bg-surface-100/90 dark:text-slate-200 dark:hover:border-gulf-400 dark:hover:bg-surface-200/90 dark:hover:text-white whitespace-nowrap shrink-0 flex-shrink-0 ${isHelpOpen
                     ? "border-emerald-500 ring-2 ring-emerald-500/30 dark:border-gulf-400"
                     : ""
-                }`}
+                  }`}
                 aria-expanded={isHelpOpen}
                 aria-haspopup="true"
                 aria-label="Help & Support"
@@ -305,34 +308,32 @@ export default function Navbar() {
                   {language === "bn"
                     ? "সহায়তা"
                     : language === "hi"
-                    ? "सहायता"
-                    : language === "ar"
-                    ? "مساعدة"
-                    : "Help"}
+                      ? "सहायता"
+                      : language === "ar"
+                        ? "مساعدة"
+                        : "Help"}
                 </span>
                 <ChevronDown
-                  className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 flex-shrink-0 ${
-                    isHelpOpen ? "rotate-180 text-emerald-600 dark:text-gulf-400" : ""
-                  }`}
+                  className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 shrink-0 flex-shrink-0 ${isHelpOpen ? "rotate-180 text-emerald-600 dark:text-gulf-400" : ""
+                    }`}
                 />
               </button>
 
               {/* Mobile Dropdown Floating Popover */}
               {isHelpOpen && (
                 <div
-                  className={`fixed sm:absolute top-11 sm:top-full mt-1 w-56 max-w-[85vw] rounded-md border border-gray-200 dark:border-gray-800 dark:border-gulf-500/30 bg-white dark:bg-gray-900 dark:bg-[#08150d] p-2 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-[999] origin-top ${
-                    isRTL ? "left-2 sm:left-0 sm:right-auto" : "right-2 sm:right-0 sm:left-auto"
-                  }`}
+                  className={`fixed sm:absolute top-11 sm:top-full mt-1 w-56 max-w-[85vw] rounded-md border border-gray-200 dark:border-gray-800 dark:border-gulf-500/30 bg-white dark:bg-gray-900 dark:bg-[#08150d] p-2 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-[999] origin-top ${isRTL ? "left-2 sm:left-0 sm:right-auto" : "right-2 sm:right-0 sm:left-auto"
+                    }`}
                 >
                   <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-white/[0.06] mb-1.5 flex items-center justify-between">
                     <span>
                       {language === "bn"
                         ? "সরাসরি সহায়তা"
                         : language === "hi"
-                        ? "सीधी सहायता"
-                        : language === "ar"
-                        ? "الدعم المباشر"
-                        : "Direct Support"}
+                          ? "सीधी सहायता"
+                          : language === "ar"
+                            ? "الدعم المباشر"
+                            : "Direct Support"}
                     </span>
                     <span className="text-emerald-600 dark:text-gulf-400 font-mono text-[9px] font-bold">
                       24/7
@@ -354,10 +355,10 @@ export default function Navbar() {
                           {language === "bn"
                             ? "ইমেইল সাপোর্ট"
                             : language === "hi"
-                            ? "ईमेल सहायता"
-                            : language === "ar"
-                            ? "البريد الإلكتروني"
-                            : "Email Support"}
+                              ? "ईमेल सहायता"
+                              : language === "ar"
+                                ? "البريد الإلكتروني"
+                                : "Email Support"}
                         </span>
                         <span className="text-[10px] font-sans font-medium text-slate-500 dark:text-slate-400 truncate">
                           support@rimslin.com
@@ -391,7 +392,7 @@ export default function Navbar() {
             </div>
 
             {/* Language Dropdown Selector */}
-            <div className="shrink-0 flex-shrink-0">
+            <div className="shrink-0 flex-shrink-0 relative">
               <LanguageSwitcher />
             </div>
 
@@ -412,211 +413,234 @@ export default function Navbar() {
         {/* ========================================================================= */}
         <div className="w-full border-b border-slate-200/60 dark:border-white/[0.06] transition-colors duration-200 relative z-40">
           <div className="mx-auto flex max-w-7xl w-full items-center justify-between px-2 sm:px-4 py-2.5 sm:py-3 min-w-0">
-          {/* Left Side: Brand Text Lockup */}
-          <Link
-            href="/"
-            className="flex flex-col items-start min-w-0 transition-opacity hover:opacity-95 shrink"
-          >
-            <div className="flex items-center gap-1.5 min-w-0">
-              <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tight text-gray-900 dark:text-white leading-tight truncate">
-                Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
-              </span>
-              <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold tracking-tight rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60 leading-none shrink-0">
-                {t.navbar.brandTag || "StepAhead"}
-              </span>
-            </div>
-            <span className="mt-0 text-[10px] sm:text-[11px] leading-tight text-gray-500 dark:text-gray-400 font-medium tracking-wide truncate hidden min-[360px]:block">
-              {t.navbar.brandSubtitle || "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম"}
-            </span>
-          </Link>
-
-          {/* Right Side: Action Buttons & Mobile Hamburger Trigger */}
-          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-            {/* 1. Books Button (Desktop md+ only, relocated to Tier 1 on mobile) */}
+            {/* Left Side: Brand Logo & Text Lockup */}
             <Link
-              href="/books"
-              className={`hidden md:inline-flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3 text-xs sm:text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0 ${
-                pathname === "/books"
-                  ? "bg-slate-100 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 border-emerald-500/40 font-semibold"
-                  : ""
-              }`}
+              href="/"
+              className="flex items-center gap-1.5 group select-none transition-opacity hover:opacity-95 shrink min-w-0"
             >
-              <BookOpen className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-              <span>Books</span>
-              <span className="text-[10px] font-semibold px-1 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 shrink-0 leading-none">
-                PDF
-              </span>
-            </Link>
+              {/* Icon */}
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-600 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <span className="text-white font-black text-lg sm:text-xl leading-none select-none font-sans">
+                  R
+                </span>
+              </div>
 
-            {/* 2. Existing Career Button (Desktop md+ only, relocated to Tier 1 on mobile) */}
-            <Link
-              href="/career"
-              className={`hidden md:inline-flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3 text-xs sm:text-sm font-semibold rounded-lg border transition-colors shrink-0 active:scale-95 ${
-                pathname === "/career"
-                  ? "bg-emerald-600 text-white border-emerald-500 shadow-sm shadow-emerald-600/30 dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
-                  : "border-emerald-300 dark:border-emerald-700/60 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50"
-              }`}
-            >
-              <Briefcase className={`h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 ${pathname === "/career" ? "text-white dark:text-slate-950" : "text-emerald-600 dark:text-emerald-400"}`} />
-              <span className="whitespace-nowrap">Career</span>
-            </Link>
-
-            {/* 3. Firebase Google Authentication / User Profile Button */}
-            <AuthButton variant="header" />
-
-            {/* Mobile Hamburger Drawer Button (Visible on screens < lg) */}
-            <button
-              type="button"
-              onClick={() => setIsMobileDrawerOpen(!isMobileDrawerOpen)}
-              className="lg:hidden flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 dark:bg-surface-100 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-gulf-400 hover:border-emerald-500 dark:hover:border-gulf-400 focus:outline-none transition-colors shrink-0"
-              aria-label="Toggle navigation menu"
-              aria-expanded={isMobileDrawerOpen}
-            >
-              {isMobileDrawerOpen ? (
-                <X className="h-4 w-4 sm:h-5 sm:w-5" />
-              ) : (
-                <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* TIER 3: NAVIGATION MENU BAR (Lower Section with Nav Links & More Menu)   */}
-      {/* ========================================================================= */}
-      <div className="w-full bg-slate-50/80 dark:bg-[#07130b]/80 transition-colors duration-200 relative z-30">
-        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 py-1.5 sm:py-2">
-          {/* Horizontal Navigation Links (Smooth scrollable on mobile/tablet) */}
-          <nav
-            aria-label="Section navigation"
-            className="w-full overflow-x-auto no-scrollbar flex items-center justify-start ltr:justify-start rtl:justify-start gap-1 sm:gap-1.5 py-0.5 pe-3 text-xs font-medium whitespace-nowrap text-left ltr:text-left rtl:text-right min-w-0 flex-1 scroll-smooth"
-          >
-            {primaryNavLinks.map((link) => {
-              const Icon = link.icon;
-              const isActive =
-                link.href === "/career"
-                  ? pathname === "/career"
-                  : link.href === "/"
-                  ? pathname === "/"
-                  : pathname === link.href;
-              const targetHref =
-                link.href.startsWith("#") && pathname !== "/"
-                  ? `/${link.href}`
-                  : link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={targetHref}
-                  className={`inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-semibold leading-normal focus:outline-none focus:ring-1 focus:ring-emerald-500/40 dark:focus:ring-gulf-500/40 shrink-0 border transition-all active:scale-95 ${
-                    isActive
-                      ? "bg-emerald-600 text-white border-emerald-500 shadow-sm shadow-emerald-600/30 dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
-                      : "text-slate-600 hover:text-emerald-700 hover:bg-emerald-50/80 dark:text-slate-300 dark:hover:text-gulf-300 dark:hover:bg-gulf-500/15 border-transparent hover:border-emerald-500/20 dark:hover:border-gulf-500/20"
-                  }`}
-                >
-                  <Icon
-                    className={`h-3.5 w-3.5 shrink-0 ${
-                      isActive
-                        ? "text-white dark:text-slate-950"
-                        : "text-amber-500 dark:text-gold-400/90"
-                    }`}
-                  />
-                  <span>{link.name}</span>
-                  {link.badge && (
-                    <span
-                      className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ml-1 leading-none shrink-0 ${
-                        link.badge === "PDF Store"
-                          ? isActive
-                            ? "bg-white text-emerald-950 dark:bg-emerald-300 dark:text-slate-950 shadow-sm"
-                            : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60"
-                          : isActive
-                          ? "bg-amber-400 text-slate-950 dark:bg-amber-300 dark:text-slate-950"
-                          : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40"
-                      }`}
-                    >
-                      {link.badge}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* "More" Popover Dropdown Toggle */}
-          <div className="relative shrink-0 py-1 sm:py-1.5 ps-2 border-l border-gray-200/80 dark:border-gray-800/80 z-50 flex items-center" ref={moreDropdownRef}>
-            <button
-              type="button"
-              onClick={() => setIsMoreOpen(!isMoreOpen)}
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-bold leading-normal transition-all border ${
-                isMoreOpen
-                  ? "bg-emerald-600 text-white border-emerald-500 shadow-md shadow-emerald-500/20 dark:bg-gulf-500 dark:text-slate-950 dark:border-gulf-400 dark:shadow-gulf-500/20"
-                  : "bg-white text-slate-700 border-gray-200 dark:border-gray-800 hover:border-emerald-500/40 hover:bg-slate-100 hover:text-slate-900 dark:bg-gray-800 dark:bg-surface-100 dark:text-slate-200 dark:hover:border-gulf-500/40 dark:hover:bg-gray-700 dark:hover:text-white"
-              }`}
-              aria-expanded={isMoreOpen}
-              aria-haspopup="true"
-              aria-label={t.navbar.more}
-            >
-              <Menu className="h-3.5 w-3.5 shrink-0" />
-              <span>{t.navbar.more}</span>
-              <ChevronDown
-                className={`h-3 w-3 shrink-0 transition-transform duration-200 ${
-                  isMoreOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-
-            {/* Floating Popover Menu - Solid background, z-[999], and high elevation */}
-            {isMoreOpen && (
-              <div
-                className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[270px] max-w-[90vw] rounded-2xl border border-gray-200 dark:border-gray-800 bg-white p-2 text-slate-800 shadow-2xl ring-1 ring-black/5 dark:bg-gray-900 dark:bg-[#08150d] dark:text-slate-200 dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top"
-              >
-                <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-gray-100 dark:border-gray-800 mb-1.5 flex items-center justify-between">
-                  <span>{t.navbar.more}</span>
-                  <span className="text-amber-600 dark:text-gold-400 font-mono text-[9px] font-semibold">
-                    8 Resources
+              {/* Text & Badge */}
+              <div className="flex flex-col justify-center min-w-0">
+                <div className="flex items-center leading-none">
+                  <span className="text-xl sm:text-2xl font-black tracking-tight">
+                    <span className="text-slate-900 dark:text-white">Rims</span>
+                    <span className="text-emerald-600 dark:text-emerald-400">lin</span>
+                  </span>
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-amber-50 text-amber-600 border border-amber-200 ml-1.5 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800/60 leading-none shrink-0 shadow-2xs">
+                    DREAM
                   </span>
                 </div>
-
-                <div className="space-y-1">
-                  {moreNavLinks.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setIsMoreOpen(false)}
-                        className="group flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
-                      >
-                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 border border-gray-200 group-hover:border-emerald-500/30 group-hover:bg-emerald-100/50 dark:bg-gray-800 dark:border-gray-700 dark:group-hover:border-gulf-500/30 dark:group-hover:bg-gulf-500/20 transition-colors shrink-0">
-                          <Icon className="h-3.5 w-3.5 text-emerald-600 group-hover:text-amber-500 dark:text-gulf-400 dark:group-hover:text-gold-400 transition-colors" />
-                        </div>
-                        <span className="truncate">{item.name}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
-
-                {/* Need help? Email us (Popover Footer) */}
-                <div className="mt-2 pt-2 border-t border-gray-100 dark:border-gray-800">
-                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-50/60 dark:border-gulf-500/20 dark:bg-gulf-950/40 p-2.5">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 dark:text-gulf-300 mb-1 flex items-center gap-1.5">
-                      <Mail className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400" />
-                      <span>Need help? Email us</span>
-                    </div>
-                    <a
-                      href="mailto:support@rimslin.com"
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-gulf-400 hover:underline transition-colors font-sans"
-                    >
-                      support@rimslin.com
-                    </a>
-                  </div>
-                </div>
+                <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                  {t.navbar.brandSubtitle || "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম"}
+                </span>
               </div>
-            )}
+            </Link>
+
+            {/* Right Side: Action Buttons & Mobile Hamburger Trigger */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+              {/* High-Converting Live Batch Action Button */}
+              <Link
+                href="/live-batch"
+                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition-all shadow-xs group shrink-0 ${
+                  pathname === "/live-batch"
+                    ? "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/60 dark:text-rose-200 dark:border-rose-700"
+                    : "dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-900/60 dark:hover:bg-rose-900/50 dark:hover:border-rose-700/60"
+                }`}
+              >
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-600"></span>
+                </span>
+                <span className="whitespace-nowrap">লাইভ ব্যাচ</span>
+                <span className="hidden sm:inline-block px-1.5 py-0.2 rounded-full text-[10px] font-extrabold bg-rose-200/60 text-rose-800 dark:bg-rose-900/60 dark:text-rose-200 leading-none shrink-0">
+                  ফ্রি ডেমো
+                </span>
+              </Link>
+
+              {/* 1. Books Button (Desktop md+ only, relocated to Tier 1 on mobile) */}
+              <Link
+                href="/books"
+                className={`hidden md:inline-flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3 text-xs sm:text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0 ${pathname === "/books"
+                    ? "bg-slate-100 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 border-emerald-500/40 font-semibold"
+                    : ""
+                  }`}
+              >
+                <BookOpen className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span>Books</span>
+                <span className="text-[10px] font-semibold px-1 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 shrink-0 leading-none">
+                  PDF
+                </span>
+              </Link>
+
+              {/* 2. Existing Career Button (Desktop md+ only, relocated to Tier 1 on mobile) */}
+              <Link
+                href="/career"
+                className={`hidden md:inline-flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3 text-xs sm:text-sm font-semibold rounded-lg border transition-colors shrink-0 active:scale-95 ${pathname === "/career"
+                    ? "bg-emerald-600 text-white border-emerald-500 shadow-sm shadow-emerald-600/30 dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
+                    : "border-emerald-300 dark:border-emerald-700/60 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50"
+                  }`}
+              >
+                <Briefcase className={`h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 ${pathname === "/career" ? "text-white dark:text-slate-950" : "text-emerald-600 dark:text-emerald-400"}`} />
+                <span className="whitespace-nowrap">Career</span>
+              </Link>
+
+              {/* 3. Firebase Google Authentication / User Profile Button */}
+              <AuthButton variant="header" />
+
+              {/* Mobile Hamburger Drawer Button (Visible on screens < lg) */}
+              <button
+                type="button"
+                onClick={() => setIsMobileDrawerOpen(!isMobileDrawerOpen)}
+                className="lg:hidden flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 dark:bg-surface-100 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-gulf-400 hover:border-emerald-500 dark:hover:border-gulf-400 focus:outline-none transition-colors shrink-0"
+                aria-label="Toggle navigation menu"
+                aria-expanded={isMobileDrawerOpen}
+              >
+                {isMobileDrawerOpen ? (
+                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                ) : (
+                  <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+
+        {/* ========================================================================= */}
+        {/* TIER 3: NAVIGATION MENU BAR (Lower Section with Nav Links & More Menu)   */}
+        {/* ========================================================================= */}
+        <div className="w-full bg-slate-50/80 dark:bg-[#07130b]/80 transition-colors duration-200 relative z-30">
+          <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 py-1.5 sm:py-2">
+            {/* Horizontal Navigation Links (Smooth scrollable on mobile/tablet) */}
+            <nav
+              aria-label="Section navigation"
+              className="w-full overflow-x-auto no-scrollbar flex items-center justify-start ltr:justify-start rtl:justify-start gap-1 sm:gap-1.5 py-0.5 pe-3 text-xs font-medium whitespace-nowrap text-left ltr:text-left rtl:text-right min-w-0 flex-1 scroll-smooth"
+            >
+              {primaryNavLinks.map((link) => {
+                const Icon = link.icon;
+                const isActive =
+                  link.href === "/career"
+                    ? pathname === "/career"
+                    : link.href === "/"
+                      ? pathname === "/"
+                      : pathname === link.href;
+                const targetHref =
+                  link.href.startsWith("#") && pathname !== "/"
+                    ? `/${link.href}`
+                    : link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={targetHref}
+                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-semibold leading-normal focus:outline-none focus:ring-1 focus:ring-emerald-500/40 dark:focus:ring-gulf-500/40 shrink-0 border transition-all active:scale-95 ${isActive
+                        ? "bg-emerald-600 text-white border-emerald-500 shadow-sm shadow-emerald-600/30 dark:bg-emerald-500 dark:text-slate-950 dark:border-emerald-400"
+                        : "text-slate-600 hover:text-emerald-700 hover:bg-emerald-50/80 dark:text-slate-300 dark:hover:text-gulf-300 dark:hover:bg-gulf-500/15 border-transparent hover:border-emerald-500/20 dark:hover:border-gulf-500/20"
+                      }`}
+                  >
+                    <Icon
+                      className={`h-3.5 w-3.5 shrink-0 ${isActive
+                          ? "text-white dark:text-slate-950"
+                          : "text-amber-500 dark:text-gold-400/90"
+                        }`}
+                    />
+                    <span>{link.name}</span>
+                    {link.badge && (
+                      <span
+                        className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ml-1 leading-none shrink-0 ${link.badge === "PDF Store"
+                            ? isActive
+                              ? "bg-white text-emerald-950 dark:bg-emerald-300 dark:text-slate-950 shadow-sm"
+                              : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60"
+                            : isActive
+                              ? "bg-amber-400 text-slate-950 dark:bg-amber-300 dark:text-slate-950"
+                              : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40"
+                          }`}
+                      >
+                        {link.badge}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* "More" Popover Dropdown Toggle */}
+            <div className="relative shrink-0 py-1 sm:py-1.5 ps-2 border-l border-gray-200/80 dark:border-gray-800/80 z-50 flex items-center" ref={moreDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsMoreOpen(!isMoreOpen)}
+                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-bold leading-normal transition-all border ${isMoreOpen
+                    ? "bg-emerald-600 text-white border-emerald-500 shadow-md shadow-emerald-500/20 dark:bg-gulf-500 dark:text-slate-950 dark:border-gulf-400 dark:shadow-gulf-500/20"
+                    : "bg-white text-slate-700 border-gray-200 dark:border-gray-800 hover:border-emerald-500/40 hover:bg-slate-100 hover:text-slate-900 dark:bg-gray-800 dark:bg-surface-100 dark:text-slate-200 dark:hover:border-gulf-500/40 dark:hover:bg-gray-700 dark:hover:text-white"
+                  }`}
+                aria-expanded={isMoreOpen}
+                aria-haspopup="true"
+                aria-label={t.navbar.more}
+              >
+                <Menu className="h-3.5 w-3.5 shrink-0" />
+                <span>{t.navbar.more}</span>
+                <ChevronDown
+                  className={`h-3 w-3 shrink-0 transition-transform duration-200 ${isMoreOpen ? "rotate-180" : ""
+                    }`}
+                />
+              </button>
+
+              {/* Floating Popover Menu - Solid background, z-[999], and high elevation */}
+              {isMoreOpen && (
+                <div
+                  className="absolute top-full mt-2 end-0 right-0 rtl:right-auto rtl:left-0 z-[999] min-w-[270px] max-w-[90vw] rounded-2xl border border-gray-200 dark:border-gray-800 bg-white p-2 text-slate-800 shadow-2xl ring-1 ring-black/5 dark:bg-gray-900 dark:bg-[#08150d] dark:text-slate-200 dark:shadow-2xl dark:shadow-black dark:ring-white/10 origin-top"
+                >
+                  <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-gray-100 dark:border-gray-800 mb-1.5 flex items-center justify-between">
+                    <span>{t.navbar.more}</span>
+                    <span className="text-amber-600 dark:text-gold-400 font-mono text-[9px] font-semibold">
+                      8 Resources
+                    </span>
+                  </div>
+
+                  <div className="space-y-1">
+                    {moreNavLinks.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setIsMoreOpen(false)}
+                          className="group flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white transition-colors"
+                        >
+                          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 border border-gray-200 group-hover:border-emerald-500/30 group-hover:bg-emerald-100/50 dark:bg-gray-800 dark:border-gray-700 dark:group-hover:border-gulf-500/30 dark:group-hover:bg-gulf-500/20 transition-colors shrink-0">
+                            <Icon className="h-3.5 w-3.5 text-emerald-600 group-hover:text-amber-500 dark:text-gulf-400 dark:group-hover:text-gold-400 transition-colors" />
+                          </div>
+                          <span className="truncate">{item.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* Need help? Email us (Popover Footer) */}
+                  <div className="mt-2 pt-2 border-t border-gray-100 dark:border-gray-800">
+                    <div className="rounded-xl border border-emerald-500/20 bg-emerald-50/60 dark:border-gulf-500/20 dark:bg-gulf-950/40 p-2.5">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 dark:text-gulf-300 mb-1 flex items-center gap-1.5">
+                        <Mail className="h-3.5 w-3.5 text-emerald-600 dark:text-gulf-400" />
+                        <span>Need help? Email us</span>
+                      </div>
+                      <a
+                        href="mailto:support@rimslin.com"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-gulf-400 hover:underline transition-colors font-sans"
+                      >
+                        support@rimslin.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
 
       {/* ========================================================================= */}
       {/* MOBILE SLIDE-OUT NAVIGATION DRAWER (Full Sheet)                          */}
@@ -642,14 +666,30 @@ export default function Navbar() {
               <Link
                 href="/"
                 onClick={() => setIsMobileDrawerOpen(false)}
-                className="flex items-center gap-1.5"
+                className="flex items-center gap-1.5 group select-none min-w-0"
               >
-                <span className="text-lg font-black tracking-tight text-gray-900 dark:text-white">
-                  Rimslin<span className="text-amber-500 dark:text-gold-400">.com</span>
-                </span>
-                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold tracking-tight rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60 leading-none shrink-0">
-                  {t.navbar.brandTag || "StepAhead"}
-                </span>
+                {/* Icon */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-600 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                  <span className="text-white font-black text-lg sm:text-xl leading-none select-none font-sans">
+                    R
+                  </span>
+                </div>
+
+                {/* Text & Badge */}
+                <div className="flex flex-col justify-center min-w-0">
+                  <div className="flex items-center leading-none">
+                    <span className="text-xl sm:text-2xl font-black tracking-tight">
+                      <span className="text-slate-900 dark:text-white">Rims</span>
+                      <span className="text-emerald-600 dark:text-emerald-400">lin</span>
+                    </span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-amber-50 text-amber-600 border border-amber-200 ml-1.5 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800/60 leading-none shrink-0 shadow-2xs">
+                      DREAM
+                    </span>
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                    {t.navbar.brandSubtitle || "প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম"}
+                  </span>
+                </div>
               </Link>
 
               <button
@@ -680,6 +720,28 @@ export default function Navbar() {
                 <span>{t.navbar.startCourse}</span>
               </Link>
 
+              {/* High-Converting Live Batch CTA Card in Mobile Drawer */}
+              <Link
+                href="/live-batch"
+                onClick={() => setIsMobileDrawerOpen(false)}
+                className={`w-full flex items-center justify-between gap-2 rounded-xl border py-2.5 px-3.5 text-xs sm:text-sm font-bold shadow-xs transition-all active:scale-[0.99] ${
+                  pathname === "/live-batch"
+                    ? "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/60 dark:text-rose-200 dark:border-rose-700"
+                    : "bg-rose-50 hover:bg-rose-100 text-rose-700 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-900/60"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2.5 w-2.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-600 dark:bg-rose-500" />
+                  </span>
+                  <span>🔴 সরাসরি লাইভ ব্যাচ</span>
+                </div>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-200/70 text-rose-800 dark:bg-rose-900/60 dark:text-rose-200">
+                  ৩ দিনের ফ্রি ডেমো
+                </span>
+              </Link>
+
               {/* Main Navigation Sections */}
               <div>
                 <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2 px-1">
@@ -692,8 +754,8 @@ export default function Navbar() {
                       link.href === "/career"
                         ? pathname === "/career"
                         : link.href === "/"
-                        ? pathname === "/"
-                        : pathname === link.href;
+                          ? pathname === "/"
+                          : pathname === link.href;
                     const targetHref =
                       link.href.startsWith("#") && pathname !== "/"
                         ? `/${link.href}`
@@ -703,29 +765,26 @@ export default function Navbar() {
                         key={link.href}
                         href={targetHref}
                         onClick={() => setIsMobileDrawerOpen(false)}
-                        className={`flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
-                          isActive
+                        className={`flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${isActive
                             ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800/60"
                             : "text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-gulf-500/15 dark:hover:text-white"
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <Icon
-                            className={`h-4 w-4 shrink-0 ${
-                              isActive
+                            className={`h-4 w-4 shrink-0 ${isActive
                                 ? "text-emerald-600 dark:text-emerald-400"
                                 : "text-emerald-600 dark:text-gulf-400"
-                            }`}
+                              }`}
                           />
                           <span className="truncate">{link.name}</span>
                         </div>
                         {link.badge && (
                           <span
-                            className={`text-[10px] px-1.5 py-0.5 rounded font-semibold leading-none shrink-0 ${
-                              link.badge === "PDF Store"
+                            className={`text-[10px] px-1.5 py-0.5 rounded font-semibold leading-none shrink-0 ${link.badge === "PDF Store"
                                 ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60"
                                 : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/40"
-                            }`}
+                              }`}
                           >
                             {link.badge}
                           </span>
@@ -798,6 +857,12 @@ export default function Navbar() {
       {/* ========================================================================= */}
       <StickyCourseButton
         className={isMobileDrawerOpen ? "opacity-0 pointer-events-none" : "opacity-100"}
+      />
+
+      {/* 3-Day Free Trial Live Batch Booking Modal */}
+      <LiveBatchBookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
       />
     </>
   );

@@ -22,13 +22,46 @@ import { useLanguage } from "@/lib/language-context";
 
 interface FAQItem {
   id: string;
-  category: "learning" | "workplace" | "payment" | "support";
+  category: "learning" | "workplace" | "payment" | "support" | "livebatch";
   categoryLabel: string;
   question: string;
   answer: string;
 }
 
 const FAQ_DATA: FAQItem[] = [
+  // 0. লাইভ ব্যাচ ও ৩ দিনের ফ্রি ট্রায়াল
+  {
+    id: "live-1",
+    category: "livebatch",
+    categoryLabel: "লাইভ ব্যাচ ও ফ্রি ট্রায়াল",
+    question: "৩ দিনের ডেমো ক্লাসে কি কোনো ফি দিতে হবে?",
+    answer:
+      "না, ৩ দিনের ডেমো ক্লাস সম্পূর্ণ বিনামূল্যে (Free)। কোনো প্রকার কার্ড বা অগ্রিম ফি ছাড়াই আপনি ট্রায়াল ক্লাসে অংশ নিয়ে যাচাই করতে পারবেন কোর্সটি আপনার জন্য কতটা কার্যকর।",
+  },
+  {
+    id: "live-2",
+    category: "livebatch",
+    categoryLabel: "লাইভ ব্যাচ ও ফ্রি ট্রায়াল",
+    question: "ক্লাস কীভাবে হবে এবং মাধ্যম কী?",
+    answer:
+      "গুগল মিট (Google Meet) বা জুমের মাধ্যমে সরাসরি অভিজ্ঞ শিক্ষকের তত্ত্বাবধানে ইন্টারঅ্যাক্টিভ লাইভ ক্লাস অনুষ্ঠিত হয়। এখানে সরাসরি মুখে মুখে আরবি বলার প্র্যাকটিস করানো হয়।",
+  },
+  {
+    id: "live-3",
+    category: "livebatch",
+    categoryLabel: "লাইভ ব্যাচ ও ফ্রি ট্রায়াল",
+    question: "লাইভ ক্লাস মিস হলে রেকর্ডিং পাওয়া যাবে কি?",
+    answer:
+      "হ্যাঁ, প্রতিটি লাইভ ক্লাসের ফুল এইচডি ভিডিও রেকর্ডিং ও ক্লাস নোট আপনার স্টুডেন্ট ড্যাশবোর্ডে যুক্ত থাকবে, যা আপনি পরবর্তীতে যেকোনো সুবিধাজনক সময়ে দেখে নিতে পারবেন।",
+  },
+  {
+    id: "live-4",
+    category: "livebatch",
+    categoryLabel: "লাইভ ব্যাচ ও ফ্রি ট্রায়াল",
+    question: "ক্লাসের সময়সূচী বা শিডিউল কখন হয়?",
+    answer:
+      "প্রবাসী শিক্ষার্থীদের ডিউটির সময় বিবেচনা করে সাধারণত রাতে (সৌদি, কাতার ও আমিরাত সময় অনুযায়ী সুবিধাজনক স্লটে) ব্যাচ পরিচালনা করা হয়।",
+  },
   // 1. কোর্স ও শেখার পদ্ধতি
   {
     id: "learn-1",
@@ -160,6 +193,7 @@ const FAQ_DATA: FAQItem[] = [
 
 const CATEGORIES = [
   { id: "all", label: "সকল প্রশ্নোত্তর", icon: Layers },
+  { id: "livebatch", label: "লাইভ ব্যাচ ও ফ্রি ট্রায়াল", icon: Sparkles },
   { id: "learning", label: "কোর্স ও শেখার পদ্ধতি", icon: BookOpen },
   { id: "workplace", label: "কাজের ক্ষেত্র ও ভাষা", icon: Languages },
   { id: "payment", label: "পেমেন্ট ও অ্যাক্সেস", icon: CreditCard },
@@ -246,28 +280,12 @@ export default function FAQPage() {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-              {language === "en" ? (
-                <>
-                  Frequently Asked Questions for{" "}
-                  <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 dark:from-[#6ee7b7] dark:via-[#34d399] dark:to-[#fcd34d] bg-clip-text text-transparent">
-                    Expat Workers
-                  </span>
-                </>
-              ) : (
-                <>
-                  প্রবাসী ভাইদের সচরাচর{" "}
-                  <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 dark:from-[#6ee7b7] dark:via-[#34d399] dark:to-[#fcd34d] bg-clip-text text-transparent">
-                    জিজ্ঞাসিত প্রশ্নোত্তর
-                  </span>
-                </>
-              )}
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+              সাধারণ জিজ্ঞাসাসমূহ (Frequently Asked Questions)
             </h1>
 
-            <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
-              {language === "en"
-                ? "Everything you need to know about mastering Gulf spoken Arabic and job English without grammar, tailored directly for your trade and career advancement."
-                : "সৌদি আরব, দুবাই, কাতার, কুয়েত ও ওমানে কাজের ফিল্ডে সাবলীল কথ্য আরবি ও প্রয়োজনীয় ইংরেজি শিখে নিজের আত্মবিশ্বাস, কাজের দক্ষতা ও বেতন বৃদ্ধি করার সকল তথ্য একনজরে জেনে নিন।"}
+            <p className="mt-3 text-xs sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+              লাইভ ব্যাচ, ক্লাস টাইম, কোর্স ফি, ৩ দিনের ফ্রি ট্রায়াল ও ক্লাস মাধ্যম সংক্রান্ত সকল প্রশ্নের উত্তর।
             </p>
 
             {/* Search Input */}
@@ -327,15 +345,6 @@ export default function FAQPage() {
                       }`}
                     />
                     <span>{cat.label}</span>
-                    <span
-                      className={`px-1.5 py-0.2 rounded-full text-[11px] font-bold ${
-                        isActive
-                          ? "bg-white/20 text-white"
-                          : "bg-slate-100 dark:bg-surface-200 text-slate-600 dark:text-slate-400"
-                      }`}
-                    >
-                      {count}
-                    </span>
                   </button>
                 );
               })}
@@ -440,6 +449,22 @@ export default function FAQPage() {
                 <span>সরাসরি হোয়াটসঅ্যাপে কথা বলুন</span>
               </Link>
             </div>
+          </div>
+
+          {/* 5. Bottom Live Batch CTA Banner */}
+          <div className="mt-8 bg-slate-900 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg border border-white/10">
+            <h2 className="text-xl sm:text-2xl font-black mb-2">
+              আপনার প্রশ্নের সমাধান পেয়েছেন? লাইভ ক্লাসে অংশ নিয়ে নিজেই যাচাই করুন!
+            </h2>
+            <p className="text-slate-300 text-xs sm:text-sm mb-6 max-w-lg mx-auto">
+              কোনো প্রকার দ্বিধা না রেখে আজই ৩ দিনের ফ্রি ডেমো ব্যাচে যোগ দিয়ে সরাসরি শিক্ষকের সাথে কথা বলুন।
+            </p>
+            <Link
+              className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-xl shadow-md text-sm transition-all hover:scale-[1.02] active:scale-98"
+              href="/live-batch"
+            >
+              আরও কিছু জানতে সরাসরি ৩ দিনের ফ্রি ক্লাসে প্রশ্ন করুন →
+            </Link>
           </div>
         </div>
       </main>

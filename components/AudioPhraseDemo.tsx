@@ -389,14 +389,11 @@ export default function AudioPhraseDemo({
                 </button>
               )}
             </div>
-            <div className="mt-2 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 px-1">
-              <span>মোট {phrases.length}টি অডিও ফ্রেজ তালিকাভুক্ত</span>
-              {searchQuery && (
-                <span>
-                  খোঁজের ফলাফল: <strong className="text-emerald-600 dark:text-gulf-400">{filteredPhrases.length}</strong>টি
-                </span>
-              )}
-            </div>
+            {searchQuery && (
+              <div className="mt-2 text-right text-[11px] text-slate-500 dark:text-slate-400 px-1">
+                খোঁজের ফলাফল প্রদর্শিত হচ্ছে
+              </div>
+            )}
           </div>
         )}
 
@@ -474,7 +471,7 @@ export default function AudioPhraseDemo({
             <p className="mt-2.5 text-xs text-slate-500 dark:text-slate-400 max-w-md">
               {t.audioDemo.viewAllSubtext ||
                 (isRTL
-                  ? "استمع إلى أكثر من ১২ عبارة خليجية وإنجليزية لبيئات العمل"
+                  ? "استمع إلى عبارات خليجية وإنجليزية لبيئات العمل"
                   : "দৈনন্দিন বাজার, বেতন, সাইট ও টেকনিক্যালের সকল বাক্য একসাথে শুনুন")}
             </p>
           </div>

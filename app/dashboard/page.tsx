@@ -67,9 +67,9 @@ const COURSE_CATALOG: Record<
     badgeColor: "teal",
   },
   "video-classes": {
-    title: "আরবি ভাষা শিক্ষা ২৪ ক্লাস ভিডিও কালেকশন",
+    title: "আরবি ভাষা শিক্ষা ভিডিও কালেকশন",
     subtitle: "ব্যবহারিক কাজ ও দৈনন্দিন কথ্য আরবির সম্পূর্ণ ভিডিও কোর্স",
-    duration: "২৪ ভিডিও লেসন",
+    duration: "ভিডিও লেসন",
     category: "ভিডিও ক্লাস",
     icon: Video,
     badgeColor: "blue",
@@ -530,7 +530,7 @@ export default function StudentDashboardPage() {
                       </div>
                       <div>
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
-                          ২৪ টি ভিডিও ক্লাস
+                          আরবি ভিডিও ক্লাস
                         </h4>
                         <p className="text-xs text-slate-500 dark:text-slate-400">
                           ভিডিও লেসন কালেকশন

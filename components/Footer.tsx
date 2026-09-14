@@ -134,6 +134,38 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/trade-tracks"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  পেশাভিত্তিক গাইড (Trade Tracks)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/country-dialects"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  দেশভিত্তিক উপভাষা (Country Dialects)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/daily-conversations"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  দৈনন্দিন কথোপকথন (Daily Conversations)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/ai-voice-coach"
+                  className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
+                >
+                  এআই ভয়েস কোচ (AI Voice Coach)
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="text-xs sm:text-sm text-slate-300 hover:text-gold-300 transition-colors block"
                 >

@@ -218,11 +218,6 @@ function formatSeconds(sec: number): string {
   return `${minutes}m ${seconds > 0 ? `${seconds}s` : ""}`.trim();
 }
 
-/** Formats numbers to Bengali digits */
-function toBengaliNumber(num: number): string {
-  const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-  return num.toString().replace(/\d/g, (d) => bnDigits[parseInt(d, 10)] || d);
-}
 
 export default function YouTubeGallery({
   videos = ARABIC_VIDEOS,
@@ -242,16 +237,11 @@ export default function YouTubeGallery({
   const heroPlayerRef = useRef<HTMLDivElement>(null);
   const playlistContainerRef = useRef<HTMLDivElement>(null);
 
-  // Extract channels with video counts for filter pills
+
+  // Extract channels for filter pills
   const channelList = useMemo(() => {
-    const counts: Record<string, number> = {};
-    videos.forEach((v) => {
-      counts[v.channel] = (counts[v.channel] || 0) + 1;
-    });
-    return [
-      { name: "All", count: videos.length },
-      ...Object.entries(counts).map(([name, count]) => ({ name, count })),
-    ];
+    const channels = Array.from(new Set(videos.map((v) => v.channel)));
+    return ["All", ...channels];
   }, [videos]);
 
   // Filter videos by selected channel and search query
@@ -314,7 +304,7 @@ export default function YouTubeGallery({
       ref={heroPlayerRef}
       className={`relative scroll-mt-24 sm:scroll-mt-28 overflow-hidden w-full max-w-full ${
         isStandalonePage
-          ? "py-8 sm:py-14 bg-transparent"
+          ? "py-0 bg-transparent"
           : "py-10 sm:py-14 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20"
       } transition-colors duration-200 ${className}`}
     >
@@ -328,7 +318,7 @@ export default function YouTubeGallery({
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className={`max-w-6xl mx-auto ${isStandalonePage ? "px-0 py-0" : "px-4 py-8"}`}>
         {/* Section Header (rendered on homepage or custom title) */}
         {!isStandalonePage && (
           <div className="max-w-3xl mx-auto text-center w-full mb-8 sm:mb-10">
@@ -352,19 +342,19 @@ export default function YouTubeGallery({
             {/* Channel Filter Pills */}
             <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
               {channelList.map((ch) => {
-                const isActive = selectedChannel === ch.name;
+                const isActive = selectedChannel === ch;
                 return (
                   <button
-                    key={ch.name}
+                    key={ch}
                     type="button"
-                    onClick={() => setSelectedChannel(ch.name)}
+                    onClick={() => setSelectedChannel(ch)}
                     className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 border ${
                       isActive
                         ? "bg-emerald-600 text-white border-emerald-600 shadow-sm dark:bg-gulf-500 dark:text-slate-950 dark:border-gulf-400 font-semibold"
                         : "bg-white/80 dark:bg-surface-200/80 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-surface-400 hover:bg-slate-200/50 dark:hover:bg-surface-300"
                     }`}
                   >
-                    {ch.name === "All" ? `সকল চ্যানেল (${toBengaliNumber(ch.count)})` : `${ch.name} (${toBengaliNumber(ch.count)})`}
+                    {ch === "All" ? "সব ভিডিও" : ch}
                   </button>
                 );
               })}
@@ -399,19 +389,19 @@ export default function YouTubeGallery({
             {/* Channel Filter Pills */}
             <div className="flex flex-wrap items-center justify-center gap-1.5">
               {channelList.map((ch) => {
-                const isActive = selectedChannel === ch.name;
+                const isActive = selectedChannel === ch;
                 return (
                   <button
-                    key={ch.name}
+                    key={ch}
                     type="button"
-                    onClick={() => setSelectedChannel(ch.name)}
+                    onClick={() => setSelectedChannel(ch)}
                     className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 border ${
                       isActive
                         ? "bg-emerald-600 text-white border-emerald-600 shadow-sm dark:bg-gulf-500 dark:text-slate-950 dark:border-gulf-400 font-semibold"
                         : "bg-white/80 dark:bg-surface-200/80 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-surface-400 hover:bg-slate-200/50"
                     }`}
                   >
-                    {ch.name === "All" ? `সকল চ্যানেল (${toBengaliNumber(ch.count)})` : `${ch.name} (${toBengaliNumber(ch.count)})`}
+                    {ch === "All" ? "সব ভিডিও" : ch}
                   </button>
                 );
               })}
@@ -419,12 +409,12 @@ export default function YouTubeGallery({
           </div>
         )}
 
-        {/* 1. Grid Wrapper: 2-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* 2. Left Column: Active Player (7 Cols on desktop) */}
-          <div className="lg:col-span-7 xl:col-span-8 lg:sticky lg:top-20">
+        {/* 1. Grid Wrapper: matching-height layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start w-full">
+          {/* 2. Left Column: Main Active Video Player (lg:col-span-2) */}
+          <div className="lg:col-span-2 flex flex-col bg-white dark:bg-surface-100 border border-slate-200/80 dark:border-white/10 rounded-2xl p-4 sm:p-5 shadow-xs">
             {/* Video Frame */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-sm">
+            <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-slate-900 shadow-inner">
               <iframe
                 key={`${activeVideo.id}-${shouldAutoplay}`}
                 src={embedUrl}
@@ -436,10 +426,14 @@ export default function YouTubeGallery({
               />
             </div>
 
-            {/* Active Info Card */}
-            <div className="mt-3 bg-white dark:bg-surface-100 p-4 rounded-xl border border-slate-200/80 dark:border-white/10 shadow-xs">
-              {/* Badges */}
-              <div className="flex flex-wrap items-center gap-2 mb-1.5">
+            {/* Active Lesson Details */}
+            <div className="mt-4">
+              {/* Badges Row */}
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 dark:bg-gulf-500/20 dark:text-gulf-400 dark:border-gulf-500/30 px-2.5 py-0.5 rounded-full">
+                  চলমান লেসন
+                </span>
+
                 <span className="inline-flex items-center gap-1 text-xs py-0.5 px-2.5 rounded-full font-semibold bg-emerald-100 text-emerald-800 dark:bg-gulf-500/20 dark:text-gulf-400 border border-emerald-200 dark:border-gulf-500/30">
                   <Radio className="w-3 h-3 text-emerald-600 dark:text-gulf-400" />
                   {activeVideo.channel}
@@ -452,131 +446,132 @@ export default function YouTubeGallery({
                   </span>
                 )}
 
-                <span className="inline-flex items-center gap-1 text-xs py-0.5 px-2.5 rounded-full bg-slate-100 dark:bg-surface-200 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-white/10 font-mono">
-                  Lesson {videos.findIndex((v) => v.id === activeVideo.id) + 1} of {videos.length}
-                </span>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-1 leading-snug">
+              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white mt-1 leading-snug">
                 {activeVideo.title}
-              </h3>
+              </h2>
 
-              {/* Description/details */}
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed">
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                 সৌদি আরব, দুবাই, কাতার, কুয়েত ও ওমান প্রবাসীদের কর্মক্ষেত্রে প্রয়োজনীয় আরবি ও ইংরেজি ভাষা শিক্ষার বাস্তব লেকচার।
               </p>
             </div>
           </div>
 
-          {/* 3. Right Column: Video Playlist / List (5 Cols on desktop) */}
-          <div className="lg:col-span-5 xl:col-span-4">
-            <div className="bg-slate-50 dark:bg-[#07130b] border border-slate-200/80 dark:border-gulf-500/20 rounded-2xl p-2.5 sm:p-3 flex flex-col">
-              {/* Video List starting directly from the first video item */}
-              <div
-                ref={playlistContainerRef}
-                className={
-                  isStandalonePage
-                    ? "space-y-2.5 max-h-[720px] overflow-y-auto pr-1 playlist-scrollbar"
-                    : "space-y-2.5 sm:space-y-3 h-auto overflow-visible"
-                }
-              >
-                {displayVideos.map((video) => {
-                  const isActive = video.id === activeVideo.id;
-                  const overallIndex = videos.findIndex((v) => v.id === video.id);
-                  const thumbnailUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+          {/* 3. Right Side: Locked Height + Scrollable List (lg:col-span-1) */}
+          <div
+            className="lg:col-span-1 h-[530px] sm:h-[550px] flex flex-col bg-white dark:bg-[#07130b] border border-slate-200/80 dark:border-gulf-500/20 rounded-2xl shadow-xs overflow-hidden"
+          >
+            {/* Header (Fixed at top) */}
+            <div className="p-3.5 border-b border-slate-100 dark:border-white/5 bg-slate-50 dark:bg-surface-200/50 shrink-0 flex items-center justify-between">
+              <h3 className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
+                অন্যান্য ভিডিও লেসন
+              </h3>
+            </div>
 
-                  return (
-                    <button
-                      type="button"
-                      key={video.id}
-                      aria-label={`Play video: ${video.title}`}
-                      aria-pressed={isActive}
-                      onClick={(e) => handleSelectVideo(video, e)}
-                      className={`w-full text-left flex items-center gap-3 p-2.5 rounded-xl cursor-pointer transition-all ${
-                        isActive
-                          ? "ring-2 ring-emerald-500 bg-emerald-50/90 border border-emerald-300/80 text-emerald-900 font-semibold shadow-xs dark:bg-emerald-950/70 dark:border-emerald-700 dark:ring-emerald-400 dark:text-emerald-200"
-                          : "bg-white hover:bg-slate-100 border border-slate-100 text-slate-700 dark:bg-surface-100/90 dark:hover:bg-surface-200 dark:border-white/5 dark:text-slate-300"
-                      }`}
-                    >
-                      {/* Compact thumbnail on left */}
-                      <div className="w-24 h-16 rounded-lg object-cover shrink-0 relative overflow-hidden bg-slate-900">
-                        <img
-                          src={thumbnailUrl}
-                          alt={video.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        {isActive ? (
-                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <Play className="w-5 h-5 text-emerald-400 fill-current" />
-                          </div>
-                        ) : (
-                          <div className="absolute inset-0 bg-black/10 hover:bg-black/25 flex items-center justify-center transition-colors">
-                            <Play className="w-4 h-4 text-white/80 fill-white/80" />
-                          </div>
-                        )}
-                        {video.start > 0 && (
-                          <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/75 text-[9px] font-mono text-white">
-                            {formatSeconds(video.start)}
-                          </span>
-                        )}
-                      </div>
+            {/* Scrollable Video List (Scrolls smoothly inside locked height) */}
+            <div
+              ref={playlistContainerRef}
+              className="flex-1 overflow-y-auto p-2 space-y-2 divide-y divide-slate-100 dark:divide-white/5 overscroll-contain playlist-scrollbar"
+            >
+              {displayVideos.map((video) => {
+                const isActive = video.id === activeVideo.id;
+                const thumbnailUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
 
-                      {/* Info: Lesson number/title + duration badge */}
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs sm:text-sm font-medium line-clamp-2 leading-snug">
-                          {overallIndex + 1}. {video.title}
-                        </p>
-                        <div className="flex items-center gap-2 text-[11px] text-slate-400 dark:text-slate-500 mt-1">
-                          <span className="truncate">{video.channel}</span>
-                          <span>•</span>
-                          <span>ভিডিও #{toBengaliNumber(overallIndex + 1)}</span>
+                return (
+                  <button
+                    type="button"
+                    key={video.id}
+                    aria-label={`Play video: ${video.title}`}
+                    aria-pressed={isActive}
+                    onClick={(e) => handleSelectVideo(video, e)}
+                    className={`w-full text-left flex items-center gap-3 p-2 rounded-xl cursor-pointer transition-all ${
+                      isActive
+                        ? "ring-2 ring-emerald-500 bg-emerald-50/90 border border-emerald-300/80 text-emerald-900 font-semibold shadow-xs dark:bg-emerald-950/70 dark:border-emerald-700 dark:ring-emerald-400 dark:text-emerald-200"
+                        : "bg-white hover:bg-slate-100 border border-transparent text-slate-700 dark:bg-surface-100/90 dark:hover:bg-surface-200 dark:text-slate-300"
+                    }`}
+                  >
+                    {/* Compact thumbnail on left */}
+                    <div className="w-20 h-14 sm:w-22 sm:h-15 rounded-lg object-cover shrink-0 relative overflow-hidden bg-slate-900">
+                      <img
+                        src={thumbnailUrl}
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      {isActive ? (
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          <Play className="w-5 h-5 text-emerald-400 fill-current" />
                         </div>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
+                      ) : (
+                        <div className="absolute inset-0 bg-black/10 hover:bg-black/25 flex items-center justify-center transition-colors">
+                          <Play className="w-4 h-4 text-white/80 fill-white/80" />
+                        </div>
+                      )}
+                      {video.start > 0 && (
+                        <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/75 text-[9px] font-mono text-white">
+                          {formatSeconds(video.start)}
+                        </span>
+                      )}
+                    </div>
 
-              {/* View All CTA Button directly beneath playlist */}
-              {showViewAll && !isStandalonePage && (
+                    {/* Info: Title + channel */}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-medium line-clamp-2 leading-snug">
+                        {video.title}
+                      </p>
+                      <div className="flex items-center gap-1.5 text-[10px] text-slate-400 dark:text-slate-500 mt-1">
+                        <span className="truncate">{video.channel}</span>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* View All CTA Button directly beneath playlist on homepage */}
+            {showViewAll && !isStandalonePage && (
+              <div className="p-2 sm:p-2.5 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-surface-100/50 shrink-0">
                 <Link
                   href="/video-classes"
-                  className="w-full mt-4 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-all shadow-sm group"
+                  className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs sm:text-sm transition-all shadow-sm group"
                 >
                   <span>সব ভিডিও ক্লাস দেখুন</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Bottom Educational Banner */}
-        <div className="mt-14 rounded-2xl border border-amber-500/30 bg-amber-500/5 dark:border-gold-500/20 dark:bg-gold-500/5 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 dark:bg-gold-500/10 flex items-center justify-center text-amber-600 dark:text-gold-400 shrink-0">
-              <Sparkles className="w-5 h-5" />
+        {!isStandalonePage && (
+          <div className="mt-14 rounded-2xl border border-amber-500/30 bg-amber-500/5 dark:border-gold-500/20 dark:bg-gold-500/5 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 dark:bg-gold-500/10 flex items-center justify-center text-amber-600 dark:text-gold-400 shrink-0">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-slate-900 dark:text-white">
+                  আরও নতুন লেকচার ও প্র্যাকটিস সেশন চান?
+                </p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
+                  প্রতি সপ্তাহে সরাসরি গালফ প্রবাসী শিক্ষকদের নতুন ভিডিও ও অডিও লেসন আপডেট করা হয়।
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-bold text-slate-900 dark:text-white">
-                আরও নতুন লেকচার ও প্র্যাকটিস সেশন চান?
-              </p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
-                প্রতি সপ্তাহে সরাসরি গালফ প্রবাসী শিক্ষকদের নতুন ভিডিও ও অডিও লেসন আপডেট করা হয়।
-              </p>
-            </div>
-          </div>
 
-          <Link
-            href="/#curriculum"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 dark:bg-gulf-500 dark:hover:bg-gulf-600 text-white dark:text-slate-950 text-xs sm:text-sm font-bold transition-all shadow-md shrink-0"
-          >
-            <span>সম্পূর্ণ কোর্স কারিকুলাম দেখুন</span>
-            <ChevronDown className="w-4 h-4 -rotate-90" />
-          </Link>
-        </div>
+            <Link
+              href="/#curriculum"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 dark:bg-gulf-500 dark:hover:bg-gulf-600 text-white dark:text-slate-950 text-xs sm:text-sm font-bold transition-all shadow-md shrink-0"
+            >
+              <span>সম্পূর্ণ কোর্স কারিকুলাম দেখুন</span>
+              <ChevronDown className="w-4 h-4 -rotate-90" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -113,7 +113,7 @@ export async function GET(req: NextRequest) {
                 }}
               >
                 Rimslin
-                <span style={{ color: "#f59e0b" }}>.com</span>
+                <span style={{ color: "#f59e0b" }}></span>
               </div>
 
               {/* Career Pill Badge */}

@@ -206,7 +206,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
-                href="/#video-gallery"
+                href="/video-classes"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/20 transition-all"
               >
                 <Tv className="w-4 h-4" />

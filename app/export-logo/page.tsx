@@ -297,33 +297,30 @@ export default function ExportLogoPage() {
               <button
                 type="button"
                 onClick={() => setSelectedTheme("dark")}
-                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
-                  selectedTheme === "dark"
-                    ? "bg-emerald-600 text-white"
-                    : "text-slate-400 hover:text-white"
-                }`}
+                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${selectedTheme === "dark"
+                  ? "bg-emerald-600 text-white"
+                  : "text-slate-400 hover:text-white"
+                  }`}
               >
                 Dark Theme
               </button>
               <button
                 type="button"
                 onClick={() => setSelectedTheme("light")}
-                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
-                  selectedTheme === "light"
-                    ? "bg-emerald-600 text-white"
-                    : "text-slate-400 hover:text-white"
-                }`}
+                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${selectedTheme === "light"
+                  ? "bg-emerald-600 text-white"
+                  : "text-slate-400 hover:text-white"
+                  }`}
               >
                 Light Theme
               </button>
               <button
                 type="button"
                 onClick={() => setSelectedTheme("transparent")}
-                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
-                  selectedTheme === "transparent"
-                    ? "bg-emerald-600 text-white"
-                    : "text-slate-400 hover:text-white"
-                }`}
+                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${selectedTheme === "transparent"
+                  ? "bg-emerald-600 text-white"
+                  : "text-slate-400 hover:text-white"
+                  }`}
               >
                 Transparent
               </button>
@@ -346,23 +343,27 @@ export default function ExportLogoPage() {
             </div>
             <div className="p-10 rounded-2xl border border-slate-800 bg-[#060b08] flex items-center justify-center shadow-2xl overflow-hidden">
               {/* Mounted Exact Header Logo */}
-              <div className="flex items-center gap-3">
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-amber-400 p-[1.5px] shadow-lg shadow-emerald-950/40 shrink-0">
-                  <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-[#07120b] p-2">
-                    <Globe className="h-6 w-6 text-emerald-400" />
-                  </div>
+              <div className="flex items-center gap-1.5 select-none">
+                {/* Icon Mark: aligned height, rounded-lg, bg-emerald-600 */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-600 flex items-center justify-center shrink-0 shadow-2xs">
+                  <span className="text-white font-black text-lg sm:text-xl leading-none select-none font-sans">
+                    R
+                  </span>
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">
-                      Rimslin<span className="text-amber-500">.com</span>
+
+                {/* Text & Dream Badge Block */}
+                <div className="flex flex-col justify-center min-w-0">
+                  <div className="flex items-center leading-none">
+                    <span className="text-xl sm:text-2xl font-black tracking-tight">
+                      <span className="text-white">Rims</span>
+                      <span className="text-emerald-400">lin</span>
                     </span>
-                    <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] sm:text-xs font-bold tracking-tight rounded-md bg-emerald-950/40 text-emerald-300 border border-emerald-800/60 leading-none shrink-0">
-                      StepAhead
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-amber-950/60 text-amber-300 border border-amber-800/60 ml-1.5 leading-none shrink-0 shadow-2xs">
+                      DREAM
                     </span>
                   </div>
-                  <span className="text-xs sm:text-sm text-slate-400 font-medium tracking-wide">
-                    Expat Language &amp; Career Platform
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 leading-tight mt-0.5">
+                    প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম
                   </span>
                 </div>
               </div>
@@ -385,23 +386,27 @@ export default function ExportLogoPage() {
             </div>
             <div className="p-10 rounded-2xl border border-slate-700 bg-slate-50 flex items-center justify-center shadow-xl overflow-hidden">
               {/* Mounted Exact Header Logo (Light theme) */}
-              <div className="flex items-center gap-3">
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-amber-400 p-[1.5px] shadow-sm shrink-0">
-                  <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-slate-100 p-2">
-                    <Globe className="h-6 w-6 text-emerald-600" />
-                  </div>
+              <div className="flex items-center gap-1.5 select-none">
+                {/* Icon Mark: aligned height, rounded-lg, bg-emerald-600 */}
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-600 flex items-center justify-center shrink-0 shadow-2xs">
+                  <span className="text-white font-black text-lg sm:text-xl leading-none select-none font-sans">
+                    R
+                  </span>
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 leading-tight">
-                      Rimslin<span className="text-amber-500">.com</span>
+
+                {/* Text & Dream Badge Block */}
+                <div className="flex flex-col justify-center min-w-0">
+                  <div className="flex items-center leading-none">
+                    <span className="text-xl sm:text-2xl font-black tracking-tight">
+                      <span className="text-slate-900">Rims</span>
+                      <span className="text-emerald-600">lin</span>
                     </span>
-                    <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] sm:text-xs font-bold tracking-tight rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 leading-none shrink-0">
-                      StepAhead
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-amber-50 text-amber-600 border border-amber-200 ml-1.5 leading-none shrink-0 shadow-2xs">
+                      DREAM
                     </span>
                   </div>
-                  <span className="text-xs sm:text-sm text-slate-600 font-medium tracking-wide">
-                    Expat Language &amp; Career Platform
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 leading-tight mt-0.5">
+                    প্রবাসী ভাষা শিক্ষা প্ল্যাটফর্ম
                   </span>
                 </div>
               </div>

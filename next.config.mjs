@@ -23,17 +23,52 @@ const nextConfig = {
     return [
       {
         source: '/dialects',
-        destination: '/#country-dialects',
+        destination: '/country-dialects',
+        permanent: false,
+      },
+      {
+        source: '/dialogues',
+        destination: '/daily-conversations',
+        permanent: false,
+      },
+      {
+        source: '/ai-coach',
+        destination: '/ai-voice-coach',
         permanent: false,
       },
       {
         source: '/emergency',
-        destination: '/#emergency-phrases',
+        destination: '/emergency-arabic',
+        permanent: false,
+      },
+      {
+        source: '/emergency-phrases',
+        destination: '/emergency-arabic',
         permanent: false,
       },
       {
         source: '/audio-pack',
-        destination: '/#audio-downloads',
+        destination: '/free-downloads',
+        permanent: false,
+      },
+      {
+        source: '/audio-downloads',
+        destination: '/free-downloads',
+        permanent: false,
+      },
+      {
+        source: '/testimonials',
+        destination: '/reviews',
+        permanent: false,
+      },
+      {
+        source: '/worker-rights',
+        destination: '/labor-rights',
+        permanent: false,
+      },
+      {
+        source: '/airport-guide',
+        destination: '/visa-airport-checklist',
         permanent: false,
       },
       {

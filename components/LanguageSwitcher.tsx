@@ -99,7 +99,7 @@ export default function LanguageSwitcher({
   }
 
   return (
-    <div className={`relative inline-block text-start max-w-full z-50 shrink-0 flex-shrink-0 ${className}`} ref={dropdownRef}>
+    <div className={`relative inline-block text-start max-w-full shrink-0 flex-shrink-0 ${className}`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -121,11 +121,9 @@ export default function LanguageSwitcher({
       {/* Dropdown Menu - adapts side based on RTL */}
       {isOpen && (
         <div
-          className={`fixed sm:absolute z-[999] top-11 sm:top-full mt-1 w-52 max-w-[90vw] rounded-md md:rounded-2xl border border-slate-200 bg-white p-1.5 shadow-2xl ring-1 ring-black/5 dark:border-gulf-500/30 dark:bg-[#08150d] dark:shadow-2xl dark:shadow-black dark:ring-white/10 ${
-            isRTL
-              ? "left-2 sm:left-0 sm:end-0 origin-top-left"
-              : "right-2 sm:right-0 sm:end-0 origin-top-right"
-          }`}
+          className={`absolute ${
+            isRTL ? "left-0 origin-top-left" : "right-0 origin-top-right"
+          } top-full mt-1.5 w-44 sm:w-48 max-w-[90vw] bg-white border border-slate-200 rounded-xl shadow-xl z-[70] p-1.5 dark:bg-[#08150d] dark:border-gulf-500/30 dark:shadow-2xl dark:ring-1 dark:ring-white/10`}
         >
           <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-white/[0.06] mb-1 flex items-center justify-between">
             <span>{isRTL ? "اختر اللغة" : "Select Language"}</span>

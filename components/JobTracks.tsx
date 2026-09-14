@@ -279,13 +279,13 @@ export default function JobTracks() {
         </div>
       </div>
 
-      {/* 4. Bottom "সব কোর্স দেখুন" Button */}
-      <div className="mt-10 flex justify-center">
+      {/* 4. Bottom "সব পেশার ট্র্যাক দেখুন" Button */}
+      <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
         <Link
-          href="/courses"
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm sm:text-base shadow-sm hover:shadow-md transition-all active:scale-[0.99]"
+          href="/trade-tracks"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm sm:text-base shadow-sm hover:shadow-md transition-all active:scale-[0.99]"
         >
-          <span>সব কোর্স দেখুন →</span>
+          <span>সব পেশাভিত্তিক গাইড ও ট্র্যাক দেখুন →</span>
         </Link>
       </div>
     </section>

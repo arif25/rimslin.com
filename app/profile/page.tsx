@@ -79,10 +79,10 @@ export default function ProfilePage() {
   const learningFeatures = [
     {
       title: "আরবি ভাষা শিক্ষা ভিডিও কালেকশন",
-      subtitle: "২৪ টি সম্পূর্ণ ক্লাস ও উচ্চারণ লেসন",
+      subtitle: "সম্পূর্ণ ক্লাস ও উচ্চারণ লেসন",
       icon: Video,
       href: "/video-classes",
-      badge: "২৪ টি ক্লাস",
+      badge: "ভিডিও ক্লাস",
       color: "emerald",
     },
     {

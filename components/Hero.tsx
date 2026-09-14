@@ -86,7 +86,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "Watch Video Lessons",
-            href: "#video-gallery",
+            href: "/video-classes",
             icon: Tv,
           },
         },
@@ -106,7 +106,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "Learn Tool Names",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Wrench,
           },
         },
@@ -166,7 +166,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "Regional Audio",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Headphones,
           },
         },
@@ -181,7 +181,7 @@ export default function Hero() {
             "Communicate your health symptoms directly in Arabic and English during hospital visits or sudden medical emergencies.",
           primaryBtn: {
             text: "Medical Arabic",
-            href: "#emergency-phrases",
+            href: "/emergency-arabic",
             icon: HeartPulse,
           },
           secondaryBtn: {
@@ -201,7 +201,7 @@ export default function Hero() {
             "Clear, respectful communication formulas for discussing salary, overtime, leave entitlements, and Iqama renewal.",
           primaryBtn: {
             text: "Worker Guidebook",
-            href: "#worker-rights",
+            href: "/labor-rights",
             icon: FileText,
           },
           secondaryBtn: {
@@ -226,7 +226,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "Listen to Demo",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Sparkles,
           },
         },
@@ -272,7 +272,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "वीडियो क्लास देखें",
-            href: "#video-gallery",
+            href: "/video-classes",
             icon: Tv,
           },
         },
@@ -292,7 +292,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "टूल्स के नाम सीखें",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Wrench,
           },
         },
@@ -352,7 +352,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "क्षेत्रीय ऑडियो",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Headphones,
           },
         },
@@ -367,7 +367,7 @@ export default function Hero() {
             "अचानक बीमारी होने पर अस्पताल में डॉक्टर को अपनी समस्या सीधे अरबी और अंग्रेजी में समझाएं।",
           primaryBtn: {
             text: "मेडिकल अरबी",
-            href: "#emergency-phrases",
+            href: "/emergency-arabic",
             icon: HeartPulse,
           },
           secondaryBtn: {
@@ -387,7 +387,7 @@ export default function Hero() {
             "वेतन, ओवरटाइम, छुट्टी और इकामा नवीनीकरण पर सम्मानजनक और स्पष्ट तरीके से बात करने का फॉर्मूला।",
           primaryBtn: {
             text: "श्रमिक गाइड",
-            href: "#worker-rights",
+            href: "/labor-rights",
             icon: FileText,
           },
           secondaryBtn: {
@@ -412,7 +412,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "डेमो सुनें",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Sparkles,
           },
         },
@@ -458,7 +458,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "شاهد الدروس المرئية",
-            href: "#video-gallery",
+            href: "/video-classes",
             icon: Tv,
           },
         },
@@ -478,7 +478,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "أسماء الأدوات",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Wrench,
           },
         },
@@ -538,7 +538,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "صوتيات اللهجات",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Headphones,
           },
         },
@@ -553,7 +553,7 @@ export default function Hero() {
             "عبر عن حالتك الصحية بوضوح ومباشرة باللغتين العربية والإنجليزية في المستشفيات والعيادات.",
           primaryBtn: {
             text: "عربية الطوارئ",
-            href: "#emergency-phrases",
+            href: "/emergency-arabic",
             icon: HeartPulse,
           },
           secondaryBtn: {
@@ -573,7 +573,7 @@ export default function Hero() {
             "صيغ محترمة وواضحة لمناقشة الرواتب، العمل الإضافي، الإجازات وتجديد الإقامة.",
           primaryBtn: {
             text: "دليل العمالة",
-            href: "#worker-rights",
+            href: "/labor-rights",
             icon: FileText,
           },
           secondaryBtn: {
@@ -598,7 +598,7 @@ export default function Hero() {
           },
           secondaryBtn: {
             text: "استمع للعينة",
-            href: "#phrase-demo",
+            href: "/audio-phrases",
             icon: Sparkles,
           },
         },
@@ -644,7 +644,7 @@ export default function Hero() {
         },
         secondaryBtn: {
           text: "ভিডিও ক্লাস দেখুন",
-          href: "#video-gallery",
+          href: "/video-classes",
           icon: Tv,
         },
       },
@@ -664,7 +664,7 @@ export default function Hero() {
         },
         secondaryBtn: {
           text: "টুলসের নাম শিখুন",
-          href: "#phrase-demo",
+          href: "/audio-phrases",
           icon: Wrench,
         },
       },
@@ -724,7 +724,7 @@ export default function Hero() {
         },
         secondaryBtn: {
           text: "আঞ্চলিক অডিও",
-          href: "#phrase-demo",
+          href: "/audio-phrases",
           icon: Headphones,
         },
       },
@@ -739,7 +739,7 @@ export default function Hero() {
           "হঠাৎ অসুস্থতায় হাসপাতালের ডাক্তারের কাছে নিজের সমস্যার কথা সরাসরি আরবি ও ইংরেজিতে বুঝিয়ে বলুন।",
         primaryBtn: {
           text: "মেডিকেল আরবি",
-          href: "#emergency-phrases",
+          href: "/emergency-arabic",
           icon: HeartPulse,
         },
         secondaryBtn: {
@@ -759,7 +759,7 @@ export default function Hero() {
           "বেতন, ওভারটাইম, ছুটি এবং আকামা নবায়নের বিষয়ে স্পষ্ট ও সম্মানজনকভাবে কথা বলার ফর্মুলা।",
         primaryBtn: {
           text: "শ্রমিক সহায়িকা",
-          href: "#worker-rights",
+          href: "/labor-rights",
           icon: FileText,
         },
         secondaryBtn: {
@@ -784,7 +784,7 @@ export default function Hero() {
         },
         secondaryBtn: {
           text: "ডেমো শুনুন",
-          href: "#phrase-demo",
+          href: "/audio-phrases",
           icon: Sparkles,
         },
       },

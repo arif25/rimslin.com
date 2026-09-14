@@ -25,7 +25,7 @@ export default function NotFound() {
           <span>হোমে ফিরে যান (Return Home)</span>
         </Link>
         <Link
-          href="/#audio-demo"
+          href="/audio-phrases"
           className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-surface-100 px-6 py-3 text-sm font-semibold text-slate-200 hover:bg-surface-200"
         >
           <Compass className="h-4 w-4 text-gulf-400" />
