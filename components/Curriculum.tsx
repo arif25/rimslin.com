@@ -4,16 +4,38 @@ import Link from "next/link";
 import {
   CheckCircle2,
   Clock,
-  ArrowRight,
   ShieldCheck,
   Award,
   BookOpen,
   MessageCircle,
+  ArrowRight,
 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
+import EnrollButton from "./EnrollButton";
 
 export default function Curriculum() {
   const { t, language } = useLanguage();
+
+  const enrollPlanData: Record<string, { price: number; name: string }> = {
+    "3m": {
+      price: 1950,
+      name: "৩ মাস মেয়াদী - 3 Months Starter",
+    },
+    "6m": {
+      price: 3450,
+      name: "৬ মাস মেয়াদী - 6 Months Workplace Pro",
+    },
+    "12m": {
+      price: 5950,
+      name: "১২ মাস মেয়াদী - 12 Months Master Career Pack",
+    },
+  };
+
+  const planSectionIds: Record<string, string> = {
+    "3m": "starter",
+    "6m": "workplace-pro",
+    "12m": "master",
+  };
 
   const planStyles = [
     {
@@ -31,7 +53,8 @@ export default function Curriculum() {
   ];
 
   return (
-    <section id="course-plans" className="relative scroll-mt-28 sm:scroll-mt-32 overflow-hidden w-full max-w-full pt-6 sm:pt-10 md:pt-14 pb-4 sm:pb-6 md:pb-8 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20 transition-colors duration-200">
+    <section id="courses-pricing" className="relative scroll-mt-20 overflow-hidden w-full max-w-full pt-6 sm:pt-10 md:pt-14 pb-4 sm:pb-6 md:pb-8 bg-slate-100/70 border-t border-slate-200/80 dark:bg-[#050e08] dark:border-gulf-500/20 transition-colors duration-200">
+      <span id="course-plans" className="sr-only" aria-hidden="true" />
       <span id="courses" className="sr-only" aria-hidden="true" />
       <span id="curriculum" className="sr-only" aria-hidden="true" />
       {/* Background Ambience */}
@@ -55,16 +78,32 @@ export default function Curriculum() {
           <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300">
             {t.curriculum.description}
           </p>
+
+          <div className="mt-4 flex items-center justify-center">
+            <Link
+              href="/courses"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-white dark:bg-surface-100 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-300/80 dark:border-emerald-600/40 shadow-xs transition-all group"
+            >
+              <BookOpen className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span>সব কোর্স বিস্তারিত ও সিলেবাস ব্রেকডাউন দেখুন</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
 
         {/* Course Cards Grid */}
-        <div className="mt-6 sm:mt-10 md:mt-16 grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8 items-stretch w-full max-w-full min-w-0">
+        <div className="mt-6 sm:mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full max-w-full min-w-0">
           {t.curriculum.plans.map((plan, idx) => {
             const style = planStyles[idx % planStyles.length];
+            const enrollPlan = enrollPlanData[plan.id] || {
+              price: idx === 0 ? 1950 : idx === 1 ? 3450 : 5950,
+              name: `${plan.duration} - ${plan.durationEn}`,
+            };
+            const sectionId = planSectionIds[plan.id] || (idx === 0 ? "starter" : idx === 1 ? "workplace-pro" : "master");
             return (
               <div
                 key={plan.id}
-                className={`relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white/95 shadow-md hover:shadow-xl dark:border-white/10 dark:bg-gradient-to-b ${style.gradient} p-4 sm:p-5 md:p-6 backdrop-blur-xl transition-all duration-300 min-w-0 max-w-full overflow-hidden ${style.accentBorder} ${plan.popular ? "scale-[1.02] ring-2 ring-emerald-500/40 dark:ring-gulf-400/40 shadow-xl" : "hover:-translate-y-1"
+                className={`relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white/95 shadow-md hover:shadow-xl dark:border-white/10 dark:bg-gradient-to-b ${style.gradient} p-4 sm:p-5 md:p-6 backdrop-blur-xl transition-all duration-300 w-full min-w-0 max-w-full overflow-hidden ${style.accentBorder} ${plan.popular ? "scale-[1.02] ring-2 ring-emerald-500/40 dark:ring-gulf-400/40 shadow-xl z-10" : "hover:-translate-y-1"
                   }`}
               >
                 <div>
@@ -136,20 +175,26 @@ export default function Curriculum() {
                     </div>
                   )}
 
+                  {/* View Details Link */}
                   <Link
-                    href={`https://wa.me/916290051284?text=${encodeURIComponent(
-                      `${t.curriculum.whatsappCtaPrefix}${plan.title}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-4 text-sm font-bold transition-all duration-300 ${plan.popular
-                      ? "bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white dark:from-gulf-500 dark:via-emerald-500 dark:to-gold-400 dark:text-slate-950 shadow-xl shadow-emerald-500/20 hover:scale-[1.02]"
-                      : "border border-emerald-600/40 bg-emerald-50 text-emerald-800 hover:bg-emerald-600 hover:text-white dark:border-gulf-500/40 dark:bg-surface-100/90 dark:text-white dark:hover:bg-gulf-600 dark:hover:border-gulf-400"
-                      }`}
+                    href={`/courses#${sectionId}`}
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-4 mb-2.5 rounded-xl text-xs font-bold text-slate-700 hover:text-emerald-700 bg-slate-100/90 hover:bg-slate-200/90 border border-slate-200/90 dark:text-slate-200 dark:hover:text-emerald-300 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] dark:border-white/10 transition-all duration-200 group shadow-2xs active:scale-[0.99]"
                   >
-                    <span>{plan.ctaText}</span>
-                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                    <span>
+                      {language === "en" ? "View Course Details" : "বিস্তারিত দেখুন"}
+                    </span>
+                    <ArrowRight className="h-3.5 w-3.5 text-slate-400 dark:text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-transform group-hover:translate-x-1" />
                   </Link>
+
+                  <EnrollButton
+                    coursePrice={enrollPlan.price}
+                    courseName={enrollPlan.name}
+                    className={
+                      plan.popular
+                        ? "w-full py-3.5 px-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 hover:from-emerald-500 hover:via-teal-500 hover:to-amber-400 text-white font-bold rounded-xl shadow-xl shadow-emerald-500/20 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        : undefined
+                    }
+                  />
 
                   <div className="mt-3 flex items-center justify-center gap-3 text-[11px] text-slate-500 dark:text-slate-400">
                     <span className="flex items-center gap-1">
@@ -181,15 +226,26 @@ export default function Curriculum() {
             </div>
           </div>
 
-          <Link
-            href="https://wa.me/916290051284?text=Hello%20Rimslin%20Support,%20I%20want%20free%20consultation%20on%20Rimslin%20courses"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/60 px-5 py-2.5 text-xs font-bold text-emerald-300 hover:bg-emerald-900/80 transition-colors shrink-0"
-          >
-            <MessageCircle className="h-4 w-4" />
-            <span>{t.curriculum.freeConsultCta}</span>
-          </Link>
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <Link
+              href="/courses"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-50 text-emerald-800 hover:bg-emerald-600 hover:text-white dark:border-emerald-500/30 dark:bg-emerald-950/40 dark:text-emerald-300 dark:hover:bg-emerald-900/80 px-4 py-2.5 text-xs font-bold transition-all shadow-xs shrink-0"
+            >
+              <BookOpen className="h-4 w-4" />
+              <span>পূর্ণাঙ্গ কোর্স সিলেবাস দেখুন</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+
+            <Link
+              href="https://wa.me/916290051284?text=Hello%20Rimslin%20Support,%20I%20want%20free%20consultation%20on%20Rimslin%20courses"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/60 px-5 py-2.5 text-xs font-bold text-emerald-300 hover:bg-emerald-900/80 transition-colors shrink-0"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>{t.curriculum.freeConsultCta}</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -55,18 +55,13 @@ export default function StickyCourseButton({
   }, []);
 
   const handleClick = (e: React.MouseEvent) => {
-    // If mobile is collapsed, first tap expands the button for 4 seconds
-    if (isMobileCollapsed) {
-      e.preventDefault();
-      e.stopPropagation();
-      setIsMobileCollapsed(false);
+    e.preventDefault();
 
-      if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
-      collapseTimerRef.current = setTimeout(() => {
-        setIsMobileCollapsed(true);
-      }, 4000);
-      return;
+    // If mobile was collapsed, expand it temporarily on tap
+    if (isMobileCollapsed) {
+      setIsMobileCollapsed(false);
     }
+    if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
 
     // If custom action callback is provided, invoke it
     if (onStartCourse) {
@@ -74,35 +69,50 @@ export default function StickyCourseButton({
       return;
     }
 
-    // Default: smooth scroll to #course-plans
-    if (collapseTimerRef.current) clearTimeout(collapseTimerRef.current);
-    const targetUrl = pathname === "/" ? "#course-plans" : "/#course-plans";
-
+    // Homepage: smooth scroll to #courses-pricing
     if (pathname === "/") {
-      const el = document.getElementById("course-plans");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", "#course-plans");
+      const target =
+        document.getElementById("courses-pricing") ||
+        document.getElementById("course-plans");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (pathname === "/courses") {
+      // Already on /courses: smoothly scroll to first course section or top
+      const target =
+        document.getElementById("starter") ||
+        document.getElementById("course-plans");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
       } else {
-        router.push(targetUrl);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } else {
-      router.push(targetUrl);
+      // Any other page (e.g. /about, /contact): navigate to /courses
+      router.push("/courses");
     }
 
-    // Auto-collapse on mobile after 2 seconds on navigation
+    // Auto-collapse on mobile after 3 seconds following click
     collapseTimerRef.current = setTimeout(() => {
       setIsMobileCollapsed(true);
-    }, 2000);
+    }, 3000);
   };
 
   if (!hasMounted) return null;
 
   return (
     <div
-      className={`fixed top-[200px] right-[10px] z-50 select-none ${className}`}
+      className={`fixed top-[200px] right-[10px] z-50 select-none group/sticky ${className}`}
     >
-      {/* Mobile pulse indicator when collapsed (placed outside button to prevent overflow-hidden clipping) */}
+      {/* Ambient gentle breathing glow ring */}
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute -inset-1 rounded-[30px] bg-gradient-to-r from-emerald-500/40 via-teal-400/30 to-emerald-600/40 blur-md opacity-60 group-hover/sticky:opacity-100 transition-opacity duration-500 animate-pulse ${
+          isMobileCollapsed ? "w-14 h-14 rounded-full" : "rounded-[30px]"
+        } md:!w-full md:!h-full md:!rounded-[30px]`}
+      />
+
+      {/* Mobile pulse indicator when collapsed */}
       {isMobileCollapsed && (
         <span className="absolute -top-1 -right-1 z-10 flex h-3 w-3 md:hidden pointer-events-none">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -116,7 +126,7 @@ export default function StickyCourseButton({
         onClick={handleClick}
         aria-label={t.navbar.startCourse}
         aria-expanded={!isMobileCollapsed}
-        className={`group relative overflow-hidden flex items-center justify-center gap-2 rounded-[28px] bg-gradient-to-r from-emerald-600 via-[#00BFA5] to-teal-700 hover:from-emerald-500 hover:via-[#1DE9B6] hover:to-teal-600 text-white font-semibold shadow-xl shadow-emerald-950/40 hover:shadow-emerald-900/60 border border-white/30 backdrop-blur-md active:scale-95 transition-all duration-500 ease-in-out cursor-pointer ${
+        className={`group relative overflow-hidden flex items-center justify-center gap-2 rounded-[28px] bg-gradient-to-r from-emerald-600 via-[#00BFA5] to-teal-700 hover:from-emerald-500 hover:via-[#1DE9B6] hover:to-teal-600 text-white font-semibold shadow-xl shadow-emerald-950/40 hover:shadow-emerald-900/60 border border-white/30 backdrop-blur-md hover:scale-[1.03] active:scale-95 transition-all duration-300 ease-in-out cursor-pointer ${
           isMobileCollapsed
             ? "w-12 h-12 rounded-[28px] p-0 flex items-center justify-center"
             : "py-3 px-5 rounded-[28px]"
@@ -128,14 +138,14 @@ export default function StickyCourseButton({
           className="absolute inset-0 rounded-[28px] opacity-20 pointer-events-none bg-[radial-gradient(#fff_1.5px,transparent_1.5px)] [background-size:8px_8px]"
         />
 
-        {/* Traveling light shine animation on hover (strictly clipped inside button by overflow-hidden) */}
+        {/* Traveling light shine animation on hover */}
         <div
           aria-hidden="true"
           className="absolute inset-0 rounded-[28px] -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-1000 ease-in-out pointer-events-none"
         />
 
         {/* Play Icon */}
-        <Play className="w-5 h-5 fill-current text-white shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-110 relative z-10" />
+        <Play className="w-5 h-5 fill-current text-white shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 relative z-10" />
 
         {/* Text Container: Collapses on mobile after 4s, always visible on desktop */}
         <span
@@ -148,7 +158,7 @@ export default function StickyCourseButton({
 
         {/* Direction Arrow: Follows text visibility */}
         <ArrowRight
-          className={`w-3.5 h-3.5 rtl:rotate-180 shrink-0 text-white/90 drop-shadow-sm transition-all duration-300 relative z-10 ${
+          className={`w-3.5 h-3.5 rtl:rotate-180 shrink-0 text-white/90 drop-shadow-sm transition-transform duration-300 group-hover:translate-x-1 relative z-10 ${
             isMobileCollapsed ? "hidden" : "inline-block"
           } md:!inline-block`}
         />

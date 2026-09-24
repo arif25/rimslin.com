@@ -157,7 +157,7 @@ export default function Navbar() {
     },
     {
       name: t.navbar.curriculum,
-      href: "#course-plans",
+      href: "/courses",
       icon: BookOpen,
     },
     {
@@ -529,9 +529,11 @@ export default function Navbar() {
                 const isActive =
                   link.href === "/career"
                     ? pathname === "/career"
-                    : link.href === "/"
-                      ? pathname === "/"
-                      : pathname === link.href;
+                    : link.href === "/courses"
+                      ? pathname === "/courses" || pathname?.startsWith("/courses/")
+                      : link.href === "/"
+                        ? pathname === "/"
+                        : pathname === link.href;
                 const targetHref =
                   link.href.startsWith("#") && pathname !== "/"
                     ? `/${link.href}`
@@ -715,7 +717,7 @@ export default function Navbar() {
 
               {/* Primary Start Course CTA */}
               <Link
-                href="#course-plans"
+                href="/courses"
                 onClick={() => setIsMobileDrawerOpen(false)}
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-500 text-white dark:from-gulf-500 dark:via-emerald-500 dark:to-gold-400 dark:text-slate-950 py-3 text-sm font-bold shadow-md shadow-emerald-500/20"
               >
@@ -756,9 +758,11 @@ export default function Navbar() {
                     const isActive =
                       link.href === "/career"
                         ? pathname === "/career"
-                        : link.href === "/"
-                          ? pathname === "/"
-                          : pathname === link.href;
+                        : link.href === "/courses"
+                          ? pathname === "/courses" || pathname?.startsWith("/courses/")
+                          : link.href === "/"
+                            ? pathname === "/"
+                            : pathname === link.href;
                     const targetHref =
                       link.href.startsWith("#") && pathname !== "/"
                         ? `/${link.href}`
